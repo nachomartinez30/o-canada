@@ -1,469 +1,712 @@
 import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import SelectSiNo from '../singles/SelectSiNo';
+import SelectSexo from '../singles/SelectSexo';
+import ToMayus from "../helpers/ToMayus";
+import curpValida from "../helpers/curpValida";
+import InputCURP from "../singles/InputCURP";
+import InputRFC from "../singles/InputRFC";
+
 
 const FrmDatos = (props) => {
 
-    const { data, setData } = props
+    const { state, setState } = props
+
+    const setInfo = (input) => {
+        /* setea al state las variables */
+        setState({
+            ...state,
+            [input.target.name]: input.target.value
+        })
+    }
 
     return (
         <div className='row'>
-            <Form.Label>Apellido Paterno</Form.Label>
-            <Form.Control
-                name='apellido_paterno'
-                type=''
-                onChange
-                placeholder='Ingrese Apellido Paterno'
-            />
 
-            <Form.Label>Apellido Materno</Form.Label>
-            <Form.Control
-                name='apellido_materno'
-                type=''
-                onChange
-                placeholder='Ingrese Apellido Materno'
-            />
+            {/* Nombre (s) */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Nombre (s)</label>
+                <input
+                    className="form-control"
+                    name='nombres'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Nombre(s)...'
+                />
+            </div>
 
-            <Form.Label>Nombre (s)</Form.Label>
-            <Form.Control
-                name='nombres'
-                type=''
-                onChange
-                placeholder='Ingrese Nombre(s)'
-            />
+            {/* Apellido Paterno */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Apellido Paterno</label>
+                <input
+                    className="form-control"
+                    name='apellido_paterno'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Apellido Paterno...'
+                />
+            </div>
 
-            <Form.Label>Estado</Form.Label>
-            <Form.Control
-                name='estado'
-                type=''
-                onChange
-                placeholder='Ingrese Estado'
-            />
+            {/* Apellido Materno */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Apellido Materno</label>
+                <input
+                    className="form-control"
+                    name='apellido_materno'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Apellido Materno...'
+                />
+            </div>
 
-            <Form.Label>Número telefónico para notificaciones</Form.Label>
-            <Form.Control
-                name='numero_telefonico_notificaciones'
-                type=''
-                onChange
-                placeholder='Ingrese Número telefónico para notificaciones'
-            />
+            {/* Estado */}
+            <div className='col-6'>
 
-            <Form.Label>Correo electrónico</Form.Label>
-            <Form.Control
-                name='correo_electronico'
-                type=''
-                onChange
-                placeholder='Ingrese Correo electrónico'
-            />
+                {/* TODO: select Cat-estado */}
+                <label className="control-label pt-2">Estado</label>
+                <input
+                    className="form-control"
+                    name='estado'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Estado...'
+                />
+            </div>
 
-            <Form.Label>Fecha de Nacimiento</Form.Label>
-            <Form.Control
-                name='fecha_nacimiento'
-                type=''
-                onChange
-                placeholder='Ingrese Fecha de Nacimiento'
-            />
+            {/* Número telefónico para notificaciones */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Número telefónico para notificaciones</label>
+                <input
+                    className="form-control"
+                    name='numero_telefonico_notificaciones'
+                    type='phone'
+                    onChange={setInfo}
+                    placeholder='Ingrese Número telefónico para notificaciones...'
+                />
+            </div>
 
-            <Form.Label>Sexo</Form.Label>
-            <Form.Control
-                name='sexo'
-                type=''
-                onChange
-                placeholder='Ingrese Sexo'
-            />
+            {/* Correo electrónico */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Correo electrónico</label>
+                <input
+                    className="form-control"
+                    name='correo_electronico'
+                    type='email'
+                    onChange={setInfo}
+                    placeholder='Ingrese Correo electrónico...'
+                />
+            </div>
 
-            <Form.Label>Altura (centímetros)</Form.Label>
-            <Form.Control
-                name='altura'
-                type=''
-                onChange
-                placeholder='Ingrese Altura (cm)'
-            />
+            {/* Fecha de Nacimiento */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de Nacimiento</label>
+                <input
+                    className="form-control"
+                    name='fecha_nacimiento'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Fecha de Nacimiento...'
+                />
+            </div>
 
-            <Form.Label>Peso (kilogramos)</Form.Label>
-            <Form.Control
-                name='peso'
-                type=''
-                onChange
-                placeholder='Ingrese Peso (kg)'
-            />
+            {/* Sexo */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Sexo</label>
+                <SelectSexo
+                    className="form-control"
+                    name='sexo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Sexo...'
+                />
+            </div>
 
-            <Form.Label>IMC</Form.Label>
-            <Form.Control
-                name='imc'
-                type=''
-                onChange
-                placeholder='Ingrese IMC'
-            />
+            {/* Altura (centímetros) */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Altura (centímetros)</label>
+                <input
+                    className="form-control"
+                    name='altura'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Altura (cm)...'
+                />
+            </div>
 
-            <Form.Label>Grupo Sanguíneo</Form.Label>
-            <Form.Control
-                name='grupo_sanguineo'
-                type=''
-                onChange
-                placeholder='Ingrese Grupo Sanguíneo'
-            />
+            {/* Peso (kilogramos) */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Peso (kilogramos)</label>
+                <input
+                    className="form-control"
+                    name='peso'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Peso (kg)...'
+                />
+            </div>
 
-            <Form.Label>CURP</Form.Label>
-            <Form.Control
-                name='curp'
-                type=''
-                onChange
-                placeholder='Ingrese CURP'
-            />
+            {/* IMC */}
+            <div className='col-3'>
+                <label className="control-label pt-2">IMC</label>
+                <input
+                    className="form-control"
+                    name='imc'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese IMC...'
+                />
+            </div>
 
-            <Form.Label>RFC</Form.Label>
-            <Form.Control
-                name='rfc'
-                type=''
-                onChange
-                placeholder='Ingrese RFC'
-            />
+            {/* Grupo Sanguíneo */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Grupo Sanguíneo</label>
+                <input
+                    className="form-control"
+                    name='grupo_sanguineo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Grupo Sanguíneo...'
+                />
+            </div>
 
-            <Form.Label>Pasaporte No.</Form.Label>
-            <Form.Control
-                name='pasaporte_num'
-                type=''
-                onChange
-                placeholder='Ingrese Pasaporte No'
-            />
+            {/* CURP */}
+            <div className='col-6'>
+                <label className="control-label pt-2">CURP</label>
+                <InputCURP
+                    className="form-control"
+                    name='curp'
+                    type=''
+                    onChange={setInfo}
+                    curp={state.curp}
+                    onKeyPressCapture={ToMayus}
+                    onBlur={curpValida}
+                    placeholder='Ingrese CURP...'
+                />
+            </div>
 
-            <Form.Label>Pasaporte F. caducidad</Form.Label>
-            <Form.Control
-                name='pasaporte_fecha_cad'
-                type=''
-                onChange
-                placeholder='Ingrese Pasaporte F. caducidad'
-            />
+            {/* RFC */}
+            <div className='col-6'>
+                <label className="control-label pt-2">RFC</label>
+                <InputRFC
+                    className="form-control"
+                    name='rfc'
+                    rfc={state.rfc}
+                    type=''
+                    onKeyPressCapture={ToMayus}
+                    onChange={setInfo}
+                    placeholder='Ingrese RFC...'
+                />
+            </div>
 
-            <Form.Label>ETA/Visa No</Form.Label>
-            <Form.Control
-                name='eta-visa_num'
-                type=''
-                onChange
-                placeholder='Ingrese ETA/Visa No'
-            />
+            {/* Pasaporte No. */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Pasaporte No.</label>
+                <input
+                    className="form-control"
+                    name='pasaporte_num'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Pasaporte No...'
+                />
+            </div>
 
-            <Form.Label>ETA/Visa F. caducidad</Form.Label>
-            <Form.Control
-                name='eta-visa_fecha_cad'
-                type=''
-                onChange
-                placeholder='Ingrese ETA/Visa F. caducidad'
-            />
+            {/* Pasaporte F. caducidad */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Pasaporte F. caducidad</label>
+                <input
+                    className="form-control"
+                    name='pasaporte_fecha_cad'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Pasaporte F. caducidad...'
+                />
+            </div>
 
-            <Form.Label>Licencia de manejo</Form.Label>
-            <Form.Control
-                name='licencia_manejo'
-                type=''
-                onChange
-                placeholder='Ingrese Licencia de manejo'
-            />
+            {/* ETA/Visa No. */}
+            <div className='col-6'>
+                <label className="control-label pt-2">ETA/Visa No.</label>
+                <input
+                    className="form-control"
+                    name='eta-visa_num'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese ETA/Visa No...'
+                />
+            </div>
 
-            <Form.Label>Internacional</Form.Label>
-            <Form.Control
-                name='internacional'
-                type=''
-                onChange
-                placeholder='Ingrese Internacional'
-            />
+            {/* ETA/Visa F. caducidad */}
+            <div className='col-6'>
+                <label className="control-label pt-2">ETA/Visa F. caducidad</label>
+                <input
+                    className="form-control"
+                    name='eta-visa_fecha_cad'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese ETA/Visa F. caducidad...'
+                />
+            </div>
 
-            <Form.Label>Nacional traducida</Form.Label>
-            <Form.Control
-                name='nacional_traducida'
-                type=''
-                onChange
-                placeholder='Ingrese Nacional traducida'
-            />
+            {/* Licencia de manejo */}
+            <div className='col-4'>
+                <label className="control-label pt-2">Licencia de manejo</label>
+                <input
+                    className="form-control"
+                    name='licencia_manejo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Licencia de manejo...'
+                />
+            </div>
 
-            <Form.Label>Licencia Tipo</Form.Label>
-            <Form.Control
-                name='licencia_tipo'
-                type=''
-                onChange
-                placeholder='Ingrese Licencia Tipo'
-            />
+            {/* Internacional */}
+            <div className='col-4'>
+                <label className="control-label pt-2">Internacional</label>
+                <input
+                    className="form-control"
+                    name='internacional'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Internacional...'
+                />
+            </div>
 
-            <Form.Label>Licencia Tipo F. caducidad</Form.Label>
-            <Form.Control
-                name='licencia__fecha_cad'
-                type=''
-                onChange
-                placeholder='Ingrese Licencia Tipo F. caducidad'
-            />
+            {/* Nacional traducida */}
+            <div className='col-4'>
+                <label className="control-label pt-2">Nacional traducida</label>
+                <input
+                    className="form-control"
+                    name='nacional_traducida'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Nacional traducida...'
+                />
+            </div>
 
-            <Form.Label>Dependencia</Form.Label>
-            <Form.Control
-                name='dependencia'
-                type=''
-                onChange
-                placeholder='Ingrese Dependencia'
-            />
+            {/* Licencia Tipo */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Licencia Tipo</label>
+                <input
+                    className="form-control"
+                    name='licencia_tipo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Licencia Tipo...'
+                />
+            </div>
 
-            <Form.Label>Tipo de dependencia</Form.Label>
-            <Form.Control
-                name='tipo_dependencia'
-                type=''
-                onChange
-                placeholder='Ingrese Tipo de dependencia'
-            />
+            {/* Licencia Tipo F. caducidad */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Licencia Tipo F. caducidad</label>
+                <input
+                    className="form-control"
+                    name='licencia__fecha_cad'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Licencia Tipo F. caducidad...'
+                />
+            </div>
 
-            <Form.Label>Fecha de ingreso a la dependencia</Form.Label>
-            <Form.Control
-                name='fecha_ingreso_dependencia'
-                type=''
-                onChange
-                placeholder='Ingrese Fecha de ingreso a la dependencia'
-            />
+            {/* Dependencia */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Dependencia</label>
+                <input
+                    className="form-control"
+                    name='dependencia'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Dependencia...'
+                />
+            </div>
 
-            <Form.Label>Puesto en su dependencia</Form.Label>
-            <Form.Control
-                name='puesto_dependencia'
-                type=''
-                onChange
-                placeholder='Ingrese Puesto en su dependencia'
-            />
+            {/* Tipo de dependencia */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Tipo de dependencia</label>
+                <input
+                    className="form-control"
+                    name='tipo_dependencia'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Tipo de dependencia...'
+                />
+            </div>
 
-            <Form.Label>Funciones en su dependencia</Form.Label>
-            <Form.Control
-                name='funciones_dependencia'
-                type=''
-                onChange
-                placeholder='Ingrese Funciones en su dependencia'
-            />
+            {/* Fecha de ingreso a la dependencia */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de ingreso a la dependencia</label>
+                <input
+                    className="form-control"
+                    name='fecha_ingreso_dependencia'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Fecha de ingreso a la dependencia...'
+                />
+            </div>
 
-            <Form.Label>Años de experiencia en actividades de manejo del fuego (comprobables)</Form.Label>
-            <Form.Control
-                name='anios_experiencia'
-                type=''
-                onChange
-                placeholder='Ingrese Años de experiencia en actividades de manejo del fuego (comprobables'
-            />
+            {/* Puesto en su dependencia */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Puesto en su dependencia</label>
+                <input
+                    className="form-control"
+                    name='puesto_dependencia'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Puesto en su dependencia...'
+                />
+            </div>
 
-            <Form.Label>Certificado toxicológico</Form.Label>
-            <Form.Control
-                name='cert_toxicologico'
-                type=''
-                onChange
-                placeholder='Ingrese Certificado toxicológico'
-            />
+            {/* Funciones en su dependencia */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Funciones en su dependencia</label>
+                <textarea
+                    className="form-control"
+                    name='funciones_dependencia'
+                    rows={5}
+                    onChange={setInfo}
+                    placeholder='Ingrese Funciones en su dependencia...'
+                />
+            </div>
 
-            <Form.Label>Certificado toxicológico Fecha</Form.Label>
-            <Form.Control
-                name='fecha_cert_toxicologico'
-                type=''
-                onChange
-                placeholder='Ingrese Certificado toxicológico Fecha'
-            />
+            {/* Años de experiencia en actividades de manejo del fuego (comprobables) */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Años de experiencia en actividades de manejo del fuego (comprobables)</label>
+                <input
+                    className="form-control"
+                    name='anios_experiencia'
+                    type='number'
+                    onChange={setInfo}
+                    placeholder='Ingrese Años de experiencia en actividades de manejo del fuego (comprobables...'
+                />
+            </div>
 
-            <Form.Label>Certificado médico</Form.Label>
-            <Form.Control
-                name='cert_medico'
-                type=''
-                onChange
-                placeholder='Ingrese Certificado médico'
-            />
+            {/* Certificado toxicológico */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Certificado toxicológico</label>
+                <input
+                    className="form-control"
+                    name='cert_toxicologico'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificado toxicológico...'
+                />
+            </div>
 
-            <Form.Label>Certificado médico Fecha</Form.Label>
-            <Form.Control
-                name='fecha_cert_medico'
-                type=''
-                onChange
-                placeholder='Ingrese Certificado médico Fecha'
-            />
+            {/* Certificado toxicológico Fecha */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Certificado toxicológico Fecha</label>
+                <input
+                    className="form-control"
+                    name='fecha_cert_toxicologico'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificado toxicológico Fecha...'
+                />
+            </div>
 
-            <Form.Label>¿Padece alguna enfermedad?</Form.Label>
-            <Form.Control
-                name='padece_enfermedad'
-                type=''
-                onChange
-                placeholder='Ingrese ¿Padece alguna enfermedad'
-            />
+            {/* Certificado médico */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Certificado médico</label>
+                <input
+                    className="form-control"
+                    name='cert_medico'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificado médico...'
+                />
+            </div>
 
-            <Form.Label>¿Requiere medicamentos de manera permanente?</Form.Label>
-            <Form.Control
-                name='requiere_medicamentos_perm'
-                type=''
-                onChange
-                placeholder='Ingrese ¿Requiere medicamentos de manera permanente'
-            />
+            {/* Certificado médico Fecha */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Certificado médico Fecha</label>
+                <input
+                    className="form-control"
+                    name='fecha_cert_medico'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificado médico Fecha...'
+                />
+            </div>
 
-            <Form.Label>Autoevaluación de salud (formato A)</Form.Label>
-            <Form.Control
-                name='autoevaluacion_salud'
-                type=''
-                onChange
-                placeholder='Ingrese Autoevaluación de salud (formato A'
-            />
+            {/* ¿Padece alguna enfermedad? */}
+            <div className='col-6'>
+                <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
+                <input
+                    className="form-control"
+                    name='padece_enfermedad'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese ¿Padece alguna enfermedad...'
+                />
+            </div>
 
-            <Form.Label>SCI/SMI 100</Form.Label>
-            <Form.Control
-                name='sci-smi_100'
-                type=''
-                onChange
-                placeholder='Ingrese SCI/SMI 100'
-            />
+            {/* ¿Requiere medicamentos de manera permanente? */}
+            <div className='col-6'>
+                <label className="control-label pt-2">¿Requiere medicamentos de manera permanente?</label>
+                <input
+                    className="form-control"
+                    name='requiere_medicamentos_perm'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese ¿Requiere medicamentos de manera permanente...'
+                />
+            </div>
 
-            <Form.Label>SCI/SMI 200</Form.Label>
-            <Form.Control
-                name='sci-smi_200'
-                type=''
-                onChange
-                placeholder='Ingrese SCI/SMI 200'
-            />
+            {/* Autoevaluación de salud (formato A) */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>
+                <input
+                    className="form-control"
+                    name='autoevaluacion_salud'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Autoevaluación de salud (formato A...'
+                />
+            </div>
 
-            <Form.Label>S-190</Form.Label>
-            <Form.Control
-                name='s-190'
-                type=''
-                onChange
-                placeholder='Ingrese S-190'
-            />
+            {/* SCI/SMI 100 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">SCI/SMI 100</label>
+                <input
+                    className="form-control"
+                    name='sci-smi_100'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese SCI/SMI 100...'
+                />
+            </div>
 
-            <Form.Label>S-130</Form.Label>
-            <Form.Control
-                name='s-130'
-                type=''
-                onChange
-                placeholder='Ingrese S-130'
-            />
+            {/* SCI/SMI 200 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">SCI/SMI 200</label>
+                <input
+                    className="form-control"
+                    name='sci-smi_200'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese SCI/SMI 200...'
+                />
+            </div>
 
-            <Form.Label>CPCIF</Form.Label>
-            <Form.Control
-                name='cpcif'
-                type=''
-                onChange
-                placeholder='Ingrese CPCIF'
-            />
+            {/* S-190 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">S-190</label>
+                <input
+                    className="form-control"
+                    name='s-190'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese S-190...'
+                />
+            </div>
 
-            <Form.Label>S-290</Form.Label>
-            <Form.Control
-                name='s-290'
-                type=''
-                onChange
-                placeholder='Ingrese S-290'
-            />
+            {/* S-130 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">S-130</label>
+                <input
+                    className="form-control"
+                    name='s-130'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese S-130...'
+                />
+            </div>
 
-            <Form.Label>L-280</Form.Label>
-            <Form.Control
-                name='l-280'
-                type=''
-                onChange
-                placeholder='Ingrese L-280'
-            />
+            {/* CPCIF */}
+            <div className='col-12'>
+                <label className="control-label pt-2">CPCIF</label>
+                <input
+                    className="form-control"
+                    name='cpcif'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese CPCIF...'
+                />
+            </div>
 
-            <Form.Label>Certificación internacional de incendios forestales</Form.Label>
-            <Form.Control
-                name='cert_intern_incendios'
-                type=''
-                onChange
-                placeholder='Ingrese Certificación internacional de incendios forestales'
-            />
+            {/* S-290 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">S-290</label>
+                <input
+                    className="form-control"
+                    name='s-290'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese S-290...'
+                />
+            </div>
 
-            <Form.Label>Certificación internacional en atención de emergencias medicas</Form.Label>
-            <Form.Control
-                name='cert_intern_ate_emerg_med'
-                type=''
-                onChange
-                placeholder='Ingrese Certificación internacional en atención de emergencias medicas'
-            />
+            {/* L-280 */}
+            <div className='col-12'>
+                <label className="control-label pt-2">L-280</label>
+                <input
+                    className="form-control"
+                    name='l-280'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese L-280...'
+                />
+            </div>
 
-            <Form.Label>Opera de manera autónoma GPS</Form.Label>
-            <Form.Control
-                name='opera__gps'
-                type=''
-                onChange
-                placeholder='Ingrese Opera de manera autónoma GPS'
-            />
+            {/* Certificación internacional de incendios forestales */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Certificación internacional de incendios forestales</label>
+                <input
+                    className="form-control"
+                    name='cert_intern_incendios'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificación internacional de incendios forestales...'
+                />
+            </div>
 
-            <Form.Label>Opera de manera autónoma Bomba Mark 3</Form.Label>
-            <Form.Control
-                name='opera__bomba_mark_3'
-                type=''
-                onChange
-                placeholder='Ingrese Opera de manera autónoma Bomba Mark 3'
-            />
+            {/* Certificación internacional en atención de emergencias medicas */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Certificación internacional en atención de emergencias medicas</label>
+                <input
+                    className="form-control"
+                    name='cert_intern_ate_emerg_med'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Certificación internacional en atención de emergencias medicas...'
+                />
+            </div>
 
-            <Form.Label>Opera de manera autónoma Motosierra</Form.Label>
-            <Form.Control
-                name='opera__motosierra'
-                type=''
-                onChange
-                placeholder='Ingrese Opera de manera autónoma Motosierra'
-            />
+            {/* Opera de manera autónoma GPS */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Opera de manera autónoma GPS</label>
+                <SelectSiNo
+                    name='opera__gps'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Opera de manera autónoma GPS...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con EPP completo</Form.Label>
-            <Form.Control
-                name='tiene_epp_completo'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con EPP completo'
-            />
+            {/* Opera de manera autónoma Bomba Mark 3 */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Opera de manera autónoma Bomba Mark 3</label>
+                <SelectSiNo
+                    name='opera__bomba_mark_3'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Opera de manera autónoma Bomba Mark 3...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con Mochila de línea</Form.Label>
-            <Form.Control
-                name='tiene_mochila_linea'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con Mochila de línea'
-            />
+            {/* Opera de manera autónoma Motosierra */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Opera de manera autónoma Motosierra</label>
+                <SelectSiNo
+                    name='opera__motosierra'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Opera de manera autónoma Motosierra...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con Mochila de viaje Duffel Bag</Form.Label>
-            <Form.Control
-                name='tiene_duffel_bag'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con Mochila de viaje Duffel Bag'
-            />
+            {/* Cuenta con EPP completo */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con EPP completo</label>
+                <SelectSiNo
+                    name='tiene_epp_completo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con EPP completo...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con casa de campaña</Form.Label>
-            <Form.Control
-                name='tiene_casa_campania'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con casa de campaña'
-            />
+            {/* Cuenta con Mochila de línea */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con Mochila de línea</label>
+                <SelectSiNo
+                    name='tiene_mochila_linea'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con Mochila de línea...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con sleeping bag</Form.Label>
-            <Form.Control
-                name='tiene_sleeping_bag'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con sleeping bag'
-            />
+            {/* Cuenta con Mochila de viaje Duffel Bag */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con Mochila de viaje Duffel Bag</label>
+                <SelectSiNo
+                    name='tiene_duffel_bag'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con Mochila de viaje Duffel Bag...'
+                />
+            </div>
 
-            <Form.Label>Cuenta con sleeping pad</Form.Label>
-            <Form.Control
-                name='tiene_sleeping_pad'
-                type=''
-                onChange
-                placeholder='Ingrese Cuenta con sleeping pad'
-            />
+            {/* Cuenta con casa de campaña */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con casa de campaña</label>
+                <SelectSiNo
+                    name='tiene_casa_campania'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con casa de campaña...'
+                />
+            </div>
 
-            <Form.Label>Nivel de inglés</Form.Label>
-            <Form.Control
-                name='nivel_ingles'
-                type=''
-                onChange
-                placeholder='Ingrese Nivel de inglés'
-            />
+            {/* Cuenta con sleeping bag */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con sleeping bag</label>
+                <SelectSiNo
+                    name='tiene_sleeping_bag'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con sleeping bag...'
+                />
+            </div>
 
-            <Form.Label>Examen TOEIC/TOEFL</Form.Label>
-            <Form.Control
-                name='examen_toeic-toefl'
-                type=''
-                onChange
-                placeholder='Ingrese Examen TOEIC/TOEFL'
-            />
+            {/* Cuenta con sleeping pad */}
+            <div className='col-md-4'>
+                <label className="control-label pt-2">Cuenta con sleeping pad</label>
+                <SelectSiNo
+                    name='tiene_sleeping_pad'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Cuenta con sleeping pad...'
+                />
+            </div>
 
-            <Form.Label>Examen TOEIC/TOEFL puntuación</Form.Label>
-            <Form.Control
-                name='examen_toeic-toefl_punt'
-                type=''
-                onChange
-                placeholder='Ingrese Examen TOEIC/TOEFL puntuación'
-            />
+            {/* Nivel de inglés */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Nivel de inglés</label>
+                <input
+                    className="form-control"
+                    name='nivel_ingles'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Nivel de inglés...'
+                />
+            </div>
 
+            {/* Examen TOEIC/TOEFL */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
+                <input
+                    className="form-control"
+                    name='examen_toeic-toefl'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Examen TOEIC/TOEFL...'
+                />
+            </div>
+
+            {/* Examen TOEIC/TOEFL puntuación */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Examen TOEIC/TOEFL puntuación</label>
+                <input
+                    className="form-control"
+                    name='examen_toeic-toefl_punt'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Examen TOEIC/TOEFL puntuación...'
+                />
+            </div>
+            <div className='col-12 pt-5'>
+                <button className='btn btn-primary'>Enviar</button>
+            </div>
         </div>
     );
 }

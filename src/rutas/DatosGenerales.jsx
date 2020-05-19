@@ -13,13 +13,14 @@ const FormDatosGenerales = () => {
         <div className='container'>
             <h1 >Formulario captura</h1>
             <FrmDatos
-                data={infoBrigadista}
-                setData={setInfoBrigadista}
+                state={infoBrigadista}
+                setState={setInfoBrigadista}
             />
+            {/*             
             <FrmFiles
-                data={archivos}
-                setData={setArchivos}
-            />
+                state={archivos}
+                setState={setArchivos}
+            /> */}
         </div>
     );
 }

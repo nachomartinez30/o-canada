@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'react-bootstrap';
 
 const SelectSiNo = (props) => {
-    const { name, textLabel, onChange, defaultValue } = props
+    const { name, onChange, defaultValue = '' } = props
 
     return (
         <Form.Control as='select'
@@ -10,9 +10,9 @@ const SelectSiNo = (props) => {
             name={name}
             value={defaultValue}
         >
-            <option>---Seleccione---</option>
-            <option>SI</option>
-            <option>NO</option>
+            <option value=''>---Seleccione---</option>
+            <option value='si'>SI</option>
+            <option value='no'>NO</option>
         </Form.Control>
     );
 }
