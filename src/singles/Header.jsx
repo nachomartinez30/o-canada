@@ -27,7 +27,7 @@ const Header = () => {
                 className="d-inline-block align-top"
                 alt='logo_semarnat'
             />
-            O'Canada
+            <h3>O'Canada</h3>
         </nav>
     );
 }
