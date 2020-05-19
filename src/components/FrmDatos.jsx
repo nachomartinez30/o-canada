@@ -1,5 +1,4 @@
 import React from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
 import SelectSiNo from '../singles/SelectSiNo';
 import SelectSexo from '../singles/SelectSexo';
 import ToMayus from "../helpers/ToMayus";

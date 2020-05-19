@@ -14,18 +14,18 @@ const Header = () => {
                 alt='logo_incedios'
             />
             <img
-                src={logo_conafor}
-                // width={80}
-                height={50}
-                className="d-inline-block align-top"
-                alt='logo_conafor'
-            />
-            <img
                 src={logo_semarnat}
                 // width={80}
                 height={50}
                 className="d-inline-block align-top"
                 alt='logo_semarnat'
+            />
+            <img
+                src={logo_conafor}
+                // width={80}
+                height={50}
+                className="d-inline-block align-top"
+                alt='logo_conafor'
             />
             <h3>O'Canada</h3>
         </nav>

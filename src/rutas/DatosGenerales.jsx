@@ -16,6 +16,7 @@ const FormDatosGenerales = () => {
                 state={infoBrigadista}
                 setState={setInfoBrigadista}
             />
+            
             {/*             
             <FrmFiles
                 state={archivos}
