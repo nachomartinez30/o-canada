@@ -26,7 +26,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Nombre (s)</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='nombres'
                     type=''
                     onChange={setInfo}
@@ -38,7 +38,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Apellido Paterno</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='apellido_paterno'
                     type=''
                     onChange={setInfo}
@@ -50,7 +50,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Apellido Materno</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='apellido_materno'
                     type=''
                     onChange={setInfo}
@@ -64,7 +64,7 @@ const FrmDatos = (props) => {
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Estado</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='estado'
                     type=''
                     onChange={setInfo}
@@ -76,7 +76,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Número telefónico para notificaciones</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='numero_telefonico_notificaciones'
                     type='phone'
                     onChange={setInfo}
@@ -88,7 +88,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Correo electrónico</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='correo_electronico'
                     type='email'
                     onChange={setInfo}
@@ -100,7 +100,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Fecha de Nacimiento</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='fecha_nacimiento'
                     type='date'
                     onChange={setInfo}
@@ -112,7 +112,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Sexo</label>
                 <SelectSexo
-                    className="form-control"
+                    className="form-control myInput"
                     name='sexo'
                     type=''
                     onChange={setInfo}
@@ -124,7 +124,7 @@ const FrmDatos = (props) => {
             <div className='col-3'>
                 <label className="control-label pt-2">Altura (centímetros)</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='altura'
                     type=''
                     onChange={setInfo}
@@ -136,7 +136,7 @@ const FrmDatos = (props) => {
             <div className='col-3'>
                 <label className="control-label pt-2">Peso (kilogramos)</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='peso'
                     type=''
                     onChange={setInfo}
@@ -148,7 +148,7 @@ const FrmDatos = (props) => {
             <div className='col-3'>
                 <label className="control-label pt-2">IMC</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='imc'
                     type=''
                     onChange={setInfo}
@@ -160,7 +160,7 @@ const FrmDatos = (props) => {
             <div className='col-3'>
                 <label className="control-label pt-2">Grupo Sanguíneo</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='grupo_sanguineo'
                     type=''
                     onChange={setInfo}
@@ -172,7 +172,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">CURP</label>
                 <InputCURP
-                    className="form-control"
+                    className="form-control myInput"
                     name='curp'
                     type=''
                     onChange={setInfo}
@@ -187,7 +187,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">RFC</label>
                 <InputRFC
-                    className="form-control"
+                    className="form-control myInput"
                     name='rfc'
                     rfc={state.rfc}
                     type=''
@@ -201,7 +201,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Pasaporte No.</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='pasaporte_num'
                     type=''
                     onChange={setInfo}
@@ -213,7 +213,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Pasaporte F. caducidad</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='pasaporte_fecha_cad'
                     type='date'
                     onChange={setInfo}
@@ -225,7 +225,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">ETA/Visa No.</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='eta-visa_num'
                     type=''
                     onChange={setInfo}
@@ -237,7 +237,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">ETA/Visa F. caducidad</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='eta-visa_fecha_cad'
                     type='date'
                     onChange={setInfo}
@@ -249,7 +249,7 @@ const FrmDatos = (props) => {
             <div className='col-4'>
                 <label className="control-label pt-2">Licencia de manejo</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='licencia_manejo'
                     type=''
                     onChange={setInfo}
@@ -261,7 +261,7 @@ const FrmDatos = (props) => {
             <div className='col-4'>
                 <label className="control-label pt-2">Internacional</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='internacional'
                     type=''
                     onChange={setInfo}
@@ -273,7 +273,7 @@ const FrmDatos = (props) => {
             <div className='col-4'>
                 <label className="control-label pt-2">Nacional traducida</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='nacional_traducida'
                     type=''
                     onChange={setInfo}
@@ -285,7 +285,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Licencia Tipo</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='licencia_tipo'
                     type=''
                     onChange={setInfo}
@@ -297,7 +297,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Licencia Tipo F. caducidad</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='licencia__fecha_cad'
                     type='date'
                     onChange={setInfo}
@@ -309,7 +309,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Dependencia</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='dependencia'
                     type=''
                     onChange={setInfo}
@@ -321,7 +321,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Tipo de dependencia</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='tipo_dependencia'
                     type=''
                     onChange={setInfo}
@@ -333,7 +333,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Fecha de ingreso a la dependencia</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='fecha_ingreso_dependencia'
                     type='date'
                     onChange={setInfo}
@@ -345,7 +345,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Puesto en su dependencia</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='puesto_dependencia'
                     type=''
                     onChange={setInfo}
@@ -357,7 +357,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Funciones en su dependencia</label>
                 <textarea
-                    className="form-control"
+                    className="form-control myInput"
                     name='funciones_dependencia'
                     rows={5}
                     onChange={setInfo}
@@ -369,7 +369,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Años de experiencia en actividades de manejo del fuego (comprobables)</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='anios_experiencia'
                     type='number'
                     onChange={setInfo}
@@ -381,7 +381,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Certificado toxicológico</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='cert_toxicologico'
                     type=''
                     onChange={setInfo}
@@ -393,7 +393,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Certificado toxicológico Fecha</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='fecha_cert_toxicologico'
                     type='date'
                     onChange={setInfo}
@@ -405,7 +405,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Certificado médico</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='cert_medico'
                     type=''
                     onChange={setInfo}
@@ -417,7 +417,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Certificado médico Fecha</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='fecha_cert_medico'
                     type='date'
                     onChange={setInfo}
@@ -429,7 +429,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='padece_enfermedad'
                     type=''
                     onChange={setInfo}
@@ -441,7 +441,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">¿Requiere medicamentos de manera permanente?</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='requiere_medicamentos_perm'
                     type=''
                     onChange={setInfo}
@@ -453,7 +453,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='autoevaluacion_salud'
                     type=''
                     onChange={setInfo}
@@ -465,7 +465,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">SCI/SMI 100</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='sci-smi_100'
                     type=''
                     onChange={setInfo}
@@ -477,7 +477,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">SCI/SMI 200</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='sci-smi_200'
                     type=''
                     onChange={setInfo}
@@ -489,7 +489,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">S-190</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='s-190'
                     type=''
                     onChange={setInfo}
@@ -501,7 +501,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">S-130</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='s-130'
                     type=''
                     onChange={setInfo}
@@ -513,7 +513,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">CPCIF</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='cpcif'
                     type=''
                     onChange={setInfo}
@@ -525,7 +525,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">S-290</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='s-290'
                     type=''
                     onChange={setInfo}
@@ -537,7 +537,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">L-280</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='l-280'
                     type=''
                     onChange={setInfo}
@@ -549,7 +549,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Certificación internacional de incendios forestales</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='cert_intern_incendios'
                     type=''
                     onChange={setInfo}
@@ -561,7 +561,7 @@ const FrmDatos = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">Certificación internacional en atención de emergencias medicas</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='cert_intern_ate_emerg_med'
                     type=''
                     onChange={setInfo}
@@ -672,7 +672,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Nivel de inglés</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='nivel_ingles'
                     type=''
                     onChange={setInfo}
@@ -684,7 +684,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='examen_toeic-toefl'
                     type=''
                     onChange={setInfo}
@@ -696,7 +696,7 @@ const FrmDatos = (props) => {
             <div className='col-6'>
                 <label className="control-label pt-2">Examen TOEIC/TOEFL puntuación</label>
                 <input
-                    className="form-control"
+                    className="form-control myInput"
                     name='examen_toeic-toefl_punt'
                     type=''
                     onChange={setInfo}
