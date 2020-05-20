@@ -9,7 +9,7 @@ import InputRFC from "../singles/InputRFC";
 
 const S1 = (props) => {
 
-    const { state, setState } = props
+    const { state, setState, checkData } = props
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -334,7 +334,10 @@ const S1 = (props) => {
 
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
-                <button className='btn btn-primary'>Continuar</button>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
             </div>
         </div>
     );
