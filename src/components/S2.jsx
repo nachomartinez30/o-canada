@@ -148,6 +148,38 @@ const S2 = (props) => {
                 </select>
             </div>
 
+            {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?</label>
+                <select
+                    className="form-control myInput"
+                    name='presion_arterial_sistolica_diastolica'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?</label>
+                <select
+                    className="form-control myInput"
+                    name='presion_arterial_sistolica_diastolica'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
             {/* Autoevaluación de salud (formato A) */}
             <div className='col-12'>
                 <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Swal from 'sweetalert2'
+import React, { useState, useEffect } from 'react'
 import S1 from '../components/S1';
 import S2 from '../components/S2';
 import S3 from '../components/S3';
@@ -8,22 +7,17 @@ import S5 from '../components/S5';
 import S6 from '../components/S6';
 import S7 from '../components/S7';
 import S8 from '../components/S8';
-import Finalizar from '../components/Finalizar';
 
 
 
 const Captura = () => {
-    const seccionCompleta = { status: 'completo', visible: false };
-    const seccionSiguiente = { status: 'actual', visible: true };
 
+    const [infoBrigadista, setInfoBrigadista] = useState({
+        imc: 0
+    })
     const [secciones, setSecciones] = useState({
-<<<<<<< Updated upstream
-        s1: { status: 'capturado', visible: !false },
-        s2: { status: 'faltante', visible: false },
-=======
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: !false },
->>>>>>> Stashed changes
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
@@ -32,139 +26,34 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    // const [infoBrigadista, setInfoBrigadista] = useState({imc:0})
-    const [infoBrigadista, setInfoBrigadista] = useState({ "imc": 28.73174689021093, "nombres": "oscar ignacio", "apellido_paterno": "martinez", "apellido_materno": "diaz", "fecha_nacimiento": "1992-10-30", "curp": "MADO921030HJCRZS05", "rfc": "MADO921030QD9", "estado": "Zapopan", "numero_telefonico_notificaciones": "3319638873", "correo_electronico": "nachomartinez3010@gmail.com", "posicion_candidato": "jefe_de_cuadrilla", "sexo": "1", "altura": "172", "peso": "85", "grupo_sanguineo": "O+", "dependencia": "Conafor", "tipo_dependencia": "forestal", "fecha_ingreso_dependencia": "2020-09-01", "anios_experiencia": "2", "nombre_beneficiario": "Oscar Raul Martinez Blanco", "telefono_beneficiario": "3310438042", "correo_beneficiario": "osrama8@hotmail.com" })
-
-    const [rechazo, setRechazo] = useState({
-        status: false,
-        motivo: null
-    })
-
-
-    const rechazarCandidato = (motivo) => {
-        setSecciones({
-            s1: false,
-            s2: false,
-            s3: false,
-            s4: false,
-            s5: false,
-            s6: false,
-            s7: false,
-            s8: false,
-        })
-        setRechazo({
-            status: true,
-            motivo
-        })
-    }
-
-
-    /* VALIDACIONES */
     const checkDataS1 = () => {
-        const {
-            imc,
-            nombres,
-            apellido_paterno,
-            apellido_materno,
-            fecha_nacimiento,
-            curp,
-            rfc,
-            estado,
-            numero_telefonico_notificaciones,
-            correo_electronico,
-            posicion_candidato,
-            sexo,
-            altura,
-            peso,
-            grupo_sanguineo,
-            dependencia,
-            tipo_dependencia,
-            fecha_ingreso_dependencia,
-            anios_experiencia,
-            nombre_beneficiario,
-            telefono_beneficiario,
-            correo_beneficiario } = infoBrigadista
-        /* revisar campos vacíos */
-        if (
-            !imc || !nombres || !apellido_paterno ||
-            !apellido_materno || !fecha_nacimiento ||
-            !curp || !rfc || !estado || !numero_telefonico_notificaciones ||
-            !correo_electronico || !posicion_candidato ||
-            !sexo || !altura || !peso || !grupo_sanguineo || !dependencia ||
-            !tipo_dependencia || !fecha_ingreso_dependencia ||
-            !anios_experiencia || !nombre_beneficiario || !telefono_beneficiario ||
-            !correo_beneficiario
-        ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Todos los campos son necesarios'
-            })
-            return
-        }
-        /* if IMC > 30  finalizar*/
-        if (imc > 30) {
-            rechazarCandidato('imc mayo 30')
-            return
-        } else {
-            /*  mostrar siguiente seccion*/
-            setSecciones({
-                ...secciones,
-                s1: seccionCompleta,
-                s2: seccionSiguiente,
-            })
-        }
+
     }
     const checkDataS2 = () => {
-        setSecciones({
-            ...secciones,
-            s2: seccionCompleta,
-            s3: seccionSiguiente,
-        })
+
     }
     const checkDataS3 = () => {
-        setSecciones({
-            ...secciones,
-            s3: seccionCompleta,
-            s4: seccionSiguiente,
-        })
+
     }
     const checkDataS4 = () => {
-        setSecciones({
-            ...secciones,
-            s4: seccionCompleta,
-            s5: seccionSiguiente,
-        })
+
     }
     const checkDataS5 = () => {
-        setSecciones({
-            ...secciones,
-            s5: seccionCompleta,
-            s6: seccionSiguiente,
-        })
+
     }
     const checkDataS6 = () => {
-        setSecciones({
-            ...secciones,
-            s6: seccionCompleta,
-            s7: seccionSiguiente,
-        })
+
     }
     const checkDataS7 = () => {
-        setSecciones({
-            ...secciones,
-            s7: seccionCompleta,
-            s8: seccionSiguiente,
-        })
+
     }
     const checkDataS8 = () => {
-        setSecciones({
-            ...secciones,
-            s8: seccionCompleta
-        })
+
     }
 
     return (
         <div className='container'>
+            <h1 >Formulario captura</h1>
             {secciones.s1.visible &&
                 <S1
                     state={infoBrigadista}
@@ -221,7 +110,6 @@ const Captura = () => {
                     checkData={checkDataS8}
                 />
             }
-            {rechazo.status && <Finalizar />}
         </div>
     );
 }
