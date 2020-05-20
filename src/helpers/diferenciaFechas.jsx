@@ -6,6 +6,8 @@ const diferenciaFechas = (ingreso) => {
     const hoy = moment();
 
     const diferencia = hoy.diff(fecha, 'months')
+    console.log(diferencia);
+    
     return diferencia
 }
 

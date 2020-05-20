@@ -20,8 +20,8 @@ const Captura = () => {
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
-        s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: !false },
+        s3: { status: 'faltante', visible: !false },
+        s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
@@ -29,7 +29,7 @@ const Captura = () => {
     })
 
     // const [infoBrigadista, setInfoBrigadista] = useState({imc:0})
-    const [infoBrigadista, setInfoBrigadista] = useState({ "imc": 28.73174689021093, "nombres": "oscar ignacio", "apellido_paterno": "martinez", "apellido_materno": "diaz", "fecha_nacimiento": "1992-10-30", "curp": "MADO921030HJCRZS05", "rfc": "MADO921030QD9", "estado": "Zapopan", "numero_telefonico_notificaciones": "3319638873", "correo_electronico": "nachomartinez3010@gmail.com", "posicion_candidato": "jefe_de_cuadrilla", "sexo": "1", "altura": "172", "peso": "85", "grupo_sanguineo": "O+", "dependencia": "Conafor", "tipo_dependencia": "forestal", "fecha_ingreso_dependencia": "2020-09-01", "anios_experiencia": "2", "nombre_beneficiario": "Oscar Raul Martinez Blanco", "telefono_beneficiario": "3310438042", "correo_beneficiario": "osrama8@hotmail.com" })
+    const [infoBrigadista, setInfoBrigadista] = useState({ "imc": 28.73174689021093, "nombres": "oscar ignacio", "apellido_paterno": "martinez", "apellido_materno": "diaz", "fecha_nacimiento": "1992-10-30", "curp": "MADO921030HJCRZS05", "rfc": "MADO921030QD9", "estado": "Zapopan", "numero_telefonico_notificaciones": "3319638873", "correo_electronico": "nachomartinez3010@gmail.com", "posicion_candidato": "jefe_de_cuadrilla", "sexo": "1", "altura": "172", "peso": "85", "grupo_sanguineo": "O+", "dependencia": "Conafor", "tipo_dependencia": "forestal", "fecha_ingreso_dependencia": "2020-09-01", "anios_experiencia": "2", "nombre_beneficiario": "Oscar Raul Martinez Blanco", "telefono_beneficiario": "3310438042", "correo_beneficiario": "osrama8@hotmail.com", "carta_antecedentes": "C:\\fakepath\\node.png", "antecedentes_fecha": "2020-05-20", "pasaporte_archivo": "C:\\fakepath\\898408.jpg", "pasaporte_numero": "21212121212", "pasaporte_fecha_cad": "2019-01-01", "eta_visa_archivo": "C:\\fakepath\\que-es-nodejs.png", "documento_viajar_canada": "VISA", "eta_visa_num": "132146574", "eta_visa_fecha_exp": "2019-01-01", "eta_visa_fecha_cad": "2020-01-01", "licencia_manejo": "C:\\fakepath\\898408.jpg", "tipo_licencia": "Nacional", "licencia_fecha_cad": "2020-01-21" })
 
     const [rechazo, setRechazo] = useState({
         status: false,
@@ -111,9 +111,45 @@ const Captura = () => {
         }
     }
     const checkDataS2 = () => {
-        /* TODO: por cada fecha de licencia revisar vigencia */
-        if (diferenciaFechas('20-05-2020') < 10) {
-            rechazarCandidato('licencias menores a 10 meses')
+        const { carta_antecedentes,
+            pasaporte_archivo,
+            eta_visa_archivo,
+            antecedentes_fecha,
+            pasaporte_numero,
+            pasaporte_fecha_cad,
+            documento_viajar_canada,
+            eta_visa_num,
+            eta_visa_fecha_exp,
+            eta_visa_fecha_cad,
+            licencia_manejo,
+            tipo_licencia,
+            licencia_fecha_cad } = infoBrigadista
+        /* revision de campos vacíos */
+        if (!carta_antecedentes ||
+            !pasaporte_archivo ||
+            !eta_visa_archivo ||
+            !antecedentes_fecha ||
+            !pasaporte_numero ||
+            !pasaporte_fecha_cad ||
+            !documento_viajar_canada ||
+            !eta_visa_num ||
+            !eta_visa_fecha_exp ||
+            !eta_visa_fecha_cad ||
+            !licencia_manejo ||
+            !tipo_licencia ||
+            !licencia_fecha_cad) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Todos los campos son necesarios'
+            })
+            return
+        }
+        /* por cada fecha de licencia revisar vigencia */
+
+        if (diferenciaFechas(antecedentes_fecha) < 10 || diferenciaFechas(pasaporte_fecha_cad) < 10 ||
+            diferenciaFechas(eta_visa_fecha_cad) < 10 || diferenciaFechas(licencia_fecha_cad) < 10
+        ) {
+            rechazarCandidato('vigencias menores a 10 meses')
         } else {
             setSecciones({
                 ...secciones,
@@ -176,20 +212,23 @@ const Captura = () => {
                     checkData={checkDataS1}
                 />
             }
+            {/* S2 y 3 estan cambiados en hoja de requerimientos */}
             {secciones.s2.visible &&
-                <S2
+                <S3
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS2}
                 />
             }
+            {/* S2 y 3 estan cambiados en hoja de requerimientos */}
             {secciones.s3.visible &&
-                <S3
+                <S2
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS3}
                 />
             }
+
             {secciones.s4.visible &&
                 <S4
                     state={infoBrigadista}
