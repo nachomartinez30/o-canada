@@ -78,7 +78,7 @@ const S3 = (props) => {
                 <label className="control-label pt-2">ETA/Visa</label>
                 <input
                     className="form-control myInput"
-                    name='eta-visa_archivo'
+                    name='eta_visa_archivo'
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa'
@@ -106,7 +106,7 @@ const S3 = (props) => {
                 <label className="control-label pt-2">ETA/Visa No.</label>
                 <input
                     className="form-control myInput"
-                    name='eta-visa_num'
+                    name='eta_visa_num'
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa No...'
@@ -118,7 +118,7 @@ const S3 = (props) => {
                 <label className="control-label pt-2">ETA/Visa Fecha de expedición</label>
                 <input
                     className="form-control myInput"
-                    name='eta-visa_fecha_exp'
+                    name='eta_visa_fecha_exp'
                     type='date'
                     onChange={setInfo}
                     placeholder='ETA/Visa Fecha de expedición'
@@ -130,7 +130,7 @@ const S3 = (props) => {
                 <label className="control-label pt-2">ETA/Visa Fecha de caducidad</label>
                 <input
                     className="form-control myInput"
-                    name='eta-visa_fecha_cad'
+                    name='eta_visa_fecha_cad'
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa F. caducidad...'
