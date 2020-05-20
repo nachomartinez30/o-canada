@@ -36,15 +36,61 @@ const S4 = (props) => {
                     placeholder='Ingrese SCI/SMI 200...'
                 />
             </div>
-            {/* EJEMPLO */}
+
+            {/* ¿El evaluado ha participado en eventos planeados o no...? */}
             <div className='col-12'>
-                <label className="control-label danger pt-2">Is Jorge a right?</label>
+                <label className="control-label danger pt-2">¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI?</label>
                 <SelectSiNo
                     className="form-control myInput"
-                    name='ejemplo'
+                    name='eventos_plnaeados_sci'
                     onChange={setInfo}
                 />
             </div>
+
+            {/* ¿El evaluado ha participado en eventos planeados o no planeados...? */}
+            <div className='col-12'>
+                <label className="control-label danger pt-2">¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI fuera de su país?</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='eventos_plnaeados_sci_fuera'
+                    onChange={setInfo}
+                />
+            </div>
+
+            {/* ¿El evaluado ha ocupado en eventos planeados o no estructura...? */}
+            <div className='col-12'>
+                <label className="control-label danger pt-2">¿El evaluado ha ocupado en eventos planeados o no planeados alguna posición dentro de la estructura del SCI?</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='eventos_plnaeados_dentro_estructura'
+                    onChange={setInfo}
+                />
+            </div>
+
+            {/* SCI/SMI 200 */}
+            <div className='col-5'>
+                <label className="control-label pt-2">Si la respuesta fue “SI” indique cual</label>
+                <input
+                    className="form-control myInput"
+                    name='sci_cual'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Indique cual...'
+                />
+            </div>
+
+            {/* ¿El evaluado pertenece a algún Equipo de Manejo de Incidentes? */}
+            <div className='col-7'>
+                <label className="control-label danger pt-2">¿El evaluado pertenece a algún Equipo de Manejo de Incidentes?</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='evaluado_menejo_incidentes'
+                    onChange={setInfo}
+                />
+            </div>
+
+            <h2>Liga a examen</h2>
+
         </div>
     );
 }
