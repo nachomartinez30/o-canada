@@ -18,7 +18,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_toxicologico'
-                    type=''
+                    type='file'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado toxicológico...'
                 />
@@ -42,7 +42,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_medico'
-                    type=''
+                    type='file'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado médico...'
                 />
