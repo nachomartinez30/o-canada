@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectSiNo from '../singles/SelectSiNo'
 
 const S4 = (props) => {
     const { state, setState, checkData } = props
@@ -33,6 +34,15 @@ const S4 = (props) => {
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese SCI/SMI 200...'
+                />
+            </div>
+            {/* EJEMPLO */}
+            <div className='col-12'>
+                <label className="control-label danger pt-2">Is Jorge a Slut?</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='ejemplo'
+                    onChange={setInfo}
                 />
             </div>
         </div>

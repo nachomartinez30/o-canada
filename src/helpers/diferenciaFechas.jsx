@@ -2,7 +2,7 @@ import moment from 'moment'
 
 const diferenciaFechas = (ingreso) => {
 
-    const fecha = moment(ingreso, "DD-MM-YYYY");
+    const fecha = moment(ingreso, "YYYY-MM-DD");
     const hoy = moment();
 
     const diferencia = hoy.diff(fecha, 'months')

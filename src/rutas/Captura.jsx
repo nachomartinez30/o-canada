@@ -18,10 +18,10 @@ const Captura = () => {
     const seccionSiguiente = { status: 'actual', visible: true };
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'capturado', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: !false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
