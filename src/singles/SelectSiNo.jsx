@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const SelectSiNo = (props) => {
-    const { name, onChange, defaultValue = '', className } = props
+    const { name, onChange, defaultValue, className } = props
 
     return (
         <select
