@@ -38,7 +38,7 @@ const S4 = (props) => {
             </div>
             {/* EJEMPLO */}
             <div className='col-12'>
-                <label className="control-label danger pt-2">Is Jorge a Slut?</label>
+                <label className="control-label danger pt-2">Is Jorge a right?</label>
                 <SelectSiNo
                     className="form-control myInput"
                     name='ejemplo'
