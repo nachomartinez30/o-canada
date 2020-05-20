@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-
-import DatosPersonales from '../components/DatosPersonales';
-
+import S1 from '../components/S1';
 
 
-const S1 = () => {
 
-    const [infoBrigadista, setInfoBrigadista] = useState({})
-    const [archivos, setArchivos] = useState([])
+const Captura = () => {
+
+    const [infoBrigadista, setInfoBrigadista] = useState({
+        imc: 0
+    })
 
     return (
         <div className='container'>
             <h1 >Formulario captura</h1>
-            <DatosPersonales
+
+            <S1
                 state={infoBrigadista}
                 setState={setInfoBrigadista}
             />
@@ -20,4 +21,4 @@ const S1 = () => {
     );
 }
 
-export default S1;
+export default Captura;

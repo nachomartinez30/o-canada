@@ -7,7 +7,7 @@ import InputCURP from "../singles/InputCURP";
 import InputRFC from "../singles/InputRFC";
 
 
-const DatosPersonales = (props) => {
+const S1 = (props) => {
 
     const { state, setState } = props
 
@@ -17,6 +17,20 @@ const DatosPersonales = (props) => {
             ...state,
             [input.target.name]: input.target.value
         })
+    }
+
+    const calculoIMC = () => {
+        const { altura, peso } = state
+        if (altura && peso) {
+            const alturaM = altura / 100;
+            const imc = peso / Math.pow(alturaM, 2)
+            setState({
+                ...state,
+                imc
+            })
+        }
+
+
     }
 
     return (
@@ -187,6 +201,7 @@ const DatosPersonales = (props) => {
                     className="form-control myInput"
                     name='altura'
                     type=''
+                    onBlur={calculoIMC}
                     onChange={setInfo}
                     placeholder='Ingrese Altura (cm)...'
                 />
@@ -199,6 +214,7 @@ const DatosPersonales = (props) => {
                     className="form-control myInput"
                     name='peso'
                     type=''
+                    onBlur={calculoIMC}
                     onChange={setInfo}
                     placeholder='Ingrese Peso (kg)...'
                 />
@@ -208,6 +224,8 @@ const DatosPersonales = (props) => {
             <div className='col-12'>
                 <label className="control-label pt-2">IMC</label>
                 <input
+                    disabled
+                    value={state.imc}
                     className="form-control myInput"
                     name='imc'
                     type=''
@@ -321,4 +339,4 @@ const DatosPersonales = (props) => {
         </div>
     );
 }
-export default DatosPersonales;
+export default S1;
