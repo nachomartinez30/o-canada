@@ -180,6 +180,102 @@ const S2 = (props) => {
                 </select>
             </div>
 
+            {/* ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho (angina), arritmias (latido irregular) o ataque cardíaco?</label>
+                <select
+                    className="form-control myInput"
+                    name='enfermedad_cardiaca'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?</label>
+                <select
+                    className="form-control myInput"
+                    name='cirugia_corazon'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Tiene un pulso en reposo mayor a 100 latidos por minuto? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Tiene un pulso en reposo mayor a 100 latidos por minuto?</label>
+                <select
+                    className="form-control myInput"
+                    name='pulso_mayor_100'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Tiene un pulso en reposo mayor a 100 latidos por minuto?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?</label>
+                <select
+                    className="form-control myInput"
+                    name='problemas_afeccion_osea'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?</label>
+                <select
+                    className="form-control myInput"
+                    name='experiencia_personal_consejos'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
+            {/* ¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia? */}
+            <div className='col-12'>
+                <label className="control-label pt-2">¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?</label>
+                <select
+                    className="form-control myInput"
+                    name='medico_personal_recomendo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='si'>Si</option>
+                    <option value='no'>No</option>
+                </select>
+            </div>
+
             {/* Autoevaluación de salud (formato A) */}
             <div className='col-12'>
                 <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>
@@ -190,6 +286,14 @@ const S2 = (props) => {
                     onChange={setInfo}
                     placeholder='Ingrese Autoevaluación de salud (formato A...'
                 />
+            </div>
+
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
             </div>
         </div>
     );
