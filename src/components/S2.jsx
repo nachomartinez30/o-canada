@@ -11,7 +11,16 @@ const S2 = (props) => {
         })
     }
     return (
-        <h1>S2</h1>
+        <div className='row'>
+            <h1>S2</h1>
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
+            </div>
+        </div>
     );
 }
 

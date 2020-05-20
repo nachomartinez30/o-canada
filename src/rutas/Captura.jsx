@@ -9,6 +9,7 @@ import S6 from '../components/S6';
 import S7 from '../components/S7';
 import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
+import diferenciaFechas from '../helpers/diferenciaFechas';
 
 
 
@@ -110,13 +111,19 @@ const Captura = () => {
         }
     }
     const checkDataS2 = () => {
-        setSecciones({
-            ...secciones,
-            s2: seccionCompleta,
-            s3: seccionSiguiente,
-        })
+        /* TODO: por cada fecha de licencia revisar vigencia */
+        if (diferenciaFechas('20-05-2020') < 10) {
+            rechazarCandidato('licencias menores a 10 meses')
+        } else {
+            setSecciones({
+                ...secciones,
+                s2: seccionCompleta,
+                s3: seccionSiguiente,
+            })
+        }
     }
     const checkDataS3 = () => {
+        /* TODO: rechazo si alguna respuesta is true */
         setSecciones({
             ...secciones,
             s3: seccionCompleta,
@@ -131,6 +138,8 @@ const Captura = () => {
         })
     }
     const checkDataS5 = () => {
+        /* TODO: rechazo si alguna respuesta false */
+
         setSecciones({
             ...secciones,
             s5: seccionCompleta,
