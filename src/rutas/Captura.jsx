@@ -25,7 +25,7 @@ const Captura = () => {
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
-        s8: { status: 'faltante', visible: false },
+        s8: { status: 'faltante', visible: !false },
     })
 
     const [infoBrigadista, setInfoBrigadista] = useState({imc:0})
