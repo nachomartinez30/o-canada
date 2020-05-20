@@ -13,27 +13,63 @@ const S3 = (props) => {
     }
     return (
         <div className='row'>
-            {/* SCI/SMI 100 */}
+            {/* Pasaporte No. */}
             <div className='col-12'>
-                <label className="control-label pt-2">SCI/SMI 100</label>
+                <label className="control-label pt-2">Pasaporte No.</label>
                 <input
                     className="form-control myInput"
-                    name='sci-smi_100'
+                    name='pasaporte_num'
                     type=''
                     onChange={setInfo}
-                    placeholder='Ingrese SCI/SMI 100...'
+                    placeholder='Ingrese Pasaporte No...'
                 />
             </div>
 
-            {/* SCI/SMI 200 */}
+            {/* Pasaporte F. caducidad */}
             <div className='col-12'>
-                <label className="control-label pt-2">SCI/SMI 200</label>
+                <label className="control-label pt-2">Pasaporte F. caducidad</label>
                 <input
                     className="form-control myInput"
-                    name='sci-smi_200'
+                    name='pasaporte_fecha_cad'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Pasaporte F. caducidad...'
+                />
+            </div>
+
+            {/* ETA/Visa No. */}
+            <div className='col-12'>
+                <label className="control-label pt-2">ETA/Visa No.</label>
+                <input
+                    className="form-control myInput"
+                    name='eta-visa_num'
                     type=''
                     onChange={setInfo}
-                    placeholder='Ingrese SCI/SMI 200...'
+                    placeholder='Ingrese ETA/Visa No...'
+                />
+            </div>
+
+            {/* ETA/Visa F. caducidad */}
+            <div className='col-12'>
+                <label className="control-label pt-2">ETA/Visa F. caducidad</label>
+                <input
+                    className="form-control myInput"
+                    name='eta-visa_fecha_cad'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese ETA/Visa F. caducidad...'
+                />
+            </div>
+
+            {/* Licencia de manejo */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Licencia de manejo</label>
+                <input
+                    className="form-control myInput"
+                    name='licencia_manejo'
+                    type=''
+                    onChange={setInfo}
+                    placeholder='Ingrese Licencia de manejo...'
                 />
             </div>
         </div>
