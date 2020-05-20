@@ -35,7 +35,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Apellido Paterno */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Apellido Paterno</label>
                 <input
                     className="form-control myInput"
@@ -47,7 +47,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Apellido Materno */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Apellido Materno</label>
                 <input
                     className="form-control myInput"
@@ -59,7 +59,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Fecha de Nacimiento */}
-            <div className='col-12'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Fecha de Nacimiento</label>
                 <input
                     className="form-control myInput"
@@ -71,7 +71,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* CURP */}
-            <div className='col-12'>
+            <div className='col-8'>
                 <label className="control-label pt-2">CURP</label>
                 <InputCURP
                     className="form-control myInput"
@@ -86,7 +86,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* RFC */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">RFC</label>
                 <InputRFC
                     className="form-control myInput"
@@ -100,7 +100,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Estado */}
-            <div className='col-12'>
+            <div className='col-6'>
 
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Estado</label>
@@ -113,7 +113,7 @@ const DatosPersonales = (props) => {
                 />
             </div>
             {/* Municipio */}
-            <div className='col-12'>
+            <div className='col-6'>
 
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Municipio</label>
@@ -127,7 +127,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Número telefónico para notificaciones */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Número telefónico para notificaciones</label>
                 <input
                     className="form-control myInput"
@@ -139,7 +139,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Correo electrónico */}
-            <div className='col-12'>
+            <div className='col-5'>
                 <label className="control-label pt-2">Correo electrónico</label>
                 <input
                     className="form-control myInput"
@@ -151,7 +151,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Posicion Candidato */}
-            <div className='col-12'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Posicion a la que es candidato:</label>
                 <select
                     className="form-control myInput"
@@ -169,7 +169,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Sexo TODO: cambiar */}
-            <div className='col-12'>
+            <div className='col-3'>
                 <label className="control-label pt-2">Sexo</label>
                 <SelectSexo
                     className="form-control myInput"
@@ -181,7 +181,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Altura (centímetros) */}
-            <div className='col-12'>
+            <div className='col-3'>
                 <label className="control-label pt-2">Altura (centímetros)</label>
                 <input
                     className="form-control myInput"
@@ -193,7 +193,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Peso (kilogramos) */}
-            <div className='col-12'>
+            <div className='col-3'>
                 <label className="control-label pt-2">Peso (kilogramos)</label>
                 <input
                     className="form-control myInput"
@@ -205,7 +205,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* IMC */}
-            <div className='col-12'>
+            <div className='col-3'>
                 <label className="control-label pt-2">IMC</label>
                 <input
                     className="form-control myInput"
@@ -217,7 +217,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Grupo Sanguíneo */}
-            <div className='col-12'>
+            <div className='col-3'>
                 <label className="control-label pt-2">Grupo Sanguíneo</label>
                 <input
                     className="form-control myInput"
@@ -229,7 +229,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Dependencia */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Dependencia</label>
                 <input
                     className="form-control myInput"
@@ -241,7 +241,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Tipo de dependencia */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Tipo de dependencia</label>
                 <input
                     className="form-control myInput"
@@ -253,7 +253,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Fecha de ingreso a la dependencia */}
-            <div className='col-12'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Fecha de ingreso a la dependencia</label>
                 <input
                     className="form-control myInput"
@@ -265,7 +265,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Años de experiencia en actividades de manejo del fuego (comprobables) */}
-            <div className='col-12'>
+            <div className='col-8'>
                 <label className="control-label pt-2">Años de experiencia en actividades de manejo del fuego (comprobables)</label>
                 <input
                     className="form-control myInput"
@@ -291,7 +291,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Telefono Beneficiario */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Telefono del Beneficiario</label>
                 <input
                     className="form-control myInput"
@@ -303,7 +303,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* Correo Beneficiario */}
-            <div className='col-12'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Correo electrónico de Beneficiario</label>
                 <input
                     className="form-control myInput"
@@ -315,7 +315,7 @@ const DatosPersonales = (props) => {
             </div>
 
             {/* BTN Continuar */}
-            <div className='col-12 pt-5'>
+            <div className='col-12 pt-5 btn-margin'>
                 <button className='btn btn-primary'>Continuar</button>
             </div>
         </div>
