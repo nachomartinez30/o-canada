@@ -89,7 +89,7 @@ const S4 = (props) => {
                 />
             </div>
 
-            <h2>Liga a examen</h2>
+            <h4><br/>Liga a examen</h4>
 
         </div>
     );
