@@ -21,7 +21,7 @@ const FrmDatos = (props) => {
 
     return (
         <div className='row'>
-
+            {/* FOTOGRAFIA */}
             {/* Nombre (s) */}
             <div className='col-12'>
                 <label className="control-label pt-2">Nombre (s)</label>
@@ -55,6 +55,47 @@ const FrmDatos = (props) => {
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Apellido Materno...'
+                />
+            </div>
+
+            {/* Fecha de Nacimiento */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de Nacimiento</label>
+                <input
+                    className="form-control myInput"
+                    name='fecha_nacimiento'
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese Fecha de Nacimiento...'
+                />
+            </div>
+
+            {/* CURP */}
+            <div className='col-6'>
+                <label className="control-label pt-2">CURP</label>
+                <InputCURP
+                    className="form-control myInput"
+                    name='curp'
+                    type=''
+                    onChange={setInfo}
+                    curp={state.curp}
+                    onKeyPressCapture={ToMayus}
+                    onBlur={curpValida}
+                    placeholder='Ingrese CURP...'
+                />
+            </div>
+
+            {/* RFC */}
+            <div className='col-6'>
+                <label className="control-label pt-2">RFC</label>
+                <InputRFC
+                    className="form-control myInput"
+                    name='rfc'
+                    rfc={state.rfc}
+                    type=''
+                    onKeyPressCapture={ToMayus}
+                    onChange={setInfo}
+                    placeholder='Ingrese RFC...'
                 />
             </div>
 
@@ -93,18 +134,6 @@ const FrmDatos = (props) => {
                     type='email'
                     onChange={setInfo}
                     placeholder='Ingrese Correo electrónico...'
-                />
-            </div>
-
-            {/* Fecha de Nacimiento */}
-            <div className='col-6'>
-                <label className="control-label pt-2">Fecha de Nacimiento</label>
-                <input
-                    className="form-control myInput"
-                    name='fecha_nacimiento'
-                    type='date'
-                    onChange={setInfo}
-                    placeholder='Ingrese Fecha de Nacimiento...'
                 />
             </div>
 
@@ -165,35 +194,6 @@ const FrmDatos = (props) => {
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Grupo Sanguíneo...'
-                />
-            </div>
-
-            {/* CURP */}
-            <div className='col-6'>
-                <label className="control-label pt-2">CURP</label>
-                <InputCURP
-                    className="form-control myInput"
-                    name='curp'
-                    type=''
-                    onChange={setInfo}
-                    curp={state.curp}
-                    onKeyPressCapture={ToMayus}
-                    onBlur={curpValida}
-                    placeholder='Ingrese CURP...'
-                />
-            </div>
-
-            {/* RFC */}
-            <div className='col-6'>
-                <label className="control-label pt-2">RFC</label>
-                <InputRFC
-                    className="form-control myInput"
-                    name='rfc'
-                    rfc={state.rfc}
-                    type=''
-                    onKeyPressCapture={ToMayus}
-                    onChange={setInfo}
-                    placeholder='Ingrese RFC...'
                 />
             </div>
 
