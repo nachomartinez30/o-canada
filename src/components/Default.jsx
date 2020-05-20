@@ -3,9 +3,6 @@ import React, { memo } from 'react'
 const Default = () => {
     return (
         <div>
-
-
-
             {/* Pasaporte No. */}
             <div className='col-12'>
                 <label className="control-label pt-2">Pasaporte No.</label>

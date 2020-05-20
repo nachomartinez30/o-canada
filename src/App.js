@@ -20,7 +20,7 @@ function App() {
         <Header />
         <hr className='gradiente' />
         <Switch>
-          {/* <Route exact path="/" component={} /> */}
+          <Route exact path="/" component={S1} />
           <Route exact path="/s1" component={S1} />
           <Route exact path="/s2" component={S2} />
           <Route exact path="/s3" component={S3} />
