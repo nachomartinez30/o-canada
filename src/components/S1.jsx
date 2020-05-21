@@ -200,7 +200,7 @@ const S1 = (props) => {
                 <SelectSexo
                     className="form-control myInput"
                     name='sexo'
-                    type=''
+                    defaultValue={state.sexo}
                     onChange={setInfo}
                     placeholder='Ingrese Sexo...'
                 />

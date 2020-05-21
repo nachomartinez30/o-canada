@@ -23,7 +23,7 @@ const defaultCaptura = {
     "estado": "Zapopan",
     "numero_telefonico_notificaciones": "3319638873",
     "correo_electronico": "nachomartinez3010@gmail.com",
-    "posicion_candidato": "tecnico",
+    "posicion_candidato": "jefe_de_brigada",
     "sexo": "1",
     "altura": "172",
     "peso": "85",
@@ -99,14 +99,13 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    // const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
-    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
+    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [rechazo, setRechazo] = useState({
         status: false,
         motivo: null
     })
-
 
     const rechazarCandidato = (motivo) => {
         setSecciones({

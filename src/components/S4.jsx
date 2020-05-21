@@ -13,6 +13,7 @@ const S4 = (props) => {
     }
     return (
         <div className='row'>
+        <h1>EXAMENES</h1>
             {/* SCI/SMI 100 */}
             <div className='col-6'>
                 <label className="control-label pt-2">SCI/SMI 100</label>
@@ -89,8 +90,15 @@ const S4 = (props) => {
                 />
             </div>
 
-            <h4><br/>Liga a examen</h4>
+            <h4><br />Liga a examen</h4>
 
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
+            </div>
         </div>
     );
 }

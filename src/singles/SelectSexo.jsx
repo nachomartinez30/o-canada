@@ -7,6 +7,7 @@ const SelectSexo = (props) => {
         <select
             value={defaultValue}
             className={className}
+            defaultValue={defaultValue}
             name={name}
             onChange={onChange}
         >
