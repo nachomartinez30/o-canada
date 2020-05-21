@@ -12,7 +12,7 @@ const S7 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
 
             {/* Cuenta con EPP completo */}
             <div className='col-12'>

@@ -67,4 +67,15 @@
 .btn-margin{
   margin-bottom: 1em;
 }
+.body_wrap
+{
+  background-color: #f6f6f6;
+  border-radius: 20px;
+  margin: .5em 0;
+  padding: .5em;
+}
+.body_wrap label{
+  font-weight: 600;
+  font-size: 1em;
+}
 /*--Trabajo en equipo CSS--*/
