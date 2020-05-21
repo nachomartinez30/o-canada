@@ -15,7 +15,9 @@ const S4 = (props) => {
     }
     return (
         <div className='row'>
-        <h1>EXAMENES</h1>
+            <div className='col-12'>
+                <h1>EXAMENES</h1>
+            </div>
             {/* SCI/SMI 100 */}
             <div className='col-6'>
                 <label className="control-label pt-2">SCI/SMI 100</label>
