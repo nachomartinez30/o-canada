@@ -35,7 +35,7 @@ const InputCURP = (props) => {
         <React.Fragment>
             <input
                 className={`${className} ${claseValido}`}
-                defaultValue={defaultValue}
+                value={defaultValue}
                 placeholder={placeholder}
                 onKeyPressCapture={onKeyPressCapture}
                 onChange={onChange}

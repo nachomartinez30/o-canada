@@ -42,6 +42,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='nombres'
+                    value={state.nombres}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Nombre(s)...'
@@ -54,6 +55,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='apellido_paterno'
+                    value={state.apellido_paterno}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Apellido Paterno...'
@@ -66,6 +68,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='apellido_materno'
+                    value={state.apellido_materno}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Apellido Materno...'
@@ -78,6 +81,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='fecha_nacimiento'
+                    value={state.fecha_nacimiento}
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese Fecha de Nacimiento...'
@@ -90,6 +94,7 @@ const S1 = (props) => {
                 <InputCURP
                     className="form-control myInput"
                     name='curp'
+                    defaultValue={state.curp}
                     type=''
                     onChange={setInfo}
                     curp={state.curp}
@@ -105,6 +110,7 @@ const S1 = (props) => {
                 <InputRFC
                     className="form-control myInput"
                     name='rfc'
+                    defaultValue={state.rfc}
                     rfc={state.rfc}
                     type=''
                     onKeyPressCapture={ToMayus}
@@ -121,6 +127,8 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='estado'
+                    value={state.estado}
+                    value={state.estado}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Estado...'
@@ -134,6 +142,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='estado'
+                    value={state.estado}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Estado...'
@@ -146,6 +155,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='numero_telefonico_notificaciones'
+                    value={state.numero_telefonico_notificaciones}
                     type='phone'
                     onChange={setInfo}
                     placeholder='Ingrese Número telefónico para notificaciones...'
@@ -158,6 +168,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='correo_electronico'
+                    value={state.correo_electronico}
                     type='email'
                     onChange={setInfo}
                     placeholder='Ingrese Correo electrónico...'
@@ -171,6 +182,7 @@ const S1 = (props) => {
                     className="form-control myInput"
                     name='posicion_candidato'
                     type=''
+                    defaultValue={state.posicion_candidato}
                     onChange={setInfo}
                     placeholder='Posicion a la que es candidato...'
                 >
@@ -200,6 +212,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='altura'
+                    value={state.altura}
                     type=''
                     onBlur={calculoIMC}
                     onChange={setInfo}
@@ -213,6 +226,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='peso'
+                    value={state.peso}
                     type=''
                     onBlur={calculoIMC}
                     onChange={setInfo}
@@ -223,11 +237,11 @@ const S1 = (props) => {
             {/* IMC */}
             <div className='col-3'>
                 <label className="control-label pt-2">IMC</label>
-                <input
+                {/*                 */} <input
                     disabled
+                    name='imc'
                     value={state.imc}
                     className="form-control myInput"
-                    name='imc'
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese IMC...'
@@ -240,6 +254,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='grupo_sanguineo'
+                    value={state.grupo_sanguineo}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Grupo Sanguíneo...'
@@ -252,6 +267,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='dependencia'
+                    value={state.dependencia}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Dependencia...'
@@ -264,6 +280,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='tipo_dependencia'
+                    value={state.tipo_dependencia}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Tipo de dependencia...'
@@ -276,6 +293,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='fecha_ingreso_dependencia'
+                    value={state.fecha_ingreso_dependencia}
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese Fecha de ingreso a la dependencia...'
@@ -288,6 +306,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='anios_experiencia'
+                    value={state.anios_experiencia}
                     min="1"
                     max="99"
                     type='number'
@@ -302,6 +321,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='nombre_beneficiario'
+                    value={state.nombre_beneficiario}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese nombre de Beneficiario...'
@@ -314,6 +334,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='telefono_beneficiario'
+                    value={state.telefono_beneficiario}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Telefono del Beneficiario...'
@@ -326,6 +347,7 @@ const S1 = (props) => {
                 <input
                     className="form-control myInput"
                     name='correo_beneficiario'
+                    value={state.correo_beneficiario}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Correo electrónico de Beneficiario...'

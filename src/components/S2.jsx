@@ -142,7 +142,7 @@ const S2 = (props) => {
                     onChange={setInfo}
                     placeholder='¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?'
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value=''>---Seleccione---</option>
                     <option value='si'>Si</option>
                     <option value='no'>No</option>
                 </select>
