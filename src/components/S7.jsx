@@ -34,6 +34,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_epp_completo'
+                    defaultValue={state.tiene_epp_completo}
                     onChange={setInfo}
                 />
             </div>
@@ -56,6 +57,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_mochila_linea'
+                    defaultValue={state.tiene_mochila_linea}
                     onChange={setInfo}
                 />
             </div>
@@ -66,6 +68,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_duffel_bag'
+                    defaultValue={state.tiene_duffel_bag}
                     onChange={setInfo}
                 />
             </div>
@@ -76,6 +79,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_casa_campania'
+                    defaultValue={state.tiene_casa_campania}
                     onChange={setInfo}
                 />
             </div>
@@ -86,6 +90,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_sleeping_bag'
+                    defaultValue={state.tiene_sleeping_bag}
                     onChange={setInfo}
                 />
             </div>
@@ -96,10 +101,18 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_sleeping_pad'
+                    defaultValue={state.tiene_sleeping_pad}
                     onChange={setInfo}
                 />
             </div>
 
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
+            </div>
         </div>
     );
 }

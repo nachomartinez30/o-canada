@@ -13,74 +13,86 @@ import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 
 const defaultCaptura = {
-    imc: 28.73174689021093,
-    nombres: "Oscar Ignacio",
-    apellido_paterno: "Martinez",
-    apellido_materno: "Diaz",
-    fecha_nacimiento: "1992-08-25",
-    curp: "MADO921030HJCRZS05",
-    rfc: "MADO921030QD9",
-    estado: "Zapopan",
-    numero_telefonico_notificaciones: "3319638873",
-    correo_electronico: "nachomartinez3010@gmail.com",
-    posicion_candidato: "jefe_de_cuadrilla",
-    sexo: "1",
-    altura: "172",
-    peso: "85",
-    grupo_sanguineo: "O+",
-    dependencia: "Conafor",
-    tipo_dependencia: "forestal",
-    fecha_ingreso_dependencia: "2020-09-01",
-    anios_experiencia: "2",
-    nombre_beneficiario: "Oscar Raul Martinez Blanco",
-    telefono_beneficiario: "3310438042",
-    correo_beneficiario: "osrama8@hotmail.com",
-    // Segunda seccion S2
-    carta_antecedentes: "C:\\fakepath\\node.png",
-    antecedentes_fecha: "2022-05-20",
-    pasaporte_archivo: "C:\\fakepath\\898408.jpg",
-    pasaporte_numero: "21212121212",
-    pasaporte_fecha_cad: "2022-01-01",
-    eta_visa_archivo: "C:\\fakepath\\que-es-nodejs.png",
-    documento_viajar_canada: "VISA",
-    eta_visa_num: "132146574",
-    eta_visa_fecha_exp: "2022-01-01",
-    eta_visa_fecha_cad: "2022-01-01",
-    licencia_manejo: "C:\\fakepath\\898408.jpg",
-    tipo_licencia: "Nacional",
-    licencia_fecha_cad: "2022-01-21",
-    // Tercera seccion S3
-    cert_toxicologico: "C:\\fakepath\\898408.jpg",
-    fecha_cert_toxicologico: "2020-01-01",
-    cert_medico: "C:\\fakepath\\node.png",
-    fecha_cert_medico: "2020-01-01",
-    padece_enfermedad: "no",
-    que_enfermedad: "lorem",
-    requiere_medicamentos_perm: "no",
-    que_medicamentos: "lorem",
-    experimento_dolor_pecho: "no",
-    experimento_dificultad_respirar: "no",
-    presion_arterial_sistolica_diastolica: "no",
-    enfermedad_cardiaca: "no",
-    cirugia_corazon: "no",
-    pulso_mayor_100: "no",
-    problemas_afeccion_osea: "no",
-    experiencia_personal_consejos: "no",
-    medico_personal_recomendo: "no",
-    autoevaluacion_salud: "Lorem ipsum DOLO"
-};
-
-
+    "imc": 28.73174689021093,
+    "nombres": "Oscar Ignacio",
+    "apellido_paterno": "Martinez",
+    "apellido_materno": "Diaz",
+    "fecha_nacimiento": "1992-08-25",
+    "curp": "MADO921030HJCRZS05",
+    "rfc": "MADO921030QD9",
+    "estado": "Zapopan",
+    "numero_telefonico_notificaciones": "3319638873",
+    "correo_electronico": "nachomartinez3010@gmail.com",
+    "posicion_candidato": "tecnico",
+    "sexo": "1",
+    "altura": "172",
+    "peso": "85",
+    "grupo_sanguineo": "O+",
+    "dependencia": "Conafor",
+    "tipo_dependencia": "forestal",
+    "fecha_ingreso_dependencia": "2020-09-01",
+    "anios_experiencia": "2",
+    "nombre_beneficiario": "Oscar Raul Martinez Blanco",
+    "telefono_beneficiario": "3310438042",
+    "correo_beneficiario": "osrama8@hotmail.com",
+    "carta_antecedentes": "C:\\fakepath\\node.png",
+    "antecedentes_fecha": "2022-05-20",
+    "pasaporte_archivo": "C:\\fakepath\\898408.jpg",
+    "pasaporte_numero": "21212121212",
+    "pasaporte_fecha_cad": "2022-01-01",
+    "eta_visa_archivo": "C:\\fakepath\\que-es-nodejs.png",
+    "documento_viajar_canada": "VISA",
+    "eta_visa_num": "132146574",
+    "eta_visa_fecha_exp": "2022-01-01",
+    "eta_visa_fecha_cad": "2022-01-01",
+    "licencia_manejo": "C:\\fakepath\\898408.jpg",
+    "tipo_licencia": "Nacional",
+    "licencia_fecha_cad": "2022-01-21",
+    "cert_toxicologico": "C:\\fakepath\\898408.jpg",
+    "fecha_cert_toxicologico": "2020-01-01",
+    "cert_medico": "C:\\fakepath\\node.png",
+    "fecha_cert_medico": "2020-01-01",
+    "padece_enfermedad": "no",
+    "que_enfermedad": "lorem",
+    "requiere_medicamentos_perm": "no",
+    "que_medicamentos": "lorem",
+    "experimento_dolor_pecho": "no",
+    "experimento_dificultad_respirar": "no",
+    "presion_arterial_sistolica_diastolica": "no",
+    "enfermedad_cardiaca": "no",
+    "cirugia_corazon": "no",
+    "pulso_mayor_100": "no",
+    "problemas_afeccion_osea": "no",
+    "experiencia_personal_consejos": "no",
+    "medico_personal_recomendo": "no",
+    "autoevaluacion_salud": "Lorem ipsum DOLO",
+    "opera_autonoma_gps": "si",
+    "opera_autonoma_mark3": "si",
+    "opera_autonoma_motosierra": "si",
+    "tiene_epp_completo": "si",
+    "tiene_mochila_linea": "si",
+    "tiene_duffel_bag": "si",
+    "tiene_casa_campania": "si",
+    "tiene_sleeping_bag": "si",
+    "tiene_sleeping_pad": "si",
+    "nivel_ingles": "intermedio",
+    "toeic_toefl": "basico",
+    "l_280": "si",
+    "examen_toeic_toefl_punt": "345",
+    "s_290": "si",
+    "cert_intern_incendios": "si",
+    "cert_intern_ate_emerg_med": "si"
+}
 
 const Captura = () => {
     const seccionCompleta = { status: 'completo', visible: false };
     const seccionSiguiente = { status: 'actual', visible: true };
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: false },
+        s1: { status: 'faltante', visible: true },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: !false },
+        s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
@@ -113,6 +125,12 @@ const Captura = () => {
         })
     }
 
+    const msgFaltanCampos = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Todos los campos son necesarios'
+        })
+    }
 
     /* VALIDACIONES */
     const checkDataS1 = () => {
@@ -156,10 +174,7 @@ const Captura = () => {
             !anios_experiencia || !nombre_beneficiario || !telefono_beneficiario ||
             !correo_beneficiario
         ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Todos los campos son necesarios'
-            })
+            msgFaltanCampos()
             return
         }
         /* if IMC > 30  finalizar*/
@@ -198,10 +213,7 @@ const Captura = () => {
             !licencia_fecha_cad
         ) {
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Todos los campos son necesarios'
-            })
+            msgFaltanCampos()
             return
         }
 
@@ -246,10 +258,7 @@ const Captura = () => {
             !cirugia_corazon || !pulso_mayor_100 || !problemas_afeccion_osea ||
             !experiencia_personal_consejos || !medico_personal_recomendo || !autoevaluacion_salud
         ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Todos los campos son necesarios'
-            })
+            msgFaltanCampos()
             return
         }
 
@@ -288,13 +297,59 @@ const Captura = () => {
         })
     }
     const checkDataS6 = () => {
-        setSecciones({
-            ...secciones,
-            s6: seccionCompleta,
-            s7: seccionSiguiente,
-        })
+        const { opera_autonoma_gps,
+            opera_autonoma_mark3,
+            opera_autonoma_motosierra } = infoBrigadista
+
+        if (!opera_autonoma_gps ||
+            !opera_autonoma_mark3 ||
+            !opera_autonoma_motosierra) {
+            msgFaltanCampos()
+            return
+        }
+        /* Tiene todo el equipo */
+        if (opera_autonoma_gps === 'no' ||
+            opera_autonoma_mark3 === 'no' ||
+            opera_autonoma_motosierra === 'no') {
+            rechazarCandidato('falta de habilidad')
+        } else {
+            setSecciones({
+                ...secciones,
+                s6: seccionCompleta,
+                s7: seccionSiguiente,
+            })
+        }
     }
     const checkDataS7 = () => {
+        const { tiene_epp_completo,
+            tiene_mochila_linea,
+            tiene_duffel_bag,
+            tiene_casa_campania,
+            tiene_sleeping_bag,
+            tiene_sleeping_pad } = infoBrigadista
+
+        if (
+            !tiene_epp_completo ||
+            !tiene_mochila_linea ||
+            !tiene_duffel_bag ||
+            !tiene_casa_campania ||
+            !tiene_sleeping_bag ||
+            !tiene_sleeping_pad
+        ) {
+            msgFaltanCampos()
+            return
+        }
+
+        if (tiene_epp_completo === 'no' ||
+            tiene_mochila_linea === 'no' ||
+            tiene_duffel_bag === 'no' ||
+            tiene_casa_campania === 'no' ||
+            tiene_sleeping_bag === 'no' ||
+            tiene_sleeping_pad === 'no') {
+            rechazarCandidato('falta de equipo')
+            return
+        }
+
         setSecciones({
             ...secciones,
             s7: seccionCompleta,
@@ -306,6 +361,11 @@ const Captura = () => {
             ...secciones,
             s8: seccionCompleta
         })
+        Swal.fire(
+            'Buen trabajo',
+            'Se le notificará sobre su proceso de seleccion',
+            'success'
+        )
     }
 
     return (

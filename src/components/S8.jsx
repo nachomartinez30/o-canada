@@ -14,65 +14,73 @@ const S8 = (props) => {
     return (
         <div className='row'>
 
-            {/* Nivel de inglés */}
-            <div className='col-6'>
-                <label className="control-label pt-2">Nivel de inglés</label>
-                <select
-                    className="form-control myInput"
-                    name='nivel_ingles'
-                    onChange={setInfo}
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value='Basico'>Básico</option>
-                    <option value='Intermedio'>Intermedio</option>
-                    <option value='Avanzado'>Avanzado</option>
-                </select>
-            </div>
+            {(state.posicion_candidato === 'jefe_de_cuadrilla' || state.posicion_candidato === 'jefe_de_brigada') ?
+                <React.Fragment>
+                    {/* Nivel de inglés */}
+                    <div className='col-6'>
+                        <label className="control-label pt-2">Nivel de inglés</label>
+                        <select
+                            className="form-control myInput"
+                            name='nivel_ingles'
+                            defaultValue={state.nivel_ingles}
+                            onChange={setInfo}
+                        >
+                            <option value='' >---Seleccione---</option>
+                            <option value='basico'>Básico</option>
+                            <option value='intermedio'>Intermedio</option>
+                            <option value='avanzado'>Avanzado</option>
+                        </select>
+                    </div>
 
-            {/* Examen TOEIC/TOEFL */}
-            <div className='col-6'>
-                <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
-                <input
-                    className="form-control myInput"
-                    name='examen_toeic-toefl_archivo'
-                    type='file'
-                    onChange={setInfo}
-                    placeholder='Ingrese Examen TOEIC/TOEFL...'
-                />
-            </div>
+                    {/* Examen TOEIC/TOEFL */}
+                    <div className='col-6'>
+                        <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
+                        <input
+                            className="form-control myInput"
+                            name='examen_toeic_toefl_archivo'
+                            value={state.examen_toeic_toefl_archivo}
+                            type='file'
+                            onChange={setInfo}
+                            placeholder='Ingrese Examen TOEIC/TOEFL...'
+                        />
+                    </div>
 
-            {/* TOEIC/TOEFL */}
-            <div className='col-6'>
-                <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
-                <select
-                    className="form-control myInput"
-                    name='toeic_toefl'
-                    onChange={setInfo}
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value='Basico'>TOEIC</option>
-                    <option value='Intermedio'>TOEFL</option>
-                </select>
-            </div>
+                    {/* TOEIC/TOEFL */}
+                    <div className='col-6'>
+                        <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
+                        <select
+                            className="form-control myInput"
+                            name='toeic_toefl'
+                            defaultValue={state.toeic_toefl}
+                            onChange={setInfo}
+                        >
+                            <option value='' >---Seleccione---</option>
+                            <option value='basico'>TOEIC</option>
+                            <option value='intermedio'>TOEFL</option>
+                        </select>
+                    </div>
 
-            {/* Examen TOEIC/TOEFL puntuación */}
-            <div className='col-6'>
-                <label className="control-label pt-2">Examen TOEIC/TOEFL puntuación</label>
-                <input
-                    className="form-control myInput"
-                    name='examen_toeic-toefl_punt'
-                    type=''
-                    onChange={setInfo}
-                    placeholder='Ingrese Examen TOEIC/TOEFL puntuación...'
-                />
-            </div>
-
+                    {/* Examen TOEIC/TOEFL puntuación */}
+                    <div className='col-6'>
+                        <label className="control-label pt-2">Examen TOEIC/TOEFL puntuación</label>
+                        <input
+                            className="form-control myInput"
+                            name='examen_toeic_toefl_punt'
+                            value={state.examen_toeic_toefl_punt}
+                            type=''
+                            onChange={setInfo}
+                            placeholder='Ingrese Examen TOEIC/TOEFL puntuación...'
+                        />
+                    </div>
+                </React.Fragment>
+                : null}
             {/* L-280 */}
             <div className='col-6'>
                 <label className="control-label pt-2">Cuenta con el curso L-280</label>
                 <SelectSiNo
                     className="form-control myInput"
-                    name='l-280'
+                    name='l_280'
+                    defaultValue={state.l_280}
                     onChange={setInfo}
                 />
             </div>
@@ -82,7 +90,8 @@ const S8 = (props) => {
                 <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                 <input
                     className="form-control myInput"
-                    name='l-280_file'
+                    name='l_280_file'
+                    value={state.l_280_file}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese archivo L-280...'
@@ -94,7 +103,8 @@ const S8 = (props) => {
                 <label className="control-label pt-2">Cuenta con el curso S-290</label>
                 <SelectSiNo
                     className="form-control myInput"
-                    name='s-290'
+                    name='s_290'
+                    defaultValue={state.s_290}
                     onChange={setInfo}
                 />
             </div>
@@ -104,7 +114,8 @@ const S8 = (props) => {
                 <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                 <input
                     className="form-control myInput"
-                    name='s-290_file'
+                    name='s_290_file'
+                    value={state.s_290_file}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese archivo S-290...'
@@ -117,6 +128,7 @@ const S8 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='cert_intern_incendios'
+                    defaultValue={state.cert_intern_incendios}
                     onChange={setInfo}
                 />
             </div>
@@ -127,6 +139,7 @@ const S8 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_intern_incendios_file'
+                    value={state.cert_intern_incendios_file}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese archivo...'
@@ -139,6 +152,7 @@ const S8 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='cert_intern_ate_emerg_med'
+                    defaultValue={state.cert_intern_ate_emerg_med}
                     onChange={setInfo}
                 />
             </div>
@@ -149,12 +163,21 @@ const S8 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_intern_ate_emerg_med_file'
+                    value={state.cert_intern_ate_emerg_med_file}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese archivo...'
                 />
             </div>
 
+
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
+            </div>
         </div>
     );
 }

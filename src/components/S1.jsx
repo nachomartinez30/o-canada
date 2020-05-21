@@ -255,7 +255,8 @@ const S1 = (props) => {
                     className="form-control myInput"
                     name='grupo_sanguineo'
                     value={state.grupo_sanguineo}
-                    type=''
+                    maxLength='6'
+                    onKeyDownCapture={ToMayus}
                     onChange={setInfo}
                     placeholder='Ingrese Grupo Sanguíneo...'
                 />

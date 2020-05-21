@@ -19,6 +19,7 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_gps'
+                    defaultValue={state.opera_autonoma_gps}
                     onChange={setInfo}
                 />
             </div>
@@ -29,6 +30,7 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_mark3'
+                    defaultValue={state.opera_autonoma_mark3}
                     onChange={setInfo}
                 />
             </div>
@@ -39,8 +41,16 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_motosierra'
+                    defaultValue={state.opera_autonoma_motosierra}
                     onChange={setInfo}
                 />
+            </div>
+            {/* BTN Continuar */}
+            <div className='col-12 pt-5 btn-margin'>
+                <button
+                    className='btn btn-primary'
+                    onClick={checkData}
+                >Continuar</button>
             </div>
         </div>
     );
