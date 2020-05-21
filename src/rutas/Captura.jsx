@@ -12,6 +12,7 @@ import Finalizar from '../components/Finalizar';
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 
+const API_REQUEST = 'http://localhost/o_canada'
 const defaultCaptura = {
     "imc": 28.73174689021093,
     "nombres": "Oscar Ignacio",
@@ -84,6 +85,7 @@ const defaultCaptura = {
     "cert_intern_ate_emerg_med": "si"
 }
 
+
 const Captura = () => {
     const seccionCompleta = { status: 'completo', visible: false };
     const seccionSiguiente = { status: 'actual', visible: true };
@@ -103,11 +105,11 @@ const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [rechazo, setRechazo] = useState({
-        status: false,
-        motivo: null
+        rechazo: false,
+        motivo_rechazo: null
     })
 
-    const rechazarCandidato = (motivo) => {
+    const rechazarCandidato = (motivo_rechazo) => {
         setSecciones({
             s1: false,
             s2: false,
@@ -118,10 +120,16 @@ const Captura = () => {
             s7: false,
             s8: false,
         })
-        setRechazo({
-            status: true,
-            motivo
+        setInfoBrigadista({
+            ...infoBrigadista,
+            rechazo: true,
+            motivo_rechazo
         })
+        setRechazo({
+            rechazo: true,
+            motivo_rechazo
+        })
+        insertCandidato();
     }
 
     const msgFaltanCampos = () => {
@@ -129,6 +137,30 @@ const Captura = () => {
             icon: 'error',
             title: 'Todos los campos son necesarios'
         })
+    }
+
+
+    const insertCandidato = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Access-Control-Allow-Origin", "*");
+
+
+        var raw = JSON.stringify(infoBrigadista);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        
+        fetch(`${API_REQUEST}/api/create_candidato`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
     }
 
     /* VALIDACIONES */
@@ -181,6 +213,7 @@ const Captura = () => {
             rechazarCandidato('imc mayo 30')
             return
         } else {
+            insertCandidato();
             /*  mostrar siguiente seccion*/
             setSecciones({
                 ...secciones,
@@ -428,7 +461,7 @@ const Captura = () => {
                     checkData={checkDataS8}
                 />
             }
-            {rechazo.status && <Finalizar />}
+            {rechazo.rechazo && <Finalizar />}
         </div>
     );
 }
