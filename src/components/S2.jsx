@@ -18,6 +18,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_toxicologico'
+                    // value={state.cert_toxicologico}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado toxicológico...'
@@ -30,6 +31,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='fecha_cert_toxicologico'
+                    value={state.fecha_cert_toxicologico}
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado toxicológico Fecha...'
@@ -42,6 +44,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='cert_medico'
+                    // value={state.cert_medico}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado médico...'
@@ -54,6 +57,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='fecha_cert_medico'
+                    value={state.fecha_cert_medico}
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese Certificado médico Fecha...'
@@ -66,7 +70,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='padece_enfermedad'
-                    type=''
+                    defaultValue={state.padece_enfermedad}
                     onChange={setInfo}
                     placeholder='¿Padece alguna enfermedad?'
                 >
@@ -82,7 +86,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='que_enfermedad'
-                    type=''
+                    value={state.que_enfermedad}
                     onChange={setInfo}
                     placeholder='Qué enfermedad padece'
                 />
@@ -94,7 +98,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='requiere_medicamentos_perm'
-                    type=''
+                    defaultValue={state.requiere_medicamentos_perm}
                     onChange={setInfo}
                     placeholder='¿Requiere medicamentos de manera permanente?'
                 >
@@ -110,7 +114,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='que_medicamentos'
-                    type=''
+                    value={state.que_medicamentos}
                     onChange={setInfo}
                     placeholder='¿Qué medicamentos requiere de manera permanente?'
                 />
@@ -122,7 +126,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='experimento_dolor_pecho'
-                    type=''
+                    defaultValue={state.experimento_dolor_pecho}
                     onChange={setInfo}
                     placeholder='¿Experimentó dolor, incomodidad o presión en el pecho?'
                 >
@@ -138,7 +142,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='experimento_dificultad_respirar'
-                    type=''
+                    defaultValue={state.experimento_dificultad_respirar}
                     onChange={setInfo}
                     placeholder='¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?'
                 >
@@ -154,7 +158,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='presion_arterial_sistolica_diastolica'
-                    type=''
+                    defaultValue={state.presion_arterial_sistolica_diastolica}
                     onChange={setInfo}
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
@@ -170,7 +174,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='presion_arterial_sistolica_diastolica'
-                    type=''
+                    defaultValue={state.presion_arterial_sistolica_diastolica}
                     onChange={setInfo}
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
@@ -186,7 +190,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='enfermedad_cardiaca'
-                    type=''
+                    defaultValue={state.enfermedad_cardiaca}
                     onChange={setInfo}
                     placeholder='¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?'
                 >
@@ -202,7 +206,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='cirugia_corazon'
-                    type=''
+                    defaultValue={state.cirugia_corazon}
                     onChange={setInfo}
                     placeholder='¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?'
                 >
@@ -218,7 +222,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='pulso_mayor_100'
-                    type=''
+                    defaultValue={state.pulso_mayor_100}
                     onChange={setInfo}
                     placeholder='¿Tiene un pulso en reposo mayor a 100 latidos por minuto?'
                 >
@@ -234,7 +238,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='problemas_afeccion_osea'
-                    type=''
+                    defaultValue={state.problemas_afeccion_osea}
                     onChange={setInfo}
                     placeholder='¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?'
                 >
@@ -250,7 +254,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='experiencia_personal_consejos'
-                    type=''
+                    defaultValue={state.experiencia_personal_consejos}
                     onChange={setInfo}
                     placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
                 >
@@ -266,7 +270,7 @@ const S2 = (props) => {
                 <select
                     className="form-control myInput"
                     name='medico_personal_recomendo'
-                    type=''
+                    defaultValue={state.medico_personal_recomendo}
                     onChange={setInfo}
                     placeholder='¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?'
                 >
@@ -282,7 +286,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='autoevaluacion_salud'
-                    type=''
+                    value={state.autoevaluacion_salud}
                     onChange={setInfo}
                     placeholder='Ingrese Autoevaluación de salud (formato A...'
                 />

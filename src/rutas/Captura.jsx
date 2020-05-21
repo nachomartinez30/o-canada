@@ -12,6 +12,64 @@ import Finalizar from '../components/Finalizar';
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 
+const defaultCaptura = {
+    imc: 28.73174689021093,
+    nombres: "Oscar Ignacio",
+    apellido_paterno: "Martinez",
+    apellido_materno: "Diaz",
+    fecha_nacimiento: "1992-08-25",
+    curp: "MADO921030HJCRZS05",
+    rfc: "MADO921030QD9",
+    estado: "Zapopan",
+    numero_telefonico_notificaciones: "3319638873",
+    correo_electronico: "nachomartinez3010@gmail.com",
+    posicion_candidato: "jefe_de_cuadrilla",
+    sexo: "1",
+    altura: "172",
+    peso: "85",
+    grupo_sanguineo: "O+",
+    dependencia: "Conafor",
+    tipo_dependencia: "forestal",
+    fecha_ingreso_dependencia: "2020-09-01",
+    anios_experiencia: "2",
+    nombre_beneficiario: "Oscar Raul Martinez Blanco",
+    telefono_beneficiario: "3310438042",
+    correo_beneficiario: "osrama8@hotmail.com",
+    // Segunda seccion S2
+    carta_antecedentes: "C:\\fakepath\\node.png",
+    antecedentes_fecha: "2022-05-20",
+    pasaporte_archivo: "C:\\fakepath\\898408.jpg",
+    pasaporte_numero: "21212121212",
+    pasaporte_fecha_cad: "2022-01-01",
+    eta_visa_archivo: "C:\\fakepath\\que-es-nodejs.png",
+    documento_viajar_canada: "VISA",
+    eta_visa_num: "132146574",
+    eta_visa_fecha_exp: "2022-01-01",
+    eta_visa_fecha_cad: "2022-01-01",
+    licencia_manejo: "C:\\fakepath\\898408.jpg",
+    tipo_licencia: "Nacional",
+    licencia_fecha_cad: "2022-01-21",
+    // Tercera seccion S3
+    cert_toxicologico: "C:\\fakepath\\898408.jpg",
+    fecha_cert_toxicologico: "2020-01-01",
+    cert_medico: "C:\\fakepath\\node.png",
+    fecha_cert_medico: "2020-01-01",
+    padece_enfermedad: "no",
+    que_enfermedad: "lorem",
+    requiere_medicamentos_perm: "no",
+    que_medicamentos: "lorem",
+    experimento_dolor_pecho: "no",
+    experimento_dificultad_respirar: "no",
+    presion_arterial_sistolica_diastolica: "no",
+    enfermedad_cardiaca: "no",
+    cirugia_corazon: "no",
+    pulso_mayor_100: "no",
+    problemas_afeccion_osea: "no",
+    experiencia_personal_consejos: "no",
+    medico_personal_recomendo: "no",
+    autoevaluacion_salud: "Lorem ipsum DOLO"
+};
+
 
 
 const Captura = () => {
@@ -19,10 +77,10 @@ const Captura = () => {
     const seccionSiguiente = { status: 'actual', visible: true };
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: !false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
@@ -30,7 +88,7 @@ const Captura = () => {
     })
 
     // const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
-    const [infoBrigadista, setInfoBrigadista] = useState({ "imc": 28.73174689021093, "nombres": "oscar ignacio", "apellido_paterno": "martinez", "apellido_materno": "diaz", "fecha_nacimiento": "2000-08-25", "curp": "MADO921030HJCRZS05", "rfc": "MADO921030QD9", "estado": "Zapopan", "numero_telefonico_notificaciones": "3319638873", "correo_electronico": "nachomartinez3010@gmail.com", "posicion_candidato": "jefe_de_cuadrilla", "sexo": "1", "altura": "172", "peso": "85", "grupo_sanguineo": "O+", "dependencia": "Conafor", "tipo_dependencia": "forestal", "fecha_ingreso_dependencia": "2020-09-01", "anios_experiencia": "2", "nombre_beneficiario": "Oscar Raul Martinez Blanco", "telefono_beneficiario": "3310438042", "correo_beneficiario": "osrama8@hotmail.com", "carta_antecedentes": "C:\\fakepath\\node.png", "antecedentes_fecha": "2020-05-20", "pasaporte_archivo": "C:\\fakepath\\898408.jpg", "pasaporte_numero": "21212121212", "pasaporte_fecha_cad": "2019-01-01", "eta_visa_archivo": "C:\\fakepath\\que-es-nodejs.png", "documento_viajar_canada": "VISA", "eta_visa_num": "132146574", "eta_visa_fecha_exp": "2019-01-01", "eta_visa_fecha_cad": "2020-01-01", "licencia_manejo": "C:\\fakepath\\898408.jpg", "tipo_licencia": "Nacional", "licencia_fecha_cad": "2020-01-21", "cert_toxicologico": "C:\\fakepath\\898408.jpg", "fecha_cert_toxicologico": "2020-01-01", "cert_medico": "C:\\fakepath\\node.png", "fecha_cert_medico": "2020-01-01", "padece_enfermedad": "no", "que_enfermedad": "lorem", "requiere_medicamentos_perm": "no", "que_medicamentos": "lorem", "experimento_dolor_pecho": "no", "experimento_dificultad_respirar": "no", "presion_arterial_sistolica_diastolica": "no", "enfermedad_cardiaca": "no", "cirugia_corazon": "no", "pulso_mayor_100": "no", "problemas_afeccion_osea": "no", "experiencia_personal_consejos": "no", "medico_personal_recomendo": "no", "autoevaluacion_salud": "Lorem ipsum DOLO" })
+    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [rechazo, setRechazo] = useState({
         status: false,
@@ -82,7 +140,7 @@ const Captura = () => {
             telefono_beneficiario,
             correo_beneficiario } = infoBrigadista
         /* revisar campos vacíos */
-        
+
         /* Brigadista menor de edad */
         if (diferenciaFechasAnios(fecha_nacimiento) < 21) {
             rechazarCandidato('menor de edad')

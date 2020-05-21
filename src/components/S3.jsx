@@ -19,6 +19,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='carta_antecedentes'
+                    // value={state.carta_antecedentes}
                     type='file'
                     onChange={setInfo}
                     placeholder='Carta de no antecedentes penales'
@@ -31,6 +32,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='antecedentes_fecha'
+                    value={state.antecedentes_fecha}
                     type='date'
                     onChange={setInfo}
                     placeholder='Fecha de expedición de la carta de antecedentes no penales'
@@ -43,6 +45,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='pasaporte_archivo'
+                    // value={state.pasaporte_archivo}
                     type='file'
                     onChange={setInfo}
                     placeholder='Pasaporte'
@@ -55,6 +58,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='pasaporte_numero'
+                    value={state.pasaporte_numero}
                     type=''
                     onChange={setInfo}
                     placeholder='No. de Pasaporte'
@@ -67,6 +71,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='pasaporte_fecha_cad'
+                    value={state.pasaporte_fecha_cad}
                     type='date'
                     onChange={setInfo}
                     placeholder='Fecha de caducidad del pasaporte'
@@ -79,6 +84,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_archivo'
+                    // value={state.eta_visa_archivo}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa'
@@ -91,7 +97,7 @@ const S3 = (props) => {
                 <select
                     className="form-control myInput"
                     name='documento_viajar_canada'
-                    type=''
+                    defaultValue={state.documento_viajar_canada}
                     onChange={setInfo}
                     placeholder='Documento para viajar a Canadá'
                 >
@@ -107,6 +113,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_num'
+                    value={state.eta_visa_num}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa No...'
@@ -119,6 +126,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_fecha_exp'
+                    value={state.eta_visa_fecha_exp}
                     type='date'
                     onChange={setInfo}
                     placeholder='ETA/Visa Fecha de expedición'
@@ -131,6 +139,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_fecha_cad'
+                    value={state.eta_visa_fecha_cad}
                     type='date'
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa F. caducidad...'
@@ -143,6 +152,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='licencia_manejo'
+                    // value={state.licencia_manejo}
                     type='file'
                     onChange={setInfo}
                     placeholder='Ingrese Licencia de manejo...'
@@ -155,7 +165,7 @@ const S3 = (props) => {
                 <select
                     className="form-control myInput"
                     name='tipo_licencia'
-                    type=''
+                    defaultValue={state.tipo_licencia}
                     onChange={setInfo}
                     placeholder='Tipo de licencia de manejo'
                 >
@@ -172,6 +182,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='licencia_fecha_cad'
+                    value={state.licencia_fecha_cad}
                     type='date'
                     onChange={setInfo}
                     placeholder='Fecha de caducidad de la licencia'
