@@ -34,7 +34,7 @@ const S1 = (props) => {
     }
 
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
             {/* FOTOGRAFIA */}
             {/* Nombre (s) */}
             <div className='col-12'>

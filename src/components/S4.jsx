@@ -14,7 +14,7 @@ const S4 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
             <div className='col-12'>
                 <h1>EXAMENES</h1>
             </div>

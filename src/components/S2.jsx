@@ -11,7 +11,7 @@ const S2 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
             {/* Certificado toxicológico */}
             <div className='col-8'>
                 <label className="control-label pt-2">Certificado toxicológico</label>

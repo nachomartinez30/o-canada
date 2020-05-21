@@ -11,7 +11,7 @@ const S5 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
             <h1>EXAMENES</h1>
             {/* S-190 */}
             <div className='col-6'>

@@ -12,7 +12,7 @@ const S8 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
 
             {(state.posicion_candidato === 'jefe_de_cuadrilla' || state.posicion_candidato === 'jefe_de_brigada') ?
                 <React.Fragment>

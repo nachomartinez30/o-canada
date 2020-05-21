@@ -12,7 +12,7 @@ const S6 = (props) => {
         })
     }
     return (
-        <div className='row'>
+        <div className='row body_wrap'>
             {/* Opera de manera autónoma GPS */}
             <div className='col-6'>
                 <label className="control-label pt-2">Opera de manera autónoma GPS</label>
