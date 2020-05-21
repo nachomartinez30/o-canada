@@ -99,8 +99,8 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
-    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    // const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
+    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [rechazo, setRechazo] = useState({
         status: false,
