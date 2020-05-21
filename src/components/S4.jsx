@@ -1,5 +1,6 @@
 import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
+import SCI100 from '../components/ExSCI100';
 
 const S4 = (props) => {
     const { state, setState, checkData } = props
@@ -89,7 +90,9 @@ const S4 = (props) => {
                 />
             </div>
 
-            <h4><br/>Liga a examen</h4>
+            <h4><br/>Examen SCI-100 / SCI-200</h4>
+            
+            <SCI100></SCI100>
 
         </div>
     );
