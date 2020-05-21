@@ -82,6 +82,12 @@ const Captura = () => {
             telefono_beneficiario,
             correo_beneficiario } = infoBrigadista
         /* revisar campos vacíos */
+        
+        /* Brigadista menor de edad */
+        if (diferenciaFechasAnios(fecha_nacimiento) < 21) {
+            rechazarCandidato('menor de edad')
+            return
+        }
         if (
             !imc || !nombres || !apellido_paterno ||
             !apellido_materno || !fecha_nacimiento ||
@@ -96,11 +102,6 @@ const Captura = () => {
                 icon: 'error',
                 title: 'Todos los campos son necesarios'
             })
-            return
-        }
-        /* Brigadista menor de edad */
-        if (diferenciaFechasAnios(fecha_nacimiento) < 21) {
-            rechazarCandidato('menor de edad')
             return
         }
         /* if IMC > 30  finalizar*/
