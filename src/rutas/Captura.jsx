@@ -92,7 +92,7 @@ const Captura = () => {
         s1: { status: 'faltante', visible: true },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: !false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
