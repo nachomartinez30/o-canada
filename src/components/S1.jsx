@@ -385,6 +385,7 @@ const S1 = (props) => {
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
+                    disabled={(correoValido && correBenefValido) ? false : true}
                     className='btn btn-primary'
                     onClick={checkData}
                 >Continuar</button>
