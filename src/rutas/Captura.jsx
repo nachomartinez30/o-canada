@@ -83,7 +83,9 @@ comprobantes de registro
 
 
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({})
+    const [infoBrigadista, setInfoBrigadista] = useState({
+        curp:'MADO921030HJCRZS05'
+    })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: false },
@@ -113,8 +115,6 @@ const Captura = () => {
             title: 'Todos los campos son necesarios'
         })
     }
-
-
 
     /* VALIDACIONES */
     const checkDataS1 = async () => {
@@ -281,7 +281,11 @@ const Captura = () => {
 
     }
     const checkDataS3 = async () => {
-        const {
+        const { sexo,
+            altura,
+            peso,
+            imc,
+            grupo_sanguineo,
             cert_toxicologico,
             fecha_cert_toxicologico,
             cert_medico,
@@ -297,10 +301,10 @@ const Captura = () => {
             problemas_afeccion_osea,
             experiencia_personal_consejos,
             medico_personal_recomendo,
-            autoevaluacion_salud
-        } = infoBrigadista
+            autoevaluacion_salud } = infoBrigadista
 
         if (
+            !sexo || !altura || !peso || !imc || !grupo_sanguineo ||
             !cert_toxicologico || !fecha_cert_toxicologico || !cert_medico ||
             !fecha_cert_medico || !padece_enfermedad || !requiere_medicamentos_perm ||
             !experimento_dolor_pecho || !experimento_dificultad_respirar
@@ -313,16 +317,6 @@ const Captura = () => {
         }
 
         /* TODO: rechazo si alguna respuesta is true */
-        // if (
-        //     padece_enfermedad === 'si' || requiere_medicamentos_perm === 'si' ||
-        //     experimento_dolor_pecho === 'si' || experimento_dificultad_respirar === 'si' ||
-        //     presion_arterial_sistolica_diastolica === 'si' ||
-        //     enfermedad_cardiaca === 'si' || cirugia_corazon === 'si' ||
-        //     pulso_mayor_100 === 'si' || problemas_afeccion_osea === 'si' ||
-        //     experiencia_personal_consejos === 'si' || medico_personal_recomendo === 'si'
-        // ) {
-        //     // rechazarCandidato('problemas de salud')
-        // } else {
         /*  actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {

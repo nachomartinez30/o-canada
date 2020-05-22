@@ -1,6 +1,8 @@
 import React from 'react'
 import ToMayus from '../helpers/ToMayus'
 import SelectSexo from '../singles/SelectSexo'
+import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
+import diferenciaFechaDias from '../helpers/diferenciaFechaDias'
 
 const S3 = (props) => {
     const { state, setState, checkData } = props
@@ -18,32 +20,77 @@ const S3 = (props) => {
         if (altura && peso) {
             const alturaM = altura / 100;
             const imc = peso / Math.pow(alturaM, 2)
-
             setState({
                 ...state,
                 imc,
-                rechazo: true,
-                motivo_rechazo: 'imc mayo 30'
             })
-            if (imc > 30) {
-                setState({
-                    ...state,
-                    imc,
-                    rechazo: true,
-                    motivo_rechazo: 'imc mayo 30'
-                })
-
-            } else {
-                setState({
-                    ...state,
-                    imc,
-                    rechazo: false,
-                    motivo_rechazo: null
-                })
-            }
         }
 
     }
+
+    const revisarFormulario = () => {
+        const { imc, fecha_cert_toxicologico, fecha_cert_medico, padece_enfermedad,
+            requiere_medicamentos_perm, experimento_dolor_pecho, experimento_dificultad_respirar,
+            presion_arterial_sistolica_diastolica, enfermedad_cardiaca, cirugia_corazon,
+            pulso_mayor_100, problemas_afeccion_osea, experiencia_personal_consejos, medico_personal_recomendo
+        } = state
+        /* VALIDACION */
+        /* IMC mayor a 30 */
+        if (imc > 30) {
+            setState({
+                ...state,
+                rechazo: true,
+                motivo_rechazo: 'imc mayo 30'
+            })
+        } else {
+            /* certificado toxicologico mayor a 15 dias */
+            const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico)
+            if (dif_cert_tox > 15) {
+                setState({
+                    ...state,
+                    rechazo: true,
+                    motivo_rechazo: 'certificado toxicológico excede los 15 dias'
+                })
+            } else {
+                /* Certificado medico mayor a 1 mes */
+                const dif_cert_med = diferenciaFechasMeses(fecha_cert_medico)
+                /* TODO: PREGUNTAR SI MAYOR A 32 DIAS o 2 meses */
+
+                if (dif_cert_med > 1) {
+                    setState({
+                        ...state,
+                        rechazo: true,
+                        motivo_rechazo: 'certificado médico excede 1 mes'
+                    })
+                } else {
+                    if (
+                        padece_enfermedad === '1' || requiere_medicamentos_perm === '1' ||
+                        experimento_dolor_pecho === '1' || experimento_dificultad_respirar === '1' ||
+                        presion_arterial_sistolica_diastolica === '1' ||
+                        enfermedad_cardiaca === '1' || cirugia_corazon === '1' ||
+                        pulso_mayor_100 === '1' || problemas_afeccion_osea === '1' ||
+                        experiencia_personal_consejos === '1' || medico_personal_recomendo === '1'
+                    ) {
+                        setState({
+                            ...state,
+                            rechazo: true,
+                            motivo_rechazo: 'problemas de salud'
+                        })
+                    } else {
+                        setState({
+                            ...state,
+                            rechazo: false,
+                            motivo_rechazo: null
+                        })
+                    }
+                }
+            }
+        }
+
+        checkData();
+
+    }
+
 
     return (
         <div className='row body_wrap'>
@@ -101,7 +148,7 @@ const S3 = (props) => {
             </div>
 
             {/* Grupo Sanguíneo */}
-            <div className='col-3'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Grupo Sanguíneo</label>
                 <input
                     className="form-control myInput"
@@ -113,8 +160,9 @@ const S3 = (props) => {
                     placeholder='Ingrese Grupo Sanguíneo...'
                 />
             </div>
+
             {/* Certificado toxicológico */}
-            <div className='col-8'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Certificado toxicológico</label>
                 <input
                     className="form-control myInput"
@@ -140,7 +188,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado médico */}
-            <div className='col-8'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Certificado médico</label>
                 <input
                     className="form-control myInput"
@@ -153,7 +201,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado médico Fecha */}
-            <div className='col-4'>
+            <div className='col-6'>
                 <label className="control-label pt-2">Certificado médico Fecha</label>
                 <input
                     className="form-control myInput"
@@ -397,7 +445,7 @@ const S3 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                    onClick={revisarFormulario}
                 >Continuar</button>
             </div>
         </div>
