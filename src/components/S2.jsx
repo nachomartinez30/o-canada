@@ -1,8 +1,9 @@
 import React from 'react'
-import ToMayus from '../helpers/ToMayus'
-import SelectSexo from '../singles/SelectSexo'
+import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios'
+import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 
 const S2 = (props) => {
+
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {
@@ -13,383 +14,233 @@ const S2 = (props) => {
         })
     }
 
-    const calculoIMC = () => {
-        const { altura, peso } = state
-        if (altura && peso) {
-            const alturaM = altura / 100;
-            const imc = peso / Math.pow(alturaM, 2)
 
+    const revisarFormulario = () => {
+        const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha } = state
+        console.log();
+
+        /* VALIDACIONES:
+            si antecedentes_fecha > 2 meses
+            si pasaporte_fecha_cad < 8 meses
+            si eta_visa_fecha_exp < 8 meses
+        */
+        const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha)
+        const dif_pasaporte = diferenciaFechasMeses(pasaporte_fecha_cad)
+        const dif_eta_visa = diferenciaFechasMeses(eta_visa_fecha_cad)
+
+        // Carta es menor a 2 meses
+        if (dif_antecedentes > 2) {
             setState({
                 ...state,
-                imc,
                 rechazo: true,
-                motivo_rechazo: 'imc mayo 30'
+                motivo_rechazo: 'carta de antecedentes mayor a 2 meses'
             })
-            if (imc > 30) {
+        } else {
+            // Pasaporte vence dentro de 8 meses
+            if (dif_pasaporte > -8) {
+                console.log('vence pronto');
                 setState({
                     ...state,
-                    imc,
                     rechazo: true,
-                    motivo_rechazo: 'imc mayo 30'
+                    motivo_rechazo: 'pasaporte vence en menos de 8 meses'
                 })
-
             } else {
-                setState({
-                    ...state,
-                    imc,
-                    rechazo: false,
-                    motivo_rechazo: null
-                })
+                // eta/Visa vence dentro de 8 meses
+                if (dif_eta_visa > -8) {
+                    console.log('vence pronto');
+                    setState({
+                        ...state,
+                        rechazo: true,
+                        motivo_rechazo: 'eta/visa vence en menos de 8 meses'
+                    })
+                } else {
+                    /* Si todo Bien */
+                    setState({
+                        ...state,
+                        rechazo: false,
+                        motivo_rechazo: null
+                    })
+                }
             }
         }
-
+        checkData()
     }
 
     return (
         <div className='row body_wrap'>
-
-            {/* Sexo TODO: cambiar */}
-            <div className='col-3'>
-                <label className="control-label pt-2">Sexo</label>
-                <SelectSexo
-                    className="form-control myInput"
-                    name='sexo'
-                    defaultValue={state.sexo}
-                    onChange={setInfo}
-                    placeholder='Ingrese Sexo...'
-                />
-            </div>
-            {/* Altura (centímetros) */}
-            <div className='col-3'>
-                <label className="control-label pt-2">Altura (centímetros)</label>
+            {/* Carta de no antecedentes penales */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Carta de no antecedentes penales</label>
                 <input
                     className="form-control myInput"
-                    name='altura'
-                    value={state.altura}
-                    type='number'
-                    onBlur={calculoIMC}
-                    onChange={setInfo}
-                    placeholder='Ingrese Altura (cm)...'
-                />
-            </div>
-
-            {/* Peso (kilogramos) */}
-            <div className='col-3'>
-                <label className="control-label pt-2">Peso (kilogramos)</label>
-                <input
-                    className="form-control myInput"
-                    name='peso'
-                    value={state.peso}
-                    type='number'
-                    onBlur={calculoIMC}
-                    onChange={setInfo}
-                    placeholder='Ingrese Peso (kg)...'
-                />
-            </div>
-
-            {/* IMC */}
-            <div className='col-3'>
-                <label className="control-label pt-2">IMC</label>
-                <input
-                    disabled
-                    name='imc'
-                    value={state.imc}
-                    className="form-control myInput"
-                    onChange={setInfo}
-                    placeholder='IMC...'
-                />
-            </div>
-
-            {/* Grupo Sanguíneo */}
-            <div className='col-3'>
-                <label className="control-label pt-2">Grupo Sanguíneo</label>
-                <input
-                    className="form-control myInput"
-                    name='grupo_sanguineo'
-                    value={state.grupo_sanguineo}
-                    maxLength='6'
-                    onKeyDownCapture={ToMayus}
-                    onChange={setInfo}
-                    placeholder='Ingrese Grupo Sanguíneo...'
-                />
-            </div>
-            {/* Certificado toxicológico */}
-            <div className='col-8'>
-                <label className="control-label pt-2">Certificado toxicológico</label>
-                <input
-                    className="form-control myInput"
-                    name='cert_toxicologico'
-                    // value={state.cert_toxicologico}
+                    name='carta_antecedentes'
+                    // value={state.carta_antecedentes}
                     type='file'
                     onChange={setInfo}
-                    placeholder='Ingrese Certificado toxicológico...'
+                    placeholder='Carta de no antecedentes penales'
                 />
             </div>
 
-            {/* Certificado toxicológico Fecha */}
-            <div className='col-4'>
-                <label className="control-label pt-2">Certificado toxicológico Fecha</label>
+            {/* Fecha de expedición de la carta de antecedentes no penales */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de expedición de la carta de antecedentes no penales</label>
                 <input
                     className="form-control myInput"
-                    name='fecha_cert_toxicologico'
-                    value={state.fecha_cert_toxicologico}
+                    name='antecedentes_fecha'
+                    value={state.antecedentes_fecha}
                     type='date'
                     onChange={setInfo}
-                    placeholder='Ingrese Certificado toxicológico Fecha...'
+                    placeholder='Fecha de expedición de la carta de antecedentes no penales'
                 />
             </div>
 
-            {/* Certificado médico */}
-            <div className='col-8'>
-                <label className="control-label pt-2">Certificado médico</label>
+            {/* Pasaporte */}
+            <div className='col-4'>
+                <label className="control-label pt-2">Pasaporte</label>
                 <input
                     className="form-control myInput"
-                    name='cert_medico'
-                    // value={state.cert_medico}
+                    name='pasaporte_archivo'
+                    // value={state.pasaporte_archivo}
                     type='file'
                     onChange={setInfo}
-                    placeholder='Ingrese Certificado médico...'
+                    placeholder='Pasaporte'
                 />
             </div>
 
-            {/* Certificado médico Fecha */}
+            {/* Pasaporte No. */}
             <div className='col-4'>
-                <label className="control-label pt-2">Certificado médico Fecha</label>
+                <label className="control-label pt-2">No. de Pasaporte</label>
                 <input
                     className="form-control myInput"
-                    name='fecha_cert_medico'
-                    value={state.fecha_cert_medico}
+                    name='pasaporte_numero'
+                    value={state.pasaporte_numero}
+                    type=''
+                    onChange={setInfo}
+                    placeholder='No. de Pasaporte'
+                />
+            </div>
+
+            {/* Fecha de caducidad del pasaporte */}
+            <div className='col-4'>
+                <label className="control-label pt-2">Fecha de caducidad del pasaporte</label>
+                <input
+                    className="form-control myInput"
+                    name='pasaporte_fecha_cad'
+                    value={state.pasaporte_fecha_cad}
                     type='date'
                     onChange={setInfo}
-                    placeholder='Ingrese Certificado médico Fecha...'
+                    placeholder='Fecha de caducidad del pasaporte'
                 />
             </div>
 
-            {/* ¿Padece alguna enfermedad? */}
-            <div className='col-5'>
-                <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
-                <select
-                    className="form-control myInput"
-                    name='padece_enfermedad'
-                    defaultValue={state.padece_enfermedad}
-                    onChange={setInfo}
-                    placeholder='¿Padece alguna enfermedad?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Qué enfermedad padece? */}
-            <div className='col-7'>
-                <label className="control-label pt-2">¿Qué enfermedad padece?</label>
+            {/* ETA/Visa */}
+            <div className='col-6'>
+                <label className="control-label pt-2">ETA/Visa</label>
                 <input
                     className="form-control myInput"
-                    name='que_enfermedad'
-                    value={state.que_enfermedad}
+                    name='eta_visa_archivo'
+                    // value={state.eta_visa_archivo}
+                    type='file'
                     onChange={setInfo}
-                    placeholder='Qué enfermedad padece'
+                    placeholder='Ingrese ETA/Visa'
                 />
             </div>
 
-            {/* ¿Requiere medicamentos de manera permanente? */}
-            <div className='col-5'>
-                <label className="control-label pt-2">¿Requiere medicamentos de manera permanente?</label>
+            {/* Documento para viajar a Canadá */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Documento para viajar a Canadá</label>
                 <select
                     className="form-control myInput"
-                    name='requiere_medicamentos_perm'
-                    defaultValue={state.requiere_medicamentos_perm}
+                    name='documento_viajar_canada'
+                    defaultValue={state.documento_viajar_canada}
                     onChange={setInfo}
-                    placeholder='¿Requiere medicamentos de manera permanente?'
+                    placeholder='Documento para viajar a Canadá'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
+                    <option value='VISA'>VISA</option>
+                    <option value='eTA'>eTA</option>
                 </select>
             </div>
 
-            {/* ¿Requiere medicamentos de manera permanente? */}
-            <div className='col-7'>
-                <label className="control-label pt-2">¿Qué medicamentos requiere de manera permanente?</label>
+            {/* ETA/Visa No. */}
+            <div className='col-6'>
+                <label className="control-label pt-2">ETA/Visa No.</label>
                 <input
                     className="form-control myInput"
-                    name='que_medicamentos'
-                    value={state.que_medicamentos}
+                    name='eta_visa_num'
+                    value={state.eta_visa_num}
+                    type=''
                     onChange={setInfo}
-                    placeholder='¿Qué medicamentos requiere de manera permanente?'
+                    placeholder='Ingrese ETA/Visa No...'
                 />
             </div>
 
-            {/* ¿Experimentó dolor, incomodidad o presión en el pecho? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">Durante los últimos 12 meses, en cualquier momento (durante la actividad física o mientras descansa) ¿experimentó dolor, incomodidad o presión en el pecho?</label>
-                <select
-                    className="form-control myInput"
-                    name='experimento_dolor_pecho'
-                    defaultValue={state.experimento_dolor_pecho}
-                    onChange={setInfo}
-                    placeholder='¿Experimentó dolor, incomodidad o presión en el pecho?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">Durante los últimos 12 meses, ¿ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?</label>
-                <select
-                    className="form-control myInput"
-                    name='experimento_dificultad_respirar'
-                    defaultValue={state.experimento_dificultad_respirar}
-                    onChange={setInfo}
-                    placeholder='¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?'
-                >
-                    <option value=''>---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?</label>
-                <select
-                    className="form-control myInput"
-                    name='presion_arterial_sistolica_diastolica'
-                    defaultValue={state.presion_arterial_sistolica_diastolica}
-                    onChange={setInfo}
-                    placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?</label>
-                <select
-                    className="form-control myInput"
-                    name='presion_arterial_sistolica_diastolica'
-                    defaultValue={state.presion_arterial_sistolica_diastolica}
-                    onChange={setInfo}
-                    placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho (angina), arritmias (latido irregular) o ataque cardíaco?</label>
-                <select
-                    className="form-control myInput"
-                    name='enfermedad_cardiaca'
-                    defaultValue={state.enfermedad_cardiaca}
-                    onChange={setInfo}
-                    placeholder='¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?</label>
-                <select
-                    className="form-control myInput"
-                    name='cirugia_corazon'
-                    defaultValue={state.cirugia_corazon}
-                    onChange={setInfo}
-                    placeholder='¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Tiene un pulso en reposo mayor a 100 latidos por minuto? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene un pulso en reposo mayor a 100 latidos por minuto?</label>
-                <select
-                    className="form-control myInput"
-                    name='pulso_mayor_100'
-                    defaultValue={state.pulso_mayor_100}
-                    onChange={setInfo}
-                    placeholder='¿Tiene un pulso en reposo mayor a 100 latidos por minuto?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?</label>
-                <select
-                    className="form-control myInput"
-                    name='problemas_afeccion_osea'
-                    defaultValue={state.problemas_afeccion_osea}
-                    onChange={setInfo}
-                    placeholder='¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?</label>
-                <select
-                    className="form-control myInput"
-                    name='experiencia_personal_consejos'
-                    defaultValue={state.experiencia_personal_consejos}
-                    onChange={setInfo}
-                    placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* ¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?</label>
-                <select
-                    className="form-control myInput"
-                    name='medico_personal_recomendo'
-                    defaultValue={state.medico_personal_recomendo}
-                    onChange={setInfo}
-                    placeholder='¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
-            {/* Autoevaluación de salud (formato A) */}
-            <div className='col-12'>
-                <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>
+            {/* ETA/Visa F. expedición */}
+            <div className='col-3'>
+                <label className="control-label pt-2">ETA/Visa Fecha de expedición</label>
                 <input
                     className="form-control myInput"
-                    name='autoevaluacion_salud'
-                    value={state.autoevaluacion_salud}
+                    name='eta_visa_fecha_exp'
+                    value={state.eta_visa_fecha_exp}
+                    type='date'
                     onChange={setInfo}
-                    placeholder='Ingrese Autoevaluación de salud (formato A...'
+                    placeholder='ETA/Visa Fecha de expedición'
+                />
+            </div>
+
+            {/* ETA/Visa F. caducidad */}
+            <div className='col-3'>
+                <label className="control-label pt-2">ETA/Visa Fecha de caducidad</label>
+                <input
+                    className="form-control myInput"
+                    name='eta_visa_fecha_cad'
+                    value={state.eta_visa_fecha_cad}
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Ingrese ETA/Visa F. caducidad...'
+                />
+            </div>
+
+            {/* Licencia de manejo */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Licencia de manejo</label>
+                <input
+                    className="form-control myInput"
+                    name='licencia_manejo'
+                    // value={state.licencia_manejo}
+                    type='file'
+                    onChange={setInfo}
+                    placeholder='Ingrese Licencia de manejo...'
+                />
+            </div>
+
+            {/* Tipo de licencia de manejo */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Tipo de licencia de manejo</label>
+                <select
+                    className="form-control myInput"
+                    name='tipo_licencia'
+                    defaultValue={state.tipo_licencia}
+                    onChange={setInfo}
+                    placeholder='Tipo de licencia de manejo'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='Nacional'>Nacional</option>
+                    <option value='Nacional Traducida'>Nacional traducida</option>
+                    <option value='Internacional'>Internacional</option>
+                </select>
+            </div>
+
+            {/* Fecha caducidad licencia */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de caducidad de la licencia</label>
+                <input
+                    className="form-control myInput"
+                    name='licencia_fecha_cad'
+                    value={state.licencia_fecha_cad}
+                    type='date'
+                    onChange={setInfo}
+                    placeholder='Fecha de caducidad de la licencia'
                 />
             </div>
 
@@ -397,9 +248,11 @@ const S2 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                    // onClick={checkData}
+                    onClick={revisarFormulario}
                 >Continuar</button>
             </div>
+
         </div>
     );
 }

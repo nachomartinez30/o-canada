@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import S1 from '../components/S1';
-import S2 from '../components/S2';
 import S3 from '../components/S3';
+import S2 from '../components/S2';
 import S4 from '../components/S4';
 import S5 from '../components/S5';
 import S6 from '../components/S6';
@@ -86,9 +86,9 @@ const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({})
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: true },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
-        s3: { status: 'faltante', visible: false },
+        s3: { status: 'faltante', visible: !false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
@@ -119,7 +119,7 @@ const Captura = () => {
     /* VALIDACIONES */
     const checkDataS1 = async () => {
         const {
-             anios_experiencia,
+            anios_experiencia,
             fotografia,
             apellido_paterno,
             apellido_materno,
@@ -192,7 +192,7 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
-                    /* TODO: axios actualizacion de INFOCandidato */
+                    /*  axios actualizacion de INFOCandidato */
                     setSecciones({
                         ...secciones,
                         s1: seccionCompleta,
@@ -237,56 +237,48 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+        /*   actualizacion de informacion por AXIOS */
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
 
-        /* por cada fecha de licencia revisar vigencia */
-        if (diferenciaFechasMeses(antecedentes_fecha) > 10 || diferenciaFechasMeses(pasaporte_fecha_cad) > 10 ||
-            diferenciaFechasMeses(eta_visa_fecha_cad) > 10 || diferenciaFechasMeses(licencia_fecha_cad) > 10
-        ) {
-            // rechazarCandidato('vigencias menores a 10 meses')
-        } else {
-            /*   actualizacion de informacion por AXIOS */
-            const url = `${API_REQUEST}candidato_update`;
-            try {
-                const respuesta = await axios.post(url, infoBrigadista);
-
-                if (respuesta.status === 200) {
-                    if (infoBrigadista.rechazo) {
-                        // se ocultan las secciones
-                        setSecciones({
-                            s1: false,
-                            s2: false,
-                            s3: false,
-                            s4: false,
-                            s5: false,
-                            s6: false,
-                            s7: false,
-                            s8: false,
-                        })
-                        // se muestra pantalla motivo de rechazo
-                        setRechazo({
-                            rechazo: true,
-                            motivo_rechazo: infoBrigadista.motivo_rechazo
-                        })
-                    } else {
-                        setSecciones({
-                            ...secciones,
-                            s2: seccionCompleta,
-                            s3: seccionSiguiente,
-                        })
-                    }
-                }
-            } catch (error) {
-                if (error.response.status === 400) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'No se encontró candidato'
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
                     })
-                    return
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s2: seccionCompleta,
+                        s3: seccionSiguiente,
+                    })
                 }
-                console.error('error', error);
             }
-
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
         }
+
     }
     const checkDataS3 = async () => {
         const {
@@ -578,9 +570,9 @@ const Captura = () => {
                     checkData={checkDataS1}
                 />
             }
-            {/* S2 y 3 estan cambiados en hoja de requerimientos */}
+
             {secciones.s2.visible &&
-                <S3
+                <S2
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS2}
@@ -588,13 +580,12 @@ const Captura = () => {
             }
             {/* S2 y 3 estan cambiados en hoja de requerimientos */}
             {secciones.s3.visible &&
-                <S2
+                <S3
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS3}
                 />
             }
-
             {secciones.s4.visible &&
                 <S4
                     state={infoBrigadista}
