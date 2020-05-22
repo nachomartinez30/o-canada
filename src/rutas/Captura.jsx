@@ -13,7 +13,8 @@ import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 import axios from 'axios';
 
-const API_REQUEST = 'http://localhost/o_canada/api/'
+// const API_REQUEST = 'http://localhost/o_canada/api/'
+const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 // const defaultCaptura = {
 //     "fotografia": "C:\\fakepath\\898408.jpg",
 //     "nombres": "oscar ignacio",
