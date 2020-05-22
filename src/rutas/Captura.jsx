@@ -15,6 +15,7 @@ import axios from 'axios';
 
 const API_REQUEST = 'http://localhost/o_canada/api/'
 // const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+
 // const defaultCaptura = {
 //     "fotografia": "C:\\fakepath\\898408.jpg",
 //     "nombres": "oscar ignacio",
@@ -84,16 +85,17 @@ comprobantes de registro
 
 const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({
-        curp:'MADO921030HJCRZS05'
+        curp: 'MADO921030HJCRZS05'
     })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
-        s5: { status: 'faltante', visible: !false },
-        s6: { status: 'faltante', visible: false },
+        s5: { status: 'faltante', visible: false },
+        s6: { status: 'faltante', visible: !false },
         s7: { status: 'faltante', visible: false },
         s8: { status: 'faltante', visible: false },
     })
@@ -376,65 +378,53 @@ const Captura = () => {
         })
     }
     const checkDataS6 = async () => {
-        const { opera_autonoma_gps,
-            opera_autonoma_mark3,
-            opera_autonoma_motosierra } = infoBrigadista
+        const { opera_autonoma_gps, opera_autonoma_mark3, opera_autonoma_motosierra } = infoBrigadista
 
         if (!opera_autonoma_gps ||
             !opera_autonoma_mark3 ||
-            !opera_autonoma_motosierra) {
+            !opera_autonoma_motosierra
+        ) {
             msgFaltanCampos()
             return
         }
-        /* Tiene todo el equipo */
-        if (opera_autonoma_gps === 'no' ||
-            opera_autonoma_mark3 === 'no' ||
-            opera_autonoma_motosierra === 'no') {
-            // rechazarCandidato('falta de habilidad')
-        } else {
-            /* actualizacion de informacion por AXIOS */
-            const url = `${API_REQUEST}candidato_update`;
-            try {
-                const respuesta = await axios.post(url, infoBrigadista);
-
-                if (respuesta.status === 200) {
-                    if (infoBrigadista.rechazo) {
-                        // se ocultan las secciones
-                        setSecciones({
-                            s1: false,
-                            s2: false,
-                            s3: false,
-                            s4: false,
-                            s5: false,
-                            s6: false,
-                            s7: false,
-                            s8: false,
-                        })
-                        // se muestra pantalla motivo de rechazo
-                        setRechazo({
-                            rechazo: true,
-                            motivo_rechazo: infoBrigadista.motivo_rechazo
-                        })
-                    } else {
-                        setSecciones({
-                            ...secciones,
-                            s6: seccionCompleta,
-                            s7: seccionSiguiente,
-                        })
-                    }
-                }
-            } catch (error) {
-                if (error.response.status === 400) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'No se encontró candidato'
+        /* actualizacion de informacion por AXIOS */
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista)
+            debugger;
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    debugger
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
                     })
-                    return
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s6: seccionCompleta,
+                        s7: seccionSiguiente,
+                    })
                 }
-                console.error('error', error);
             }
-
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
         }
+
     }
     const checkDataS7 = async () => {
         const { tiene_epp_completo,

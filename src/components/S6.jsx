@@ -11,6 +11,26 @@ const S6 = (props) => {
             [input.target.name]: input.target.value
         })
     }
+
+    const revisarFormulario = () => {
+        /* SI opera todo el equipo */
+        if (state.opera_autonoma_gps === '0' || state.opera_autonoma_mark3 === '0') {
+            debugger
+            setState({
+                ...state,
+                rechazo: true,
+                motivo_rechazo: 'falta habilidad y competencia'
+            })
+        } else {
+            setState({
+                ...state,
+                rechazo: false,
+                motivo_rechazo: null
+            })
+        }
+        checkData();
+    }
+
     return (
         <div className='row body_wrap'>
             {/* Opera de manera autónoma GPS */}
@@ -49,7 +69,7 @@ const S6 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                    onClick={revisarFormulario}
                 >Continuar</button>
             </div>
         </div>
