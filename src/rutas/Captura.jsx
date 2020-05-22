@@ -13,8 +13,8 @@ import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 import axios from 'axios';
 
-// const API_REQUEST = 'http://localhost/o_canada/api/'
-const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+const API_REQUEST = 'http://localhost/o_canada/api/'
+// const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 // const defaultCaptura = {
 //     "fotografia": "C:\\fakepath\\898408.jpg",
 //     "nombres": "oscar ignacio",
@@ -100,7 +100,7 @@ const Captura = () => {
     const seccionSiguiente = { status: 'actual', visible: true };
 
 
-    
+
 
     const [rechazo, setRechazo] = useState({
         rechazo: false,
@@ -119,37 +119,51 @@ const Captura = () => {
     /* VALIDACIONES */
     const checkDataS1 = async () => {
         const {
-            imc,
-            nombres,
+             anios_experiencia,
+            fotografia,
             apellido_paterno,
             apellido_materno,
-            fecha_nacimiento,
+            nombres,
             curp,
+            fecha_nacimiento,
+            sexo,
             rfc,
             estado,
+            municipio,
             numero_telefonico_notificaciones,
             correo_electronico,
             posicion_candidato,
-            sexo,
-            altura,
-            peso,
-            grupo_sanguineo,
             dependencia,
             tipo_dependencia,
             fecha_ingreso_dependencia,
-            anios_experiencia,
+            puesto_en_dependencia,
+            funciones_dependencia,
             nombre_beneficiario,
             telefono_beneficiario,
             correo_beneficiario } = infoBrigadista
         /* que no falte ningun dato */
         if (
-            !imc || !nombres || !apellido_paterno ||
-            !apellido_materno || !fecha_nacimiento ||
-            !curp || !rfc || !estado || !numero_telefonico_notificaciones ||
-            !correo_electronico || !posicion_candidato ||
-            !sexo || !altura || !peso || !grupo_sanguineo || !dependencia ||
-            !tipo_dependencia || !fecha_ingreso_dependencia ||
-            !anios_experiencia || !nombre_beneficiario || !telefono_beneficiario ||
+            !anios_experiencia ||
+            !fotografia ||
+            !apellido_paterno ||
+            !apellido_materno ||
+            !nombres ||
+            !curp ||
+            !fecha_nacimiento ||
+            !sexo ||
+            !rfc ||
+            !estado ||
+            !municipio ||
+            !numero_telefonico_notificaciones ||
+            !correo_electronico ||
+            !posicion_candidato ||
+            !dependencia ||
+            !tipo_dependencia ||
+            !fecha_ingreso_dependencia ||
+            !puesto_en_dependencia ||
+            !funciones_dependencia ||
+            !nombre_beneficiario ||
+            !telefono_beneficiario ||
             !correo_beneficiario
         ) {
             msgFaltanCampos()
@@ -220,7 +234,6 @@ const Captura = () => {
             !eta_visa_fecha_cad || !licencia_manejo || !tipo_licencia ||
             !licencia_fecha_cad
         ) {
-
             msgFaltanCampos()
             return
         }

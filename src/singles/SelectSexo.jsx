@@ -2,11 +2,12 @@ import React from 'react'
 
 const SelectSexo = (props) => {
 
-    const { className, name, onChange, defaultValue } = props
+    const { className, name, onChange, defaultValue, disabled } = props
     return (
         <select
             value={defaultValue}
             className={className}
+            disabled={disabled}
             defaultValue={defaultValue}
             name={name}
             onChange={onChange}

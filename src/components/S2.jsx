@@ -1,4 +1,6 @@
 import React from 'react'
+import ToMayus from '../helpers/ToMayus'
+import SelectSexo from '../singles/SelectSexo'
 
 const S2 = (props) => {
     const { state, setState, checkData } = props
@@ -10,8 +12,107 @@ const S2 = (props) => {
             [input.target.name]: input.target.value
         })
     }
+
+    const calculoIMC = () => {
+        const { altura, peso } = state
+        if (altura && peso) {
+            const alturaM = altura / 100;
+            const imc = peso / Math.pow(alturaM, 2)
+
+            setState({
+                ...state,
+                imc,
+                rechazo: true,
+                motivo_rechazo: 'imc mayo 30'
+            })
+            if (imc > 30) {
+                setState({
+                    ...state,
+                    imc,
+                    rechazo: true,
+                    motivo_rechazo: 'imc mayo 30'
+                })
+
+            } else {
+                setState({
+                    ...state,
+                    imc,
+                    rechazo: false,
+                    motivo_rechazo: null
+                })
+            }
+        }
+
+    }
+
     return (
         <div className='row body_wrap'>
+
+            {/* Sexo TODO: cambiar */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Sexo</label>
+                <SelectSexo
+                    className="form-control myInput"
+                    name='sexo'
+                    defaultValue={state.sexo}
+                    onChange={setInfo}
+                    placeholder='Ingrese Sexo...'
+                />
+            </div>
+            {/* Altura (centímetros) */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Altura (centímetros)</label>
+                <input
+                    className="form-control myInput"
+                    name='altura'
+                    value={state.altura}
+                    type='number'
+                    onBlur={calculoIMC}
+                    onChange={setInfo}
+                    placeholder='Ingrese Altura (cm)...'
+                />
+            </div>
+
+            {/* Peso (kilogramos) */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Peso (kilogramos)</label>
+                <input
+                    className="form-control myInput"
+                    name='peso'
+                    value={state.peso}
+                    type='number'
+                    onBlur={calculoIMC}
+                    onChange={setInfo}
+                    placeholder='Ingrese Peso (kg)...'
+                />
+            </div>
+
+            {/* IMC */}
+            <div className='col-3'>
+                <label className="control-label pt-2">IMC</label>
+                <input
+                    disabled
+                    name='imc'
+                    value={state.imc}
+                    className="form-control myInput"
+                    onChange={setInfo}
+                    placeholder='IMC...'
+                />
+            </div>
+
+            {/* Grupo Sanguíneo */}
+            <div className='col-3'>
+                <label className="control-label pt-2">Grupo Sanguíneo</label>
+                <input
+                    className="form-control myInput"
+                    name='grupo_sanguineo'
+                    value={state.grupo_sanguineo}
+                    maxLength='6'
+                    onKeyDownCapture={ToMayus}
+                    onChange={setInfo}
+                    placeholder='Ingrese Grupo Sanguíneo...'
+                />
+            </div>
             {/* Certificado toxicológico */}
             <div className='col-8'>
                 <label className="control-label pt-2">Certificado toxicológico</label>
