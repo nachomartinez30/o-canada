@@ -11,85 +11,79 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses';
 import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
+import axios from 'axios';
 
-const API_REQUEST = 'http://localhost/o_canada'
-const defaultCaptura = {
-    "imc": 28.73174689021093,
-    "nombres": "Oscar Ignacio",
-    "apellido_paterno": "Martinez",
-    "apellido_materno": "Diaz",
-    "fecha_nacimiento": "1992-08-25",
-    "curp": "MADO921030HJCRZS05",
-    "rfc": "MADO921030QD9",
-    "estado": "Zapopan",
-    "numero_telefonico_notificaciones": "3319638873",
-    "correo_electronico": "nachomartinez3010@gmail.com",
-    "posicion_candidato": "jefe_de_brigada",
-    "sexo": "1",
-    "altura": "172",
-    "peso": "85",
-    "grupo_sanguineo": "O+",
-    "dependencia": "Conafor",
-    "tipo_dependencia": "forestal",
-    "fecha_ingreso_dependencia": "2020-09-01",
-    "anios_experiencia": "2",
-    "nombre_beneficiario": "Oscar Raul Martinez Blanco",
-    "telefono_beneficiario": "3310438042",
-    "correo_beneficiario": "osrama8@hotmail.com",
-    "carta_antecedentes": "C:\\fakepath\\node.png",
-    "antecedentes_fecha": "2022-05-20",
-    "pasaporte_archivo": "C:\\fakepath\\898408.jpg",
-    "pasaporte_numero": "21212121212",
-    "pasaporte_fecha_cad": "2022-01-01",
-    "eta_visa_archivo": "C:\\fakepath\\que-es-nodejs.png",
-    "documento_viajar_canada": "VISA",
-    "eta_visa_num": "132146574",
-    "eta_visa_fecha_exp": "2022-01-01",
-    "eta_visa_fecha_cad": "2022-01-01",
-    "licencia_manejo": "C:\\fakepath\\898408.jpg",
-    "tipo_licencia": "Nacional",
-    "licencia_fecha_cad": "2022-01-21",
-    "cert_toxicologico": "C:\\fakepath\\898408.jpg",
-    "fecha_cert_toxicologico": "2020-01-01",
-    "cert_medico": "C:\\fakepath\\node.png",
-    "fecha_cert_medico": "2020-01-01",
-    "padece_enfermedad": "no",
-    "que_enfermedad": "lorem",
-    "requiere_medicamentos_perm": "no",
-    "que_medicamentos": "lorem",
-    "experimento_dolor_pecho": "no",
-    "experimento_dificultad_respirar": "no",
-    "presion_arterial_sistolica_diastolica": "no",
-    "enfermedad_cardiaca": "no",
-    "cirugia_corazon": "no",
-    "pulso_mayor_100": "no",
-    "problemas_afeccion_osea": "no",
-    "experiencia_personal_consejos": "no",
-    "medico_personal_recomendo": "no",
-    "autoevaluacion_salud": "Lorem ipsum DOLO",
-    "opera_autonoma_gps": "si",
-    "opera_autonoma_mark3": "si",
-    "opera_autonoma_motosierra": "si",
-    "tiene_epp_completo": "si",
-    "tiene_mochila_linea": "si",
-    "tiene_duffel_bag": "si",
-    "tiene_casa_campania": "si",
-    "tiene_sleeping_bag": "si",
-    "tiene_sleeping_pad": "si",
-    "nivel_ingles": "intermedio",
-    "toeic_toefl": "basico",
-    "l_280": "si",
-    "examen_toeic_toefl_punt": "345",
-    "s_290": "si",
-    "cert_intern_incendios": "si",
-    "cert_intern_ate_emerg_med": "si"
-}
+const API_REQUEST = 'http://localhost/o_canada/api/'
+// const defaultCaptura = {
+//     "fotografia": "C:\\fakepath\\898408.jpg",
+//     "nombres": "oscar ignacio",
+//     "apellido_paterno": "martine",
+//     "apellido_materno": "diaz",
+//     "fecha_nacimiento": "2020-12-31",
+//     "curp": "MADO921030HJCRZS05",
+//     "rfc": "MADO921030QD9",
+//     "estado": "Jalisco",
+//     "numero_telefonico_notificaciones": "3319638873",
+//     "correo_electronico": "nachomartinez3010@gmail.com",
+//     "posicion_candidato": "combatiente",
+//     "sexo": "2",
+//     "altura": "170",
+//     "peso": "85",
+//     "imc": 29.411764705882355,
+//     "rechazo": false,
+//     "motivo_rechazo": null,
+//     "grupo_sanguineo": "o+",
+//     "dependencia": "cnf",
+//     "tipo_dependencia": "forestal",
+//     "fecha_ingreso_dependencia": "2020-12-31",
+//     "anios_experiencia": "1",
+//     "nombre_beneficiario": "lorem",
+//     "telefono_beneficiario": "lorem",
+//     "correo_beneficiario": "correo",
+//     "carta_antecedentes": "C:\\fakepath\\898408.jpg",
+//     "antecedentes_fecha": "2020-01-01",
+//     "pasaporte_archivo": "C:\\fakepath\\node.png",
+//     "pasaporte_numero": "21212121212",
+//     "pasaporte_fecha_cad": "2020-12-31",
+//     "eta_visa_archivo": "C:\\fakepath\\node.png",
+//     "documento_viajar_canada": "VISA",
+//     "eta_visa_num": "1654",
+//     "eta_visa_fecha_exp": "2020-12-31",
+//     "eta_visa_fecha_cad": "2020-12-01",
+//     "licencia_manejo": "C:\\fakepath\\node.png",
+//     "tipo_licencia": "Nacional",
+//     "licencia_fecha_cad": "2020-12-01",
+//     "cert_toxicologico": "C:\\fakepath\\898408.jpg",
+//     "cert_medico": "C:\\fakepath\\node.png",
+// }
+
+
+
+/* TODO: 
+beneficiario del seguro
+cambiar estado-municipio a Desplegable
+
+vigencias dentro de 8 meses
+
+10 min por examen
+carga de certificacion
+preguntas y posterior examen
+si repruebe examen, no carga siguiente
+
+eliminar validacion motosierra
+
+variables idioma jefe de brigada y tecnico
+
+comprobantes de registro
+
+ */
+
+/* TODO: manejo de sesiones */
 
 
 const Captura = () => {
-    const seccionCompleta = { status: 'completo', visible: false };
-    const seccionSiguiente = { status: 'actual', visible: true };
-
+    const [infoBrigadista, setInfoBrigadista] = useState({})
+    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: true },
         s2: { status: 'faltante', visible: false },
@@ -101,36 +95,16 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    // const [infoBrigadista, setInfoBrigadista] = useState({ imc: 0 })
-    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    const seccionCompleta = { status: 'completo', visible: false };
+    const seccionSiguiente = { status: 'actual', visible: true };
+
+
+    
 
     const [rechazo, setRechazo] = useState({
         rechazo: false,
         motivo_rechazo: null
     })
-
-    const rechazarCandidato = (motivo_rechazo) => {
-        setSecciones({
-            s1: false,
-            s2: false,
-            s3: false,
-            s4: false,
-            s5: false,
-            s6: false,
-            s7: false,
-            s8: false,
-        })
-        setInfoBrigadista({
-            ...infoBrigadista,
-            rechazo: true,
-            motivo_rechazo
-        })
-        setRechazo({
-            rechazo: true,
-            motivo_rechazo
-        })
-        insertCandidato();
-    }
 
     const msgFaltanCampos = () => {
         Swal.fire({
@@ -140,31 +114,9 @@ const Captura = () => {
     }
 
 
-    const insertCandidato = () => {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Access-Control-Allow-Origin", "*");
-
-
-        var raw = JSON.stringify(infoBrigadista);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        
-        fetch(`${API_REQUEST}/api/create_candidato`, requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => console.log('error', error));
-    }
 
     /* VALIDACIONES */
-    const checkDataS1 = () => {
+    const checkDataS1 = async () => {
         const {
             imc,
             nombres,
@@ -188,13 +140,7 @@ const Captura = () => {
             nombre_beneficiario,
             telefono_beneficiario,
             correo_beneficiario } = infoBrigadista
-        /* revisar campos vacíos */
-
-        /* Brigadista menor de edad */
-        if (diferenciaFechasAnios(fecha_nacimiento) < 21) {
-            rechazarCandidato('menor de edad')
-            return
-        }
+        /* que no falte ningun dato */
         if (
             !imc || !nombres || !apellido_paterno ||
             !apellido_materno || !fecha_nacimiento ||
@@ -208,21 +154,50 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
-        /* if IMC > 30  finalizar*/
-        if (imc > 30) {
-            rechazarCandidato('imc mayo 30')
-            return
-        } else {
-            insertCandidato();
-            /*  mostrar siguiente seccion*/
-            setSecciones({
-                ...secciones,
-                s1: seccionCompleta,
-                s2: seccionSiguiente,
-            })
+        const url = `${API_REQUEST}create_candidato`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    /* TODO: axios actualizacion de INFOCandidato */
+                    setSecciones({
+                        ...secciones,
+                        s1: seccionCompleta,
+                        s2: seccionSiguiente,
+                    })
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Este candidato ya fué registrado.'
+                })
+                return
+            }
+            console.error('error', error);
         }
+        /*  mostrar siguiente seccion*/
     }
-    const checkDataS2 = () => {
+    const checkDataS2 = async () => {
         const { carta_antecedentes,
             pasaporte_archivo,
             eta_visa_archivo,
@@ -253,16 +228,53 @@ const Captura = () => {
         if (diferenciaFechasMeses(antecedentes_fecha) > 10 || diferenciaFechasMeses(pasaporte_fecha_cad) > 10 ||
             diferenciaFechasMeses(eta_visa_fecha_cad) > 10 || diferenciaFechasMeses(licencia_fecha_cad) > 10
         ) {
-            rechazarCandidato('vigencias menores a 10 meses')
+            // rechazarCandidato('vigencias menores a 10 meses')
         } else {
-            setSecciones({
-                ...secciones,
-                s2: seccionCompleta,
-                s3: seccionSiguiente,
-            })
+            /*   actualizacion de informacion por AXIOS */
+            const url = `${API_REQUEST}candidato_update`;
+            try {
+                const respuesta = await axios.post(url, infoBrigadista);
+
+                if (respuesta.status === 200) {
+                    if (infoBrigadista.rechazo) {
+                        // se ocultan las secciones
+                        setSecciones({
+                            s1: false,
+                            s2: false,
+                            s3: false,
+                            s4: false,
+                            s5: false,
+                            s6: false,
+                            s7: false,
+                            s8: false,
+                        })
+                        // se muestra pantalla motivo de rechazo
+                        setRechazo({
+                            rechazo: true,
+                            motivo_rechazo: infoBrigadista.motivo_rechazo
+                        })
+                    } else {
+                        setSecciones({
+                            ...secciones,
+                            s2: seccionCompleta,
+                            s3: seccionSiguiente,
+                        })
+                    }
+                }
+            } catch (error) {
+                if (error.response.status === 400) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'No se encontró candidato'
+                    })
+                    return
+                }
+                console.error('error', error);
+            }
+
         }
     }
-    const checkDataS3 = () => {
+    const checkDataS3 = async () => {
         const {
             cert_toxicologico,
             fecha_cert_toxicologico,
@@ -295,40 +307,75 @@ const Captura = () => {
         }
 
         /* TODO: rechazo si alguna respuesta is true */
-        if (
-            padece_enfermedad === 'si' || requiere_medicamentos_perm === 'si' ||
-            experimento_dolor_pecho === 'si' || experimento_dificultad_respirar === 'si' ||
-            presion_arterial_sistolica_diastolica === 'si' ||
-            enfermedad_cardiaca === 'si' || cirugia_corazon === 'si' ||
-            pulso_mayor_100 === 'si' || problemas_afeccion_osea === 'si' ||
-            experiencia_personal_consejos === 'si' || medico_personal_recomendo === 'si'
-        ) {
-            rechazarCandidato('problemas de salud')
-        } else {
-            setSecciones({
-                ...secciones,
-                s3: seccionCompleta,
-                s4: seccionSiguiente,
-            })
+        // if (
+        //     padece_enfermedad === 'si' || requiere_medicamentos_perm === 'si' ||
+        //     experimento_dolor_pecho === 'si' || experimento_dificultad_respirar === 'si' ||
+        //     presion_arterial_sistolica_diastolica === 'si' ||
+        //     enfermedad_cardiaca === 'si' || cirugia_corazon === 'si' ||
+        //     pulso_mayor_100 === 'si' || problemas_afeccion_osea === 'si' ||
+        //     experiencia_personal_consejos === 'si' || medico_personal_recomendo === 'si'
+        // ) {
+        //     // rechazarCandidato('problemas de salud')
+        // } else {
+        /*  actualizacion de informacion por AXIOS */
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s3: seccionCompleta,
+                        s4: seccionSiguiente,
+                    })
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
         }
     }
-    const checkDataS4 = () => {
+    const checkDataS4 = async () => {
+        /* TODO:completar update AXIOS */
         setSecciones({
             ...secciones,
             s4: seccionCompleta,
             s5: seccionSiguiente,
         })
     }
-    const checkDataS5 = () => {
-        /* TODO: rechazo si alguna respuesta false */
-
+    const checkDataS5 = async () => {
+        /* TODO:completar update AXIOS */
         setSecciones({
             ...secciones,
             s5: seccionCompleta,
             s6: seccionSiguiente,
         })
     }
-    const checkDataS6 = () => {
+    const checkDataS6 = async () => {
         const { opera_autonoma_gps,
             opera_autonoma_mark3,
             opera_autonoma_motosierra } = infoBrigadista
@@ -343,16 +390,53 @@ const Captura = () => {
         if (opera_autonoma_gps === 'no' ||
             opera_autonoma_mark3 === 'no' ||
             opera_autonoma_motosierra === 'no') {
-            rechazarCandidato('falta de habilidad')
+            // rechazarCandidato('falta de habilidad')
         } else {
-            setSecciones({
-                ...secciones,
-                s6: seccionCompleta,
-                s7: seccionSiguiente,
-            })
+            /* actualizacion de informacion por AXIOS */
+            const url = `${API_REQUEST}candidato_update`;
+            try {
+                const respuesta = await axios.post(url, infoBrigadista);
+
+                if (respuesta.status === 200) {
+                    if (infoBrigadista.rechazo) {
+                        // se ocultan las secciones
+                        setSecciones({
+                            s1: false,
+                            s2: false,
+                            s3: false,
+                            s4: false,
+                            s5: false,
+                            s6: false,
+                            s7: false,
+                            s8: false,
+                        })
+                        // se muestra pantalla motivo de rechazo
+                        setRechazo({
+                            rechazo: true,
+                            motivo_rechazo: infoBrigadista.motivo_rechazo
+                        })
+                    } else {
+                        setSecciones({
+                            ...secciones,
+                            s6: seccionCompleta,
+                            s7: seccionSiguiente,
+                        })
+                    }
+                }
+            } catch (error) {
+                if (error.response.status === 400) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'No se encontró candidato'
+                    })
+                    return
+                }
+                console.error('error', error);
+            }
+
         }
     }
-    const checkDataS7 = () => {
+    const checkDataS7 = async () => {
         const { tiene_epp_completo,
             tiene_mochila_linea,
             tiene_duffel_bag,
@@ -378,26 +462,97 @@ const Captura = () => {
             tiene_casa_campania === 'no' ||
             tiene_sleeping_bag === 'no' ||
             tiene_sleeping_pad === 'no') {
-            rechazarCandidato('falta de equipo')
+            // rechazarCandidato('falta de equipo')
             return
         }
 
-        setSecciones({
-            ...secciones,
-            s7: seccionCompleta,
-            s8: seccionSiguiente,
-        })
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s7: seccionCompleta,
+                        s8: seccionSiguiente,
+                    })
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
+        }
+
     }
-    const checkDataS8 = () => {
-        setSecciones({
-            ...secciones,
-            s8: seccionCompleta
-        })
-        Swal.fire(
-            'Buen trabajo',
-            'Se le notificará sobre su proceso de seleccion',
-            'success'
-        )
+    const checkDataS8 = async () => {
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s8: seccionCompleta
+                    })
+                    Swal.fire(
+                        'Buen trabajo',
+                        'Se le notificará sobre su proceso de seleccion',
+                        'success'
+                    )
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
+        }
+
     }
 
     return (

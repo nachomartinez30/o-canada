@@ -75,8 +75,8 @@ const S2 = (props) => {
                     placeholder='¿Padece alguna enfermedad?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -103,8 +103,8 @@ const S2 = (props) => {
                     placeholder='¿Requiere medicamentos de manera permanente?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -131,8 +131,8 @@ const S2 = (props) => {
                     placeholder='¿Experimentó dolor, incomodidad o presión en el pecho?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -147,8 +147,8 @@ const S2 = (props) => {
                     placeholder='¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?'
                 >
                     <option value=''>---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -163,8 +163,8 @@ const S2 = (props) => {
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -179,8 +179,8 @@ const S2 = (props) => {
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -195,8 +195,8 @@ const S2 = (props) => {
                     placeholder='¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -211,8 +211,8 @@ const S2 = (props) => {
                     placeholder='¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -227,8 +227,8 @@ const S2 = (props) => {
                     placeholder='¿Tiene un pulso en reposo mayor a 100 latidos por minuto?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -243,8 +243,8 @@ const S2 = (props) => {
                     placeholder='¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -259,8 +259,8 @@ const S2 = (props) => {
                     placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 
@@ -275,8 +275,8 @@ const S2 = (props) => {
                     placeholder='¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?'
                 >
                     <option value='' >---Seleccione---</option>
-                    <option value='si'>Si</option>
-                    <option value='no'>No</option>
+                    <option value={1}>Si</option>
+                    <option value={0}>No</option>
                 </select>
             </div>
 

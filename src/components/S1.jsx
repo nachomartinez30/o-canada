@@ -24,19 +24,48 @@ const S1 = (props) => {
         if (altura && peso) {
             const alturaM = altura / 100;
             const imc = peso / Math.pow(alturaM, 2)
+
             setState({
                 ...state,
-                imc
+                imc,
+                rechazo: true,
+                motivo_rechazo: 'imc mayo 30'
             })
-        }
+            if (imc > 30) {
+                setState({
+                    ...state,
+                    imc,
+                    rechazo: true,
+                    motivo_rechazo: 'imc mayo 30'
+                })
 
+            } else {
+                setState({
+                    ...state,
+                    imc,
+                    rechazo: false,
+                    motivo_rechazo: null
+                })
+            }
+        }
 
     }
 
     return (
         <div className='row body_wrap'>
             {/* FOTOGRAFIA */}
-            {/* Nombre (s) */}
+
+            <div className='col-12'>
+                <label className="control-label pt-2">Fotografia</label>
+                <input
+                    className="form-control myInput"
+                    name='fotografia'
+                    // value={state.fotografia}
+                    type='file'
+                    onChange={setInfo}
+                    placeholder='Ingrese Nombre(s)...'
+                />
+            </div>
             <div className='col-12'>
                 <label className="control-label pt-2">Nombre (s)</label>
                 <input
@@ -128,7 +157,6 @@ const S1 = (props) => {
                     className="form-control myInput"
                     name='estado'
                     value={state.estado}
-                    value={state.estado}
                     type=''
                     onChange={setInfo}
                     placeholder='Ingrese Estado...'
@@ -141,11 +169,11 @@ const S1 = (props) => {
                 <label className="control-label pt-2">Municipio</label>
                 <input
                     className="form-control myInput"
-                    name='estado'
-                    value={state.estado}
+                    name='municipio'
+                    value={state.municipio}
                     type=''
                     onChange={setInfo}
-                    placeholder='Ingrese Estado...'
+                    placeholder='Ingrese Municipio...'
                 />
             </div>
 
@@ -213,7 +241,7 @@ const S1 = (props) => {
                     className="form-control myInput"
                     name='altura'
                     value={state.altura}
-                    type=''
+                    type='number'
                     onBlur={calculoIMC}
                     onChange={setInfo}
                     placeholder='Ingrese Altura (cm)...'
@@ -227,7 +255,7 @@ const S1 = (props) => {
                     className="form-control myInput"
                     name='peso'
                     value={state.peso}
-                    type=''
+                    type='number'
                     onBlur={calculoIMC}
                     onChange={setInfo}
                     placeholder='Ingrese Peso (kg)...'
@@ -237,14 +265,14 @@ const S1 = (props) => {
             {/* IMC */}
             <div className='col-3'>
                 <label className="control-label pt-2">IMC</label>
-                {/*                 */} <input
+                <input
                     disabled
                     name='imc'
                     value={state.imc}
                     className="form-control myInput"
                     type=''
                     onChange={setInfo}
-                    placeholder='Ingrese IMC...'
+                    placeholder='IMC...'
                 />
             </div>
 

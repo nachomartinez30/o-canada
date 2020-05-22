@@ -12,8 +12,8 @@ const SelectSiNo = (props) => {
             value={defaultValue}
         >
             <option value=''>---Seleccione---</option>
-            <option value='si'>SI</option>
-            <option value='no'>NO</option>
+            <option value={1}>SI</option>
+            <option value={0}>NO</option>
         </select>
     );
 }

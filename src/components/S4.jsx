@@ -4,6 +4,7 @@ import SCI100 from '../components/ExSCI100';
 import S190 from '../components/ExS190';
 
 const S4 = (props) => {
+    /* TODOD: rellenar state y API con esta seccion */
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {
