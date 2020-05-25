@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import AlertExito from '../singles/AlertExito'
 import ExS190 from '../components/ExS190';
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
@@ -17,7 +16,7 @@ const S5 = (props) => {
 
     const terminarExamen = async () => {
         try {
-            const respuesta = await axios.post('http://localhost/o_canada/api/s_190_exam', examResp);
+            const respuesta = await axios.post('http://187.218.230.38:81/o_canada/api/s_190_exam', examResp);
 
             if (respuesta.status === 200) {
                 if (respuesta.data.calificacion === 'reprobado') {
@@ -128,9 +127,10 @@ const S5 = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <span>
+                    Tiempo Restante
+                    <h2>
                         {moment.utc(moment.duration(timeLeft, 'seconds').asMilliseconds()).format('m:ss ')}
-                    </span>
+                    </h2>
                     {/* <ExS190 /> */}
                     <ExS190
                         state={examResp}

@@ -11,37 +11,37 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-const API_REQUEST = 'http://localhost/o_canada/api/'
-// const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+// const API_REQUEST = 'http://localhost/o_canada/api/'
+const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
-const defaultCaptura = {
-    "fotografia": "C:\\fakepath\\898408.jpg",
-    "nombres": "oscar ignacio",
-    "apellido_paterno": "martine",
-    "apellido_materno": "diaz",
-    "fecha_nacimiento": "2020-12-31",
-    "curp": "MADO921030HJCRZS05",
-    "rfc": "MADO921030QD9",
-    "estado": "Jalisco",
-    "numero_telefonico_notificaciones": "3319638873",
-    "correo_electronico": "nachomartinez3010@gmail.com",
-    "posicion_candidato": "combatiente",
-    "sexo": "2",
-    "altura": "170",
-    "peso": "85",
-    "imc": 29.411764705882355,
-    "sci_smi_100": "C:\\fakepath\\898408.jpg",
-    "sci_smi_200": "C:\\fakepath\\898408.jpg",
-    "eventos_plnaeados_sci": "1",
-    "eventos_plnaeados_sci_fuera": "1",
-    "eventos_plnaeados_dentro_estructura": "1",
-    "sci_cual": "Lorem",
-    "evaluado_menejo_incidentes": "1",
-    "s_190": "C:\\fakepath\\898408.jpg",
-    "s_130": "C:\\fakepath\\node.png",
-    "asignado_recurso_nacional": "154",
-    "asignado_recurso_otro_pais": "157"
-}
+// const defaultCaptura = {
+//     "fotografia": "C:\\fakepath\\898408.jpg",
+//     "nombres": "oscar ignacio",
+//     "apellido_paterno": "martine",
+//     "apellido_materno": "diaz",
+//     "fecha_nacimiento": "2020-12-31",
+//     "curp": "MADO921030HJCRZS05",
+//     "rfc": "MADO921030QD9",
+//     "estado": "Jalisco",
+//     "numero_telefonico_notificaciones": "3319638873",
+//     "correo_electronico": "nachomartinez3010@gmail.com",
+//     "posicion_candidato": "combatiente",
+//     "sexo": "2",
+//     "altura": "170",
+//     "peso": "85",
+//     "imc": 29.411764705882355,
+//     "sci_smi_100": "C:\\fakepath\\898408.jpg",
+//     "sci_smi_200": "C:\\fakepath\\898408.jpg",
+//     "eventos_plnaeados_sci": "1",
+//     "eventos_plnaeados_sci_fuera": "1",
+//     "eventos_plnaeados_dentro_estructura": "1",
+//     "sci_cual": "Lorem",
+//     "evaluado_menejo_incidentes": "1",
+//     "s_190": "C:\\fakepath\\898408.jpg",
+//     "s_130": "C:\\fakepath\\node.png",
+//     "asignado_recurso_nacional": "154",
+//     "asignado_recurso_otro_pais": "157"
+// }
 
 
 
@@ -52,15 +52,15 @@ const defaultCaptura = {
 
 
 const Captura = () => {
-    // const [infoBrigadista, setInfoBrigadista] = useState({    })
-    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    const [infoBrigadista, setInfoBrigadista] = useState({})
+    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: false },
+        s1: { status: 'faltante', visible: !false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
-        s5: { status: 'faltante', visible: !false },
+        s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
         s8: { status: 'faltante', visible: false },
