@@ -54,7 +54,15 @@ const S4 = (props) => {
 
 
 
-            <Modal show={show} >
+            <Modal 
+            show={show} 
+            dialogClassName='modal-90w'
+            >
+                <Modal.Header>
+                    <Modal.Title>
+                        SCI/SMI 100
+                    </Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
                     <ExS190 />
                 </Modal.Body>

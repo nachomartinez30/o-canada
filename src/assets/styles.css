@@ -78,4 +78,25 @@
   font-weight: 600;
   font-size: 1em;
 }
+.modal-90w{
+  width: 90%;
+}
+.modal-90w label{
+  font-weight: 600;
+  font-size: 1em;
+}
+.modal-90w .modal-header{
+  text-align: center;
+  display: inline-block;
+  color: #9d2449;
+}
+.center-text{
+  text-align: center;
+}
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
+  }
+}
 /*--Trabajo en equipo CSS--*/
