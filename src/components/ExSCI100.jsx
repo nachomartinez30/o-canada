@@ -2,7 +2,7 @@ import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const SCI100 = (props) => {
-    const { state, setState, checkData } = props
+    const { state, setState  } = props
 
     const setInfo = (input) => {
         /* setea al state las variables */

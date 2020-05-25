@@ -1,24 +1,71 @@
 import React, { useState } from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 import ExSCI100 from '../components/ExSCI100';
-import ExS190 from '../components/ExS190';
-import AlertExito from '../singles/AlertExito';
+// import ExS190 from '../components/ExS190';
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import AlertError from '../singles/AlertError';
 
 const S4 = (props) => {
     /* TODO: rellenar state y API con esta seccion */
     const [showExam, setShowExam] = useState(false)
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const { state, setState, checkData } = props
 
     const [preguntas_smi_100, setPreguntas_smi_100] = useState(false)
-    const [preguntas_s_190, setPreguntas_s_190] = useState(false)
+    const [examResp, setExamResp] = useState({})
     const [smi_100Examen, setSmi_100Examen] = useState(false)
+
+    const handleShow = () => {
+        setShowExam(true)
+    }
+
+    const terminarExamen = async (data) => {
+        try {
+            const respuesta = await axios.post('http://localhost/o_canada/api/smi100_exam', data);
+            
+            if (respuesta.status === 200) {
+                if (respuesta.data.calificacion === 'reprobado') {
+                    setState({
+                        ...state,
+                        rechazo: true,
+                        motivo_rechazo: 'no aprobo examen smi_100',
+                        examen_smi_100: respuesta.data.calificacion
+                    })
+                } else {
+                    setState({
+                        ...state,
+                        rechazo: false,
+                        motivo_rechazo: null,
+                        examen_smi_100: respuesta.data.calificacion
+                    })
+                }
+                setShowExam(false)
+                setSmi_100Examen(true)
+            }
+        } catch (error) {
+            AlertError('Error', error)
+        }
+        console.log('envio de resultados');
+    }
+    const handleClose = () => {
+        Swal.fire({
+            title: 'Esta seguro que desea terminar la prueba?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.value) {
+                terminarExamen(examResp)
+            }
+        })
+    };
+
+
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -49,14 +96,12 @@ const S4 = (props) => {
         })
         // setSmi_100Examen(true)
     }
+
     return (
         <div className='row body_wrap'>
-
-
-
-            <Modal 
-            show={show} 
-            dialogClassName='modal-90w'
+            <Modal
+                show={showExam}
+                dialogClassName='modal-90w'
             >
                 <Modal.Header>
                     <Modal.Title>
@@ -64,10 +109,17 @@ const S4 = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ExS190 />
+                    {/* <ExS190 /> */}
+                    <ExSCI100
+                        state={examResp}
+                        setState={setExamResp}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button
+                        variant="primary"
+                        onClick={handleClose}
+                    >
                         Terminar
                     </Button>
                 </Modal.Footer>
