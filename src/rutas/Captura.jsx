@@ -77,7 +77,8 @@ comprobantes de registro
 
 const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({
-        curp: 'MADO921030HJCRZS05'
+        curp: 'MADO921030HJCRZS05',
+        posicion_candidato: 'jefe_de_cuadrilla'
     })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
@@ -88,8 +89,8 @@ const Captura = () => {
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
-        s7: { status: 'faltante', visible: !false },
-        s8: { status: 'faltante', visible: false },
+        s7: { status: 'faltante', visible: false },
+        s8: { status: 'faltante', visible: !false },
     })
 
     const seccionCompleta = { status: 'completo', visible: false };
@@ -440,15 +441,7 @@ const Captura = () => {
             return
         }
 
-        if (tiene_epp_completo === 'no' ||
-            tiene_mochila_linea === 'no' ||
-            tiene_duffel_bag === 'no' ||
-            tiene_casa_campania === 'no' ||
-            tiene_sleeping_bag === 'no' ||
-            tiene_sleeping_pad === 'no') {
-            // rechazarCandidato('falta de equipo')
-            return
-        }
+
 
         const url = `${API_REQUEST}candidato_update`;
         try {
@@ -492,6 +485,27 @@ const Captura = () => {
 
     }
     const checkDataS8 = async () => {
+        const { nivel_ingles, toeic_toefl, l_280, s_290, cert_intern_incendios, cert_intern_ate_emerg_med,
+            examen_toeic_toefl_punt, examen_toeic_toefl_archivo, l_280_file, s_290_file,
+            cert_intern_incendios_file, cert_intern_ate_emerg_med_file, posicion_candidato } = infoBrigadista
+        if (posicion_candidato === 'jefe_de_cuadrilla' || posicion_candidato === 'tecnico') {
+            if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
+                !cert_intern_ate_emerg_med_file || !l_280 || !s_290 || !cert_intern_incendios ||
+                !cert_intern_ate_emerg_med || !l_280_file || !s_290_file || !cert_intern_incendios_file
+            ) {
+                msgFaltanCampos()
+                return
+            }
+        } else {
+            if (!l_280 || !s_290 || !cert_intern_incendios ||
+                !cert_intern_ate_emerg_med || !l_280_file ||
+                !s_290_file || !cert_intern_incendios_file
+            ) {
+                msgFaltanCampos()
+                return
+            }
+        }
+
         const url = `${API_REQUEST}candidato_update`;
         try {
             const respuesta = await axios.post(url, infoBrigadista);

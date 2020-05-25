@@ -14,7 +14,7 @@ const S8 = (props) => {
     return (
         <div className='row body_wrap'>
 
-            {(state.posicion_candidato === 'jefe_de_cuadrilla' || state.posicion_candidato === 'jefe_de_brigada') ?
+            {(state.posicion_candidato === 'jefe_de_cuadrilla' || state.posicion_candidato === 'tecnico') ?
                 <React.Fragment>
                     {/* Nivel de inglés */}
                     <div className='col-6'>

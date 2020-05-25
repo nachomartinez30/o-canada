@@ -11,6 +11,29 @@ const S7 = (props) => {
             [input.target.name]: input.target.value
         })
     }
+
+    const revisarValidaciones = () => {
+        const { tiene_epp_completo, tiene_mochila_linea, tiene_duffel_bag, tiene_casa_campania, tiene_sleeping_bag, tiene_sleeping_pad } = state
+
+        if (tiene_epp_completo === '0' ||
+            tiene_mochila_linea === '0' ||
+            tiene_duffel_bag === '0' ||
+            tiene_casa_campania === '0' ||
+            tiene_sleeping_bag === '0' ||
+            tiene_sleeping_pad === '0') {
+            setState({
+                ...state,
+                rechazo: true,
+                motivo_rechazo: 'no cuenta con equipo completo'
+            })
+        } else {
+            setState({
+                ...state,
+                rechazo: false,
+                motivo_rechazo: null
+            })
+        }
+    }
     return (
         <div className='row body_wrap'>
 
@@ -34,6 +57,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_epp_completo'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_epp_completo}
                     onChange={setInfo}
                 />
@@ -57,6 +81,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_mochila_linea'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_mochila_linea}
                     onChange={setInfo}
                 />
@@ -68,6 +93,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_duffel_bag'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_duffel_bag}
                     onChange={setInfo}
                 />
@@ -79,6 +105,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_casa_campania'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_casa_campania}
                     onChange={setInfo}
                 />
@@ -90,6 +117,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_sleeping_bag'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_sleeping_bag}
                     onChange={setInfo}
                 />
@@ -101,6 +129,7 @@ const S7 = (props) => {
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_sleeping_pad'
+                    onBlur={revisarValidaciones}
                     defaultValue={state.tiene_sleeping_pad}
                     onChange={setInfo}
                 />
