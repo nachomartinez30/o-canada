@@ -76,8 +76,7 @@ comprobantes de registro
 
 
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({
-    })
+    const [infoBrigadista, setInfoBrigadista] = useState({    })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [secciones, setSecciones] = useState({
