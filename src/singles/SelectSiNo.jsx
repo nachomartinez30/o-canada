@@ -2,12 +2,13 @@ import React from 'react'
 
 
 const SelectSiNo = (props) => {
-    const { name, onChange, defaultValue, className } = props
+    const { name, onChange, defaultValue, className, onBlur} = props
 
     return (
         <select
             className={className}
             onChange={onChange}
+            onBlur={onBlur}
             name={name}
             value={defaultValue}
         >

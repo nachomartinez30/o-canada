@@ -9,7 +9,6 @@ import Header from './singles/Header';
 import Captura from './rutas/Captura';
 
 
-
 function App() {
   return (
     <div >
@@ -18,6 +17,7 @@ function App() {
         <hr className='gradiente' />
         <Switch>
           <Route exact path="/" component={Captura} />
+          {/* <Route exact path="/pdf" component={EjemploPDF} /> */}
         </Switch>
         {/* <Footer> */}
       </Router>

@@ -12,24 +12,26 @@ const S6 = (props) => {
         })
     }
 
-    const revisarFormulario = () => {
-        /* SI opera todo el equipo */
+    const revisionCompetencias = () => {
+        console.log('working...');
+        
         if (state.opera_autonoma_gps === '0' || state.opera_autonoma_mark3 === '0') {
-            debugger
+
             setState({
                 ...state,
                 rechazo: true,
-                motivo_rechazo: 'falta habilidad y competencia'
+                motivo_rechazo: 'falta de habilidad o competencia'
             })
         } else {
+
             setState({
                 ...state,
                 rechazo: false,
                 motivo_rechazo: null
             })
         }
-        checkData();
     }
+
 
     return (
         <div className='row body_wrap'>
@@ -39,6 +41,7 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_gps'
+                    onBlur={revisionCompetencias}
                     defaultValue={state.opera_autonoma_gps}
                     onChange={setInfo}
                 />
@@ -50,6 +53,7 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_mark3'
+                    onBlur={revisionCompetencias}
                     defaultValue={state.opera_autonoma_mark3}
                     onChange={setInfo}
                 />
@@ -61,6 +65,7 @@ const S6 = (props) => {
                 <SelectSiNo
                     className="form-control myInput"
                     name='opera_autonoma_motosierra'
+                    onBlur={revisionCompetencias}
                     defaultValue={state.opera_autonoma_motosierra}
                     onChange={setInfo}
                 />
@@ -69,7 +74,7 @@ const S6 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={revisarFormulario}
+                    onClick={checkData}
                 >Continuar</button>
             </div>
         </div>
