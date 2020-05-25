@@ -1,30 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 import ExSCI100 from '../components/ExSCI100';
 // import ExS190 from '../components/ExS190';
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+
 import AlertError from '../singles/AlertError';
+import moment from 'moment'
 
 const S4 = (props) => {
     /* TODO: rellenar state y API con esta seccion */
     const [showExam, setShowExam] = useState(false)
-
     const { state, setState, checkData } = props
 
     const [preguntas_smi_100, setPreguntas_smi_100] = useState(false)
     const [examResp, setExamResp] = useState({})
     const [smi_100Examen, setSmi_100Examen] = useState(false)
 
+    /* TIMER */
+
+    // initialize timeLeft with the seconds prop
+    const [timeLeft, setTimeLeft] = useState(1500000000000);
+
+    useEffect(() => {
+        // exit early when we reach 0
+        if (!timeLeft) {
+            terminarExamen();
+        }
+        // save intervalId to clear the interval when the
+        // component re-renders
+        const intervalId = setInterval(() => {
+            setTimeLeft(timeLeft - 1);
+        }, 1000);
+
+        // clear interval on re-render to avoid memory leaks
+        return () => clearInterval(intervalId)
+        // add timeLeft as a dependency to re-rerun the effect
+        // when we update it
+    }, [timeLeft]);
+
     const handleShow = () => {
+        setTimeLeft(600)
         setShowExam(true)
     }
 
-    const terminarExamen = async (data) => {
+    const terminarExamen = async () => {
         try {
-            const respuesta = await axios.post('http://localhost/o_canada/api/smi100_exam', data);
-            
+            const respuesta = await axios.post('http://localhost/o_canada/api/smi100_exam', examResp);
+
             if (respuesta.status === 200) {
                 if (respuesta.data.calificacion === 'reprobado') {
                     setState({
@@ -64,8 +88,6 @@ const S4 = (props) => {
             }
         })
     };
-
-
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -109,6 +131,9 @@ const S4 = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <span>
+                        {moment.utc(moment.duration(timeLeft, 'seconds').asMilliseconds()).format('m:ss ')}
+                    </span>
                     {/* <ExS190 /> */}
                     <ExSCI100
                         state={examResp}
