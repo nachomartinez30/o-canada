@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import SelectSiNo from '../singles/SelectSiNo';
-import SelectSexo from '../singles/SelectSexo';
 import ToMayus from "../helpers/ToMayus";
 import curpValida from "../helpers/curpValida";
 import InputCURP from "../singles/InputCURP";
@@ -238,13 +236,13 @@ const S1 = (props) => {
 
             {/* Posicion Candidato */}
             <div className='col-4'>
-                <label className="control-label pt-2">Posicion a la que es candidato:</label>
+                <label className="control-label pt-2">Posición a la que es candidato:</label>
                 <select
                     className={`form-control ${(state.posicion_candidato) ? null : 'myInput'}`}
                     name='posicion_candidato'
                     defaultValue={state.posicion_candidato}
                     onChange={setInfo}
-                    placeholder='Posicion a la que es candidato...'
+                    placeholder='Posición a la que es candidato...'
                 >
                     <option value='' >---Seleccione---</option>
                     <option value='combatiente'>Combatiente</option>

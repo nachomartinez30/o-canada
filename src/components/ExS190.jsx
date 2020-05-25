@@ -2,14 +2,14 @@ import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const S190 = (props) => {
-  const { state, setState, checkData } = props
+  const { state, setState } = props
 
   const setInfo = (input) => {
     /* setea al state las variables */
-    setState({
-      ...state,
-      [input.target.name]: input.target.value
-    })
+    // setState({
+    //   ...state,
+    //   [input.target.name]: input.target.value
+    // })
   }
   return (
     <div className='row'>

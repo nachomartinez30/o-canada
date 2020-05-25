@@ -11,79 +11,51 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-// const API_REQUEST = 'http://localhost/o_canada/api/'
-const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+const API_REQUEST = 'http://localhost/o_canada/api/'
+// const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
-// const defaultCaptura = {
-//     "fotografia": "C:\\fakepath\\898408.jpg",
-//     "nombres": "oscar ignacio",
-//     "apellido_paterno": "martine",
-//     "apellido_materno": "diaz",
-//     "fecha_nacimiento": "2020-12-31",
-//     "curp": "MADO921030HJCRZS05",
-//     "rfc": "MADO921030QD9",
-//     "estado": "Jalisco",
-//     "numero_telefonico_notificaciones": "3319638873",
-//     "correo_electronico": "nachomartinez3010@gmail.com",
-//     "posicion_candidato": "combatiente",
-//     "sexo": "2",
-//     "altura": "170",
-//     "peso": "85",
-//     "imc": 29.411764705882355,
-//     "rechazo": false,
-//     "motivo_rechazo": null,
-//     "grupo_sanguineo": "o+",
-//     "dependencia": "cnf",
-//     "tipo_dependencia": "forestal",
-//     "fecha_ingreso_dependencia": "2020-12-31",
-//     "anios_experiencia": "1",
-//     "nombre_beneficiario": "lorem",
-//     "telefono_beneficiario": "lorem",
-//     "correo_beneficiario": "correo",
-//     "carta_antecedentes": "C:\\fakepath\\898408.jpg",
-//     "antecedentes_fecha": "2020-01-01",
-//     "pasaporte_archivo": "C:\\fakepath\\node.png",
-//     "pasaporte_numero": "21212121212",
-//     "pasaporte_fecha_cad": "2020-12-31",
-//     "eta_visa_archivo": "C:\\fakepath\\node.png",
-//     "documento_viajar_canada": "VISA",
-//     "eta_visa_num": "1654",
-//     "eta_visa_fecha_exp": "2020-12-31",
-//     "eta_visa_fecha_cad": "2020-12-01",
-//     "licencia_manejo": "C:\\fakepath\\node.png",
-//     "tipo_licencia": "Nacional",
-//     "licencia_fecha_cad": "2020-12-01",
-//     "cert_toxicologico": "C:\\fakepath\\898408.jpg",
-//     "cert_medico": "C:\\fakepath\\node.png",
-// }
+const defaultCaptura = {
+    "fotografia": "C:\\fakepath\\898408.jpg",
+    "nombres": "oscar ignacio",
+    "apellido_paterno": "martine",
+    "apellido_materno": "diaz",
+    "fecha_nacimiento": "2020-12-31",
+    "curp": "MADO921030HJCRZS05",
+    "rfc": "MADO921030QD9",
+    "estado": "Jalisco",
+    "numero_telefonico_notificaciones": "3319638873",
+    "correo_electronico": "nachomartinez3010@gmail.com",
+    "posicion_candidato": "combatiente",
+    "sexo": "2",
+    "altura": "170",
+    "peso": "85",
+    "imc": 29.411764705882355,
+    "sci_smi_100": "C:\\fakepath\\898408.jpg",
+    "sci_smi_200": "C:\\fakepath\\898408.jpg",
+    "eventos_plnaeados_sci": "1",
+    "eventos_plnaeados_sci_fuera": "1",
+    "eventos_plnaeados_dentro_estructura": "1",
+    "sci_cual": "Lorem",
+    "evaluado_menejo_incidentes": "1"
+}
 
 
 
-/* TODO: 
 
-
-10 min por examen
-
-eliminar validacion motosierra
-
-variables idioma jefe de brigada y tecnico
-
-comprobantes de registro
-
- */
-
+/* TODO: 10 min por examen */
 /* TODO: manejo de sesiones */
 
 
+
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({    })
-    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    // const [infoBrigadista, setInfoBrigadista] = useState({    })
+    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: !false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
