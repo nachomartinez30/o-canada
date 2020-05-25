@@ -6,7 +6,10 @@ import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/styles.css'
 import Header from './singles/Header';
+// import ConstanciaRegistro from './components/ConstanciaRegistro';
 import Captura from './rutas/Captura';
+import ConstanciaRegistro from './components/ConstanciaRegistro'
+
 
 
 function App() {
@@ -17,11 +20,12 @@ function App() {
         <hr className='gradiente' />
         <Switch>
           <Route exact path="/" component={Captura} />
-          {/* <Route exact path="/pdf" component={EjemploPDF} /> */}
+          <Route exact path="/pdf" component={ConstanciaRegistro} />
         </Switch>
         {/* <Footer> */}
       </Router>
     </div>
+    
   );
 }
 
