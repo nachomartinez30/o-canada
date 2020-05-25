@@ -36,7 +36,11 @@ const defaultCaptura = {
     "eventos_plnaeados_sci_fuera": "1",
     "eventos_plnaeados_dentro_estructura": "1",
     "sci_cual": "Lorem",
-    "evaluado_menejo_incidentes": "1"
+    "evaluado_menejo_incidentes": "1",
+    "s_190": "C:\\fakepath\\898408.jpg",
+    "s_130": "C:\\fakepath\\node.png",
+    "asignado_recurso_nacional": "154",
+    "asignado_recurso_otro_pais": "157"
 }
 
 
@@ -55,8 +59,8 @@ const Captura = () => {
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: !false },
-        s5: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: false },
+        s5: { status: 'faltante', visible: !false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
         s8: { status: 'faltante', visible: false },
@@ -324,20 +328,92 @@ const Captura = () => {
         }
     }
     const checkDataS4 = async () => {
-        /* TODO:completar update AXIOS */
-        setSecciones({
-            ...secciones,
-            s4: seccionCompleta,
-            s5: seccionSiguiente,
-        })
+        /* update AXIOS */
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s4: seccionCompleta,
+                        s5: seccionSiguiente,
+                    })
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
+        }
     }
     const checkDataS5 = async () => {
-        /* TODO:completar update AXIOS */
-        setSecciones({
-            ...secciones,
-            s5: seccionCompleta,
-            s6: seccionSiguiente,
-        })
+        /* update AXIOS */
+
+        const url = `${API_REQUEST}candidato_update`;
+        try {
+            const respuesta = await axios.post(url, infoBrigadista);
+
+            if (respuesta.status === 200) {
+                if (infoBrigadista.rechazo) {
+                    // se ocultan las secciones
+                    setSecciones({
+                        s1: false,
+                        s2: false,
+                        s3: false,
+                        s4: false,
+                        s5: false,
+                        s6: false,
+                        s7: false,
+                        s8: false,
+                    })
+                    // se muestra pantalla motivo de rechazo
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: infoBrigadista.motivo_rechazo
+                    })
+                } else {
+                    setSecciones({
+                        ...secciones,
+                        s5: seccionCompleta,
+                        s6: seccionSiguiente,
+                    })
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se encontró candidato'
+                })
+                return
+            }
+            console.error('error', error);
+        }
+
     }
     const checkDataS6 = async () => {
         const { opera_autonoma_gps, opera_autonoma_mark3, opera_autonoma_motosierra } = infoBrigadista

@@ -1,10 +1,67 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AlertExito from '../singles/AlertExito'
+import ExS190 from '../components/ExS190';
+import { Modal, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import AlertError from '../singles/AlertError';
+import moment from 'moment'
 
 const S5 = (props) => {
     const { state, setState, checkData } = props
+    const [showExam, setShowExam] = useState(false)
+
+    const [examResp, setExamResp] = useState({})
     const [preguntas_s_190, setPreguntas_s_190] = useState(false)
     const [sci_190Examen, setSci_190Examen] = useState(false)
+
+    const terminarExamen = async () => {
+        try {
+            const respuesta = await axios.post('http://localhost/o_canada/api/s_190_exam', examResp);
+
+            if (respuesta.status === 200) {
+                if (respuesta.data.calificacion === 'reprobado') {
+                    setState({
+                        ...state,
+                        rechazo: true,
+                        motivo_rechazo: 'no aprobo examen smi_100',
+                        examen_s_190: respuesta.data.calificacion
+                    })
+                } else {
+                    setState({
+                        ...state,
+                        rechazo: false,
+                        motivo_rechazo: null,
+                        examen_s_190: respuesta.data.calificacion
+                    })
+                }
+                setShowExam(false)
+                setSci_190Examen(true)
+            }
+        } catch (error) {
+            AlertError('Error', error)
+        }
+        console.log('envio de resultados');
+    }
+    const handleClose = () => {
+        Swal.fire({
+            title: 'Esta seguro que desea terminar la prueba?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.value) {
+                terminarExamen(examResp)
+            }
+        })
+    };
+    const handleShow = () => {
+        setTimeLeft(600)
+        setShowExam(true)
+    }
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -14,14 +71,82 @@ const S5 = (props) => {
         })
     }
 
-    const siguienteExamen = () => {
+    /* TIMER */
 
-        AlertExito('Examen')
-        setSci_190Examen(true)
+    // initialize timeLeft with the seconds prop
+    const [timeLeft, setTimeLeft] = useState(1500000000000);
+
+    useEffect(() => {
+        // exit early when we reach 0
+        if (!timeLeft) {
+            terminarExamen();
+        }
+        // save intervalId to clear the interval when the
+        // component re-renders
+        const intervalId = setInterval(() => {
+            setTimeLeft(timeLeft - 1);
+        }, 1000);
+
+        // clear interval on re-render to avoid memory leaks
+        return () => clearInterval(intervalId)
+        // add timeLeft as a dependency to re-rerun the effect
+        // when we update it
+    }, [timeLeft]);
+
+    const siguienteExamen = () => {
+        // AlertExito('Examen')
+        Swal.fire({
+            title: 'Esta por iniciar una prueba',
+            text: "Asegurece de tener una conexion estable de internet.\n" +
+                "Cuenta con 10 minutos para responderla.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                /* INICIAR EXAMEN */
+                handleShow(true)
+            }
+        })
+        // setSmi_100Examen(true)
     }
+
+
 
     return (
         <div className='row body_wrap'>
+            <Modal
+                show={showExam}
+                dialogClassName='modal-90w'
+            >
+                <Modal.Header>
+                    <Modal.Title>
+                        SCI/SMI 100
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <span>
+                        {moment.utc(moment.duration(timeLeft, 'seconds').asMilliseconds()).format('m:ss ')}
+                    </span>
+                    {/* <ExS190 /> */}
+                    <ExS190
+                        state={examResp}
+                        setState={setExamResp}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="primary"
+                        onClick={handleClose}
+                    >
+                        Terminar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
 
             {/* S-190 */}
             <div className='col-6'>
@@ -58,7 +183,7 @@ const S5 = (props) => {
                     <input
                         className="form-control myInput"
                         name='asignado_recurso_nacional'
-                        type=''
+                        type='number'
                         onChange={setInfo}
                         placeholder='¿Cuántas veces ha sido asignado como recurso nacional en incendios forestales...'
                     />
@@ -70,7 +195,7 @@ const S5 = (props) => {
                     <input
                         className="form-control myInput"
                         name='asignado_recurso_otro_pais'
-                        type=''
+                        type='number'
                         onChange={setInfo}
                         placeholder='¿Cuántas veces ha sido asignado como recurso en incendios forestales en otro país?'
                     />
@@ -78,7 +203,7 @@ const S5 = (props) => {
 
 
             </React.Fragment>}
-            
+
             {/* BTN SCI/SMI 100 */}
             <div className='col-12 pt-5 btn-margin'>
                 {/* TODO: completar examenes */}
@@ -88,7 +213,7 @@ const S5 = (props) => {
                     onClick={siguienteExamen}
                     className='btn btn-warning'
                 // onClick={checkData}
-                >Tomar examen SCI/SMI 100</button>
+                >Tomar examen S-190/S-130 o CPCIF</button>
             </div>
 
 

@@ -6,10 +6,10 @@ const S190 = (props) => {
 
   const setInfo = (input) => {
     /* setea al state las variables */
-    // setState({
-    //   ...state,
-    //   [input.target.name]: input.target.value
-    // })
+    setState({
+      ...state,
+      [input.target.name]: input.target.value
+    })
   }
   return (
     <div className='row'>
