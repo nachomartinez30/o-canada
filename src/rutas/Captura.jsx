@@ -11,8 +11,8 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-const API_REQUEST = 'http://localhost/o_canada/api/'
-// const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+// const API_REQUEST = 'http://localhost/o_canada/api/'
+const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
 // const defaultCaptura = {
 //     "fotografia": "C:\\fakepath\\898408.jpg",
@@ -77,20 +77,18 @@ comprobantes de registro
 
 const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({
-        curp: 'MADO921030HJCRZS05',
-        posicion_candidato: 'jefe_de_cuadrilla'
     })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: false },
+        s1: { status: 'faltante', visible: !false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
         s7: { status: 'faltante', visible: false },
-        s8: { status: 'faltante', visible: !false },
+        s8: { status: 'faltante', visible: false },
     })
 
     const seccionCompleta = { status: 'completo', visible: false };
