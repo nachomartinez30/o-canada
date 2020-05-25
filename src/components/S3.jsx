@@ -8,6 +8,9 @@ const S3 = (props) => {
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {
+        if (input.target.value < 0) {
+            input.target.value = Math.abs(input.target.value)
+        }
         /* setea al state las variables */
         setState({
             ...state,
@@ -17,6 +20,7 @@ const S3 = (props) => {
 
     const calculoIMC = () => {
         const { altura, peso } = state
+
         if (altura && peso) {
             const alturaM = altura / 100;
             const imc = peso / Math.pow(alturaM, 2)
@@ -114,7 +118,9 @@ const S3 = (props) => {
                     name='altura'
                     value={state.altura}
                     type='number'
+                    min={0}
                     onBlur={calculoIMC}
+                    // onInput={(input) => Math.abs(input.target.value)}
                     onChange={setInfo}
                     placeholder='Ingrese Altura (cm)...'
                 />
@@ -128,7 +134,9 @@ const S3 = (props) => {
                     name='peso'
                     value={state.peso}
                     type='number'
+                    min={0}
                     onBlur={calculoIMC}
+                    // onInput={(input)=>input.target.value}
                     onChange={setInfo}
                     placeholder='Ingrese Peso (kg)...'
                 />

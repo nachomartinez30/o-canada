@@ -22,6 +22,9 @@ const S1 = (props) => {
 
     const setInfo = (input) => {
         /* setea al state las variables */
+        if (input.target.value < 0) {
+            input.target.value = Math.abs(input.target.value)
+        }
         setState({
             ...state,
             [input.target.name]: input.target.value
@@ -297,6 +300,7 @@ const S1 = (props) => {
                     name='anios_experiencia'
                     value={state.anios_experiencia}
                     limitLength={2}
+                    min={0}
                     type='number'
                     onChange={setInfo}
                     placeholder='Ingrese Años de experiencia en actividades de manejo del fuego comprobables...'
@@ -346,10 +350,12 @@ const S1 = (props) => {
             {/* Telefono Beneficiario */}
             <div className='col-6'>
                 <label className="control-label pt-2">Telefono del Beneficiario</label>
-                <input
+                <InputNumber
                     className={`form-control ${(state.telefono_beneficiario) ? null : 'myInput'}`}
                     name='telefono_beneficiario'
-                    maxLength="10"
+                    limitLength={10}
+                    min={0}
+                    type='number'
                     value={state.telefono_beneficiario}
                     onChange={setInfo}
                     placeholder='Ingrese Telefono del Beneficiario...'
