@@ -17,33 +17,34 @@ const styles = StyleSheet.create({
     },
     page: {
         flexDirection: 'row',
+        flexWrap: 'wrap',
         backgroundColor: '#E4E4E4'
+    },
+    title: {
+        width: '100%',
     },
     section: {
         margin: 10,
         padding: 10,
-        flexGrow: 1,
     },
-    section20: {
+    sectionImg: {
         margin: 10,
         padding: 10,
+        width: '20%',
         flexGrow: 1,
-        width: '20%'
     },
-    section80: {
+    sectionDatos: {
         margin: 10,
         padding: 10,
-        flexWrap: 1,
-        width: '80%'
+        width: '80%',
+        flexGrow: 2,
     },
     image: {
         marginVertical: 15,
         marginHorizontal: 10,
         width: '100%',
-        float: 'left',
     },
     textRight: {
-        float: 'right',
         width: '80%',
     },
 
@@ -56,19 +57,19 @@ const ConstanciaRegistro = () => (
         height={window.innerHeight}
     >
         <Document>
-            <Page style={styles.page}>
-                <View style={styles.section}>
+            <Page size="A4" style={styles.page}>
+                <View style={styles.title}>
                     <Text style={styles.header} fixed>
                         Constancia de registro
                     </Text>
                 </View>
-                <View style={styles.section20}>
+                <View style={styles.sectionImg}>
                     <Image
                         style={styles.image}
                         src={imagen_persona}
                     />
                 </View>
-                <View style={styles.section80a}>
+                <View style={styles.sectionDatos}>
                     <Text>{'Fecha.Nacimiento'}</Text>
                     <Text>{'Institucion'}</Text>
                     <Text>{'Apellid.Paterno'}</Text>
@@ -81,7 +82,7 @@ const ConstanciaRegistro = () => (
                     <Text>{'Peso'}</Text>
                     <Text>{'Estatura'}</Text>
                 </View>
-                <View style={styles.section}>
+                <View style={styles.title}>
                     <Text style={styles.header} fixed>
                         Requisitos
                     </Text>
