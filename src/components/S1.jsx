@@ -99,7 +99,6 @@ const S1 = (props) => {
             <div className='col-8 imagen'>
                 {preview && <img src={preview} alt="Girl in a jacket" width={200} height={200} />}
             </div>
-
             {/* Apellido Paterno */}
             <div className='col-6'>
                 <label className="control-label pt-2">Apellido Paterno</label>

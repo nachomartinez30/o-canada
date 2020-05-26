@@ -99,8 +99,7 @@
     margin: 1.75rem auto;
   }
 }
-
 .imagen{
-  float: right
+  text-align: right;
 }
 /*--Trabajo en equipo CSS--*/
