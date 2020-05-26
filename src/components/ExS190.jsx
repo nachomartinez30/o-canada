@@ -22,7 +22,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Cola, origen, flancos, dedos, línea de control.</option>
           <option value='b'>b) Bolsa, cola, origen, flancos, dedos.</option>
           <option value='c'>c) Isla, línea de fuego, origen, focos secundarios.</option>
@@ -39,7 +39,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Tiempo atmosférico, topografía, calor.</option>
           <option value='b'>b) Oxígeno, combustibles, topografía.</option>
           <option value='c'>c) Calor, combustibles, oxígeno.</option>
@@ -56,7 +56,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) La cantidad de combustible total.</option>
           <option value='b'>b) La cantidad de combustible disponible.</option>
           <option value='c'>c) El número de combatientes.</option>
@@ -73,7 +73,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Una situación que grita ¡cuidado!</option>
           <option value='b'>b) Una norma de combate.</option>
           <option value='c'>c) Todas las anteriores.</option>
@@ -89,7 +89,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Apagarlo lo más pronto posible y salvar más áreas forestales.</option>
           <option value='b'>b) Evitar que se propague a una zona urbana.</option>
           <option value='c'>c) La seguridad del personal que está trabajando en el incendio.</option>
@@ -105,7 +105,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) VERACRUZ.</option>
           <option value='b'>b) Vigías, Cargadores, Retos y Zonas de Seguridad.</option>
           <option value='c'>c) Vías, Comunicadores, Ríos y Zonas.</option>
@@ -122,7 +122,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Cantidad de combustible en un área expresado en ton/ha.</option>
           <option value='b'>b) Lo que pesa un árbol o un arbusto.</option>
           <option value='c'>c) La madera que se pueda aprovechar en un bosque.</option>
@@ -138,7 +138,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Verdadero.</option>
           <option value='b'>b) Falso.</option>
         </select>
@@ -153,7 +153,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Intensidad calorífica.</option>
           <option value='b'>b) Propagación.</option>
           <option value='c'>c) Radiación.</option>
@@ -170,7 +170,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Oxigeno.</option>
           <option value='b'>b) Combustible.</option>
           <option value='c'>c) Topografía.</option>
@@ -187,7 +187,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Verdadero.</option>
           <option value='b'>b) Falso.</option>
         </select>
@@ -202,7 +202,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Oxigeno</option>
           <option value='b'>b) Combustible</option>
           <option value='c'>c) Topografía</option>
@@ -219,7 +219,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) La carga total del combustible.</option>
           <option value='b'>b) El combustible disponible.</option>
           <option value='c'>c) Las altas temperaturas.</option>
@@ -236,7 +236,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Combustibles de 100 horas.</option>
           <option value='b'>b) Combustibles de 10 horas.</option>
           <option value='c'>c) Combustibles de 1 horas.</option>
@@ -253,7 +253,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Humedad del combustible.</option>
           <option value='b'>b) Humedad relativa.</option>
           <option value='c'>c) Índice de secado.</option>
@@ -269,12 +269,12 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) En incendios relativamente pequeños o en áreas aisladas de incendios grandes.</option>
           <option value='b'>b) En combustibles ligeros, tales como pastos, hierbas y matorral  ligero.</option>
           <option value='c'>c) Cuando el incendio responde a las condiciones topográficas y se propaga cuesta arriba.</option>
           <option value='d'>d) Cuando hay un cambio inesperado en la dirección o en la velocidad del viento.</option>
-          <option value='d'>d) Todos los anteriores.</option>
+          <option value='e'>e) Todos los anteriores.</option>
         </select>
       </div>
 
@@ -287,12 +287,12 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Rutas de escape.</option>
           <option value='b'>b) Área de espera.</option>
           <option value='c'>c) Zonas de seguridad.</option>
           <option value='d'>d) Puesto de mando.</option>
-          <option value='d'>d) Todas las anteriores.</option>
+          <option value='e'>e) Todas las anteriores.</option>
         </select>
       </div>
 
@@ -305,7 +305,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Mirar arriba, abajo y a los lados.</option>
           <option value='b'>b) VCRZ.</option>
           <option value='c'>c) 18 situaciones que gritan cuidado.</option>
@@ -322,7 +322,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Reconocimiento.</option>
           <option value='b'>b) Evaluacion.</option>
           <option value='c'>c) Planificación.</option>
@@ -338,7 +338,7 @@ const S190 = (props) => {
           type=''
           onChange={setInfo}
         >
-          <option value='' >---Seleccione---</option>
+          <option value='x' >---Seleccione---</option>
           <option value='a'>a) Humedad del combustible.</option>
           <option value='b'>b) Humedad relativa.</option>
           <option value='c'>c) Precipitación.</option>

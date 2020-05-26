@@ -4,14 +4,26 @@ import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 
 const S2 = (props) => {
 
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, files, setStateFiles } = props
 
     const setInfo = (input) => {
         /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (
+            input.target.name === 'carta_antecedentes' ||
+            input.target.name === 'pasaporte_archivo' ||
+            input.target.name === 'licencia_manejo' ||
+            input.target.name === 'eta_visa_archivo'
+        ) {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
+            })
+        } else {
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
 

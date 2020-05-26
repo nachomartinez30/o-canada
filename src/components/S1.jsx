@@ -15,20 +15,30 @@ import InputNumber from '../singles/InputNumber';
 
 const S1 = (props) => {
 
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, files, setStateFiles } = props
     const [municipios, setMunicipios] = useState([])
     const [correoValido, setCorreoValido] = useState()
     const [correBenefValido, setCorreBenefValido] = useState()
+    const [preview, setPreview] = useState('')
 
     const setInfo = (input) => {
         /* setea al state las variables */
         if (input.target.value < 0) {
             input.target.value = Math.abs(input.target.value)
         }
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (input.target.name === 'fotografia') {
+            setPreview(URL.createObjectURL(input.target.files[0]))
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files,
+                [input.target.name]: input.target.value
+            })
+        } else {
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
 
@@ -76,7 +86,7 @@ const S1 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* FOTOGRAFIA */}
-            <div className='col-12'>
+            <div className='col-4'>
                 <label className="control-label pt-2">Fotografia</label>
                 <input
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
@@ -85,6 +95,9 @@ const S1 = (props) => {
                     onChange={setInfo}
                     placeholder='Ingrese Nombre(s)...'
                 />
+            </div>
+            <div className='col-8 imagen'>
+                {preview && <img src={preview} alt="Girl in a jacket" width={200} height={200} />}
             </div>
 
             {/* Apellido Paterno */}

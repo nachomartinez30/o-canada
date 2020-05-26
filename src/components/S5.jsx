@@ -7,7 +7,7 @@ import AlertError from '../singles/AlertError';
 import moment from 'moment'
 
 const S5 = (props) => {
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, setStateFiles, files } = props
     const [showExam, setShowExam] = useState(false)
 
     const [examResp, setExamResp] = useState({})
@@ -63,11 +63,18 @@ const S5 = (props) => {
     }
 
     const setInfo = (input) => {
-        /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (input.target.name === 's_190' || input.target.name === 's_130') {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
+            })
+        } else {
+            /* setea al state las variables */
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
     /* TIMER */
@@ -156,8 +163,8 @@ const S5 = (props) => {
                     name='s_190'
                     type='file'
                     onChange={setInfo}
-                    onBlur={() => { setPreguntas_s_190((state.s_190 && state.s_130) ? true : false) }}
-                    onMouseLeave={() => { setPreguntas_s_190((state.s_190 && state.s_130) ? true : false) }}
+                    onBlur={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
+                    onMouseLeave={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
                     placeholder='Ingrese S-190 o CPCIF...'
                 />
             </div>
@@ -170,8 +177,8 @@ const S5 = (props) => {
                     name='s_130'
                     type='file'
                     onChange={setInfo}
-                    onBlur={() => { setPreguntas_s_190((state.s_190 && state.s_130) ? true : false) }}
-                    onMouseLeave={() => { setPreguntas_s_190((state.s_190 && state.s_130) ? true : false) }}
+                    onBlur={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
+                    onMouseLeave={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
                     placeholder='Ingrese S-130 o CPCIF...'
                 />
             </div>

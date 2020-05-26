@@ -11,37 +11,13 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-// const API_REQUEST = 'http://localhost/o_canada/api/'
-const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+const API_REQUEST = 'http://localhost/o_canada/api/'
+// const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
-// const defaultCaptura = {
-//     "fotografia": "C:\\fakepath\\898408.jpg",
-//     "nombres": "oscar ignacio",
-//     "apellido_paterno": "martine",
-//     "apellido_materno": "diaz",
-//     "fecha_nacimiento": "2020-12-31",
-//     "curp": "MADO921030HJCRZS05",
-//     "rfc": "MADO921030QD9",
-//     "estado": "Jalisco",
-//     "numero_telefonico_notificaciones": "3319638873",
-//     "correo_electronico": "nachomartinez3010@gmail.com",
-//     "posicion_candidato": "combatiente",
-//     "sexo": "2",
-//     "altura": "170",
-//     "peso": "85",
-//     "imc": 29.411764705882355,
-//     "sci_smi_100": "C:\\fakepath\\898408.jpg",
-//     "sci_smi_200": "C:\\fakepath\\898408.jpg",
-//     "eventos_plnaeados_sci": "1",
-//     "eventos_plnaeados_sci_fuera": "1",
-//     "eventos_plnaeados_dentro_estructura": "1",
-//     "sci_cual": "Lorem",
-//     "evaluado_menejo_incidentes": "1",
-//     "s_190": "C:\\fakepath\\898408.jpg",
-//     "s_130": "C:\\fakepath\\node.png",
-//     "asignado_recurso_nacional": "154",
-//     "asignado_recurso_otro_pais": "157"
-// }
+const defaultCaptura = {
+    "curp": "MADO921030HJCRZS05",
+    posicion_candidato: 'tecnico'
+}
 
 
 
@@ -52,8 +28,11 @@ const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
 
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({})
-    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    // const [infoBrigadista, setInfoBrigadista] = useState({
+    //     curp:'MADO921030HJCRZS05'
+    // })
+    const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: !false },
@@ -88,7 +67,6 @@ const Captura = () => {
     const checkDataS1 = async () => {
         const {
             anios_experiencia,
-            fotografia,
             apellido_paterno,
             apellido_materno,
             nombres,
@@ -112,7 +90,6 @@ const Captura = () => {
         /* que no falte ningun dato */
         if (
             !anios_experiencia ||
-            !fotografia ||
             !apellido_paterno ||
             !apellido_materno ||
             !nombres ||
@@ -139,9 +116,20 @@ const Captura = () => {
         }
         const url = `${API_REQUEST}create_candidato`;
         try {
-            const respuesta = await axios.post(url, infoBrigadista);
 
-            if (respuesta.status === 200) {
+            const formData = new FormData();
+            formData.append("file", archivos.fotografia_fl[0]);
+            formData.append("curp", infoBrigadista.curp);
+            formData.append("name", "fotografia");
+
+            const archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            const respuesta = await axios.post(url, infoBrigadista);
+            if (respuesta.status === 200 && archivo.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -181,9 +169,7 @@ const Captura = () => {
         /*  mostrar siguiente seccion*/
     }
     const checkDataS2 = async () => {
-        const { carta_antecedentes,
-            pasaporte_archivo,
-            eta_visa_archivo,
+        const {
             antecedentes_fecha,
             pasaporte_numero,
             pasaporte_fecha_cad,
@@ -191,26 +177,78 @@ const Captura = () => {
             eta_visa_num,
             eta_visa_fecha_exp,
             eta_visa_fecha_cad,
-            licencia_manejo,
             tipo_licencia,
             licencia_fecha_cad } = infoBrigadista
+        const { carta_antecedentes_fl, pasaporte_archivo_fl, eta_visa_archivo_fl, licencia_manejo_fl } = archivos
         /* revision de campos vacíos */
         if (
-            !carta_antecedentes || !pasaporte_archivo || !eta_visa_archivo ||
             !antecedentes_fecha || !pasaporte_numero || !pasaporte_fecha_cad ||
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
-            !eta_visa_fecha_cad || !licencia_manejo || !tipo_licencia ||
-            !licencia_fecha_cad
+            !eta_visa_fecha_cad || !tipo_licencia || !licencia_fecha_cad ||
+            !carta_antecedentes_fl || !pasaporte_archivo_fl || !eta_visa_archivo_fl ||
+            !licencia_manejo_fl
         ) {
             msgFaltanCampos()
             return
         }
+        /* CARTA_ANTECEDENTES */
+        const formData_carta_antecedentes = new FormData();
+        formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
+        formData_carta_antecedentes.append("curp", infoBrigadista.curp);
+        formData_carta_antecedentes.append("name", "carta_antecedentes");
+        /* PASAPORTE_ARCHIVO */
+        const formData_pasaporte_archivo = new FormData();
+        formData_pasaporte_archivo.append("file", archivos.pasaporte_archivo_fl[0]);
+        formData_pasaporte_archivo.append("curp", infoBrigadista.curp);
+        formData_pasaporte_archivo.append("name", "pasaporte_archivo");
+        /* ETA_VISA_ARCHIVO */
+        const formData_eta_visa_archivo = new FormData();
+        formData_eta_visa_archivo.append("file", archivos.eta_visa_archivo_fl[0]);
+        formData_eta_visa_archivo.append("curp", infoBrigadista.curp);
+        formData_eta_visa_archivo.append("name", infoBrigadista.documento_viajar_canada);
+        /* LICENCIA_MANEJO */
+        const formData_licencia_manejo = new FormData();
+        formData_licencia_manejo.append("file", archivos.licencia_manejo_fl[0]);
+        formData_licencia_manejo.append("curp", infoBrigadista.curp);
+        formData_licencia_manejo.append("name", "licencia_manejo");
+
+
+
+
         /*   actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
+
         try {
+            const archivo_pasaporte_archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData_pasaporte_archivo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_carta_antecedentes = await axios.post(`${API_REQUEST}carga_archivo`, formData_carta_antecedentes, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_eta_visa_archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData_eta_visa_archivo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_licencia_manejo = await axios.post(`${API_REQUEST}carga_archivo`, formData_licencia_manejo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
             const respuesta = await axios.post(url, infoBrigadista);
 
-            if (respuesta.status === 200) {
+            if (
+                respuesta.status === 200 &&
+                archivo_carta_antecedentes.status === 200 &&
+                archivo_pasaporte_archivo.status === 200 &&
+                archivo_eta_visa_archivo.status === 200 &&
+                archivo_licencia_manejo.status === 200
+            ) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -254,9 +292,7 @@ const Captura = () => {
             peso,
             imc,
             grupo_sanguineo,
-            cert_toxicologico,
             fecha_cert_toxicologico,
-            cert_medico,
             fecha_cert_medico,
             padece_enfermedad,
             requiere_medicamentos_perm,
@@ -269,28 +305,50 @@ const Captura = () => {
             problemas_afeccion_osea,
             experiencia_personal_consejos,
             medico_personal_recomendo,
-            autoevaluacion_salud } = infoBrigadista
+        } = infoBrigadista
+
+        const { cert_toxicologico_fl, cert_medico_fl } = archivos
 
         if (
             !sexo || !altura || !peso || !imc || !grupo_sanguineo ||
-            !cert_toxicologico || !fecha_cert_toxicologico || !cert_medico ||
+            !cert_toxicologico_fl || !fecha_cert_toxicologico || !cert_medico_fl ||
             !fecha_cert_medico || !padece_enfermedad || !requiere_medicamentos_perm ||
             !experimento_dolor_pecho || !experimento_dificultad_respirar
             || !presion_arterial_sistolica_diastolica || !enfermedad_cardiaca ||
             !cirugia_corazon || !pulso_mayor_100 || !problemas_afeccion_osea ||
-            !experiencia_personal_consejos || !medico_personal_recomendo || !autoevaluacion_salud
+            !experiencia_personal_consejos || !medico_personal_recomendo
         ) {
+
             msgFaltanCampos()
             return
         }
 
-        /* TODO: rechazo si alguna respuesta is true */
-        /*  actualizacion de informacion por AXIOS */
+        const formData_cert_toxicologico = new FormData();
+        formData_cert_toxicologico.append("file", archivos.cert_toxicologico_fl[0]);
+        formData_cert_toxicologico.append("curp", infoBrigadista.curp);
+        formData_cert_toxicologico.append("name", 'cert_toxicologico');
+
+        const formData_cert_medico = new FormData();
+        formData_cert_medico.append("file", archivos.cert_medico_fl[0]);
+        formData_cert_medico.append("curp", infoBrigadista.curp);
+        formData_cert_medico.append("name", 'cert_medico');
         const url = `${API_REQUEST}candidato_update`;
         try {
+            /*  actualizacion de informacion por AXIOS */
+            const archivo_cert_toxicologico = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_toxicologico, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_cert_medico = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_medico, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
             const respuesta = await axios.post(url, infoBrigadista);
 
-            if (respuesta.status === 200) {
+            if (respuesta.status === 200 && archivo_cert_toxicologico.status === 200 && archivo_cert_medico.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -331,9 +389,34 @@ const Captura = () => {
         /* update AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
+
+            const formData_sci_smi_100_fl = new FormData();
+            formData_sci_smi_100_fl.append("file", archivos.sci_smi_100_fl[0]);
+            formData_sci_smi_100_fl.append("curp", infoBrigadista.curp);
+            formData_sci_smi_100_fl.append("name", 'sci_smi_100');
+
+            const archivo_sci_smi_100 = await axios.post(`${API_REQUEST}carga_archivo`, formData_sci_smi_100_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+
+            const formData_sci_smi_200_fl = new FormData();
+            formData_sci_smi_200_fl.append("file", archivos.sci_smi_200_fl[0]);
+            formData_sci_smi_200_fl.append("curp", infoBrigadista.curp);
+            formData_sci_smi_200_fl.append("name", 'sci_smi_200');
+
+            const archivo_sci_smi_200 = await axios.post(`${API_REQUEST}carga_archivo`, formData_sci_smi_200_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+
             const respuesta = await axios.post(url, infoBrigadista);
 
-            if (respuesta.status === 200) {
+            if (respuesta.status === 200 && archivo_sci_smi_100.status === 200 && archivo_sci_smi_200.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -373,11 +456,34 @@ const Captura = () => {
     const checkDataS5 = async () => {
         /* update AXIOS */
 
+        const formData_s_190_fl = new FormData();
+        formData_s_190_fl.append("file", archivos.s_190_fl[0]);
+        formData_s_190_fl.append("curp", infoBrigadista.curp);
+        formData_s_190_fl.append("name", 's_190');
+
+        const formData_s_130_fl = new FormData();
+        formData_s_130_fl.append("file", archivos.s_130_fl[0]);
+        formData_s_130_fl.append("curp", infoBrigadista.curp);
+        formData_s_130_fl.append("name", 's_130');
+
         const url = `${API_REQUEST}candidato_update`;
+
         try {
             const respuesta = await axios.post(url, infoBrigadista);
+            const archivo_s_190 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_190_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
 
-            if (respuesta.status === 200) {
+            const archivo_s_130 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_130_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (respuesta.status === 200 && archivo_s_190.status === 200 && archivo_s_130.status === 200) {
+
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -396,6 +502,7 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+
                     setSecciones({
                         ...secciones,
                         s5: seccionCompleta,
@@ -533,29 +640,104 @@ const Captura = () => {
         const { nivel_ingles, toeic_toefl, l_280, s_290, cert_intern_incendios, cert_intern_ate_emerg_med,
             examen_toeic_toefl_punt, examen_toeic_toefl_archivo, l_280_file, s_290_file,
             cert_intern_incendios_file, cert_intern_ate_emerg_med_file, posicion_candidato } = infoBrigadista
+
+        /* TODO: terminar validaciones segun archvos cargados 
+        todos los campos son necesarios
+        */
+        const { examen_toeic_toefl_archivo_fl, l_280_file_fl,
+            s_290_file_fl, cert_intern_incendios_file_fl,
+            cert_intern_ate_emerg_med_file_fl
+        } = archivos
+
         if (posicion_candidato === 'jefe_de_cuadrilla' || posicion_candidato === 'tecnico') {
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
-                !cert_intern_ate_emerg_med_file || !l_280 || !s_290 || !cert_intern_incendios ||
-                !cert_intern_ate_emerg_med || !l_280_file || !s_290_file || !cert_intern_incendios_file
+                !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
                 msgFaltanCampos()
                 return
             }
         } else {
-            if (!l_280 || !s_290 || !cert_intern_incendios ||
-                !cert_intern_ate_emerg_med || !l_280_file ||
-                !s_290_file || !cert_intern_incendios_file
+            if (
+                !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
                 msgFaltanCampos()
                 return
             }
         }
 
+        const formData_examen_toeic_toefl_archivo_fl = new FormData();
+        formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
+        formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
+        formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
+
+
+
+        const formData_l_280_file_fl = new FormData();
+        formData_l_280_file_fl.append("file", archivos.l_280_file_fl[0]);
+        formData_l_280_file_fl.append("curp", infoBrigadista.curp);
+        formData_l_280_file_fl.append("name", 'l_280_file');
+
+
+
+        const formData_s_290_file_fl = new FormData();
+        formData_s_290_file_fl.append("file", archivos.s_290_file_fl[0]);
+        formData_s_290_file_fl.append("curp", infoBrigadista.curp);
+        formData_s_290_file_fl.append("name", 's_290_file');
+
+
+
+        const formData_cert_intern_incendios_file_fl = new FormData();
+        formData_cert_intern_incendios_file_fl.append("file", archivos.cert_intern_incendios_file_fl[0]);
+        formData_cert_intern_incendios_file_fl.append("curp", infoBrigadista.curp);
+        formData_cert_intern_incendios_file_fl.append("name", 'cert_intern_incendios_file');
+
+
+
+        const formData_cert_intern_ate_emerg_med_file_fl = new FormData();
+        formData_cert_intern_ate_emerg_med_file_fl.append("file", archivos.cert_intern_ate_emerg_med_file_fl[0]);
+        formData_cert_intern_ate_emerg_med_file_fl.append("curp", infoBrigadista.curp);
+        formData_cert_intern_ate_emerg_med_file_fl.append("name", 'cert_intern_ate_emerg_med_file');
+
+
         const url = `${API_REQUEST}candidato_update`;
         try {
+
+
+            const archivo_examen_toeic_toefl_archivo_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_examen_toeic_toefl_archivo_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_l_280_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_l_280_file_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_s_290_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_290_file_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_cert_intern_incendios_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_incendios_file_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_cert_intern_ate_emerg_med_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_ate_emerg_med_file_fl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             const respuesta = await axios.post(url, infoBrigadista);
 
-            if (respuesta.status === 200) {
+            if (
+                respuesta.status === 200 &&
+                archivo_examen_toeic_toefl_archivo_fl.status === 200 &&
+                archivo_l_280_file_fl.status === 200 &&
+                archivo_s_290_file_fl.status === 200 &&
+                archivo_cert_intern_incendios_file_fl.status === 200 &&
+                archivo_cert_intern_ate_emerg_med_file_fl.status === 200
+            ) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -605,6 +787,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS1}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
 
@@ -613,6 +797,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS2}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {/* S2 y 3 estan cambiados en hoja de requerimientos */}
@@ -621,6 +807,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS3}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {secciones.s4.visible &&
@@ -628,6 +816,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS4}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {secciones.s5.visible &&
@@ -635,6 +825,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS5}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {secciones.s6.visible &&
@@ -642,6 +834,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS6}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {secciones.s7.visible &&
@@ -649,6 +843,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS7}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {secciones.s8.visible &&
@@ -656,6 +852,8 @@ const Captura = () => {
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
                     checkData={checkDataS8}
+                    files={archivos}
+                    setStateFiles={setArchivos}
                 />
             }
             {/* {rechazo.rechazo && <Finalizar />} */}

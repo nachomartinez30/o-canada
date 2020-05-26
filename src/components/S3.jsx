@@ -5,17 +5,24 @@ import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 import diferenciaFechaDias from '../helpers/diferenciaFechaDias'
 
 const S3 = (props) => {
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, files, setStateFiles } = props
 
     const setInfo = (input) => {
         if (input.target.value < 0) {
             input.target.value = Math.abs(input.target.value)
         }
-        /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (input.target.name === "cert_toxicologico" || input.target.name === "cert_medico") {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
+            })
+        } else {
+            /* setea al state las variables */
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
     const calculoIMC = () => {

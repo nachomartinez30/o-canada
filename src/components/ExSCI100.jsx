@@ -22,7 +22,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Claves de Radio.</option>
                     <option value='b'>b) Códigos específicos de la Dependencia-Instancia.</option>
                     <option value='c'>c) Terminología común.</option>
@@ -39,7 +39,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Sección de Tácticas.</option>
                     <option value='b'>b) Sección de Operaciones.</option>
                     <option value='c'>c) Sección de Planificación.</option>
@@ -56,7 +56,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Proporcionar la tecnología para asegurar la comunicación eficaz del incidente.</option>
                     <option value='b'>b) Establece y mantiene las instalaciones del incidente.</option>
                     <option value='c'>c) Prepara y documenta los Planes de Acción del Incidente (PAI).</option>
@@ -73,7 +73,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Buscar los posibles sobrevivientes del incidente.</option>
                     <option value='b'>b) Registrarse y recibir una asignación.</option>
                     <option value='c'>c) Ubicar y asistir al personal asignado.</option>
@@ -90,7 +90,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Puesto del Mando el Incidente.</option>
                     <option value='b'>b) Base.</option>
                     <option value='c'>c) Campamento.</option>
@@ -107,7 +107,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Los Equipos de Intervención se reportan a un Oficial mientras una Fuerza de Tarea se reporta a un Líder.</option>
                     <option value='b'>b) Los Equipos de Intervención están dentro la Sección de Operaciones mientras las Fuerzas de Tarea están dentro de la Sección de Planificación.</option>
                     <option value='c'>c) Los Equipos de Intervención tienen recursos similares mientras  las Fuerzas de Tarea contienen recursos mixtos.</option>
@@ -124,7 +124,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Comando Múltiple.</option>
                     <option value='b'>b) Comando de Área.</option>
                     <option value='c'>c) Mando Mutuo.</option>
@@ -141,7 +141,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Completar todas las tareas, formatos y reportes requeridos.</option>
                     <option value='b'>b) Informar a sus remplazos, subordinados, y supervisor.</option>
                     <option value='c'>c) Regresar cualquier equipo proporcionado por el incidente u otros suministros no desechables.</option>
@@ -158,7 +158,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) El proceso de mover la responsabilidad de un Comandante del Incidente a otro.</option>
                     <option value='b'>b) El acto de dirigir, solicitar, y controlar por virtud de autoridad  explicita legal, regulatoria y delegada.</option>
                     <option value='c'>c) Una línea ordenada de autoridad que existe dentro de los rangos de la organización de manejo del incidente.</option>
@@ -175,7 +175,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Regimientos.</option>
                     <option value='b'>b) Unidades.</option>
                     <option value='c'>c) Grupos.</option>
@@ -192,7 +192,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Un sistema militar usado en incidentes domésticos para asegurar el mando y control de recursos federales.</option>
                     <option value='b'>b) Un concepto estandarizado para el manejo de incidentes que es aplicable para usar en todo riesgo.</option>
                     <option value='c'>c) Un concepto relativamente nuevo creado base las lecciones aprendidas de los ataques de terrorismo de 9/11 de Estados Unidos de América.</option>
@@ -209,7 +209,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Formato SCI-210</option>
                     <option value='b'>b) Formato SCI-201</option>
                     <option value='c'>c) Formato SCI-211</option>
@@ -226,7 +226,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Son manejados por la Sección de Logística.</option>
                     <option value='b'>b) Incluyen recursos fuera de servicio que se están preparando para ser desplegados.</option>
                     <option value='c'>c) Se encuentran esperando una asignación operacional.</option>
@@ -243,7 +243,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Ayuda mantener el público y los medios de prensa informados de la situación del incidente y los logros operacionales.</option>
                     <option value='b'>b) Proporciona una orientación para elaborar el plan de acción del incidente.</option>
                     <option value='c'>c) Presenta el Plan de Acción del Incidente para el próximo periodo al personal de supervisión.</option>
@@ -260,7 +260,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Plan DNIII.</option>
                     <option value='b'>b) Plan de acción y comunicación.</option>
                     <option value='c'>c) Plan de acción del incidente.</option>
@@ -277,7 +277,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Formato SCI 201.</option>
                     <option value='b'>b) Formato SCI 205.</option>
                     <option value='c'>c) Formato SCI 210.</option>
@@ -294,7 +294,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Formato SCI 206.</option>
                     <option value='b'>b) Formato SCI 207.</option>
                     <option value='c'>c) Formato SCI 209.</option>
@@ -311,7 +311,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Formato SCI 206.</option>
                     <option value='b'>b) Formato SCI 201.</option>
                     <option value='c'>c) Formato SCI 211.</option>
@@ -328,7 +328,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Información del Incidente.</option>
                     <option value='b'>b) Organigrama.</option>
                     <option value='c'>c) Plan Médico.</option>
@@ -345,7 +345,7 @@ const SCI100 = (props) => {
                     type=''
                     onChange={setInfo}
                 >
-                    <option value='' >---Seleccione---</option>
+                    <option value='x' >---Seleccione---</option>
                     <option value='a'>a) Información del Incidente.</option>
                     <option value='b'>b) Objetivos del Incidente.</option>
                     <option value='c'>c) Organigrama.</option>

@@ -10,7 +10,7 @@ import moment from 'moment'
 
 const S4 = (props) => {
     /* TODO: rellenar state y API con esta seccion */
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, files, setStateFiles } = props
 
     const [showExam, setShowExam] = useState(false)
 
@@ -90,11 +90,18 @@ const S4 = (props) => {
     };
 
     const setInfo = (input) => {
-        /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (input.target.name === 'sci_smi_100' || input.target.name === 'sci_smi_200') {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
+            })
+        } else {
+            /* setea al state las variables */
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
     const siguienteExamen = () => {
@@ -158,8 +165,8 @@ const S4 = (props) => {
                     name='sci_smi_100'
                     type='file'
                     onChange={setInfo}
-                    onBlur={() => { setPreguntas_smi_100((state.sci_smi_100 && state.sci_smi_200) ? true : false) }}
-                    onMouseLeave={() => { setPreguntas_smi_100((state.sci_smi_100 && state.sci_smi_200) ? true : false) }}
+                    onBlur={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
+                    onMouseLeave={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
                     placeholder='Ingrese SCI/SMI 100...'
                 />
             </div>
@@ -172,8 +179,8 @@ const S4 = (props) => {
                     name='sci_smi_200'
                     type='file'
                     onChange={setInfo}
-                    onBlur={() => { setPreguntas_smi_100((state.sci_smi_100 && state.sci_smi_200) ? true : false) }}
-                    onMouseLeave={() => { setPreguntas_smi_100((state.sci_smi_100 && state.sci_smi_200) ? true : false) }}
+                    onBlur={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
+                    onMouseLeave={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
                     placeholder='Ingrese SCI/SMI 200...'
                 />
             </div>
