@@ -1,8 +1,6 @@
 import React from 'react';
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import imagen_persona from '../assets/fotos/demo_1.jpg'
-import imagen_fondo from '../assets/fotos/fondo.jpg'
-import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 
 // Create styles
 const styles = StyleSheet.create({
