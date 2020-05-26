@@ -12,7 +12,7 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
 // const API_REQUEST = 'http://localhost/o_canada/api/'
-const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
+const API_REQUEST = ''
 
 // const defaultCaptura = {
 //     "apellido_paterno": "martine",
@@ -60,20 +60,20 @@ const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
 
 
-const Captura = () => {
+const Revision = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({    })
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
         s1: { status: 'faltante', visible: !false },
-        s2: { status: 'faltante', visible: false },
-        s3: { status: 'faltante', visible: false },
-        s4: { status: 'faltante', visible: false },
-        s5: { status: 'faltante', visible: false },
-        s6: { status: 'faltante', visible: false },
-        s7: { status: 'faltante', visible: false },
-        s8: { status: 'faltante', visible: false },
+        s2: { status: 'faltante', visible: !false },
+        s3: { status: 'faltante', visible: !false },
+        s4: { status: 'faltante', visible: !false },
+        s5: { status: 'faltante', visible: !false },
+        s6: { status: 'faltante', visible: !false },
+        s7: { status: 'faltante', visible: !false },
+        s8: { status: 'faltante', visible: !false },
     })
 
     const seccionCompleta = { status: 'completo', visible: false };
@@ -899,4 +899,4 @@ const Captura = () => {
     );
 }
 
-export default Captura;
+export default Revision;
