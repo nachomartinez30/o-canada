@@ -92,6 +92,7 @@ const S1 = (props) => {
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
                     name='fotografia'
                     type='file'
+                    accept="image/png,image/jpeg"                    
                     onChange={setInfo}
                     placeholder='Ingrese Nombre(s)...'
                 />

@@ -107,7 +107,7 @@ const S4 = (props) => {
     const siguienteExamen = () => {
         Swal.fire({
             title: 'Esta por iniciar una prueba',
-            text: "Asegurece de tener una conexion estable de internet.\n" +
+            text: "Asegurese de tener una conexion estable de internet.\n" +
                 "Cuenta con 10 minutos para responderla.",
             icon: 'warning',
             showCancelButton: true,
@@ -116,7 +116,7 @@ const S4 = (props) => {
             confirmButtonText: 'Continuar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            if (result.value) {
+            if (result.value){
                 /* INICIAR EXAMEN */
                 handleShow(true)
             }
@@ -132,7 +132,7 @@ const S4 = (props) => {
             >
                 <Modal.Header>
                     <Modal.Title>
-                        SCI/SMI 100
+                        SCI/SMI 1005
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -164,6 +164,7 @@ const S4 = (props) => {
                     className="form-control myInput"
                     name='sci_smi_100'
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
                     onBlur={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
                     onMouseLeave={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
@@ -178,6 +179,7 @@ const S4 = (props) => {
                     className="form-control myInput"
                     name='sci_smi_200'
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
                     onBlur={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
                     onMouseLeave={() => { setPreguntas_smi_100((files.sci_smi_100_fl && files.sci_smi_200_fl) ? true : false) }}
@@ -264,7 +266,7 @@ const S4 = (props) => {
                     onClick={siguienteExamen}
                     className='btn btn-warning'
                 // onClick={checkData}
-                >Tomar examen SCI/SMI 100</button>
+                >Tomar examen SCI/SMI 100-200</button>
             </div>
 
 

@@ -23,7 +23,7 @@ const S5 = (props) => {
                     setState({
                         ...state,
                         rechazo: true,
-                        motivo_rechazo: 'no aprobo examen smi_100',
+                        motivo_rechazo: 'no aprobo examen si_190',
                         examen_s_190: respuesta.data.calificacion
                     })
                 } else {
@@ -103,7 +103,7 @@ const S5 = (props) => {
         // AlertExito('Examen')
         Swal.fire({
             title: 'Esta por iniciar una prueba',
-            text: "Asegurece de tener una conexion estable de internet.\n" +
+            text: "Asegurese de tener una conexion estable de internet.\n" +
                 "Cuenta con 10 minutos para responderla.",
             icon: 'warning',
             showCancelButton: true,
@@ -130,7 +130,7 @@ const S5 = (props) => {
             >
                 <Modal.Header>
                     <Modal.Title>
-                        SCI/SMI 100
+                        S-130/S-190
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -157,29 +157,31 @@ const S5 = (props) => {
 
             {/* S-190 */}
             <div className='col-6'>
-                <label className="control-label pt-2">S-190 o CPCIF</label>
+                <label className="control-label pt-2">S-190</label>
                 <input
                     className="form-control myInput"
                     name='s_190'
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
                     onBlur={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
                     onMouseLeave={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
-                    placeholder='Ingrese S-190 o CPCIF...'
+                    placeholder='Ingrese S-190...'
                 />
             </div>
 
             {/* S-130 */}
             <div className='col-6'>
-                <label className="control-label pt-2">S-130 o CPCIF</label>
+                <label className="control-label pt-2">S-130</label>
                 <input
                     className="form-control myInput"
                     name='s_130'
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
                     onBlur={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
                     onMouseLeave={() => { setPreguntas_s_190((files.s_190_fl && files.s_130_fl) ? true : false) }}
-                    placeholder='Ingrese S-130 o CPCIF...'
+                    placeholder='Ingrese S-130...'
                 />
             </div>
 
@@ -220,7 +222,7 @@ const S5 = (props) => {
                     onClick={siguienteExamen}
                     className='btn btn-warning'
                 // onClick={checkData}
-                >Tomar examen S-190/S-130 o CPCIF</button>
+                >Tomar examen S-190/S-130</button>
             </div>
 
 

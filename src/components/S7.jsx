@@ -1,41 +1,93 @@
 import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
+import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 
 const S7 = (props) => {
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, setStateFiles, files } = props
 
     const setInfo = (input) => {
-        /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
-    }
-
-    const revisarValidaciones = () => {
-        const { tiene_epp_completo, tiene_mochila_linea, tiene_duffel_bag, tiene_casa_campania, tiene_sleeping_bag, tiene_sleeping_pad } = state
-
-        if (tiene_epp_completo === '0' ||
-            tiene_mochila_linea === '0' ||
-            tiene_duffel_bag === '0' ||
-            tiene_casa_campania === '0' ||
-            tiene_sleeping_bag === '0' ||
-            tiene_sleeping_pad === '0') {
-            setState({
-                ...state,
-                rechazo: true,
-                motivo_rechazo: 'no cuenta con equipo completo'
+        if (
+            input.target.name === 'carta_antecedentes'
+        ) {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
             })
         } else {
             setState({
                 ...state,
-                rechazo: false,
-                motivo_rechazo: null
+                [input.target.name]: input.target.value
             })
+        }
+    }
+
+
+
+    const revisarValidaciones = () => {
+        const { tiene_epp_completo, tiene_mochila_linea,
+            tiene_duffel_bag, tiene_casa_campania,
+            tiene_sleeping_bag, tiene_sleeping_pad, antecedentes_fecha } = state
+
+        const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha)
+
+        if (dif_antecedentes > 2) {
+            setState({
+                ...state,
+                rechazo: true,
+                motivo_rechazo: 'carta de antecedentes mayor a 2 meses'
+            })
+        } else {
+            if (tiene_epp_completo === '0' ||
+                tiene_mochila_linea === '0' ||
+                tiene_duffel_bag === '0' ||
+                tiene_casa_campania === '0' ||
+                tiene_sleeping_bag === '0' ||
+                tiene_sleeping_pad === '0') {
+                setState({
+                    ...state,
+                    rechazo: true,
+                    motivo_rechazo: 'no cuenta con equipo completo'
+                })
+            } else {
+                setState({
+                    ...state,
+                    rechazo: false,
+                    motivo_rechazo: null
+                })
+            }
         }
     }
     return (
         <div className='row body_wrap'>
+            {/* Carta de no antecedentes penales */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Carta de no antecedentes penales</label>
+                <input
+                    className="form-control myInput"
+                    name='carta_antecedentes'
+                    // value={state.carta_antecedentes}
+                    type='file'
+                    accept="application/pdf"
+                    onChange={setInfo}
+                    onBlur={revisarValidaciones}
+                    placeholder='Carta de no antecedentes penales'
+                />
+            </div>
+
+            {/* Fecha de expedición de la carta de antecedentes no penales */}
+            <div className='col-6'>
+                <label className="control-label pt-2">Fecha de expedición de la carta de antecedentes no penales</label>
+                <input
+                    className="form-control myInput"
+                    name='antecedentes_fecha'
+                    value={state.antecedentes_fecha}
+                    type='date'
+                    onChange={setInfo}
+                    onBlur={revisarValidaciones}
+                    placeholder='Fecha de expedición de la carta de antecedentes no penales'
+                />
+            </div>
+
 
             {/* Cuenta con EPP completo */}
             <div className='col-12'>

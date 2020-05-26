@@ -15,9 +15,42 @@ const API_REQUEST = 'http://localhost/o_canada/api/'
 // const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
 const defaultCaptura = {
+    "apellido_paterno": "martine",
+    "apellido_materno": "diaz",
+    "nombres": "oscar ignacio",
+    "fecha_nacimiento": "1992-10-30",
+    "sexo": 1,
+    "rechazo": false,
+    "motivo_rechazo": null,
+    "rfc": "MADO921030QD9",
     "curp": "MADO921030HJCRZS05",
-    posicion_candidato: 'tecnico'
+    "estado": "17",
+    "municipio": "014",
+    "numero_telefonico_notificaciones": "3319638873",
+    "correo_electronico": "nachomartinez3010@gmail.com",
+    "posicion_candidato": "jefe_de_cuadrilla",
+    "dependencia": "cnf",
+    "tipo_dependencia": "forestal",
+    "fecha_ingreso_dependencia": "2020-01-01",
+    "anios_experiencia": "0",
+    "puesto_en_dependencia": "lorem",
+    "funciones_dependencia": "planificacion",
+    "nombre_beneficiario": "Francisco Moreno",
+    "telefono_beneficiario": "2167898719",
+    "correo_beneficiario": "nachomartinez3010@gmail.com",
+    "pasaporte_numero": "21212121212",
+    "pasaporte_fecha_cad": "2021-02-27",
+    "documento_viajar_canada": "eTA",
+    "eta_visa_num": "46587",
+    "eta_visa_fecha_exp": "2020-01-01",
+    "eta_visa_fecha_cad": "2021-01-27",
+    "tipo_licencia": "Nacional",
+    "licencia_fecha_cad": "2022-05-22"
 }
+
+
+
+
 
 
 
@@ -29,18 +62,18 @@ const defaultCaptura = {
 
 const Captura = () => {
     // const [infoBrigadista, setInfoBrigadista] = useState({
-    //     curp:'MADO921030HJCRZS05'
+    //     // curp:'MADO921030HJCRZS05'
     // })
     const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
-        s6: { status: 'faltante', visible: false },
+        s6: { status: 'faltante', visible: !false },
         s7: { status: 'faltante', visible: false },
         s8: { status: 'faltante', visible: false },
     })
@@ -109,7 +142,7 @@ const Captura = () => {
             !funciones_dependencia ||
             !nombre_beneficiario ||
             !telefono_beneficiario ||
-            !correo_beneficiario
+            !correo_beneficiario || !archivos.fotografia_fl
         ) {
             msgFaltanCampos()
             return
@@ -170,7 +203,6 @@ const Captura = () => {
     }
     const checkDataS2 = async () => {
         const {
-            antecedentes_fecha,
             pasaporte_numero,
             pasaporte_fecha_cad,
             documento_viajar_canada,
@@ -179,23 +211,19 @@ const Captura = () => {
             eta_visa_fecha_cad,
             tipo_licencia,
             licencia_fecha_cad } = infoBrigadista
-        const { carta_antecedentes_fl, pasaporte_archivo_fl, eta_visa_archivo_fl, licencia_manejo_fl } = archivos
+        const { pasaporte_archivo_fl, eta_visa_archivo_fl, licencia_manejo_fl } = archivos
         /* revision de campos vacíos */
         if (
-            !antecedentes_fecha || !pasaporte_numero || !pasaporte_fecha_cad ||
+            !pasaporte_numero || !pasaporte_fecha_cad ||
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
             !eta_visa_fecha_cad || !tipo_licencia || !licencia_fecha_cad ||
-            !carta_antecedentes_fl || !pasaporte_archivo_fl || !eta_visa_archivo_fl ||
+            !pasaporte_archivo_fl || !eta_visa_archivo_fl ||
             !licencia_manejo_fl
         ) {
             msgFaltanCampos()
             return
         }
-        /* CARTA_ANTECEDENTES */
-        const formData_carta_antecedentes = new FormData();
-        formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
-        formData_carta_antecedentes.append("curp", infoBrigadista.curp);
-        formData_carta_antecedentes.append("name", "carta_antecedentes");
+
         /* PASAPORTE_ARCHIVO */
         const formData_pasaporte_archivo = new FormData();
         formData_pasaporte_archivo.append("file", archivos.pasaporte_archivo_fl[0]);
@@ -224,11 +252,6 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            const archivo_carta_antecedentes = await axios.post(`${API_REQUEST}carga_archivo`, formData_carta_antecedentes, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
             const archivo_eta_visa_archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData_eta_visa_archivo, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -241,10 +264,9 @@ const Captura = () => {
             });
 
             const respuesta = await axios.post(url, infoBrigadista);
-
+            
             if (
                 respuesta.status === 200 &&
-                archivo_carta_antecedentes.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
                 archivo_eta_visa_archivo.status === 200 &&
                 archivo_licencia_manejo.status === 200
@@ -574,14 +596,18 @@ const Captura = () => {
 
     }
     const checkDataS7 = async () => {
-        const { tiene_epp_completo,
+        const {
+            antecedentes_fecha,
+            tiene_epp_completo,
             tiene_mochila_linea,
             tiene_duffel_bag,
             tiene_casa_campania,
             tiene_sleeping_bag,
             tiene_sleeping_pad } = infoBrigadista
-
+        const { carta_antecedentes_fl } = archivos
         if (
+            !antecedentes_fecha ||
+            !carta_antecedentes_fl ||
             !tiene_epp_completo ||
             !tiene_mochila_linea ||
             !tiene_duffel_bag ||
@@ -589,16 +615,27 @@ const Captura = () => {
             !tiene_sleeping_bag ||
             !tiene_sleeping_pad
         ) {
+            
             msgFaltanCampos()
             return
         }
 
+        /* CARTA_ANTECEDENTES */
+        const formData_carta_antecedentes = new FormData();
+        formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
+        formData_carta_antecedentes.append("curp", infoBrigadista.curp);
+        formData_carta_antecedentes.append("name", "carta_antecedentes");
 
 
         const url = `${API_REQUEST}candidato_update`;
         try {
+            const archivo_carta_antecedentes = await axios.post(`${API_REQUEST}carga_archivo`, formData_carta_antecedentes, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             const respuesta = await axios.post(url, infoBrigadista);
-            if (respuesta.status === 200) {
+            if (respuesta.status === 200 && archivo_carta_antecedentes.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -653,6 +690,7 @@ const Captura = () => {
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
+                debugger
                 msgFaltanCampos()
                 return
             }
@@ -660,6 +698,7 @@ const Captura = () => {
             if (
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
+                debugger
                 msgFaltanCampos()
                 return
             }
@@ -857,7 +896,7 @@ const Captura = () => {
                 />
             }
             {/* {rechazo.rechazo && <Finalizar />} */}
-            {rechazo.rechazo && <Finalizar />}
+            {rechazo.rechazo && <Finalizar state={infoBrigadista} />}
         </div>
     );
 }

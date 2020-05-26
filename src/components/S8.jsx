@@ -24,7 +24,7 @@ const S8 = (props) => {
     return (
         <div className='row body_wrap'>
 
-            {(state.posicion_candidato === 'jefe_de_cuadrilla' || state.posicion_candidato === 'tecnico') ?
+            {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ?
                 <React.Fragment>
                     {/* Nivel de inglés */}
                     <div className='col-6'>
@@ -50,6 +50,7 @@ const S8 = (props) => {
                             name='examen_toeic_toefl_archivo'
                             value={state.examen_toeic_toefl_archivo}
                             type='file'
+                            accept="application/pdf"
                             onChange={setInfo}
                             placeholder='Ingrese Examen TOEIC/TOEFL...'
                         />
@@ -104,6 +105,7 @@ const S8 = (props) => {
                         name='l_280_file'
                         value={state.l_280_file}
                         type='file'
+                        accept="application/pdf"
                         onChange={setInfo}
                         placeholder='Ingrese archivo L-280...'
                     />
@@ -131,6 +133,7 @@ const S8 = (props) => {
                         name='s_290_file'
                         value={state.s_290_file}
                         type='file'
+                        accept="application/pdf"
                         onChange={setInfo}
                         placeholder='Ingrese archivo S-290...'
                     />
@@ -158,6 +161,7 @@ const S8 = (props) => {
                         name='cert_intern_incendios_file'
                         value={state.cert_intern_incendios_file}
                         type='file'
+                        accept="application/pdf"
                         onChange={setInfo}
                         placeholder='Ingrese archivo...'
                     />
@@ -183,6 +187,7 @@ const S8 = (props) => {
                         name='cert_intern_ate_emerg_med_file'
                         value={state.cert_intern_ate_emerg_med_file}
                         type='file'
+                        accept="application/pdf"
                         onChange={setInfo}
                         placeholder='Ingrese archivo...'
                     />

@@ -2,6 +2,7 @@ import React from 'react'
 import logo_incedios from '../assets/logo_incendios.jpg'
 import logo_conafor from '../assets/logo_cnf.png'
 import logo_semarnat from '../assets/logo_semarnat.png'
+import bandera_canada from '../assets/Flag_of_Canada.svg'
 
 const Header = () => {
     return (
@@ -26,6 +27,13 @@ const Header = () => {
                 height={50}
                 className="d-inline-block align-top"
                 alt='logo_conafor'
+            />
+            <img
+                src={bandera_canada}
+                // width={80}
+                height={50}
+                className="d-inline-block align-top"
+                alt='bandera_canada'
             />
             <h3>O'Canada</h3>
         </nav>

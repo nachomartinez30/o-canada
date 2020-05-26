@@ -56,6 +56,7 @@ const S3 = (props) => {
         } else {
             /* certificado toxicologico mayor a 15 dias */
             const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico)
+            
             if (dif_cert_tox > 15) {
                 setState({
                     ...state,
@@ -97,9 +98,6 @@ const S3 = (props) => {
                 }
             }
         }
-
-        checkData();
-
     }
 
 
@@ -114,6 +112,7 @@ const S3 = (props) => {
                     name='sexo'
                     defaultValue={state.sexo}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Sexo...'
                 />
             </div>
@@ -158,6 +157,7 @@ const S3 = (props) => {
                     value={state.imc}
                     className="form-control myInput"
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='IMC...'
                 />
             </div>
@@ -172,6 +172,7 @@ const S3 = (props) => {
                     maxLength='6'
                     onKeyDownCapture={ToMayus}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Grupo Sanguíneo...'
                 />
             </div>
@@ -184,7 +185,9 @@ const S3 = (props) => {
                     name='cert_toxicologico'
                     // value={state.cert_toxicologico}
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Certificado toxicológico...'
                 />
             </div>
@@ -198,6 +201,7 @@ const S3 = (props) => {
                     value={state.fecha_cert_toxicologico}
                     type='date'
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Certificado toxicológico Fecha...'
                 />
             </div>
@@ -210,7 +214,9 @@ const S3 = (props) => {
                     name='cert_medico'
                     // value={state.cert_medico}
                     type='file'
+                    accept="application/pdf"
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Certificado médico...'
                 />
             </div>
@@ -224,6 +230,7 @@ const S3 = (props) => {
                     value={state.fecha_cert_medico}
                     type='date'
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Ingrese Certificado médico Fecha...'
                 />
             </div>
@@ -236,6 +243,7 @@ const S3 = (props) => {
                     name='padece_enfermedad'
                     defaultValue={state.padece_enfermedad}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Padece alguna enfermedad?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -252,6 +260,7 @@ const S3 = (props) => {
                     name='que_enfermedad'
                     value={state.que_enfermedad}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='Qué enfermedad padece'
                 />
             </div>
@@ -264,6 +273,7 @@ const S3 = (props) => {
                     name='requiere_medicamentos_perm'
                     defaultValue={state.requiere_medicamentos_perm}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Requiere medicamentos de manera permanente?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -280,6 +290,7 @@ const S3 = (props) => {
                     name='que_medicamentos'
                     value={state.que_medicamentos}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Qué medicamentos requiere de manera permanente?'
                 />
             </div>
@@ -292,6 +303,7 @@ const S3 = (props) => {
                     name='experimento_dolor_pecho'
                     defaultValue={state.experimento_dolor_pecho}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Experimentó dolor, incomodidad o presión en el pecho?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -308,6 +320,7 @@ const S3 = (props) => {
                     name='experimento_dificultad_respirar'
                     defaultValue={state.experimento_dificultad_respirar}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?'
                 >
                     <option value=''>---Seleccione---</option>
@@ -324,6 +337,7 @@ const S3 = (props) => {
                     name='presion_arterial_sistolica_diastolica'
                     defaultValue={state.presion_arterial_sistolica_diastolica}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -340,6 +354,7 @@ const S3 = (props) => {
                     name='presion_arterial_sistolica_diastolica'
                     defaultValue={state.presion_arterial_sistolica_diastolica}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -356,6 +371,7 @@ const S3 = (props) => {
                     name='enfermedad_cardiaca'
                     defaultValue={state.enfermedad_cardiaca}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -372,6 +388,7 @@ const S3 = (props) => {
                     name='cirugia_corazon'
                     defaultValue={state.cirugia_corazon}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -388,6 +405,7 @@ const S3 = (props) => {
                     name='pulso_mayor_100'
                     defaultValue={state.pulso_mayor_100}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Tiene un pulso en reposo mayor a 100 latidos por minuto?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -404,6 +422,7 @@ const S3 = (props) => {
                     name='problemas_afeccion_osea'
                     defaultValue={state.problemas_afeccion_osea}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -420,6 +439,7 @@ const S3 = (props) => {
                     name='experiencia_personal_consejos'
                     defaultValue={state.experiencia_personal_consejos}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -436,6 +456,7 @@ const S3 = (props) => {
                     name='medico_personal_recomendo'
                     defaultValue={state.medico_personal_recomendo}
                     onChange={setInfo}
+                    onBlur={revisarFormulario}
                     placeholder='¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?'
                 >
                     <option value='' >---Seleccione---</option>
@@ -444,23 +465,14 @@ const S3 = (props) => {
                 </select>
             </div>
 
-            {/* Autoevaluación de salud (formato A) */}
-            <div className='col-12'>
-                <label className="control-label pt-2">Autoevaluación de salud (formato A)</label>
-                <input
-                    className="form-control myInput"
-                    name='autoevaluacion_salud'
-                    value={state.autoevaluacion_salud}
-                    onChange={setInfo}
-                    placeholder='Ingrese Autoevaluación de salud (formato A...'
-                />
-            </div>
+            
 
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={revisarFormulario}
+                    // onClick={revisarFormulario}
+                    onClick={checkData}
                 >Continuar</button>
             </div>
         </div>
