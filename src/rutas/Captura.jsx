@@ -12,6 +12,7 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
 // const API_REQUEST = 'http://localhost/o_canada/api/'
+
 const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 
 // const defaultCaptura = {
@@ -48,20 +49,8 @@ const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
 //     "licencia_fecha_cad": "2022-05-22"
 // }
 
-
-
-
-
-
-
-
-/* TODO: 10 min por examen */
-/* TODO: manejo de sesiones */
-
-
-
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({    })
+    const [infoBrigadista, setInfoBrigadista] = useState({})
     // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
     const [archivos, setArchivos] = useState({})
 
@@ -262,7 +251,7 @@ const Captura = () => {
             });
 
             const respuesta = await axios.post(url, infoBrigadista);
-            
+
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -613,7 +602,7 @@ const Captura = () => {
             !tiene_sleeping_bag ||
             !tiene_sleeping_pad
         ) {
-            
+
             msgFaltanCampos()
             return
         }
@@ -818,84 +807,88 @@ const Captura = () => {
     }
 
     return (
-        <div className='container'>
-            {secciones.s1.visible &&
-                <S1
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS1}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
+        <>
+            <div className='container'>
+                {secciones.s1.visible &&
+                    <S1
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS1}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
 
-            {secciones.s2.visible &&
-                <S2
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS2}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {/* S2 y 3 estan cambiados en hoja de requerimientos */}
-            {secciones.s3.visible &&
-                <S3
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS3}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {secciones.s4.visible &&
-                <S4
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS4}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {secciones.s5.visible &&
-                <S5
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS5}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {secciones.s6.visible &&
-                <S6
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS6}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {secciones.s7.visible &&
-                <S7
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS7}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {secciones.s8.visible &&
-                <S8
-                    state={infoBrigadista}
-                    setState={setInfoBrigadista}
-                    checkData={checkDataS8}
-                    files={archivos}
-                    setStateFiles={setArchivos}
-                />
-            }
-            {/* {rechazo.rechazo && <Finalizar />} */}
-            {rechazo.rechazo && <Finalizar state={infoBrigadista} />}
-        </div>
+                {secciones.s2.visible &&
+                    <S2
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS2}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {/* S2 y 3 estan cambiados en hoja de requerimientos */}
+                {secciones.s3.visible &&
+                    <S3
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS3}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {secciones.s4.visible &&
+                    <S4
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS4}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {secciones.s5.visible &&
+                    <S5
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS5}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {secciones.s6.visible &&
+                    <S6
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS6}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {secciones.s7.visible &&
+                    <S7
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS7}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {secciones.s8.visible &&
+                    <S8
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                        checkData={checkDataS8}
+                        files={archivos}
+                        setStateFiles={setArchivos}
+                    />
+                }
+                {/* {rechazo.rechazo && <Finalizar />} */}
+            </div>
+            {rechazo.rechazo && <Finalizar
+                photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : null}
+                state={infoBrigadista} />}
+        </>
     );
 }
 

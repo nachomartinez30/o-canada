@@ -1,12 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import ConstanciaRegistro from './ConstanciaRegistro'
 
 
 const Finalizar = (props) => {
-    const { state } = props
+    const { state, photo } = props
     const [mensaje, setMensaje] = useState('')
+    const [secciones, setSecciones] = useState({
+        pasaporte_vigente: false,
+        documento_para_viajar_a_canad: true,
+        licencia_de_manejo: false,
+        indice_de_masa_corporal: false,
+        salud: false,
+        conocimiento_y_experiencia_sci: false,
+        conocimiento_y_experiencia_en_incendios: true,
+        buena_conducta: false,
+        disponibilidad_en_condiciones_ambientales_adversas: false,
+        capacidad_para_comunicarse_en_ingles: true,
+        liderazgo: false,
+        aptitud_fisica: false,
+        gps: false,
+        motobomba_mark_iii: false
+    })
+    const [showPDF, setShowPDF] = useState(false)
 
     const getMensaje = () => {
-
         switch (state.motivo_rechazo) {
             case 'candidato menor de edad':
                 setMensaje("No es posible continuar con el proceso debido a que la edad mínima requerida es de 21 años")
@@ -51,15 +68,34 @@ const Finalizar = (props) => {
                 break;
         }
     }
+
+    const mostrarPDF = () => {
+        setShowPDF(true)
+    }
+
     useEffect(() => {
         getMensaje()
     }, [mensaje])
 
     return (
-        <div className='container'>
-
-            <p><h2>{mensaje}</h2></p>
-        </div>
+        <>
+            <div className='container pb-4'>
+                <h2>{mensaje}</h2>
+                <div className='py-3'>
+                    <button
+                        className='btn btn-success  py-3'
+                        onClick={mostrarPDF}
+                    >
+                        Obtener Constancia
+                    </button>
+                </div>
+            </div>
+            {showPDF && <ConstanciaRegistro
+                sections={secciones}
+                photo={photo}
+                state={state}
+            />}
+        </>
     );
 }
 

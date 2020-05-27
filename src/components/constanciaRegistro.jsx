@@ -1,6 +1,7 @@
 import React from 'react';
+import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import imagen_persona from '../assets/fotos/demo_1.jpg'
+import imagen_persona from '../assets/user.svg'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
+        height: '131px',
         border: '2pt solid #C8C8C8',
         borderRadius: '8pt',
     },
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
         paddingLeft: '1cm',
         paddingTop: '2mm',
     },
-    DatosInfo:{
+    DatosInfo: {
         border: '2pt solid #C8C8C8',
         width: 'auto',
         borderRadius: '4pt',
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
         paddingBottom: '2mm',
         textAlign: 'center',
     },
-    RequisitosInfo:{
+    RequisitosInfo: {
         borderBottom: '2pt solid #C8C8C8',
         fontSize: '15pt',
     },
@@ -87,94 +89,101 @@ const styles = StyleSheet.create({
     }
 });
 
+const aprobadoColor = { color: '#256708' }
+const reprobadoColor = { color: '#a83232' }
+
 // Create Document Component
-const ConstanciaRegistro = () => (
-    <PDFViewer
-        width={window.innerWidth}
-        height={window.innerHeight}
-    >
-        <Document>
-            <Page size="A4" style={styles.page}>
-                <View style={styles.sectionTitle} debug={false}>
-                    <Text style={styles.header}>
-                        Constancia de registro
+const ConstanciaRegistro = (props) => {
+    const { state, photo, sections } = props
+    return (
+        <PDFViewer PDFViewer
+            width={window.innerWidth}
+            height={window.innerHeight}
+        >
+            <Document>
+                <Page size="A4" style={styles.page}>
+                    <View style={styles.sectionTitle} debug={false}>
+                        <Text style={styles.header}>
+                            Constancia de registro
                     </Text>
-                </View>
-                <View style={styles.sectionImg} debug={false}>
-                    <Image
-                        style={styles.image}
-                        src={imagen_persona}
-                    />
-                </View>
-                <View style={styles.sectionDatos} debug={false}>
-                    <Text style={styles.DatosInfo}>{'Institucion'}</Text>
-                    <Text style={styles.DatosInfo}>{'Fecha.Nacimiento'}</Text>
-                    <Text style={styles.DatosInfo}>{'Apellid.Paterno'}</Text>
-                    <Text style={styles.DatosInfo}>{'Apellid.Materno'}</Text>
-                    <Text style={styles.DatosInfo}>{'Nombre'}</Text>
-                    <Text style={styles.DatosInfo}>{'Municipio'}</Text>
-                    <Text style={styles.DatosInfo}>{'Estado'}</Text>
-                    <Text style={styles.DatosInfo}>{'Puesto'}</Text>
-                    <Text style={styles.DatosInfo}>{'CURP'}</Text>
-                    <Text style={styles.DatosInfo}>{'Peso'}</Text>
-                    <Text style={styles.DatosInfo}>{'Estatura'}</Text>
-                </View>
-                <View style={styles.sectionTitle, styles.sectionTitlePosition2} debug={false}>
-                    <Text style={styles.header}>
-                        Requisitos
+                    </View>
+                    <View style={styles.sectionImg} debug={false}>
+                        <Image
+                            style={styles.image}
+                            src={(photo) ? URL.createObjectURL(photo) : imagen_persona}
+                        // src={imagen_persona}
+                        />
+                    </View>
+                    <View style={styles.sectionDatos} debug={false}>
+                        <Text style={styles.DatosInfo}>{state.dependencia.toLocaleUpperCase()}</Text>
+                        <Text style={styles.DatosInfo}>{moment(state.fecha_nacimiento).format('DD-MMM-YYYY')}</Text>
+                        <Text style={styles.DatosInfo}>{state.apellido_paterno.toLocaleUpperCase()}</Text>
+                        <Text style={styles.DatosInfo}>{state.apellido_materno.toLocaleUpperCase()}</Text>
+                        <Text style={styles.DatosInfo}>{state.nombres.toLocaleUpperCase()}</Text>
+                        <Text style={styles.DatosInfo}>{'Municipio'}</Text>
+                        <Text style={styles.DatosInfo}>{'Estado'}</Text>
+                        <Text style={styles.DatosInfo}>{'Puesto'}</Text>
+                        <Text style={styles.DatosInfo}>{state.curp}</Text>
+                        <Text style={styles.DatosInfo}>{(state.peso) ? state.peso : 'PESO'}</Text>
+                        <Text style={styles.DatosInfo}>{(state.altura) ? state.altura : 'ALTURA'}</Text>
+                    </View>
+                    <View style={styles.sectionTitle, styles.sectionTitlePosition2} debug={false}>
+                        <Text style={styles.header}>
+                            Requisitos
                     </Text>
-                </View>
-                <View style={styles.sectionRequisitosNum} debug={false}>
-                    <Text style={styles.RequisitosInfo}>1.</Text>
-                    <Text style={styles.RequisitosInfo}>2.</Text>
-                    <Text style={styles.RequisitosInfo}>3.</Text>
-                    <Text style={styles.RequisitosInfo}>4.</Text>
-                    <Text style={styles.RequisitosInfo}>5.</Text>
-                    <Text style={styles.RequisitosInfo}>6.1.</Text>
-                    <Text style={styles.RequisitosInfo}>6.2.</Text>
-                    <Text style={styles.RequisitosInfo}>7.1.</Text>
-                    <Text style={styles.RequisitosInfo}>7.2.</Text>
-                    <Text style={styles.RequisitosInfo}>8.</Text>
-                    <Text style={styles.RequisitosInfo}>9.</Text>
-                    <Text style={styles.RequisitosInfo}>10.</Text>
-                    <Text style={styles.RequisitosInfo}>11.</Text>
-                    <Text style={styles.RequisitosInfo}>12.</Text>
-                </View>  
-                <View style={styles.sectionRequisitos} debug={false}>
-                    <Text style={styles.RequisitosInfo}>Pasaporte Vigente</Text>
-                    <Text style={styles.RequisitosInfo}>Documento para viajar a Canadá</Text>
-                    <Text style={styles.RequisitosInfo}>Licencia de manejo</Text>
-                    <Text style={styles.RequisitosInfo}>Índice de Masa Corporal</Text>
-                    <Text style={styles.RequisitosInfo}>Salud</Text>
-                    <Text style={styles.RequisitosInfo}>Conocimiento y experiencia SCI</Text>
-                    <Text style={styles.RequisitosInfo}>Conocimiento y experiencia en incendios</Text>
-                    <Text style={styles.RequisitosInfo}>Buena conducta</Text>
-                    <Text style={styles.RequisitosInfo}>Disponibilidad en condiciones ambientales adversas</Text>
-                    <Text style={styles.RequisitosInfo}>Capacidad para comunicarse en inglés</Text>
-                    <Text style={styles.RequisitosInfo}>Liderazgo</Text>
-                    <Text style={styles.RequisitosInfo}>Aptitud física</Text>
-                    <Text style={styles.RequisitosInfo}>GPS</Text>
-                    <Text style={styles.RequisitosInfo}>Motobomba Mark III</Text>
-                </View>  
-                <View style={styles.sectionResultados} debug={false}>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                    <Text style={[styles.RequisitosInfo, { color: '#256708' }]}>{'Aprobado'}</Text>
-                </View>                
-            </Page>
-        </Document>
-    </PDFViewer>
-);
+                    </View>
+                    <View style={styles.sectionRequisitosNum} debug={false}>
+                        <Text style={styles.RequisitosInfo}>1.</Text>
+                        <Text style={styles.RequisitosInfo}>2.</Text>
+                        <Text style={styles.RequisitosInfo}>3.</Text>
+                        <Text style={styles.RequisitosInfo}>4.</Text>
+                        <Text style={styles.RequisitosInfo}>5.</Text>
+                        <Text style={styles.RequisitosInfo}>6.1.</Text>
+                        <Text style={styles.RequisitosInfo}>6.2.</Text>
+                        <Text style={styles.RequisitosInfo}>7.1.</Text>
+                        <Text style={styles.RequisitosInfo}>7.2.</Text>
+                        <Text style={styles.RequisitosInfo}>8.</Text>
+                        <Text style={styles.RequisitosInfo}>9.</Text>
+                        <Text style={styles.RequisitosInfo}>10.</Text>
+                        <Text style={styles.RequisitosInfo}>11.</Text>
+                        <Text style={styles.RequisitosInfo}>12.</Text>
+                    </View>
+                    <View style={styles.sectionRequisitos} debug={false}>
+                        <Text style={styles.RequisitosInfo}>Pasaporte Vigente</Text>
+                        <Text style={styles.RequisitosInfo}>Documento para viajar a Canadá</Text>
+                        <Text style={styles.RequisitosInfo}>Licencia de manejo</Text>
+                        <Text style={styles.RequisitosInfo}>Índice de Masa Corporal</Text>
+                        <Text style={styles.RequisitosInfo}>Salud</Text>
+                        <Text style={styles.RequisitosInfo}>Conocimiento y experiencia SCI</Text>
+                        <Text style={styles.RequisitosInfo}>Conocimiento y experiencia en incendios</Text>
+                        <Text style={styles.RequisitosInfo}>Buena conducta</Text>
+                        <Text style={styles.RequisitosInfo}>Disponibilidad en condiciones ambientales adversas</Text>
+                        <Text style={styles.RequisitosInfo}>Capacidad para comunicarse en inglés</Text>
+                        <Text style={styles.RequisitosInfo}>Liderazgo</Text>
+                        <Text style={styles.RequisitosInfo}>Aptitud física</Text>
+                        <Text style={styles.RequisitosInfo}>GPS</Text>
+                        <Text style={styles.RequisitosInfo}>Motobomba Mark III</Text>
+                    </View>
+                    <View style={styles.sectionResultados} debug={false}>
+                        <Text style={[styles.RequisitosInfo, (sections.pasaporte_vigente) ? aprobadoColor : reprobadoColor]}>{(sections.pasaporte_vigente) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.documento_para_viajar_a_canad) ? aprobadoColor : reprobadoColor]}>{(sections.documento_para_viajar_a_canad) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.licencia_de_manejo) ? aprobadoColor : reprobadoColor]}>{(sections.licencia_de_manejo) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.indice_de_masa_corporal) ? aprobadoColor : reprobadoColor]}>{(sections.indice_de_masa_corporal) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.salud) ? aprobadoColor : reprobadoColor]}>{(sections.salud) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_sci) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_sci) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_en_incendios) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_en_incendios) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.buena_conducta) ? aprobadoColor : reprobadoColor]}>{(sections.buena_conducta) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.capacidad_para_comunicarse_en_ingles) ? aprobadoColor : reprobadoColor]}>{(sections.capacidad_para_comunicarse_en_ingles) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.aptitud_fisica) ? aprobadoColor : reprobadoColor]}>{(sections.aptitud_fisica) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.gps) ? aprobadoColor : reprobadoColor]}>{(sections.gps) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (sections.motobomba_mark_iii) ? aprobadoColor : reprobadoColor]}>{(sections.motobomba_mark_iii) ? 'Aprobado' : 'No Aprobado'}</Text>
+                    </View>
+                </Page>
+            </Document>
+        </PDFViewer>
+    );
+}
 
 export default ConstanciaRegistro
