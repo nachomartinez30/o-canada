@@ -62,7 +62,7 @@ const Finalizar = (props) => {
                 setMensaje("No es posible continuar con el proceso debido a que no cuenta con el equipo mínimo requerido para su trabajo en condiciones ambientales adversas")
                 break;
             case null:
-                setMensaje("Finalizó su proceso de registro.¡¡¡ Prepárese para atender la convocatoria para realizar las pruebas físicas y de habilidades!!!    .Deberá presentarse con documentos anexados en original para su cotejo y el equipo requerido para trabajar en condiciones ambientales adversas.")
+                setMensaje('finalizó')
                 break;
             default: setMensaje(`Error`)
                 break;
@@ -80,8 +80,21 @@ const Finalizar = (props) => {
     return (
         <>
             <div className='container pb-4'>
-                <h2>{mensaje}</h2>
-                <div className='py-3'>
+                {(mensaje !== 'finalizó')
+                    ?
+                    <h1>{mensaje}</h1> :
+                    <div style={{ textAlign: 'center' }}>
+                        <h1>Finalizó su proceso de registro</h1>
+                        <h3>¡¡¡ Prepárese para atender la convocatoria para realizar las pruebas físicas y de habilidades!!!</h3>
+                        <br />
+                        <br />
+                        <p>
+                            Deberá presentarse con documentos anexados en original para su cotejo y el
+                            equipo requerido para trabajar en condiciones ambientales adversas.
+                        </p>
+                    </div>
+                }
+                <div className='py-3' style={{ textAlign: 'right' }}>
                     <button
                         className='btn btn-success  py-3'
                         onClick={mostrarPDF}
@@ -90,11 +103,13 @@ const Finalizar = (props) => {
                     </button>
                 </div>
             </div>
-            {showPDF && <ConstanciaRegistro
-                sections={secciones}
-                photo={photo}
-                state={state}
-            />}
+            {
+                showPDF && <ConstanciaRegistro
+                    sections={secciones}
+                    photo={photo}
+                    state={state}
+                />
+            }
         </>
     );
 }

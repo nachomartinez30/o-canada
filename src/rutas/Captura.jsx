@@ -10,9 +10,31 @@ import S7 from '../components/S7';
 import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
+import AlertError from '../singles/AlertError';
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
+/* TODO:
+- manejo de presudoseciones
+certificado excede >31 dias?
+-VALIDACION CER MEDICA
+-insercion de calificacion BD
+
+-> añadir acuerdo de inicio (solo arranque)
+
+
+-Alerta de cambio de seccion
+-agregar boton para Regresar Procesos
+
+->no mostrar secciones de examenes si ya aplico
+S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
+-> nivel avanzado intermedio basico
+-> adjuntar el archivo
+
+-validacion s7 carta antecedentes y  equipo
+-creacion de sesiones
+
+ */
 
 const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({})
@@ -626,29 +648,38 @@ const Captura = () => {
 
     }
     const checkDataS8 = async () => {
+
         const { nivel_ingles, toeic_toefl, l_280, s_290, cert_intern_incendios, cert_intern_ate_emerg_med,
             examen_toeic_toefl_punt, examen_toeic_toefl_archivo, l_280_file, s_290_file,
-            cert_intern_incendios_file, cert_intern_ate_emerg_med_file, posicion_candidato } = infoBrigadista
+            posicion_candidato } = infoBrigadista
 
-        /* TODO: terminar validaciones segun archvos cargados 
-        todos los campos son necesarios
-        */
         const { examen_toeic_toefl_archivo_fl, l_280_file_fl,
             s_290_file_fl, cert_intern_incendios_file_fl,
             cert_intern_ate_emerg_med_file_fl
         } = archivos
 
-        if (posicion_candidato === 'jefe_de_cuadrilla' || posicion_candidato === 'tecnico') {
-            if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
-                !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
+        if (posicion_candidato === 'jefe_de_brigada' || posicion_candidato === 'tecnico') {
+            /* si es jefe de brigada o tecnico, debe tener las variables de idioma */
+            if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt ||
+                !l_280_file_fl || !s_290_file_fl || !cert_intern_incendios ||
+                !cert_intern_ate_emerg_med || !examen_toeic_toefl_archivo_fl
             ) {
                 debugger
                 msgFaltanCampos()
                 return
             }
+            const formData_examen_toeic_toefl_archivo_fl = new FormData();
+            formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
+            formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
+            formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
         } else {
+            // SI tiene s1, debe cargar los archivos, o responder algo
+
             if (
-                !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
+                (l_280 === '1' && !l_280_file_fl) || l_280 === '' ||
+                (s_290 === '1' && !s_290_file_fl) || s_290 === '' ||
+                (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
+                (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
                 debugger
                 msgFaltanCampos()
@@ -657,78 +688,108 @@ const Captura = () => {
         }
 
         const formData_examen_toeic_toefl_archivo_fl = new FormData();
-        formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
-        formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
-        formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
-
-
-
         const formData_l_280_file_fl = new FormData();
-        formData_l_280_file_fl.append("file", archivos.l_280_file_fl[0]);
-        formData_l_280_file_fl.append("curp", infoBrigadista.curp);
-        formData_l_280_file_fl.append("name", 'l_280_file');
-
-
-
         const formData_s_290_file_fl = new FormData();
-        formData_s_290_file_fl.append("file", archivos.s_290_file_fl[0]);
-        formData_s_290_file_fl.append("curp", infoBrigadista.curp);
-        formData_s_290_file_fl.append("name", 's_290_file');
-
-
-
         const formData_cert_intern_incendios_file_fl = new FormData();
-        formData_cert_intern_incendios_file_fl.append("file", archivos.cert_intern_incendios_file_fl[0]);
-        formData_cert_intern_incendios_file_fl.append("curp", infoBrigadista.curp);
-        formData_cert_intern_incendios_file_fl.append("name", 'cert_intern_incendios_file');
-
-
-
         const formData_cert_intern_ate_emerg_med_file_fl = new FormData();
-        formData_cert_intern_ate_emerg_med_file_fl.append("file", archivos.cert_intern_ate_emerg_med_file_fl[0]);
-        formData_cert_intern_ate_emerg_med_file_fl.append("curp", infoBrigadista.curp);
-        formData_cert_intern_ate_emerg_med_file_fl.append("name", 'cert_intern_ate_emerg_med_file');
+
+
+        if (examen_toeic_toefl_archivo_fl) {
+            formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
+            formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
+            formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
+        }
+
+        if (l_280_file_fl) {
+            formData_l_280_file_fl.append("file", archivos.l_280_file_fl[0]);
+            formData_l_280_file_fl.append("curp", infoBrigadista.curp);
+            formData_l_280_file_fl.append("name", 'l_280_file');
+        }
+
+        if (s_290_file_fl) {
+            formData_s_290_file_fl.append("file", archivos.s_290_file_fl[0]);
+            formData_s_290_file_fl.append("curp", infoBrigadista.curp);
+            formData_s_290_file_fl.append("name", 's_290_file');
+        }
+
+        if (cert_intern_incendios_file_fl) {
+            formData_cert_intern_incendios_file_fl.append("file", archivos.cert_intern_incendios_file_fl[0]);
+            formData_cert_intern_incendios_file_fl.append("curp", infoBrigadista.curp);
+            formData_cert_intern_incendios_file_fl.append("name", 'cert_intern_incendios_file');
+        }
+
+        if (cert_intern_ate_emerg_med_file_fl) {
+            formData_cert_intern_ate_emerg_med_file_fl.append("file", archivos.cert_intern_ate_emerg_med_file_fl[0]);
+            formData_cert_intern_ate_emerg_med_file_fl.append("curp", infoBrigadista.curp);
+            formData_cert_intern_ate_emerg_med_file_fl.append("name", 'cert_intern_ate_emerg_med_file');
+        }
 
 
         const url = `${API_REQUEST}candidato_update`;
         try {
 
+            if (examen_toeic_toefl_archivo_fl) {
+                const archivo_examen_toeic_toefl_archivo_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_examen_toeic_toefl_archivo_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
 
-            const archivo_examen_toeic_toefl_archivo_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_examen_toeic_toefl_archivo_fl, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+                if (archivo_examen_toeic_toefl_archivo_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 'examen_toeic_toefl_ar')
                 }
-            });
-            const archivo_l_280_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_l_280_file_fl, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+
+            }
+            if (l_280_file_fl) {
+                const archivo_l_280_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_l_280_file_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (archivo_l_280_file_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 'l_280')
                 }
-            });
-            const archivo_s_290_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_290_file_fl, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+
+            }
+            if (s_290_file_fl) {
+                const archivo_s_290_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_290_file_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (archivo_s_290_file_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 's_290')
                 }
-            });
-            const archivo_cert_intern_incendios_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_incendios_file_fl, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+
+            }
+            if (cert_intern_incendios_file_fl) {
+                const archivo_cert_intern_incendios_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_incendios_file_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (archivo_cert_intern_incendios_file_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 'cert_intern_incendios')
                 }
-            });
-            const archivo_cert_intern_ate_emerg_med_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_ate_emerg_med_file_fl, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+
+            }
+            if (cert_intern_ate_emerg_med_file_fl) {
+                const archivo_cert_intern_ate_emerg_med_file_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_cert_intern_ate_emerg_med_file_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                if (archivo_cert_intern_ate_emerg_med_file_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 'cert_intern_ate_emerg_med')
                 }
-            });
+            }
+
             const respuesta = await axios.post(url, infoBrigadista);
 
-            if (
-                respuesta.status === 200 &&
-                archivo_examen_toeic_toefl_archivo_fl.status === 200 &&
-                archivo_l_280_file_fl.status === 200 &&
-                archivo_s_290_file_fl.status === 200 &&
-                archivo_cert_intern_incendios_file_fl.status === 200 &&
-                archivo_cert_intern_ate_emerg_med_file_fl.status === 200
-            ) {
+            if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -756,8 +817,13 @@ const Captura = () => {
                         'Se le notificará sobre su proceso de seleccion',
                         'success'
                     )
+                    setRechazo({
+                        rechazo: true,
+                        motivo_rechazo: null
+                    })
                 }
             }
+
         } catch (error) {
             if (error.response.status === 400) {
                 Swal.fire({
