@@ -263,7 +263,6 @@ const Finalizar = (props) => {
     }
 
     const getPuesto = () => {
-        console.log(state.posicion_candidato);
         switch (state.posicion_candidato) {
             case 'combatiente':
                 setPuesto('Combatiente');

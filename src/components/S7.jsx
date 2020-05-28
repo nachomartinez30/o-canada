@@ -1,6 +1,7 @@
 import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
-import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
+import AlertaSiguiente from '../singles/AlertaSiguiente'
+import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
 
 const S7 = (props) => {
     const { state, setState, checkData, setStateFiles, files } = props
@@ -28,9 +29,9 @@ const S7 = (props) => {
             tiene_duffel_bag, tiene_casa_campania,
             tiene_sleeping_bag, tiene_sleeping_pad, antecedentes_fecha } = state
 
-        const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha)
+        const dif_antecedentes = diferenciaFechasDias(antecedentes_fecha)
 
-        if (dif_antecedentes > 2) {
+        if (dif_antecedentes > 31*2) {
             setState({
                 ...state,
                 rechazo: true,
@@ -191,7 +192,7 @@ const S7 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

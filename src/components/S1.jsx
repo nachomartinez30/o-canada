@@ -9,6 +9,7 @@ import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
 import SelectEstados from '../singles/SelectEstados';
 import axios from 'axios'
 import AlertError from '../singles/AlertError';
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import emailValid from '../helpers/emailValid';
 import InputNumber from '../singles/InputNumber';
 
@@ -20,6 +21,8 @@ const S1 = (props) => {
     const [correoValido, setCorreoValido] = useState()
     const [correBenefValido, setCorreBenefValido] = useState()
     const [preview, setPreview] = useState('')
+
+    
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -183,8 +186,6 @@ const S1 = (props) => {
 
             {/* Estado */}
             <div className='col-6'>
-
-                {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Estado</label>
                 <SelectEstados
                     className={`form-control ${(state.estado) ? null : 'myInput'}`}
@@ -197,7 +198,6 @@ const S1 = (props) => {
             </div>
             {/* Municipio */}
             <div className='col-6'>
-                {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Municipio</label>
                 <select
                     disabled={(municipios.length <= 0) ? true : false}
@@ -404,7 +404,7 @@ const S1 = (props) => {
                 <button
                     disabled={(correoValido && correBenefValido) ? false : true}
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

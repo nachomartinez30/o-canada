@@ -1,4 +1,5 @@
 import React from 'react'
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 
 const S2 = (props) => {
@@ -239,7 +240,7 @@ const S2 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                     // onClick={revisarFormulario}
                 >Continuar</button>
             </div>

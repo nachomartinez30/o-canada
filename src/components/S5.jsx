@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ExS190 from '../components/ExS190';
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -237,13 +238,11 @@ const S5 = (props) => {
 
             {/* BTN SCI/SMI 100 */}
             <div className='col-12 pt-5 btn-margin'>
-                {/* TODO: completar examenes */}
+                
                 <button
                     hidden={(state.asignado_recurso_nacional && state.asignado_recurso_otro_pais && !sci_190Examen) ? false : true}
-
                     onClick={siguienteExamen}
                     className='btn btn-warning'
-                // onClick={checkData}
                 >Tomar examen S-190/S-130</button>
             </div>
 
@@ -253,7 +252,7 @@ const S5 = (props) => {
                 <button
                     disabled={!sci_190Examen}
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

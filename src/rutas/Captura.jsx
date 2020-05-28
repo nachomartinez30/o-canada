@@ -16,24 +16,14 @@ const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
 - manejo de presudoseciones
-certificado excede >31 dias?
--VALIDACION CER MEDICA
--insercion de calificacion BD
-
 -> añadir acuerdo de inicio (solo arranque)
 
-
--Alerta de cambio de seccion
 -agregar boton para Regresar Procesos
 
-->no mostrar secciones de examenes si ya aplico
+
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
-
--validacion s7 carta antecedentes y  equipo
--creacion de sesiones
-
  */
 
 const Captura = () => {
