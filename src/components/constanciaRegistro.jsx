@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import imagen_persona from '../assets/user.svg'
@@ -94,7 +94,8 @@ const reprobadoColor = { color: '#a83232' }
 
 // Create Document Component
 const ConstanciaRegistro = (props) => {
-    const { state, photo, sections } = props
+    const { state, photo, sections, puesto } = props
+
     return (
         <PDFViewer PDFViewer
             width={window.innerWidth}
@@ -115,17 +116,17 @@ const ConstanciaRegistro = (props) => {
                         />
                     </View>
                     <View style={styles.sectionDatos} debug={false}>
-                        <Text style={styles.DatosInfo}>{state.dependencia.toLocaleUpperCase()}</Text>
-                        <Text style={styles.DatosInfo}>{moment(state.fecha_nacimiento).format('DD-MMM-YYYY')}</Text>
                         <Text style={styles.DatosInfo}>{state.apellido_paterno.toLocaleUpperCase()}</Text>
                         <Text style={styles.DatosInfo}>{state.apellido_materno.toLocaleUpperCase()}</Text>
                         <Text style={styles.DatosInfo}>{state.nombres.toLocaleUpperCase()}</Text>
-                        <Text style={styles.DatosInfo}>{'Municipio'}</Text>
+                        <Text style={styles.DatosInfo}>{'CURP: ' + state.curp}</Text>
+                        <Text style={styles.DatosInfo}>{(state.peso) ? 'PESO: ' + state.peso + ' kg' : 'PESO'}</Text>
+                        <Text style={styles.DatosInfo}>{(state.altura) ? 'ALTURA: ' + state.altura + ' cm' : 'ALTURA'}</Text>
+                        <Text style={styles.DatosInfo}>{'Puesto: ' + puesto}</Text>
+                        <Text style={styles.DatosInfo}>{moment(state.fecha_nacimiento).format('DD-MMM-YYYY')}</Text>
+                        <Text style={styles.DatosInfo}>{state.dependencia.toLocaleUpperCase()}</Text>
                         <Text style={styles.DatosInfo}>{'Estado'}</Text>
-                        <Text style={styles.DatosInfo}>{'Puesto'}</Text>
-                        <Text style={styles.DatosInfo}>{state.curp}</Text>
-                        <Text style={styles.DatosInfo}>{(state.peso) ? state.peso : 'PESO'}</Text>
-                        <Text style={styles.DatosInfo}>{(state.altura) ? state.altura : 'ALTURA'}</Text>
+                        <Text style={styles.DatosInfo}>{'Municipio'}</Text>
                     </View>
                     <View style={styles.sectionTitle, styles.sectionTitlePosition2} debug={false}>
                         <Text style={styles.header}>
@@ -174,11 +175,17 @@ const ConstanciaRegistro = (props) => {
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_en_incendios) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_en_incendios) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.buena_conducta) ? aprobadoColor : reprobadoColor]}>{(sections.buena_conducta) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.capacidad_para_comunicarse_en_ingles) ? aprobadoColor : reprobadoColor]}>{(sections.capacidad_para_comunicarse_en_ingles) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (
+                            ((state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') && state.toeic_toefl)
+                        )
+                            ? aprobadoColor : null]}>
+                            {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ? 'Aprobado' : 'No Aplica'}
+                        </Text>
                         <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.aptitud_fisica) ? aprobadoColor : reprobadoColor]}>{(sections.aptitud_fisica) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.gps) ? aprobadoColor : reprobadoColor]}>{(sections.gps) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.motobomba_mark_iii) ? aprobadoColor : reprobadoColor]}>{(sections.motobomba_mark_iii) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
+                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
+                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
+
                     </View>
                 </Page>
             </Document>

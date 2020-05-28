@@ -2,6 +2,7 @@ import React from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const S6 = (props) => {
+/* TODO: agregar a esta seccion la pregunta de primero auxilios */
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {

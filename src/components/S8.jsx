@@ -23,7 +23,23 @@ const S8 = (props) => {
     }
     return (
         <div className='row body_wrap'>
-
+            {/* Posicion Candidato */}
+            <div className='col-12'>
+                <label className="control-label pt-2">Posición a la que es candidato:</label>
+                <select
+                    className={`form-control myInput`}
+                    name='posicion_candidato'
+                    defaultValue={state.posicion_candidato}
+                    onChange={setInfo}
+                    placeholder='Posición a la que es candidato...'
+                >
+                    <option value='' >---Seleccione---</option>
+                    <option value='combatiente'>Combatiente</option>
+                    <option value='jefe_de_cuadrilla'>Jefe de Cuadrilla</option>
+                    <option value='jefe_de_brigada'>Jefe de Brigada</option>
+                    <option value='tecnico'>Técnico</option>
+                </select>
+            </div>
             {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ?
                 <React.Fragment>
                     {/* Nivel de inglés */}
