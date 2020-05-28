@@ -11,47 +11,12 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-// const API_REQUEST = 'http://localhost/o_canada/api/'
+const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
-const API_REQUEST = 'http://187.218.230.38:81/o_canada/api/'
-
-// const defaultCaptura = {
-//     "apellido_paterno": "martine",
-//     "apellido_materno": "diaz",
-//     "nombres": "oscar ignacio",
-//     "fecha_nacimiento": "1992-10-30",
-//     "sexo": 1,
-//     "rechazo": false,
-//     "motivo_rechazo": null,
-//     "rfc": "MADO921030QD9",
-//     "curp": "MADO921030HJCRZS05",
-//     "estado": "17",
-//     "municipio": "014",
-//     "numero_telefonico_notificaciones": "3319638873",
-//     "correo_electronico": "nachomartinez3010@gmail.com",
-//     "posicion_candidato": "jefe_de_cuadrilla",
-//     "dependencia": "cnf",
-//     "tipo_dependencia": "forestal",
-//     "fecha_ingreso_dependencia": "2020-01-01",
-//     "anios_experiencia": "0",
-//     "puesto_en_dependencia": "lorem",
-//     "funciones_dependencia": "planificacion",
-//     "nombre_beneficiario": "Francisco Moreno",
-//     "telefono_beneficiario": "2167898719",
-//     "correo_beneficiario": "nachomartinez3010@gmail.com",
-//     "pasaporte_numero": "21212121212",
-//     "pasaporte_fecha_cad": "2021-02-27",
-//     "documento_viajar_canada": "eTA",
-//     "eta_visa_num": "46587",
-//     "eta_visa_fecha_exp": "2020-01-01",
-//     "eta_visa_fecha_cad": "2021-01-27",
-//     "tipo_licencia": "Nacional",
-//     "licencia_fecha_cad": "2022-05-22"
-// }
 
 const Captura = () => {
     const [infoBrigadista, setInfoBrigadista] = useState({})
-    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
