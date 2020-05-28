@@ -15,7 +15,29 @@ const S4 = (props) => {
     const [showExam, setShowExam] = useState(false)
 
     const [preguntas_smi_100, setPreguntas_smi_100] = useState(false)
-    const [examResp, setExamResp] = useState({})
+    const [examResp, setExamResp] = useState({
+        curp: state.curp,
+        "1_asegurar_comunicacion": "x",
+        "2_implementando_actividades": "x",
+        "3_actividades_principales": "x",
+        "4_primera_tarea_personal": "x",
+        "5_instalacion_incidente": "x",
+        "6_equipo_intervencion": "x",
+        "7_incidente_complejo": "x",
+        "8_retirarse_incidente": "x",
+        "9_alcance_control": "x",
+        "10_entidades_organizacionales": "x",
+        "11_sistema_comando": "x",
+        "12_contiene_informacion": "x",
+        "13_recursos_areas": "x",
+        "14_reunion_informativa": "x",
+        "15_documento_proporciona": "x",
+        "16_formato_encuentran": "x",
+        "17_formato_hospitales": "x",
+        "18_formato_trabajo": "x",
+        "19_plan_accion": "x",
+        "20_asignado_incidente": "x"
+    })
     const [smi_100Examen, setSmi_100Examen] = useState(false)
 
     /* TIMER */
@@ -47,7 +69,7 @@ const S4 = (props) => {
 
     const terminarExamen = async () => {
         try {
-            const respuesta = await axios.post('http://187.218.230.38:81/o_canada/api/smi100_exam', examResp);
+            const respuesta = await axios.post(process.env.REACT_APP_BACKEN_URL +'smi100_exam', examResp);
 
             if (respuesta.status === 200) {
                 if (respuesta.data.calificacion === 'reprobado') {
@@ -116,7 +138,7 @@ const S4 = (props) => {
             confirmButtonText: 'Continuar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            if (result.value){
+            if (result.value) {
                 /* INICIAR EXAMEN */
                 handleShow(true)
             }

@@ -1,5 +1,4 @@
 import React from 'react'
-import SelectSiNo from '../singles/SelectSiNo'
 
 const SCI100 = (props) => {
     const { state, setState  } = props

@@ -16,7 +16,7 @@ const S5 = (props) => {
 
     const terminarExamen = async () => {
         try {
-            const respuesta = await axios.post('http://187.218.230.38:81/o_canada/api/s_190_exam', examResp);
+            const respuesta = await axios.post(process.env.REACT_APP_BACKEN_URL + 's_190_exam', examResp);
 
             if (respuesta.status === 200) {
                 if (respuesta.data.calificacion === 'reprobado') {
