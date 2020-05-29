@@ -11,6 +11,7 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
+import Login from '../components/Login';
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
@@ -32,7 +33,8 @@ const Captura = () => {
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: !false },
+        login: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
@@ -830,6 +832,12 @@ const Captura = () => {
     return (
         <>
             <div className='container'>
+                {secciones.login.visible &&
+                    <Login
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                    />
+                }
                 {secciones.s1.visible &&
                     <S1
                         state={infoBrigadista}

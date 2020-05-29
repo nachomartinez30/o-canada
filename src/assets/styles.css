@@ -59,47 +59,113 @@
   height: 10px;
 }
 
-.myInput{
+.myInput {
   background-color: rgb(241, 238, 238);
 }
 
 /*--Trabajo en equipo CSS--*/
-.btn-margin{
+.btn-margin {
   margin-bottom: 1em;
 }
-.body_wrap
-{
+.body_wrap {
   background-color: #f6f6f6;
   border-radius: 20px;
-  margin: .5em 0;
-  padding: .5em;
+  margin: 0.5em 0;
+  padding: 0.5em;
 }
-.body_wrap label{
+.body_wrap label {
   font-weight: 600;
   font-size: 1em;
 }
-.modal-90w{
+.modal-90w {
   width: 90%;
 }
-.modal-90w label{
+.modal-90w label {
   font-weight: 600;
   font-size: 1em;
 }
-.modal-90w .modal-header{
+.modal-90w .modal-header {
   text-align: center;
   display: inline-block;
   color: #9d2449;
 }
-.center-text{
+.center-text {
   text-align: center;
 }
-@media (min-width: 576px){
+@media (min-width: 576px) {
   .modal-dialog {
     max-width: 80%;
     margin: 1.75rem auto;
   }
 }
-.imagen{
+.imagen {
   text-align: right;
 }
+/* CLASE LOGIN */
+
+.login-container {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.login-form-1 {
+  padding: 5%;
+  background: #b5b7ba;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3 {
+  text-align: center;
+  color: #333;
+}
+.login-form-2 {
+  padding: 5%;
+  background: #a01f3f;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3 {
+  text-align: center;
+  color: #fff;
+}
+/* Desactivado */
+.login-form-2disabled {
+  padding: 5%;
+  background: #546e8a;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2disabled h3 {
+  text-align: center;
+  color: #fff;
+}
+/* Desactivado */
+.login-container form {
+  padding: 10%;
+}
+.btnSubmit {
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+}
+.login-form-1 .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #a01f3f;
+}
+.login-form-2 .btnSubmit {
+  font-weight: 600;
+  color: #a01f3f;
+  background-color: #fff;
+}
+.login-form-2 .ForgetPwd {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login-form-1 .ForgetPwd {
+  color: #a01f3f;
+  font-weight: 600;
+  text-decoration: none;
+}
+/* CLASE LOGIN */
+
 /*--Trabajo en equipo CSS--*/

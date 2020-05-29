@@ -638,7 +638,6 @@ const Revision = () => {
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
-                debugger
                 msgFaltanCampos()
                 return
             }
@@ -646,7 +645,6 @@ const Revision = () => {
             if (
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
-                debugger
                 msgFaltanCampos()
                 return
             }
