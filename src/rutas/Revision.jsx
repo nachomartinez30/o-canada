@@ -11,58 +11,11 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 
-// const API_REQUEST = 'http://localhost/o_canada/api/'
 const API_REQUEST = ''
 
-// const defaultCaptura = {
-//     "apellido_paterno": "martine",
-//     "apellido_materno": "diaz",
-//     "nombres": "oscar ignacio",
-//     "fecha_nacimiento": "1992-10-30",
-//     "sexo": 1,
-//     "rechazo": false,
-//     "motivo_rechazo": null,
-//     "rfc": "MADO921030QD9",
-//     "curp": "MADO921030HJCRZS05",
-//     "estado": "17",
-//     "municipio": "014",
-//     "numero_telefonico_notificaciones": "3319638873",
-//     "correo_electronico": "nachomartinez3010@gmail.com",
-//     "posicion_candidato": "jefe_de_cuadrilla",
-//     "dependencia": "cnf",
-//     "tipo_dependencia": "forestal",
-//     "fecha_ingreso_dependencia": "2020-01-01",
-//     "anios_experiencia": "0",
-//     "puesto_en_dependencia": "lorem",
-//     "funciones_dependencia": "planificacion",
-//     "nombre_beneficiario": "Francisco Moreno",
-//     "telefono_beneficiario": "2167898719",
-//     "correo_beneficiario": "nachomartinez3010@gmail.com",
-//     "pasaporte_numero": "21212121212",
-//     "pasaporte_fecha_cad": "2021-02-27",
-//     "documento_viajar_canada": "eTA",
-//     "eta_visa_num": "46587",
-//     "eta_visa_fecha_exp": "2020-01-01",
-//     "eta_visa_fecha_cad": "2021-01-27",
-//     "tipo_licencia": "Nacional",
-//     "licencia_fecha_cad": "2022-05-22"
-// }
-
-
-
-
-
-
-
-
-/* TODO: 10 min por examen */
-/* TODO: manejo de sesiones */
-
-
-
 const Revision = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({    })
-    // const [infoBrigadista, setInfoBrigadista] = useState(defaultCaptura)
+    const [infoBrigadista, setInfoBrigadista] = useState({})
+
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
@@ -262,7 +215,7 @@ const Revision = () => {
             });
 
             const respuesta = await axios.post(url, infoBrigadista);
-            
+
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -613,7 +566,7 @@ const Revision = () => {
             !tiene_sleeping_bag ||
             !tiene_sleeping_pad
         ) {
-            
+
             msgFaltanCampos()
             return
         }
@@ -676,9 +629,6 @@ const Revision = () => {
             examen_toeic_toefl_punt, examen_toeic_toefl_archivo, l_280_file, s_290_file,
             cert_intern_incendios_file, cert_intern_ate_emerg_med_file, posicion_candidato } = infoBrigadista
 
-        /* TODO: terminar validaciones segun archvos cargados 
-        todos los campos son necesarios
-        */
         const { examen_toeic_toefl_archivo_fl, l_280_file_fl,
             s_290_file_fl, cert_intern_incendios_file_fl,
             cert_intern_ate_emerg_med_file_fl
@@ -688,7 +638,6 @@ const Revision = () => {
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
-                debugger
                 msgFaltanCampos()
                 return
             }
@@ -696,7 +645,6 @@ const Revision = () => {
             if (
                 !l_280 || !s_290 || !cert_intern_incendios || !cert_intern_ate_emerg_med
             ) {
-                debugger
                 msgFaltanCampos()
                 return
             }

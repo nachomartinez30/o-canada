@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ExS190 from '../components/ExS190';
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -10,7 +11,29 @@ const S5 = (props) => {
     const { state, setState, checkData, setStateFiles, files } = props
     const [showExam, setShowExam] = useState(false)
 
-    const [examResp, setExamResp] = useState({})
+    const [examResp, setExamResp] = useState({
+        curp: state.curp,
+        "1_partes_incendio": "x",
+        "2_triangulo_fuego": "x",
+        "3_comportamiento_fuego": "x",
+        "4_terreno_desconocido": "x",
+        "5_combate_incendios": "x",
+        "6_significa_vcrz": "x",
+        "7_carga_combustible": "x",
+        "8_linea_control": "x",
+        "9_movimiento_incendio": "x",
+        "10_conduce_incendio": "x",
+        "11_topografia_elemento": "x",
+        "12_elemento_variable": "x",
+        "13_referente_combustible": "x",
+        "14_tipos_combustible": "x",
+        "15_agua_combustible": "x",
+        "16_denominadores_comunes": "x",
+        "17_lugares_combatiente": "x",
+        "18_nivel_minimo": "x",
+        "19_accion_conocer": "x",
+        "20_cantidad_humedad": "x",
+    })
     const [preguntas_s_190, setPreguntas_s_190] = useState(false)
     const [sci_190Examen, setSci_190Examen] = useState(false)
 
@@ -215,13 +238,11 @@ const S5 = (props) => {
 
             {/* BTN SCI/SMI 100 */}
             <div className='col-12 pt-5 btn-margin'>
-                {/* TODO: completar examenes */}
+                
                 <button
                     hidden={(state.asignado_recurso_nacional && state.asignado_recurso_otro_pais && !sci_190Examen) ? false : true}
-
                     onClick={siguienteExamen}
                     className='btn btn-warning'
-                // onClick={checkData}
                 >Tomar examen S-190/S-130</button>
             </div>
 
@@ -231,7 +252,7 @@ const S5 = (props) => {
                 <button
                     disabled={!sci_190Examen}
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

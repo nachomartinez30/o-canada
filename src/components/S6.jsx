@@ -1,7 +1,9 @@
 import React from 'react'
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const S6 = (props) => {
+/* TODO: agregar a esta seccion la pregunta de primero auxilios */
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {
@@ -74,7 +76,7 @@ const S6 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SelectSiNo from '../singles/SelectSiNo'
 import ExSCI100 from '../components/ExSCI100';
-
+import AlertaSiguiente from '../singles/AlertaSiguiente'
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -9,7 +9,6 @@ import AlertError from '../singles/AlertError';
 import moment from 'moment'
 
 const S4 = (props) => {
-    /* TODO: rellenar state y API con esta seccion */
     const { state, setState, checkData, files, setStateFiles } = props
 
     const [showExam, setShowExam] = useState(false)
@@ -268,17 +267,8 @@ const S4 = (props) => {
                 </React.Fragment>
             }
 
-            {/* <h4><br />Examen SCI-100 / SCI-200</h4>
-
-            <SCI100></SCI100>
-
-            <h4><br />Examen S-190 / S-130</h4>
-
-            <S190></S190> */}
-
             {/* BTN SCI/SMI 100 */}
             <div className='col-12 pt-5 btn-margin'>
-                {/* TODO: completar examenes */}
                 <button
                     hidden={(state.eventos_plnaeados_sci &&
                         state.eventos_plnaeados_sci_fuera &&
@@ -287,7 +277,7 @@ const S4 = (props) => {
 
                     onClick={siguienteExamen}
                     className='btn btn-warning'
-                // onClick={checkData}
+                //  onClick={() =>AlertaSiguiente(checkData)}
                 >Tomar examen SCI/SMI 100-200</button>
             </div>
 
@@ -296,7 +286,7 @@ const S4 = (props) => {
                 <button
                     disabled={!smi_100Examen}
                     className='btn btn-primary'
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>

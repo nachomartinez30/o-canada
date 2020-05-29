@@ -11,29 +11,20 @@ import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
+import Login from '../components/Login';
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
 - manejo de presudoseciones
-certificado excede >31 dias?
--VALIDACION CER MEDICA
--insercion de calificacion BD
-
 -> añadir acuerdo de inicio (solo arranque)
 
-
--Alerta de cambio de seccion
 -agregar boton para Regresar Procesos
 
-->no mostrar secciones de examenes si ya aplico
+
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
-
--validacion s7 carta antecedentes y  equipo
--creacion de sesiones
-
  */
 
 const Captura = () => {
@@ -42,14 +33,15 @@ const Captura = () => {
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        s1: { status: 'faltante', visible: !false },
-        s2: { status: 'faltante', visible: !false },
-        s3: { status: 'faltante', visible: !false },
-        s4: { status: 'faltante', visible: !false },
-        s5: { status: 'faltante', visible: !false },
-        s6: { status: 'faltante', visible: !false },
-        s7: { status: 'faltante', visible: !false },
-        s8: { status: 'faltante', visible: !false },
+        login: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
+        s2: { status: 'faltante', visible: false },
+        s3: { status: 'faltante', visible: false },
+        s4: { status: 'faltante', visible: false },
+        s5: { status: 'faltante', visible: false },
+        s6: { status: 'faltante', visible: false },
+        s7: { status: 'faltante', visible: false },
+        s8: { status: 'faltante', visible: false },
     })
 
     const seccionCompleta = { status: 'completo', visible: false };
@@ -840,6 +832,12 @@ const Captura = () => {
     return (
         <>
             <div className='container'>
+                {secciones.login.visible &&
+                    <Login
+                        state={infoBrigadista}
+                        setState={setInfoBrigadista}
+                    />
+                }
                 {secciones.s1.visible &&
                     <S1
                         state={infoBrigadista}
@@ -914,11 +912,12 @@ const Captura = () => {
                         setStateFiles={setArchivos}
                     />
                 }
-                {/* {rechazo.rechazo && <Finalizar />} */}
             </div>
+            {/* rechazo.rechazo */}
             {rechazo.rechazo && <Finalizar
                 photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : null}
-                state={infoBrigadista} />}
+                state={infoBrigadista} />
+            }
         </>
     );
 }

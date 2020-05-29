@@ -1,7 +1,8 @@
 import React from 'react'
 import ToMayus from '../helpers/ToMayus'
 import SelectSexo from '../singles/SelectSexo'
-import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
+import AlertaSiguiente from '../singles/AlertaSiguiente'
+
 import diferenciaFechaDias from '../helpers/diferenciaFechaDias'
 
 const S3 = (props) => {
@@ -45,7 +46,6 @@ const S3 = (props) => {
             presion_arterial_sistolica_diastolica, enfermedad_cardiaca, cirugia_corazon,
             pulso_mayor_100, problemas_afeccion_osea, experiencia_personal_consejos, medico_personal_recomendo
         } = state
-        /* VALIDACION */
         /* IMC mayor a 30 */
         if (imc > 30) {
             setState({
@@ -56,7 +56,7 @@ const S3 = (props) => {
         } else {
             /* certificado toxicologico mayor a 15 dias */
             const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico)
-            
+
             if (dif_cert_tox > 15) {
                 setState({
                     ...state,
@@ -65,10 +65,9 @@ const S3 = (props) => {
                 })
             } else {
                 /* Certificado medico mayor a 1 mes */
-                const dif_cert_med = diferenciaFechasMeses(fecha_cert_medico)
-                /* TODO: PREGUNTAR SI MAYOR A 32 DIAS o 2 meses */
-
-                if (dif_cert_med > 1) {
+                const dif_cert_med = diferenciaFechaDias(fecha_cert_medico)
+                debugger
+                if (dif_cert_med > 31) {
                     setState({
                         ...state,
                         rechazo: true,
@@ -465,14 +464,14 @@ const S3 = (props) => {
                 </select>
             </div>
 
-            
+
 
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
                     // onClick={revisarFormulario}
-                    onClick={checkData}
+                     onClick={() =>AlertaSiguiente(checkData)}
                 >Continuar</button>
             </div>
         </div>
