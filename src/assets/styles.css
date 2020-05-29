@@ -57,6 +57,7 @@
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#550d02', endColorstr='#701810', GradientType=1 );
   height: 10px;
+  margin-top: 0;
 }
 
 .myInput{
@@ -64,6 +65,27 @@
 }
 
 /*--Trabajo en equipo CSS--*/
+.wi-100{
+  width: 100%;
+}
+.wi-90{
+  width: 90%;
+}
+.wi-80{
+  width: 80%;
+}
+.wi-70{
+  width: 70%;
+}
+.wi-60{
+  width: 60%;
+}
+.wi-50{
+  width: 50%;
+}
+.top-logo{
+  max-height: 100px;
+}
 .btn-margin{
   margin-bottom: 1em;
 }

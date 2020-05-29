@@ -86,7 +86,7 @@ const S1 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* FOTOGRAFIA */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Fotografia</label>
                 <input
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
@@ -97,7 +97,7 @@ const S1 = (props) => {
                     placeholder='Ingrese Nombre(s)...'
                 />
             </div>
-            <div className='col-8 imagen'>
+            <div className='col-12 col-md-8 imagen'>
                 {preview && <img src={preview} alt="Girl in a jacket" width={200} height={200} />}
             </div>
             {/* Apellido Paterno */}
@@ -136,7 +136,7 @@ const S1 = (props) => {
             </div>
 
             {/* CURP */}
-            <div className='col-8'
+            <div className='col-12 col-md-8'
                 onBlur={fillInfoCurp}
             >
                 <label className="control-label pt-2">CURP</label>
@@ -153,7 +153,7 @@ const S1 = (props) => {
             </div>
 
             {/* Fecha de Nacimiento */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Fecha de Nacimiento</label>
                 <input
                     disabled
@@ -168,7 +168,7 @@ const S1 = (props) => {
             </div>
 
             {/* RFC */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">RFC</label>
                 <InputRFC
                     className={`form-control ${(state.rfc) ? null : 'myInput'}`}
@@ -182,7 +182,7 @@ const S1 = (props) => {
             </div>
 
             {/* Estado */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
 
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Estado</label>
@@ -196,7 +196,7 @@ const S1 = (props) => {
                 />
             </div>
             {/* Municipio */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Municipio</label>
                 <select
@@ -213,7 +213,7 @@ const S1 = (props) => {
             </div>
 
             {/* Número telefónico para notificaciones */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Número telefónico para notificaciones</label>
                 <input
                     className={`form-control ${(state.numero_telefonico_notificaciones) ? null : 'myInput'}`}
@@ -226,7 +226,7 @@ const S1 = (props) => {
             </div>
 
             {/* Correo electrónico */}
-            <div className='col-8'>
+            <div className='col-12 col-md-8'>
                 <label className="control-label pt-2">Correo electrónico</label>
                 <input
                     className={`form-control ${(state.correo_electronico) ? null : 'myInput'}`}
@@ -251,7 +251,7 @@ const S1 = (props) => {
             </div>
 
             {/* Posicion Candidato */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Posición a la que es candidato:</label>
                 <select
                     className={`form-control ${(state.posicion_candidato) ? null : 'myInput'}`}
@@ -269,7 +269,7 @@ const S1 = (props) => {
             </div>
 
             {/* Dependencia */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Dependencia</label>
                 <input
                     className={`form-control ${(state.dependencia) ? null : 'myInput'}`}
@@ -281,7 +281,7 @@ const S1 = (props) => {
             </div>
 
             {/* Tipo de dependencia */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Tipo de dependencia</label>
                 <input
                     className={`form-control ${(state.tipo_dependencia) ? null : 'myInput'}`}
@@ -293,7 +293,7 @@ const S1 = (props) => {
             </div>
 
             {/* Fecha de ingreso a la dependencia */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Fecha de ingreso a la dependencia</label>
                 <input
                     className={`form-control ${(state.fecha_ingreso_dependencia) ? null : 'myInput'}`}
