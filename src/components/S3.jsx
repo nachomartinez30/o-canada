@@ -104,7 +104,7 @@ const S3 = (props) => {
         <div className='row body_wrap'>
 
             {/* Sexo TODO: cambiar */}
-            <div className='col-3'>
+            <div className='col-12 col-md-3'>
                 <label className="control-label pt-2">Sexo</label>
                 <SelectSexo
                     className="form-control myInput"
@@ -116,7 +116,7 @@ const S3 = (props) => {
                 />
             </div>
             {/* Altura (centímetros) */}
-            <div className='col-3'>
+            <div className='col-12 col-md-3'>
                 <label className="control-label pt-2">Altura (centímetros)</label>
                 <input
                     className="form-control myInput"
@@ -132,7 +132,7 @@ const S3 = (props) => {
             </div>
 
             {/* Peso (kilogramos) */}
-            <div className='col-3'>
+            <div className='col-6 col-md-3'>
                 <label className="control-label pt-2">Peso (kilogramos)</label>
                 <input
                     className="form-control myInput"
@@ -148,7 +148,7 @@ const S3 = (props) => {
             </div>
 
             {/* IMC */}
-            <div className='col-3'>
+            <div className='col-6 col-md-3'>
                 <label className="control-label pt-2">IMC</label>
                 <input
                     disabled
@@ -162,7 +162,7 @@ const S3 = (props) => {
             </div>
 
             {/* Grupo Sanguíneo */}
-            <div className='col-4'>
+            <div className='col-6 col-md-4'>
                 <label className="control-label pt-2">Grupo Sanguíneo</label>
                 <input
                     className="form-control myInput"
@@ -177,7 +177,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado toxicológico */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Certificado toxicológico</label>
                 <input
                     className="form-control myInput"
@@ -192,7 +192,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado toxicológico Fecha */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Certificado toxicológico Fecha</label>
                 <input
                     className="form-control myInput"
@@ -206,7 +206,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado médico */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Certificado médico</label>
                 <input
                     className="form-control myInput"
@@ -221,7 +221,7 @@ const S3 = (props) => {
             </div>
 
             {/* Certificado médico Fecha */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Certificado médico Fecha</label>
                 <input
                     className="form-control myInput"
@@ -235,7 +235,7 @@ const S3 = (props) => {
             </div>
 
             {/* ¿Padece alguna enfermedad? */}
-            <div className='col-5'>
+            <div className='col-12 col-md-5'>
                 <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
                 <select
                     className="form-control myInput"
@@ -252,7 +252,7 @@ const S3 = (props) => {
             </div>
 
             {/* ¿Qué enfermedad padece? */}
-            <div className='col-7'>
+            <div className='col-12 col-md-7'>
                 <label className="control-label pt-2">¿Qué enfermedad padece?</label>
                 <input
                     className="form-control myInput"
@@ -265,7 +265,7 @@ const S3 = (props) => {
             </div>
 
             {/* ¿Requiere medicamentos de manera permanente? */}
-            <div className='col-5'>
+            <div className='col-12 col-md-5'>
                 <label className="control-label pt-2">¿Requiere medicamentos de manera permanente?</label>
                 <select
                     className="form-control myInput"
@@ -282,7 +282,7 @@ const S3 = (props) => {
             </div>
 
             {/* ¿Requiere medicamentos de manera permanente? */}
-            <div className='col-7'>
+            <div className='col-12 col-md-7'>
                 <label className="control-label pt-2">¿Qué medicamentos requiere de manera permanente?</label>
                 <input
                     className="form-control myInput"

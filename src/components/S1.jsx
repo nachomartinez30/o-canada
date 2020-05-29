@@ -89,7 +89,7 @@ const S1 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* FOTOGRAFIA */}
-            <div className='col-12 col-md-4'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fotografia</label>
                 <input
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
@@ -100,7 +100,7 @@ const S1 = (props) => {
                     placeholder='Ingrese Nombre(s)...'
                 />
             </div>
-            <div className='col-12 col-md-8 imagen'>
+            <div className='col-12 col-md-6 imagen'>
                 {preview && <img src={preview} alt="Girl in a jacket" width={200} height={200} />}
             </div>
             {/* Apellido Paterno */}
@@ -309,7 +309,7 @@ const S1 = (props) => {
             </div>
 
             {/* Años de experiencia en actividades de manejo del fuego (comprobables) */}
-            <div className='col-8'>
+            <div className='col-12 col-md-8'>
                 <label className="control-label pt-2">Años de experiencia en actividades de manejo del fuego (comprobables)</label>
                 <InputNumber
                     className={`form-control ${(state.anios_experiencia) ? null : 'myInput'}`}
@@ -323,7 +323,7 @@ const S1 = (props) => {
                 />
             </div>
             {/* Puesto dependencia */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Puesto en su dependencia</label>
                 <input
                     className={`form-control ${(state.puesto_en_dependencia) ? null : 'myInput'}`}
@@ -334,7 +334,7 @@ const S1 = (props) => {
                 />
             </div>
             {/* Funciones en dependencia */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Funciones en su dependencia</label>
                 <select
                     className={`form-control ${(state.funciones_dependencia) ? null : 'myInput'}`}
@@ -364,7 +364,7 @@ const S1 = (props) => {
             </div>
 
             {/* Telefono Beneficiario */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Telefono del Beneficiario</label>
                 <InputNumber
                     className={`form-control ${(state.telefono_beneficiario) ? null : 'myInput'}`}
@@ -379,7 +379,7 @@ const S1 = (props) => {
             </div>
 
             {/* Correo Beneficiario */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Correo electrónico de Beneficiario</label>
                 <input
                     className={`form-control ${(state.correo_beneficiario) ? null : 'myInput'}`}

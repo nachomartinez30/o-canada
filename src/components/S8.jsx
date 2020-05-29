@@ -25,7 +25,7 @@ const S8 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* Posicion Candidato */}
-            <div className='col-12'>
+            <div className='col-12 col-md-12'>
                 <label className="control-label pt-2">Posición a la que es candidato:</label>
                 <select
                     className={`form-control myInput`}
@@ -44,7 +44,7 @@ const S8 = (props) => {
             {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ?
                 <React.Fragment>
                     {/* Nivel de inglés */}
-                    <div className='col-6'>
+                    <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Nivel de inglés</label>
                         <select
                             className="form-control myInput"
@@ -60,7 +60,7 @@ const S8 = (props) => {
                     </div>
 
                     {/* Examen TOEIC/TOEFL */}
-                    <div className='col-6'>
+                    <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
                         <input
                             className="form-control myInput"
@@ -74,7 +74,7 @@ const S8 = (props) => {
                     </div>
 
                     {/* TOEIC/TOEFL */}
-                    <div className='col-6'>
+                    <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Examen TOEIC/TOEFL</label>
                         <select
                             className="form-control myInput"
@@ -89,7 +89,7 @@ const S8 = (props) => {
                     </div>
 
                     {/* Examen TOEIC/TOEFL puntuación */}
-                    <div className='col-6'>
+                    <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Examen TOEIC/TOEFL puntuación</label>
                         <input
                             className="form-control myInput"
@@ -103,7 +103,7 @@ const S8 = (props) => {
                 </React.Fragment>
                 : null}
             {/* L-280 */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Cuenta con el curso L-280</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -115,7 +115,7 @@ const S8 = (props) => {
 
             {/* S-290  Archivo*/}
             {state.l_280 === '1' && <React.Fragment>
-                <div className='col-6'>
+                <div className='col-12 col-md-6'>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -131,7 +131,7 @@ const S8 = (props) => {
             </React.Fragment>}
 
             {/* S-290 */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Cuenta con el curso S-290</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -143,7 +143,7 @@ const S8 = (props) => {
 
             {/* S-290 Archivo*/}
             {state.s_290 === '1' && <React.Fragment>
-                <div className='col-6'>
+                <div className='col-12 col-md-6'>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -159,7 +159,7 @@ const S8 = (props) => {
             </React.Fragment>}
 
             {/* Certificación internacional de incendios forestales */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">¿Cuenta con certificación internacional de incendios forestales?</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -171,7 +171,7 @@ const S8 = (props) => {
 
             {/* Certificación internacional de incendios forestales - Archivo*/}
             {state.cert_intern_incendios === '1' && <React.Fragment>
-                <div className='col-6'>
+                <div className='col-12 col-md-6'>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -185,7 +185,7 @@ const S8 = (props) => {
                 </div>
             </React.Fragment>}
             {/* Certificación internacional en atención de emergencias medicas */}
-            <div className='col-12'>
+            <div className='col-12 col-md-12'>
                 <label className="control-label pt-2">¿Cuenta con certificación internacional en atención de emergencias medicas?</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -197,7 +197,7 @@ const S8 = (props) => {
 
             {/* Certificación internacional en atención de emergencias medicas - Archivo*/}
             {state.cert_intern_ate_emerg_med === '1' && <React.Fragment>
-                <div className='col-6'>
+                <div className='col-12 col-md-6'>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"

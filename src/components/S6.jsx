@@ -38,7 +38,7 @@ const S6 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* Opera de manera autónoma GPS */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Opera de manera autónoma GPS</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -50,7 +50,7 @@ const S6 = (props) => {
             </div>
 
             {/* Opera de manera autónoma Bomba Mark 3 */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Opera de manera autónoma Bomba Mark 3</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -62,7 +62,7 @@ const S6 = (props) => {
             </div>
 
             {/* Opera de manera autónoma Motosierra */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Opera de manera autónoma Motosierra</label>
                 <SelectSiNo
                     className="form-control myInput"
