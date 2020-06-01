@@ -1,28 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import InputCURP from '../singles/InputCURP';
+import ToMayus from '../helpers/ToMayus';
+import curpValida from '../helpers/curpValida';
 
 const Registro = (props) => {
-    const { enable, onMouseEnter } = props
+    /* TODO: revisar si CURP es correcta habiltar boton registrame */
+
+    const { enable, onClick, showTerminosCondiciones, state, setState } = props
+
+    const setInfo = (input) => {
+        setState({
+            ...state,
+            [input.target.name]: input.target.value
+        })
+    }
+
     return (
         <div className={`col-md-6 ${(enable) ? 'login-form-1' : 'login-form-2'}`}
-            onMouseEnter={onMouseEnter}
+            onClick={onClick}
         >
             <h3>Registrarse por primera vez</h3>
             <form>
                 <div className="form-group">
-                    <input disabled={enable} type="text" className="form-control" placeholder="Ingrese su CURP  *" value="" />
+                    <InputCURP
+                        disabled={enable}
+                        className={`form-control`}
+                        name='curp_reg'
+                        defaultValue={state.curp_reg}
+                        onChange={setInfo}
+                        curp={state.curp_reg}
+                        onKeyPressCapture={ToMayus}
+                        onBlur={curpValida}
+                        placeholder='Ingrese CURP *'
+                    />
                 </div>
-                <div className="form-group">
-                    <input disabled={enable} type="password" className="form-control" placeholder="Ingrese su contraseña *" value="" />
-                </div>
-                <div className="form-group">
-                    <input disabled={enable} type="password" className="form-control" placeholder="Repita su contraseña *" value="" />
-                </div>
-                <div className="form-group">
-                    <input disabled={enable} type="submit" className="btnSubmit" value="Login" />
-                </div>
-                <div className="form-group">
-                    <a href="#" className="ForgetPwd">Forget Password?</a>
-                </div>
+
+                {state.curp_reg && <div className="form-group">
+                    <input
+                        type="button"
+                        className="btnSubmit"
+                        value="Registrarme"
+                        onClick={showTerminosCondiciones}
+                    />
+                </div>}
+
             </form>
         </div>
     );

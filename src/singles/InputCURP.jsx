@@ -10,6 +10,7 @@ const InputCURP = (props) => {
         defaultValue,
         placeholder,
         className,
+        disabled,
         onChange
     } = props
 
@@ -44,6 +45,7 @@ const InputCURP = (props) => {
                 maxLength={18}
                 minLength={18}
                 type='text'
+                disabled={disabled}
             />
             {valido === false &&
                 <div className="col-sm-4">

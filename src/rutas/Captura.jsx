@@ -16,7 +16,7 @@ import Login from '../components/Login';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
-- manejo de presudoseciones
+- manejo de pseudoseciones
 -> añadir acuerdo de inicio (solo arranque)
 
 -agregar boton para Regresar Procesos
