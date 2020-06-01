@@ -179,7 +179,7 @@ const S5 = (props) => {
 
 
             {/* S-190 */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">S-190</label>
                 <input
                     className="form-control myInput"
@@ -194,7 +194,7 @@ const S5 = (props) => {
             </div>
 
             {/* S-130 */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">S-130</label>
                 <input
                     className="form-control myInput"

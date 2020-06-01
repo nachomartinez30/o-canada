@@ -80,7 +80,7 @@ const S2 = (props) => {
         <div className='row body_wrap'>
 
             {/* Pasaporte */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Pasaporte</label>
                 <input
                     className="form-control myInput"
@@ -94,7 +94,7 @@ const S2 = (props) => {
             </div>
 
             {/* Pasaporte No. */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">No. de Pasaporte</label>
                 <input
                     className="form-control myInput"
@@ -107,7 +107,7 @@ const S2 = (props) => {
             </div>
 
             {/* Fecha de caducidad del pasaporte */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Fecha de caducidad del pasaporte</label>
                 <input
                     className="form-control myInput"
@@ -121,7 +121,7 @@ const S2 = (props) => {
             </div>
 
             {/* ETA/Visa */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">ETA/Visa</label>
                 <input
                     className="form-control myInput"
@@ -135,7 +135,7 @@ const S2 = (props) => {
             </div>
 
             {/* Documento para viajar a Canadá */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Documento para viajar a Canadá</label>
                 <select
                     className="form-control myInput"
@@ -151,7 +151,7 @@ const S2 = (props) => {
             </div>
 
             {/* ETA/Visa No. */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">ETA/Visa No.</label>
                 <input
                     className="form-control myInput"
@@ -164,7 +164,7 @@ const S2 = (props) => {
             </div>
 
             {/* ETA/Visa F. expedición */}
-            <div className='col-3'>
+            <div className='col-12 col-md-3'>
                 <label className="control-label pt-2">ETA/Visa Fecha de expedición</label>
                 <input
                     className="form-control myInput"
@@ -178,7 +178,7 @@ const S2 = (props) => {
             </div>
 
             {/* ETA/Visa F. caducidad */}
-            <div className='col-3'>
+            <div className='col-12 col-md-3'>
                 <label className="control-label pt-2">ETA/Visa Fecha de caducidad</label>
                 <input
                     className="form-control myInput"
@@ -192,7 +192,7 @@ const S2 = (props) => {
             </div>
 
             {/* Licencia de manejo */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Licencia de manejo</label>
                 <input
                     className="form-control myInput"
@@ -206,7 +206,7 @@ const S2 = (props) => {
             </div>
 
             {/* Tipo de licencia de manejo */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Tipo de licencia de manejo</label>
                 <select
                     className="form-control myInput"
@@ -223,7 +223,7 @@ const S2 = (props) => {
             </div>
 
             {/* Fecha caducidad licencia */}
-            <div className='col-4'>
+            <div className='col-12 col-md-4'>
                 <label className="control-label pt-2">Fecha de caducidad de la licencia</label>
                 <input
                     className="form-control myInput"

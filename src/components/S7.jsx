@@ -61,7 +61,7 @@ const S7 = (props) => {
     return (
         <div className='row body_wrap'>
             {/* Carta de no antecedentes penales */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Carta de no antecedentes penales</label>
                 <input
                     className="form-control myInput"
@@ -76,7 +76,7 @@ const S7 = (props) => {
             </div>
 
             {/* Fecha de expedición de la carta de antecedentes no penales */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fecha de expedición de la carta de antecedentes no penales</label>
                 <input
                     className="form-control myInput"
@@ -91,7 +91,7 @@ const S7 = (props) => {
 
 
             {/* Cuenta con EPP completo */}
-            <div className='col-12'>
+            <div className='col-12 col-md-12'>
                 <label className='control-label pt-2'>Cuenta con EPP completo
                     <ul>
                         <li>Casco con barbiquejo</li>
@@ -117,7 +117,7 @@ const S7 = (props) => {
             </div>
 
             {/* Cuenta con Mochila de línea */}
-            <div className='col-12'>
+            <div className='col-12 col-md-12'>
                 <label className='control-label pt-2'>Cuenta con Mochila de línea con los siguientes artículos:
                     <ul>
                         <li>Botiquín individual</li>
@@ -141,7 +141,7 @@ const S7 = (props) => {
             </div>
 
             {/* Cuenta con Mochila de viaje Duffel Bag */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className='control-label pt-2'>Cuenta con Mochila de viaje Duffel Bag</label>
                 <SelectSiNo
                     className='form-control myInput'
@@ -153,7 +153,7 @@ const S7 = (props) => {
             </div>
 
             {/* Cuenta con casa de campaña */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className='control-label pt-2'>Cuenta con casa de campaña</label>
                 <SelectSiNo
                     className='form-control myInput'
@@ -165,7 +165,7 @@ const S7 = (props) => {
             </div>
 
             {/* Cuenta con sleeping bag */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className='control-label pt-2'>Cuenta con sleeping bag</label>
                 <SelectSiNo
                     className='form-control myInput'
@@ -177,7 +177,7 @@ const S7 = (props) => {
             </div>
 
             {/* Cuenta con sleeping pad */}
-            <div className='col-6'>
+            <div className='col-12 col-md-6'>
                 <label className='control-label pt-2'>Cuenta con sleeping pad</label>
                 <SelectSiNo
                     className='form-control myInput'
