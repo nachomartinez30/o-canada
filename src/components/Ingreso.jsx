@@ -4,7 +4,7 @@ import ToMayus from '../helpers/ToMayus';
 import curpValida from '../helpers/curpValida';
 
 const Ingreso = (props) => {
-    const { enable, onClick, state, setState} = props
+    const { enable, onClick, state, setState } = props
 
     const setInfo = (input) => {
         setState({
@@ -33,7 +33,15 @@ const Ingreso = (props) => {
                     />
                 </div>
                 <div class="form-group">
-                    <input disabled={enable} type="password" class="form-control" placeholder="Contraseña *" value="" />
+                    <input
+                        name='pass'
+                        disabled={enable}
+                        onChange={setInfo}
+                        type="password"
+                        class="form-control"
+                        placeholder="Contraseña *"
+                        value={state.pass}
+                    />
                 </div>
                 {state.curp_ing && <div class="form-group">
                     <input

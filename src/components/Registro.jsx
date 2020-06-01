@@ -7,12 +7,22 @@ const Registro = (props) => {
     /* TODO: revisar si CURP es correcta habiltar boton registrame */
 
     const { enable, onClick, showTerminosCondiciones, state, setState } = props
+    const [continuar, setContinuar] = useState(false)
 
     const setInfo = (input) => {
         setState({
             ...state,
             [input.target.name]: input.target.value
         })
+    }
+
+    const checkPasswords = () => {
+        const { comp_pass_reg, pass_reg } = state
+        if (comp_pass_reg === pass_reg) {
+            setContinuar(true)
+        } else {
+            setContinuar(false)
+        }
     }
 
     return (
@@ -33,9 +43,38 @@ const Registro = (props) => {
                         onBlur={curpValida}
                         placeholder='Ingrese CURP *'
                     />
-                </div>
 
-                {state.curp_reg && <div className="form-group">
+                </div>
+                {state.curp_reg && <React.Fragment>
+
+                    <div class="form-group">
+                        <input
+                            name='pass_reg'
+                            disabled={enable}
+                            onChange={setInfo}
+                            onBlur={checkPasswords}
+                            type="password"
+                            class="form-control"
+                            placeholder="Registre una contraseña *"
+                            value={state.pass_reg}
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input
+                            name='comp_pass_reg'
+                            disabled={enable}
+                            onChange={setInfo}
+                            onBlur={checkPasswords}
+                            type="password"
+                            class="form-control"
+                            placeholder="repitua su contraseña *"
+                            value={state.comp_pass_reg}
+                        />
+                    </div>
+                </React.Fragment>
+                }
+
+                {continuar && <div className="form-group">
                     <input
                         type="button"
                         className="btnSubmit"

@@ -6,6 +6,12 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
     const checkTerminos = (input) => {
         setAceptarTerminos(input.target.checked)
     }
+
+    const regresar = () => {
+        setAceptarTerminos(false)
+        setShowTerminosCondiciones(false)
+    }
+
     return (
         <div className='container' style={{ alignContent: 'right' }}>
             <h1>Terminos y condiciones</h1>
@@ -59,7 +65,7 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
             }
             <button
                 className='btn btn-danger py-3 px-3'
-                onClick={() => setShowTerminosCondiciones(false)}
+                onClick={regresar}
             >Regresar</button>
         </div>
     );

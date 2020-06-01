@@ -33,7 +33,7 @@ const Captura = () => {
 
     const candidatos = useContext(candidatoContext);
 
-    const [infoBrigadista, setInfoBrigadista] = useState({})
+    const [infoBrigadista, setInfoBrigadista] = useState(candidatos.candidatos.infoBrigadista)
 
     const [archivos, setArchivos] = useState({})
 
@@ -61,6 +61,7 @@ const Captura = () => {
     })
 
     const msgFaltanCampos = () => {
+        console.log(candidatos);
         Swal.fire({
             icon: 'error',
             title: 'Todos los campos son necesarios'
@@ -118,7 +119,7 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
-        const url = `${API_REQUEST}create_candidato`;
+        const url = `${API_REQUEST}candidato_update`;
         try {
 
             const formData = new FormData();
@@ -145,6 +146,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -153,6 +155,12 @@ const Captura = () => {
                     })
                 } else {
                     /*  axios actualizacion de INFOCandidato */
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s1: seccionCompleta,
@@ -253,6 +261,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -260,6 +269,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s2: seccionCompleta,
@@ -268,6 +283,7 @@ const Captura = () => {
                 }
             }
         } catch (error) {
+            debugger
             if (error.response.status === 400) {
                 Swal.fire({
                     icon: 'error',
@@ -353,6 +369,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -360,6 +377,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s3: seccionCompleta,
@@ -421,6 +444,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -428,6 +452,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s4: seccionCompleta,
@@ -488,6 +518,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -495,7 +526,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
-
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s5: seccionCompleta,
@@ -540,6 +576,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     /* Muestra ppantalla de rechazo */
                     setRechazo({
@@ -547,6 +584,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    debugger /* Agrega al context general */
+
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s6: seccionCompleta,
@@ -618,6 +661,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -625,6 +669,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    debugger /* Agrega al context general */
+
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s7: seccionCompleta,
@@ -798,6 +848,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -805,6 +856,12 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+                    debugger
+                    candidatos.candidatos.agregarCandidato({
+                        ...candidatos.candidatos,
+                        infoBrigadista
+                    })
                     setSecciones({
                         ...secciones,
                         s8: seccionCompleta
