@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Swal from 'sweetalert2'
 import S1 from '../components/S1';
 import S3 from '../components/S3';
@@ -12,6 +12,8 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/Login';
+/* CONTEXT */
+import candidatoContext from "./../context/candidato/candidatoContext";
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
@@ -28,6 +30,9 @@ S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
  */
 
 const Captura = () => {
+
+    const candidatos = useContext(candidatoContext);
+
     const [infoBrigadista, setInfoBrigadista] = useState({})
 
     const [archivos, setArchivos] = useState({})
