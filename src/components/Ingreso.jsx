@@ -17,7 +17,7 @@ const Ingreso = (props) => {
         <div className={`col-md-6 ${(enable) ? 'login-form-1' : 'login-form-2'}`}
             onClick={onClick}
         >
-            <h3>Entrar</h3>
+            <h3>Usuarios ya registrados</h3>
             <form>
                 <div class="form-group">
                     <InputCURP
