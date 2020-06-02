@@ -27,6 +27,8 @@ const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
+
+->agregar advertensia de contraseña en registro
  */
 
 const Captura = () => {
