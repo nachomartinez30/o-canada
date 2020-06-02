@@ -25,15 +25,115 @@ const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
+
+->eliminar recibo final Aptitud fisica ESTADO MUNICIPIO
+
  */
 
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({})
+    const [infoBrigadista, setInfoBrigadista] = useState({
+        "curp": "VIMJ841224HJCLJN06",
+        "pass": "",
+        "grupo_sanguineo": "O+",
+        "nombres": "JUAN MANUEL",
+        "apellido_paterno": "VILLA",
+        "apellido_materno": "MEJIA",
+        "rfc": "VIMJ841224MX6",
+        "estado": "14",
+        "numero_telefonico_notificaciones": "3338297886",
+        "correo_electronico": "xvmjm@hotmail.com",
+        "posicion_candidato": "tecnico",
+        "dependencia": "COMISION NACIONAL FORESTAL",
+        "tipo_dependencia": "FEDERAL",
+        "nombre_beneficiario": "MARIA LUISA MEJIA OROZCO ",
+        "telefono_beneficiario": "3310397843",
+        "correo_beneficiario": "xvmax@hotmail.com",
+        "carta_antecedentes": "",
+        "pasaporte_archivo": "",
+        "pasaporte_numero": "G20616187",
+        "eta_visa_archivo": "",
+        "documento_viajar_canada": "VISA",
+        "eta_visa_num": "E728091943",
+        "licencia_manejo": "",
+        "tipo_licencia": "Internacional",
+        "cert_toxicologico": "",
+        "cert_medico": "",
+        "que_enfermedad": "NINGUNA",
+        "que_medicamentos": "NINGUNO",
+        "autoevaluacion_salud": "",
+        "nivel_ingles": "avanzado",
+        "toeic_toefl": "toeic",
+        "examen_toeic_toefl_punt": "700",
+        "padece_enfermedad": 0,
+        "requiere_medicamentos_perm": 0,
+        "experimento_dolor_pecho": 0,
+        "experimento_dificultad_respirar": 0,
+        "presion_arterial_sistolica_diastolica": 0,
+        "enfermedad_cardiaca": 0,
+        "cirugia_corazon": 0,
+        "pulso_mayor_100": 0,
+        "problemas_afeccion_osea": 0,
+        "experiencia_personal_consejos": 0,
+        "medico_personal_recomendo": 0,
+        "opera_autonoma_gps": 1,
+        "opera_autonoma_mark3": 1,
+        "opera_autonoma_motosierra": 0,
+        "tiene_epp_completo": 1,
+        "tiene_mochila_linea": 1,
+        "tiene_duffel_bag": 1,
+        "tiene_casa_campania": 1,
+        "tiene_sleeping_bag": 1,
+        "tiene_sleeping_pad": 1,
+        "l_280": 1,
+        "s_290": 1,
+        "cert_intern_incendios": 0,
+        "cert_intern_ate_emerg_med": 0,
+        "fecha_nacimiento": "1984-12-24",
+        "fecha_ingreso_dependencia": "2009-05-01",
+        "antecedentes_fecha": "2020-05-29",
+        "pasaporte_fecha_cad": "2026-05-17",
+        "eta_visa_fecha_exp": "2016-05-30",
+        "eta_visa_fecha_cad": "2026-05-16",
+        "licencia_fecha_cad": "2025-01-01",
+        "fecha_cert_toxicologico": "2020-05-29",
+        "fecha_cert_medico": "2020-05-20",
+        "sexo": 1,
+        "anios_experiencia": 11,
+        "imc": 29.708012675419,
+        "altura": 188,
+        "peso": 105,
+        "rechazo": 0,
+        "motivo_rechazo": null,
+        "municipio": "098",
+        "fotografia": null,
+        "puesto_en_dependencia": "SUBGERENTE DE OPERACIONES",
+        "funciones_dependencia": "operaciones",
+        "cpcif_s_190": null,
+        "cpcif_s_130": null,
+        "s_190": null,
+        "s_130": null,
+        "eventos_plnaeados_sci": 1,
+        "eventos_plnaeados_sci_fuera": 1,
+        "eventos_plnaeados_dentro_estructura": 1,
+        "evaluado_menejo_incidentes": 1,
+        "sci_cual": "JEFE SECCIÓN DE OPERACIONES",
+        "sci_smi_100": null,
+        "sci_smi_200": null,
+        "examen_smi_100": "aprobado",
+        "asignado_recurso_nacional": "3",
+        "asignado_recurso_otro_pais": "4",
+        "examen_s_190": "aprobado",
+        "cert_intern_ate_emerg_med_file": null,
+        "l_280_file": null,
+        "s_290_file": null,
+        "cert_intern_incendios_file": null,
+        "examen_toeic_toefl_archivo": null
+    })
 
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        login: { status: 'faltante', visible: !false },
+        login: { status: 'faltante', visible: false },
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
@@ -51,7 +151,7 @@ const Captura = () => {
 
 
     const [rechazo, setRechazo] = useState({
-        rechazo: false,
+        rechazo: !false,
         motivo_rechazo: null
     })
 
