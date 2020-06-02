@@ -35,10 +35,10 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
                 Por otra parte, acepto y reconozco que deberé actuar siempre conforme a los  valores en el manejo del fuego
                 : integridad, deber y respeto, lo cual incluye, buscar oportunidades de mejora, ser competente en mi trabajo,
                 tener y desarrollar habilidades de líder, tomar decisiones adecuadas, construir al equipo y aplicar medidas
-                de disciplina por igual
-                </p>
+                de disciplina por igual.
+            </p>
 
-            <a href="https://www.conafor.gob.mx/transparencia/avisoPrivacidad.html" target="_blank">Ver Aviso de Privacidad</a>
+            <a href="https://www.conafor.gob.mx/transparencia/avisoPrivacidad.html" target="_blank">Te invitamos a leer el aviso de privacidad.</a>
 
 
             <div className="custom-control custom-checkbox mb-3 pt-5" style={{ textAlign: 'right' }}>
@@ -50,7 +50,7 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
                     id="customCheck"
                     name="example1"
                 />
-                <label className="custom-control-label" htmlFor="customCheck">Acepo los términos y condiciones</label>
+                <label className="custom-control-label" htmlFor="customCheck">He leído y acepto los términos de la convocatoria.</label>
             </div>
 
             {aceptarTerminos &&

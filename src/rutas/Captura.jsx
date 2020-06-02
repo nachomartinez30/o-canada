@@ -28,7 +28,7 @@ S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
 
-->agregar advertensia de contraseña en registro
+->agregar advertencia de contraseña en registro
  */
 
 const Captura = () => {
