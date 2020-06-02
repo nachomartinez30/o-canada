@@ -111,7 +111,7 @@ const ConstanciaRegistro = (props) => {
                     <View style={styles.sectionImg} debug={false}>
                         <Image
                             style={styles.image}
-                            src={(photo) ? URL.createObjectURL(photo) : imagen_persona}
+                            src={(typeof photo === 'object') ? URL.createObjectURL(photo) : photo}
                         // src={imagen_persona}
                         />
                     </View>

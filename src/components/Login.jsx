@@ -7,10 +7,11 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import AlertaSiguiente from '../singles/AlertaSiguiente';
+import { ResponsiveEmbed } from 'react-bootstrap';
 
 const Login = (props) => {
 
-    const { secciones, setSecciones } = props
+    const { secciones, setSecciones, archivos, setArchivos } = props
     const candidatos = useContext(candidatoContext);
 
     const [ingreso, setIngreso] = useState(false)
@@ -59,21 +60,31 @@ const Login = (props) => {
     }
 
     const checkLogin = async () => {
-        const url = `${process.env.REACT_APP_BACKEN_URL}get_candidato`;
         const { curp_ing, pass } = state
-
-
+        const url = `${process.env.REACT_APP_BACKEN_URL}get_candidato`;
+        const url_poto = `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}`;
         try {
             const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
 
             if (respuesta.status === 200) {
-
                 /* setContext */
+                setArchivos({
+                    ...archivos,
+                    fotografia_fl: [url_poto]
+                })
                 candidatos.candidatos.agregarCandidato({
                     ...candidatos.candidatos,
                     infoBrigadista: respuesta.data[0]
                 })
+
                 /* mostrar secciones */
+                setState({
+                    curp_reg: '',
+                    pass_reg: '',
+                    comp_pass_reg: '',
+                    curp_ing: '',
+                    pass: ''
+                })
 
                 setSecciones({
                     ...secciones,

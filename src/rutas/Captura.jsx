@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import imagen_persona from '../assets/user.svg'
 import Swal from 'sweetalert2'
 import S1 from '../components/S1';
 import S3 from '../components/S3';
@@ -18,17 +19,12 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
-- manejo de pseudoseciones
--> añadir acuerdo de inicio (solo arranque)
-
--agregar boton para Regresar Procesos
-
+-> manejo de pseudoseciones
+    cargar imagen que haya cargado el usuario
 
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
-
-->agregar advertencia de contraseña en registro
  */
 
 const Captura = () => {
@@ -904,6 +900,8 @@ const Captura = () => {
                     <Login
                         secciones={secciones}
                         setSecciones={setSecciones}
+                        archivos={archivos}
+                        setArchivos={setArchivos}
                     />
                 }
                 {secciones.s1.visible &&
@@ -983,7 +981,7 @@ const Captura = () => {
             </div>
             {/* rechazo.rechazo */}
             {rechazo.rechazo && <Finalizar
-                photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : null}
+                photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : imagen_persona}
                 state={infoBrigadista} />
             }
         </>

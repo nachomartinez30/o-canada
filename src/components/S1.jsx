@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ToMayus from "../helpers/ToMayus";
 import curpValida from "../helpers/curpValida";
 import InputCURP from "../singles/InputCURP";
@@ -43,8 +43,6 @@ const S1 = (props) => {
             })
         }
     }
-
-
 
     const fillInfoCurp = () => {
         /* Extrae la informacion de la CURP y autocompleta fechga de nacimiento y sexo  */
