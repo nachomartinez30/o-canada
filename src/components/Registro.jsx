@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import InputCURP from '../singles/InputCURP';
 import ToMayus from '../helpers/ToMayus';
 import curpValida from '../helpers/curpValida';
@@ -16,15 +16,21 @@ const Registro = (props) => {
         })
     }
 
-    const checkPasswords = () => {
-        const { comp_pass_reg, pass_reg } = state
-        if (comp_pass_reg === pass_reg) {
-            setContinuar(true)
+
+    useEffect(() => {
+        /* COMPARACION DE CONTRASEÑAS */
+        const { pass_reg, comp_pass_reg } = state
+        if (comp_pass_reg && pass_reg) {
+            if (comp_pass_reg === pass_reg) {
+                setContinuar(true)
+            } else {
+                setContinuar(false)
+            }
         } else {
             setContinuar(false)
         }
-    }
 
+    }, [state])
     return (
         <div className={`col-md-6 ${(enable) ? 'login-form-1' : 'login-form-2'}`}
             onClick={onClick}
@@ -52,7 +58,6 @@ const Registro = (props) => {
                             name='pass_reg'
                             disabled={enable}
                             onChange={setInfo}
-                            onBlur={checkPasswords}
                             type="password"
                             class="form-control"
                             placeholder="Registre una contraseña *"
@@ -64,7 +69,6 @@ const Registro = (props) => {
                             name='comp_pass_reg'
                             disabled={enable}
                             onChange={setInfo}
-                            onBlur={checkPasswords}
                             type="password"
                             class="form-control"
                             placeholder="repitua su contraseña *"

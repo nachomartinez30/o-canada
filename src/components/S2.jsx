@@ -240,7 +240,7 @@ const S2 = (props) => {
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente(checkData)}
+                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
                     // onClick={revisarFormulario}
                 >Continuar</button>
             </div>

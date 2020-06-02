@@ -471,7 +471,7 @@ const S3 = (props) => {
                 <button
                     className='btn btn-primary'
                     // onClick={revisarFormulario}
-                     onClick={() =>AlertaSiguiente(checkData)}
+                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
                 >Continuar</button>
             </div>
         </div>

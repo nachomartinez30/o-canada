@@ -22,7 +22,7 @@ const S1 = (props) => {
     const [correBenefValido, setCorreBenefValido] = useState()
     const [preview, setPreview] = useState('')
 
-    
+
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -95,7 +95,7 @@ const S1 = (props) => {
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
                     name='fotografia'
                     type='file'
-                    accept="image/png,image/jpeg"                    
+                    accept="image/png,image/jpeg"
                     onChange={setInfo}
                     placeholder='Ingrese Nombre(s)...'
                 />
@@ -407,7 +407,7 @@ const S1 = (props) => {
                 <button
                     disabled={(correoValido && correBenefValido) ? false : true}
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente(checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>

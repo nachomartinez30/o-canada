@@ -6,8 +6,10 @@ import TerminosAviso from './TerminosAviso';
 import candidatoContext from "./../context/candidato/candidatoContext";
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
+import AlertaSiguiente from '../singles/AlertaSiguiente';
 
 const Login = (props) => {
+
     const { secciones, setSecciones } = props
     const candidatos = useContext(candidatoContext);
 
@@ -65,7 +67,7 @@ const Login = (props) => {
             const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
 
             if (respuesta.status === 200) {
-                debugger
+
                 /* setContext */
                 candidatos.candidatos.agregarCandidato({
                     ...candidatos.candidatos,
@@ -111,6 +113,13 @@ const Login = (props) => {
         }
     }
 
+    const showAdvertencia = () => {
+        AlertaSiguiente(
+            "Una vez registrada esta contraseña, no podrá cambiarse por seguridad",
+            () => setShowTerminosCondiciones(true)
+        );
+    }
+
     return (
         <div class="container login-container">
             <div class="row">
@@ -129,7 +138,7 @@ const Login = (props) => {
                             setState={setState}
                             onClick={() => changeSection(true)}
                             enable={!ingreso}
-                            showTerminosCondiciones={setShowTerminosCondiciones}
+                            showTerminosCondiciones={showAdvertencia}
                         />
                         <Ingreso
                             state={state}
