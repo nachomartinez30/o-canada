@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import S1 from '../components/S1';
 import S3 from '../components/S3';
@@ -52,7 +52,10 @@ const Captura = () => {
     const seccionCompleta = { status: 'completo', visible: false };
     const seccionSiguiente = { status: 'actual', visible: true };
 
-
+    useEffect(() => {
+        console.log('entrada');
+        setInfoBrigadista(candidatos.candidatos.infoBrigadista)
+    }, [secciones])
 
 
     const [rechazo, setRechazo] = useState({
@@ -136,6 +139,7 @@ const Captura = () => {
             const respuesta = await axios.post(url, infoBrigadista);
             if (respuesta.status === 200 && archivo.status === 200) {
                 if (infoBrigadista.rechazo) {
+                    debugger
                     // se ocultan las secciones
                     setSecciones({
                         s1: false,
@@ -156,7 +160,7 @@ const Captura = () => {
                 } else {
                     /*  axios actualizacion de INFOCandidato */
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -270,7 +274,7 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -283,7 +287,7 @@ const Captura = () => {
                 }
             }
         } catch (error) {
-            debugger
+
             if (error.response.status === 400) {
                 Swal.fire({
                     icon: 'error',
@@ -378,7 +382,7 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -453,7 +457,7 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -527,7 +531,7 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -584,7 +588,7 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
-                    debugger /* Agrega al context general */
+                    /* Agrega al context general */
 
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
@@ -669,7 +673,7 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
-                    debugger /* Agrega al context general */
+                    /* Agrega al context general */
 
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
@@ -711,7 +715,7 @@ const Captura = () => {
                 !l_280_file_fl || !s_290_file_fl || !cert_intern_incendios ||
                 !cert_intern_ate_emerg_med || !examen_toeic_toefl_archivo_fl
             ) {
-                debugger
+
                 msgFaltanCampos()
                 return
             }
@@ -728,7 +732,7 @@ const Captura = () => {
                 (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
-                debugger
+
                 msgFaltanCampos()
                 return
             }
@@ -857,7 +861,7 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-                    debugger
+
                     candidatos.candidatos.agregarCandidato({
                         ...candidatos.candidatos,
                         infoBrigadista
@@ -896,8 +900,8 @@ const Captura = () => {
             <div className='container'>
                 {secciones.login.visible &&
                     <Login
-                        state={infoBrigadista}
-                        setState={setInfoBrigadista}
+                        secciones={secciones}
+                        setSecciones={setSecciones}
                     />
                 }
                 {secciones.s1.visible &&

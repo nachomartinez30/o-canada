@@ -4,7 +4,7 @@ import ToMayus from '../helpers/ToMayus';
 import curpValida from '../helpers/curpValida';
 
 const Ingreso = (props) => {
-    const { enable, onClick, state, setState } = props
+    const { enable, onClick, state, setState, checkLogin } = props
 
     const setInfo = (input) => {
         setState({
@@ -43,17 +43,18 @@ const Ingreso = (props) => {
                         value={state.pass}
                     />
                 </div>
-                {state.curp_ing && <div class="form-group">
+                {(state.curp_ing && state.pass) && <div class="form-group">
                     <input
                         disabled={enable}
                         type='button'
+                        onClick={checkLogin}
                         class="btnSubmit"
                         value='Ingresar'
                     />
                 </div>
                 }
                 <div class="form-group">
-                    <a href="#" class="ForgetPwd" value="Login">Recuperar Contraseña</a>
+                    {/* <a href="#" class="ForgetPwd" value="Login">Recuperar Contraseña</a> */}
                 </div>
             </form>
         </div>

@@ -5,8 +5,10 @@ import TerminosAviso from './TerminosAviso';
 /* CONTEXT */
 import candidatoContext from "./../context/candidato/candidatoContext";
 import axios from 'axios';
+import AlertError from '../singles/AlertError';
 
-const Login = () => {
+const Login = (props) => {
+    const { secciones, setSecciones } = props
     const candidatos = useContext(candidatoContext);
 
     const [ingreso, setIngreso] = useState(false)
@@ -24,17 +26,66 @@ const Login = () => {
         const url = `${process.env.REACT_APP_BACKEN_URL}create_candidato`;
         const { curp_reg, comp_pass_reg } = state
 
-        const respuesta = await axios.post(url, { curp: curp_reg, pass: comp_pass_reg, acuerdo_aviso: aceptarTerminos });
-        debugger
+
         try {
+            const respuesta = await axios.post(url, { curp: curp_reg, pass: comp_pass_reg, acuerdo_aviso: aceptarTerminos });
+
             if (respuesta.status === 200) {
                 /* setContext */
+                candidatos.candidatos.agregarCandidato({
+                    ...candidatos.candidatos,
+                    infoBrigadista: {
+                        curp: curp_reg
+                    }
+                })
                 /* mostrar secciones */
+
+                setSecciones({
+                    ...secciones,
+                    login: { status: 'completo', visible: false },
+                    s1: { status: 'actual', visible: true },
+                })
             }
         } catch (error) {
-
+            if (error.response.status === 400) {
+                AlertError('Error', error.response.data.msg)
+            } else {
+                AlertError('Error', error)
+            }
         }
 
+    }
+
+    const checkLogin = async () => {
+        const url = `${process.env.REACT_APP_BACKEN_URL}get_candidato`;
+        const { curp_ing, pass } = state
+
+
+        try {
+            const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
+
+            if (respuesta.status === 200) {
+                debugger
+                /* setContext */
+                candidatos.candidatos.agregarCandidato({
+                    ...candidatos.candidatos,
+                    infoBrigadista: respuesta.data[0]
+                })
+                /* mostrar secciones */
+
+                setSecciones({
+                    ...secciones,
+                    login: { status: 'completo', visible: false },
+                    s1: { status: 'actual', visible: true },
+                })
+            }
+        } catch (error) {
+            if (error.response.status === 404) {
+                AlertError('Error', error.response.data.msg)
+            } else {
+                AlertError('Error', error)
+            }
+        }
     }
 
     const changeSection = (to) => {
@@ -85,6 +136,7 @@ const Login = () => {
                             setState={setState}
                             onClick={() => changeSection(false)}
                             enable={ingreso}
+                            checkLogin={checkLogin}
                         />
                     </React.Fragment>
                 }
