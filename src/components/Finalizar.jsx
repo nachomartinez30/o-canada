@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ConstanciaRegistro from './ConstanciaRegistro'
+import candidatoContext from "./../context/candidato/candidatoContext";
+
 
 
 const Finalizar = (props) => {
-    const { state, photo } = props
+    const candidatos = useContext(candidatoContext);
+    const [state, setState] = useState(candidatos.candidatos.infoBrigadista)
+    const { photo } = props
 
     const [mensaje, setMensaje] = useState('')
     const [puesto, setPuesto] = useState('')
@@ -26,8 +30,8 @@ const Finalizar = (props) => {
     })
     const [showPDF, setShowPDF] = useState(false)
 
-    const getMensaje = () => {
-        switch (state.motivo_rechazo) {
+    const getMensaje = (motivo) => {
+        switch (motivo) {
             case 'candidato menor de edad':
                 setMensaje("No es posible continuar con el proceso debido a que la edad mínima requerida es de 21 años")
                 break;
@@ -295,9 +299,9 @@ const Finalizar = (props) => {
     }
 
     useEffect(() => {
-        getMensaje()
+        getMensaje(state.motivo_rechazo)
         getPuesto()
-    }, [mensaje, puesto])
+    }, [mensaje, puesto, state])
 
     return (
         <>

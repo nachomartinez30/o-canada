@@ -21,7 +21,12 @@ const S1 = (props) => {
     const [correoValido, setCorreoValido] = useState()
     const [correBenefValido, setCorreBenefValido] = useState()
     const [preview, setPreview] = useState('')
+    const [enter, setEnter] = useState(false)
 
+    useEffect(() => {
+        fillInfoCurp()
+        setEnter(true)
+    }, [enter])
 
 
     const setInfo = (input) => {

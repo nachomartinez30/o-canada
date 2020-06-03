@@ -66,7 +66,6 @@ const S3 = (props) => {
             } else {
                 /* Certificado medico mayor a 1 mes */
                 const dif_cert_med = diferenciaFechaDias(fecha_cert_medico)
-                debugger
                 if (dif_cert_med > 31) {
                     setState({
                         ...state,
@@ -471,7 +470,7 @@ const S3 = (props) => {
                 <button
                     className='btn btn-primary'
                     // onClick={revisarFormulario}
-                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>

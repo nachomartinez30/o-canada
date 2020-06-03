@@ -47,11 +47,22 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    const seccionCompleta = { status: 'completo', visible: false };
+    const seccionCompleta = { status: 'completa', visible: false };
     const seccionSiguiente = { status: 'actual', visible: true };
 
     useEffect(() => {
-        console.log('entrada');
+        if (candidatos.candidatos.infoBrigadista.rechazo) {
+            setRechazo({
+                rechazo: true,
+                motivo_rechazo: infoBrigadista.motivo_rechazo
+            })
+        }
+        if (secciones.s8.status === 'completa') {
+            setRechazo({
+                rechazo: true,
+                motivo_rechazo: null
+            })
+        }
         setInfoBrigadista(candidatos.candidatos.infoBrigadista)
     }, [secciones])
 
@@ -71,6 +82,7 @@ const Captura = () => {
 
     /* VALIDACIONES */
     const checkDataS1 = async () => {
+
         const {
             anios_experiencia,
             apellido_paterno,
@@ -120,6 +132,11 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         const url = `${API_REQUEST}candidato_update`;
         try {
 
@@ -134,10 +151,9 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo.status === 200) {
                 if (infoBrigadista.rechazo) {
-                    debugger
                     // se ocultan las secciones
                     setSecciones({
                         s1: false,
@@ -159,10 +175,6 @@ const Captura = () => {
                     /*  axios actualizacion de INFOCandidato */
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
                     setSecciones({
                         ...secciones,
                         s1: seccionCompleta,
@@ -183,6 +195,7 @@ const Captura = () => {
         /*  mostrar siguiente seccion*/
     }
     const checkDataS2 = async () => {
+
         const {
             pasaporte_numero,
             pasaporte_fecha_cad,
@@ -204,6 +217,12 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
 
         /* PASAPORTE_ARCHIVO */
         const formData_pasaporte_archivo = new FormData();
@@ -244,8 +263,8 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
-
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
+            
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -273,10 +292,6 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
                     setSecciones({
                         ...secciones,
                         s2: seccionCompleta,
@@ -298,6 +313,8 @@ const Captura = () => {
 
     }
     const checkDataS3 = async () => {
+
+
         const { sexo,
             altura,
             peso,
@@ -334,6 +351,12 @@ const Captura = () => {
             return
         }
 
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
+
         const formData_cert_toxicologico = new FormData();
         formData_cert_toxicologico.append("file", archivos.cert_toxicologico_fl[0]);
         formData_cert_toxicologico.append("curp", infoBrigadista.curp);
@@ -357,7 +380,7 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200 && archivo_cert_toxicologico.status === 200 && archivo_cert_medico.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -381,10 +404,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s3: seccionCompleta,
@@ -404,10 +424,14 @@ const Captura = () => {
         }
     }
     const checkDataS4 = async () => {
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* update AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
-
             const formData_sci_smi_100_fl = new FormData();
             formData_sci_smi_100_fl.append("file", archivos.sci_smi_100_fl[0]);
             formData_sci_smi_100_fl.append("curp", infoBrigadista.curp);
@@ -432,7 +456,7 @@ const Captura = () => {
             });
 
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200 && archivo_sci_smi_100.status === 200 && archivo_sci_smi_200.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -456,10 +480,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s4: seccionCompleta,
@@ -479,6 +500,11 @@ const Captura = () => {
         }
     }
     const checkDataS5 = async () => {
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* update AXIOS */
 
         const formData_s_190_fl = new FormData();
@@ -494,7 +520,7 @@ const Captura = () => {
         const url = `${API_REQUEST}candidato_update`;
 
         try {
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             const archivo_s_190 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_190_fl, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -530,10 +556,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s5: seccionCompleta,
@@ -554,17 +577,23 @@ const Captura = () => {
 
     }
     const checkDataS6 = async () => {
+
         const { opera_autonoma_gps, opera_autonoma_mark3, opera_autonoma_motosierra } = infoBrigadista
 
         if (!opera_autonoma_gps || !opera_autonoma_mark3 || !opera_autonoma_motosierra) {
             msgFaltanCampos()
             return
         }
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -588,10 +617,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s6: seccionCompleta,
@@ -612,6 +638,7 @@ const Captura = () => {
 
     }
     const checkDataS7 = async () => {
+
         const {
             antecedentes_fecha,
             tiene_epp_completo,
@@ -635,7 +662,11 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
-
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* CARTA_ANTECEDENTES */
         const formData_carta_antecedentes = new FormData();
         formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
@@ -650,7 +681,7 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo_carta_antecedentes.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
@@ -673,10 +704,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s7: seccionCompleta,
@@ -723,18 +751,21 @@ const Captura = () => {
             formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
         } else {
             // SI tiene s1, debe cargar los archivos, o responder algo
-
             if (
                 (l_280 === '1' && !l_280_file_fl) || l_280 === '' ||
                 (s_290 === '1' && !s_290_file_fl) || s_290 === '' ||
                 (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
-
                 msgFaltanCampos()
                 return
             }
         }
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
 
         const formData_examen_toeic_toefl_archivo_fl = new FormData();
         const formData_l_280_file_fl = new FormData();
@@ -836,7 +867,7 @@ const Captura = () => {
                 }
             }
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones })
 
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -860,10 +891,7 @@ const Captura = () => {
                 } else {
                     /* Agrega al context general */
 
-                    candidatos.candidatos.agregarCandidato({
-                        ...candidatos.candidatos,
-                        infoBrigadista
-                    })
+
                     setSecciones({
                         ...secciones,
                         s8: seccionCompleta

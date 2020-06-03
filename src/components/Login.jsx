@@ -68,28 +68,23 @@ const Login = (props) => {
 
             if (respuesta.status === 200) {
                 /* setContext */
+                
                 setArchivos({
                     ...archivos,
                     fotografia_fl: [url_poto]
                 })
                 candidatos.candidatos.agregarCandidato({
                     ...candidatos.candidatos,
-                    infoBrigadista: respuesta.data[0]
+                    infoBrigadista: respuesta.data["data"]
                 })
-
                 /* mostrar secciones */
+                setSecciones(respuesta.data["secuencias"])
                 setState({
                     curp_reg: '',
                     pass_reg: '',
                     comp_pass_reg: '',
                     curp_ing: '',
                     pass: ''
-                })
-
-                setSecciones({
-                    ...secciones,
-                    login: { status: 'completo', visible: false },
-                    s1: { status: 'actual', visible: true },
                 })
             }
         } catch (error) {
