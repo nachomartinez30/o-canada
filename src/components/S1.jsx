@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ToMayus from "../helpers/ToMayus";
 import curpValida from "../helpers/curpValida";
 import InputCURP from "../singles/InputCURP";
@@ -21,8 +21,13 @@ const S1 = (props) => {
     const [correoValido, setCorreoValido] = useState()
     const [correBenefValido, setCorreBenefValido] = useState()
     const [preview, setPreview] = useState('')
+    const [enter, setEnter] = useState(false)
 
-    
+    useEffect(() => {
+        fillInfoCurp()
+        setEnter(true)
+    }, [enter])
+
 
     const setInfo = (input) => {
         /* setea al state las variables */
@@ -43,8 +48,6 @@ const S1 = (props) => {
             })
         }
     }
-
-
 
     const fillInfoCurp = () => {
         /* Extrae la informacion de la CURP y autocompleta fechga de nacimiento y sexo  */
@@ -95,7 +98,7 @@ const S1 = (props) => {
                     className={`form-control ${(state.fotografia) ? null : 'myInput'}`}
                     name='fotografia'
                     type='file'
-                    accept="image/png,image/jpeg"                    
+                    accept="image/png,image/jpeg"
                     onChange={setInfo}
                     placeholder='Ingrese Nombre(s)...'
                 />
@@ -407,7 +410,7 @@ const S1 = (props) => {
                 <button
                     disabled={(correoValido && correBenefValido) ? false : true}
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente(checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>

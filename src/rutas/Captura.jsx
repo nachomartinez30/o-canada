@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import imagen_persona from '../assets/user.svg'
 import Swal from 'sweetalert2'
 import S1 from '../components/S1';
 import S3 from '../components/S3';
@@ -12,15 +13,14 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/Login';
+/* CONTEXT */
+import candidatoContext from "./../context/candidato/candidatoContext";
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
-- manejo de presudoseciones
--> añadir acuerdo de inicio (solo arranque)
-
--agregar boton para Regresar Procesos
-
+-> manejo de pseudoseciones
+    cargar imagen que haya cargado el usuario
 
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
@@ -31,104 +31,10 @@ S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
  */
 
 const Captura = () => {
-    const [infoBrigadista, setInfoBrigadista] = useState({
-        "curp": "VIMJ841224HJCLJN06",
-        "pass": "",
-        "grupo_sanguineo": "O+",
-        "nombres": "JUAN MANUEL",
-        "apellido_paterno": "VILLA",
-        "apellido_materno": "MEJIA",
-        "rfc": "VIMJ841224MX6",
-        "estado": "14",
-        "numero_telefonico_notificaciones": "3338297886",
-        "correo_electronico": "xvmjm@hotmail.com",
-        "posicion_candidato": "tecnico",
-        "dependencia": "COMISION NACIONAL FORESTAL",
-        "tipo_dependencia": "FEDERAL",
-        "nombre_beneficiario": "MARIA LUISA MEJIA OROZCO ",
-        "telefono_beneficiario": "3310397843",
-        "correo_beneficiario": "xvmax@hotmail.com",
-        "carta_antecedentes": "",
-        "pasaporte_archivo": "",
-        "pasaporte_numero": "G20616187",
-        "eta_visa_archivo": "",
-        "documento_viajar_canada": "VISA",
-        "eta_visa_num": "E728091943",
-        "licencia_manejo": "",
-        "tipo_licencia": "Internacional",
-        "cert_toxicologico": "",
-        "cert_medico": "",
-        "que_enfermedad": "NINGUNA",
-        "que_medicamentos": "NINGUNO",
-        "autoevaluacion_salud": "",
-        "nivel_ingles": "avanzado",
-        "toeic_toefl": "toeic",
-        "examen_toeic_toefl_punt": "700",
-        "padece_enfermedad": 0,
-        "requiere_medicamentos_perm": 0,
-        "experimento_dolor_pecho": 0,
-        "experimento_dificultad_respirar": 0,
-        "presion_arterial_sistolica_diastolica": 0,
-        "enfermedad_cardiaca": 0,
-        "cirugia_corazon": 0,
-        "pulso_mayor_100": 0,
-        "problemas_afeccion_osea": 0,
-        "experiencia_personal_consejos": 0,
-        "medico_personal_recomendo": 0,
-        "opera_autonoma_gps": 1,
-        "opera_autonoma_mark3": 1,
-        "opera_autonoma_motosierra": 0,
-        "tiene_epp_completo": 1,
-        "tiene_mochila_linea": 1,
-        "tiene_duffel_bag": 1,
-        "tiene_casa_campania": 1,
-        "tiene_sleeping_bag": 1,
-        "tiene_sleeping_pad": 1,
-        "l_280": 1,
-        "s_290": 1,
-        "cert_intern_incendios": 0,
-        "cert_intern_ate_emerg_med": 0,
-        "fecha_nacimiento": "1984-12-24",
-        "fecha_ingreso_dependencia": "2009-05-01",
-        "antecedentes_fecha": "2020-05-29",
-        "pasaporte_fecha_cad": "2026-05-17",
-        "eta_visa_fecha_exp": "2016-05-30",
-        "eta_visa_fecha_cad": "2026-05-16",
-        "licencia_fecha_cad": "2025-01-01",
-        "fecha_cert_toxicologico": "2020-05-29",
-        "fecha_cert_medico": "2020-05-20",
-        "sexo": 1,
-        "anios_experiencia": 11,
-        "imc": 29.708012675419,
-        "altura": 188,
-        "peso": 105,
-        "rechazo": 0,
-        "motivo_rechazo": null,
-        "municipio": "098",
-        "fotografia": null,
-        "puesto_en_dependencia": "SUBGERENTE DE OPERACIONES",
-        "funciones_dependencia": "operaciones",
-        "cpcif_s_190": null,
-        "cpcif_s_130": null,
-        "s_190": null,
-        "s_130": null,
-        "eventos_plnaeados_sci": 1,
-        "eventos_plnaeados_sci_fuera": 1,
-        "eventos_plnaeados_dentro_estructura": 1,
-        "evaluado_menejo_incidentes": 1,
-        "sci_cual": "JEFE SECCIÓN DE OPERACIONES",
-        "sci_smi_100": null,
-        "sci_smi_200": null,
-        "examen_smi_100": "aprobado",
-        "asignado_recurso_nacional": "3",
-        "asignado_recurso_otro_pais": "4",
-        "examen_s_190": "aprobado",
-        "cert_intern_ate_emerg_med_file": null,
-        "l_280_file": null,
-        "s_290_file": null,
-        "cert_intern_incendios_file": null,
-        "examen_toeic_toefl_archivo": null
-    })
+
+    const candidatos = useContext(candidatoContext);
+
+    const [infoBrigadista, setInfoBrigadista] = useState(candidatos.candidatos.infoBrigadista)
 
     const [archivos, setArchivos] = useState({})
 
@@ -144,10 +50,24 @@ const Captura = () => {
         s8: { status: 'faltante', visible: false },
     })
 
-    const seccionCompleta = { status: 'completo', visible: false };
+    const seccionCompleta = { status: 'completa', visible: false };
     const seccionSiguiente = { status: 'actual', visible: true };
 
-
+    useEffect(() => {
+        if (candidatos.candidatos.infoBrigadista.rechazo) {
+            setRechazo({
+                rechazo: true,
+                motivo_rechazo: infoBrigadista.motivo_rechazo
+            })
+        }
+        if (secciones.s8.status === 'completa') {
+            setRechazo({
+                rechazo: true,
+                motivo_rechazo: null
+            })
+        }
+        setInfoBrigadista(candidatos.candidatos.infoBrigadista)
+    }, [secciones])
 
 
     const [rechazo, setRechazo] = useState({
@@ -156,6 +76,7 @@ const Captura = () => {
     })
 
     const msgFaltanCampos = () => {
+        console.log(candidatos);
         Swal.fire({
             icon: 'error',
             title: 'Todos los campos son necesarios'
@@ -164,6 +85,7 @@ const Captura = () => {
 
     /* VALIDACIONES */
     const checkDataS1 = async () => {
+
         const {
             anios_experiencia,
             apellido_paterno,
@@ -213,7 +135,12 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
-        const url = `${API_REQUEST}create_candidato`;
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
+        const url = `${API_REQUEST}candidato_update`;
         try {
 
             const formData = new FormData();
@@ -227,7 +154,7 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
@@ -240,6 +167,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -248,6 +176,8 @@ const Captura = () => {
                     })
                 } else {
                     /*  axios actualizacion de INFOCandidato */
+                    /* Agrega al context general */
+
                     setSecciones({
                         ...secciones,
                         s1: seccionCompleta,
@@ -268,6 +198,7 @@ const Captura = () => {
         /*  mostrar siguiente seccion*/
     }
     const checkDataS2 = async () => {
+
         const {
             pasaporte_numero,
             pasaporte_fecha_cad,
@@ -289,6 +220,12 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
 
         /* PASAPORTE_ARCHIVO */
         const formData_pasaporte_archivo = new FormData();
@@ -329,8 +266,8 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
-
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
+            
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -348,6 +285,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -355,6 +293,8 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
                     setSecciones({
                         ...secciones,
                         s2: seccionCompleta,
@@ -363,6 +303,7 @@ const Captura = () => {
                 }
             }
         } catch (error) {
+
             if (error.response.status === 400) {
                 Swal.fire({
                     icon: 'error',
@@ -375,6 +316,8 @@ const Captura = () => {
 
     }
     const checkDataS3 = async () => {
+
+
         const { sexo,
             altura,
             peso,
@@ -411,6 +354,12 @@ const Captura = () => {
             return
         }
 
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
+
         const formData_cert_toxicologico = new FormData();
         formData_cert_toxicologico.append("file", archivos.cert_toxicologico_fl[0]);
         formData_cert_toxicologico.append("curp", infoBrigadista.curp);
@@ -434,7 +383,7 @@ const Captura = () => {
                 }
             });
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200 && archivo_cert_toxicologico.status === 200 && archivo_cert_medico.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -448,6 +397,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -455,6 +405,9 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
+
                     setSecciones({
                         ...secciones,
                         s3: seccionCompleta,
@@ -474,10 +427,14 @@ const Captura = () => {
         }
     }
     const checkDataS4 = async () => {
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* update AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
-
             const formData_sci_smi_100_fl = new FormData();
             formData_sci_smi_100_fl.append("file", archivos.sci_smi_100_fl[0]);
             formData_sci_smi_100_fl.append("curp", infoBrigadista.curp);
@@ -502,7 +459,7 @@ const Captura = () => {
             });
 
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200 && archivo_sci_smi_100.status === 200 && archivo_sci_smi_200.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -516,6 +473,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -523,6 +481,9 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
+
                     setSecciones({
                         ...secciones,
                         s4: seccionCompleta,
@@ -542,6 +503,11 @@ const Captura = () => {
         }
     }
     const checkDataS5 = async () => {
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* update AXIOS */
 
         const formData_s_190_fl = new FormData();
@@ -557,7 +523,7 @@ const Captura = () => {
         const url = `${API_REQUEST}candidato_update`;
 
         try {
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             const archivo_s_190 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_190_fl, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -583,6 +549,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -590,6 +557,8 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
 
                     setSecciones({
                         ...secciones,
@@ -611,17 +580,23 @@ const Captura = () => {
 
     }
     const checkDataS6 = async () => {
+
         const { opera_autonoma_gps, opera_autonoma_mark3, opera_autonoma_motosierra } = infoBrigadista
 
         if (!opera_autonoma_gps || !opera_autonoma_mark3 || !opera_autonoma_motosierra) {
             msgFaltanCampos()
             return
         }
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -635,6 +610,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     /* Muestra ppantalla de rechazo */
                     setRechazo({
@@ -642,6 +618,9 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
+
                     setSecciones({
                         ...secciones,
                         s6: seccionCompleta,
@@ -662,6 +641,7 @@ const Captura = () => {
 
     }
     const checkDataS7 = async () => {
+
         const {
             antecedentes_fecha,
             tiene_epp_completo,
@@ -685,7 +665,11 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
-
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
         /* CARTA_ANTECEDENTES */
         const formData_carta_antecedentes = new FormData();
         formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
@@ -700,7 +684,7 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo_carta_antecedentes.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
@@ -713,6 +697,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -720,6 +705,9 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
+
                     setSecciones({
                         ...secciones,
                         s7: seccionCompleta,
@@ -756,7 +744,7 @@ const Captura = () => {
                 !l_280_file_fl || !s_290_file_fl || !cert_intern_incendios ||
                 !cert_intern_ate_emerg_med || !examen_toeic_toefl_archivo_fl
             ) {
-                debugger
+
                 msgFaltanCampos()
                 return
             }
@@ -766,18 +754,21 @@ const Captura = () => {
             formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
         } else {
             // SI tiene s1, debe cargar los archivos, o responder algo
-
             if (
                 (l_280 === '1' && !l_280_file_fl) || l_280 === '' ||
                 (s_290 === '1' && !s_290_file_fl) || s_290 === '' ||
                 (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
-                debugger
                 msgFaltanCampos()
                 return
             }
         }
+        // SE AGREGA A CONTEXT
+        candidatos.candidatos.agregarCandidato({
+            ...candidatos.candidatos,
+            infoBrigadista
+        })
 
         const formData_examen_toeic_toefl_archivo_fl = new FormData();
         const formData_l_280_file_fl = new FormData();
@@ -879,7 +870,7 @@ const Captura = () => {
                 }
             }
 
-            const respuesta = await axios.post(url, infoBrigadista);
+            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones })
 
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -893,6 +884,7 @@ const Captura = () => {
                         s6: false,
                         s7: false,
                         s8: false,
+                        login: false
                     })
                     // se muestra pantalla motivo de rechazo
                     setRechazo({
@@ -900,6 +892,9 @@ const Captura = () => {
                         motivo_rechazo: infoBrigadista.motivo_rechazo
                     })
                 } else {
+                    /* Agrega al context general */
+
+
                     setSecciones({
                         ...secciones,
                         s8: seccionCompleta
@@ -934,8 +929,10 @@ const Captura = () => {
             <div className='container'>
                 {secciones.login.visible &&
                     <Login
-                        state={infoBrigadista}
-                        setState={setInfoBrigadista}
+                        secciones={secciones}
+                        setSecciones={setSecciones}
+                        archivos={archivos}
+                        setArchivos={setArchivos}
                     />
                 }
                 {secciones.s1.visible &&
@@ -1015,7 +1012,7 @@ const Captura = () => {
             </div>
             {/* rechazo.rechazo */}
             {rechazo.rechazo && <Finalizar
-                photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : null}
+                photo={(archivos.fotografia_fl) ? archivos.fotografia_fl[0] : imagen_persona}
                 state={infoBrigadista} />
             }
         </>

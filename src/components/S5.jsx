@@ -252,7 +252,7 @@ const S5 = (props) => {
                 <button
                     disabled={!sci_190Examen}
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente(checkData)}
+                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
                 >Continuar</button>
             </div>
         </div>

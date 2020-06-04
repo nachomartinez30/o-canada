@@ -277,7 +277,7 @@ const S4 = (props) => {
 
                     onClick={siguienteExamen}
                     className='btn btn-warning'
-                //  onClick={() =>AlertaSiguiente(checkData)}
+                //  onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
                 >Tomar examen SCI/SMI 100-200</button>
             </div>
 
@@ -286,7 +286,7 @@ const S4 = (props) => {
                 <button
                     disabled={!smi_100Examen}
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente(checkData)}
+                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
                 >Continuar</button>
             </div>
         </div>

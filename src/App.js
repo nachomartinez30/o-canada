@@ -8,24 +8,27 @@ import './assets/styles.css'
 import Header from './singles/Header';
 import Captura from './rutas/Captura';
 import Revision from './rutas/Revision';
-
 import ConstanciaRegistro from './components/ConstanciaRegistro'
+/* CONTEXT */
+import CandidatoState from './context/candidato/candidatoState'
 
 
 
 function App() {
   return (
-    <div >
-      <Router>
-        <Header />
-        <hr className='gradiente' />
-        <Switch>
-          <Route exact path="/" component={Captura} />
-          <Route exact path="/revision" component={Revision} />
-          <Route exact path="/pdf" component={ConstanciaRegistro} />
-        </Switch>
-        {/* <Footer> */}
-      </Router>
+    <div>
+      <CandidatoState>
+        <Router>
+          <Header />
+          <hr className='gradiente' />
+          <Switch>
+            <Route exact path="/" component={Captura} />
+            <Route exact path="/revision" component={Revision} />
+            <Route exact path="/pdf" component={ConstanciaRegistro} />
+          </Switch>
+          {/* <Footer> */}
+        </Router>
+      </CandidatoState>
     </div>
 
   );

@@ -111,7 +111,7 @@ const ConstanciaRegistro = (props) => {
                     <View style={styles.sectionImg} debug={false}>
                         <Image
                             style={styles.image}
-                            src={(photo) ? URL.createObjectURL(photo) : imagen_persona}
+                            src={(typeof photo === 'object') ? URL.createObjectURL(photo) : photo}
                         // src={imagen_persona}
                         />
                     </View>
@@ -145,7 +145,7 @@ const ConstanciaRegistro = (props) => {
                         <Text style={styles.RequisitosInfo}>7.2.</Text>
                         <Text style={styles.RequisitosInfo}>8.</Text>
                         <Text style={styles.RequisitosInfo}>9.</Text>
-                        <Text style={styles.RequisitosInfo}>10.</Text>
+
                         <Text style={styles.RequisitosInfo}>11.</Text>
                         <Text style={styles.RequisitosInfo}>12.</Text>
                     </View>
@@ -161,7 +161,7 @@ const ConstanciaRegistro = (props) => {
                         <Text style={styles.RequisitosInfo}>Disponibilidad en condiciones ambientales adversas</Text>
                         <Text style={styles.RequisitosInfo}>Capacidad para comunicarse en inglés</Text>
                         <Text style={styles.RequisitosInfo}>Liderazgo</Text>
-                        <Text style={styles.RequisitosInfo}>Aptitud física</Text>
+
                         <Text style={styles.RequisitosInfo}>GPS</Text>
                         <Text style={styles.RequisitosInfo}>Motobomba Mark III</Text>
                     </View>
@@ -182,7 +182,6 @@ const ConstanciaRegistro = (props) => {
                             {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ? 'Aprobado' : 'No Aplica'}
                         </Text>
                         <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
                         <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
                         <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
 
