@@ -1,7 +1,11 @@
 import React, { useState, useContext } from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import candidatoContext from "./../context/candidato/candidatoContext";
+import candidatoContext from "../context/candidato/candidatoContext";
+//import logo_incedios from '../assets/logo_incendios.svg'
+//import logo_conafor from '../assets/logo_cnf.svg'
+//import logo_semarnat from '../assets/logo_semarnat.svg'
+//import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
 // Create styles
 const styles = StyleSheet.create({
     page: {
@@ -131,6 +135,24 @@ const ConstanciaRegistro = (props) => {
         >
             <Document>
                 <Page size="A4" style={styles.page}>
+                    <View style={styles.sectionImg}>
+                        <Image
+                            style={styles.image}
+                            src={'../assets/logo_incedios.svg'}
+                        />
+                        <Image
+                            style={styles.image}
+                            src={'../assets/logo_semarnat.svg'}
+                        />
+                        <Image
+                            style={styles.image}
+                            src={'../assets/logo_cnf.jpg'}
+                        />
+                        <Image
+                            style={styles.image}
+                            src={'../assets/serpiente_amarilla.svg'}
+                        />
+                    </View>
                     <View style={styles.sectionTitle} debug={false}>
                         <Text style={styles.header}>
                             Constancia de registro
