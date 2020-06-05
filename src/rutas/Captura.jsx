@@ -43,9 +43,9 @@ const Captura = () => {
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
-        s6: { status: 'faltante', visible: false },
+        s6: { status: 'faltante', visible: !false },
         s7: { status: 'faltante', visible: false },
-        s8: { status: 'faltante', visible: !false },
+        s8: { status: 'faltante', visible: false },
     })
 
     const seccionCompleta = { status: 'completa', visible: false };
@@ -579,9 +579,16 @@ const Captura = () => {
     }
     const checkDataS6 = async () => {
 
-        const { opera_autonoma_gps, opera_autonoma_mark3, opera_autonoma_motosierra } = infoBrigadista
+        const { opera_autonoma_gps,
+            opera_autonoma_mark3,
+            opera_autonoma_motosierra,
+            conocimientos_primeros_auxilios,
+            niv_primeros_auxilios } = infoBrigadista
+        const { doc_acred_primeros_auxilios_fl } = archivos
 
-        if (!opera_autonoma_gps || !opera_autonoma_mark3 || !opera_autonoma_motosierra) {
+        if (!opera_autonoma_gps || !opera_autonoma_mark3 || !opera_autonoma_motosierra ||
+            (conocimientos_primeros_auxilios === '1' && !niv_primeros_auxilios && !doc_acred_primeros_auxilios_fl)) {
+            debugger
             msgFaltanCampos()
             return
         }
@@ -745,7 +752,7 @@ const Captura = () => {
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) ||
                 !examen_toeic_toefl_archivo_fl
             ) {
-                
+
                 msgFaltanCampos()
                 return
             }
@@ -761,7 +768,7 @@ const Captura = () => {
                 (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
-                
+
                 msgFaltanCampos()
                 return
             }

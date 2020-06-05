@@ -3,7 +3,7 @@ import AlertaSiguiente from '../singles/AlertaSiguiente'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const S6 = (props) => {
-/* TODO: agregar a esta seccion la pregunta de primero auxilios */
+    /* TODO: agregar a esta seccion la pregunta de primero auxilios */
     const { state, setState, checkData } = props
 
     const setInfo = (input) => {
@@ -15,10 +15,8 @@ const S6 = (props) => {
     }
 
     const revisionCompetencias = () => {
-        console.log('working...');
-        
+    
         if (state.opera_autonoma_gps === '0' || state.opera_autonoma_mark3 === '0') {
-
             setState({
                 ...state,
                 rechazo: true,
@@ -72,11 +70,50 @@ const S6 = (props) => {
                     onChange={setInfo}
                 />
             </div>
+            {/* Cuenta con conocimientos de primero auxilios */}
+            <div className='col-12 col-md-8'>
+                <label className="control-label pt-2">¿Cuenta con conocimientos de primero auxilios?</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='conocimientos_primeros_auxilios'
+                    defaultValue={state.conocimientos_primeros_auxilios}
+                    onChange={setInfo}
+                />
+            </div>
+            {/* Cuenta con conocimientos de primero auxilios */}
+            <div className='col-12 col-md-4'>
+                {state.conocimientos_primeros_auxilios === '1' && <React.Fragment>
+                    <label className="control-label pt-2">Nivel:</label>
+                    <select
+                        className="form-control myInput"
+                        name='niv_primeros_auxilios'
+                        value={state.niv_primeros_auxilios}
+                        onChange={setInfo}
+                    >
+                        <option>---Seleccione---</option>
+                        <option value='basico'>Básico</option>
+                        <option value='intermedio'>Intermedio</option>
+                        <option value='avanzado'>Avanzado</option>
+                    </select>
+                </React.Fragment>}
+            </div>
+            {/* ARCHIVO ACREDITACION */}
+            <div className='col-12 col-md-12'>
+                {state.conocimientos_primeros_auxilios === '1' && <React.Fragment>
+                    <label className="control-label pt-2">Documento de acreditación</label>
+                    <input
+                        className="form-control myInput"
+                        type='file'
+                        name='doc_acred_primeros_auxilios'
+                        onChange={setInfo}
+                    />
+                </React.Fragment>}
+            </div>
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>
