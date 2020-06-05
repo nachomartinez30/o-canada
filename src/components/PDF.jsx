@@ -96,7 +96,7 @@ const aprobadoColor = { color: '#256708' }
 const reprobadoColor = { color: '#a83232' }
 
 // Create Document Component
-const ConstanciaRegistro = (props) => {
+const PDF = (props) => {
 
     const candidatos = useContext(candidatoContext);
 
@@ -224,4 +224,4 @@ const ConstanciaRegistro = (props) => {
     );
 }
 
-export default ConstanciaRegistro
+export default PDF
