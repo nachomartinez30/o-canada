@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import ConstanciaRegistro from './ConstanciaRegistro'
+import PDF from './PDF'
 import candidatoContext from "./../context/candidato/candidatoContext";
 
 
@@ -329,7 +329,7 @@ const Finalizar = (props) => {
                 </div>
             </div>
             {
-                showPDF && <ConstanciaRegistro
+                showPDF && <PDF
                     sections={secciones}
                     puesto={puesto}
                     photo={photo}
