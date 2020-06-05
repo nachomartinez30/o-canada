@@ -2,10 +2,8 @@ import React, { useState, useContext } from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import candidatoContext from "../context/candidato/candidatoContext";
-//import logo_incedios from '../assets/logo_incendios.svg'
-import logo_conafor from '../assets/prueba.png'
-//import logo_semarnat from '../assets/logo_semarnat.svg'
-//import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
+import logo_conafor from '../assets/logo_cnf_2.png'
+//import logo_conafor from '../assets/prueba.jpg'
 // Create styles cambio menor
 const styles = StyleSheet.create({
     page: {
@@ -29,6 +27,16 @@ const styles = StyleSheet.create({
         padding: '1mm',
         borderRadius: '3pt',
     },
+    sectionImgTop: {
+        width: '100%',
+        position: 'relative',
+        left: '0',
+        marginBottom: '0mm',
+        paddingTop: '2mm',
+    },
+    imageTop: {
+        width: '100%',
+    },
     sectionImg: {
         width: '20%',
         position: 'relative',
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         float: 'right',
         right: '8mm',
-        top: '23mm',
+        top: '49mm',
         paddingLeft: '1cm',
         paddingTop: '2mm',
     },
@@ -72,13 +80,13 @@ const styles = StyleSheet.create({
         width: '75%',
         position: 'absolute',
         left: '20mm',
-        bottom: '78.1mm',
+        bottom: '59mm',
         paddingBottom: '2mm',
     },
     sectionResultados: {
         width: '20%',
         position: 'absolute',
-        bottom: '78.1mm',
+        bottom: '59mm',
         right: '8mm',
         paddingBottom: '2mm',
         textAlign: 'center',
@@ -135,10 +143,11 @@ const PDF = (props) => {
         >
             <Document>
                 <Page size="A4" style={styles.page}>
-                    <View style={styles.sectionImg} debug={false}>
+                    <View style={styles.sectionImgTop} debug={false}>
                         <Image
-                            style={styles.image}
+                            style={styles.imageTop}
                             src={logo_conafor}
+                            //src={'../assets/logo_cnf.png'}
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>
