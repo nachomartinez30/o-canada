@@ -11,6 +11,7 @@ import Revision from './rutas/Revision';
 
 /* CONTEXT */
 import CandidatoState from './context/candidato/candidatoState'
+import ConstanciaRegistro from './components/ConstanciaRegistro';
 
 
 
@@ -24,7 +25,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Captura} />
             <Route exact path="/revision" component={Revision} />
-            {/* <Route exact path="/pdf" component={ConstanciaRegistro} /> */}
+            <Route exact path="/pdf" component={ConstanciaRegistro} />
           </Switch>
           {/* <Footer> */}
         </Router>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-
+import candidatoContext from "./../context/candidato/candidatoContext";
 // Create styles
 const styles = StyleSheet.create({
     page: {
@@ -93,7 +93,28 @@ const reprobadoColor = { color: '#a83232' }
 
 // Create Document Component
 const ConstanciaRegistro = (props) => {
-    const { state, photo, sections, puesto } = props
+
+    const candidatos = useContext(candidatoContext);
+
+    const {/*  state, */ photo,/*  sections, */ puesto } = props
+    const [sections, setSections] = useState({
+        pasaporte_vigente: true,
+        documento_para_viajar_a_canad: true,
+        licencia_de_manejo: true,
+        indice_de_masa_corporal: true,
+        salud: true,
+        conocimiento_y_experiencia_sci: true,
+        conocimiento_y_experiencia_en_incendios: true,
+        buena_conducta: true,
+        disponibilidad_en_condiciones_ambientales_adversas: true,
+        capacidad_para_comunicarse_en_ingles: true,
+        liderazgo: false,
+        aptitud_fisica: false,
+        gps: false,
+        motobomba_mark_iii: false
+    })
+    const [state, setState] = useState(candidatos.candidatos.infoBrigadista)
+
 
     let idioma = ((state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico')
         && state.toeic_toefl)
@@ -118,8 +139,8 @@ const ConstanciaRegistro = (props) => {
                     <View style={styles.sectionImg} debug={false}>
                         <Image
                             style={styles.image}
-                            src={(typeof photo === 'object') ? URL.createObjectURL(photo) : photo}
-                        // src={imagen_persona}
+                            // src={(typeof photo === 'object') ? URL.createObjectURL(photo) : photo}
+                        src={'../assets/user.svg'}
                         />
                     </View>
                     <View style={styles.sectionDatos} debug={false}>

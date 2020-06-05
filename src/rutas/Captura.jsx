@@ -14,8 +14,8 @@ import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/Login';
 /* CONTEXT */
-import candidatoContext from "./../context/candidato/candidatoContext";
 
+import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
@@ -32,7 +32,8 @@ const Captura = () => {
 
     const candidatos = useContext(candidatoContext);
 
-    const [infoBrigadista, setInfoBrigadista] = useState(candidatos.candidatos.infoBrigadista)
+    // const [infoBrigadista, setInfoBrigadista] = useState(candidatos.candidatos.infoBrigadista)
+    const [infoBrigadista, setInfoBrigadista] = useState()
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
