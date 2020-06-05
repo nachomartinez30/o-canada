@@ -3,7 +3,7 @@ import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import candidatoContext from "../context/candidato/candidatoContext";
 //import logo_incedios from '../assets/logo_incendios.svg'
-import logo_conafor from '../assets/logo_cnf.jpg'
+//import logo_banner from '../assets/banner_top.png'
 //import logo_semarnat from '../assets/logo_semarnat.svg'
 //import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
 // Create styles cambio menor
@@ -28,6 +28,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         padding: '1mm',
         borderRadius: '3pt',
+    },
+    sectionImgTop: {
+        width: '100%',
+        position: 'relative',
+        left: '0',
+        marginBottom: '0mm',
+        paddingTop: '2mm',
+    },
+    imageTop: {
+        width: '100%',
+        maxHeight: '100px',
+        border: '2pt solid #C8C8C8',
     },
     sectionImg: {
         width: '20%',
@@ -135,10 +147,11 @@ const PDF = (props) => {
         >
             <Document>
                 <Page size="A4" style={styles.page}>
-                    <View style={styles.sectionImg} debug={false}>
+                    <View style={styles.sectionImgTop} debug={false}>
                         <Image
-                            style={styles.image}
-                            src={logo_conafor}
+                            style={styles.imageTop}
+                            src={'../assets/banner_top.jpg'}
+                            //src={logo_banner}
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>

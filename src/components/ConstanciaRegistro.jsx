@@ -138,7 +138,7 @@ const ConstanciaRegistro = (props) => {
                     <View style={styles.sectionImg} debug={false}>
                         <Image
                             style={styles.image}
-                            src={logo_conafor}
+                            src={'../assets/banner_top.jpg'}
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>
