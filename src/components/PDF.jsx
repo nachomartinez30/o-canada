@@ -6,7 +6,7 @@ import candidatoContext from "../context/candidato/candidatoContext";
 import logo_conafor from '../assets/logo_cnf.jpg'
 //import logo_semarnat from '../assets/logo_semarnat.svg'
 //import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
-// Create styles
+// Create styles cambio menor
 const styles = StyleSheet.create({
     page: {
         backgroundColor: '#ffffff',
