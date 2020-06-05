@@ -43,8 +43,8 @@ const S8 = (props) => {
             </div>
             {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ?
                 <React.Fragment>
-                    {/* Nivel de inglés */}
                     <div className='col-12 col-md-6'>
+                        {/* Nivel de inglés */}
                         <label className="control-label pt-2">Nivel de inglés</label>
                         <select
                             className="form-control myInput"
@@ -114,8 +114,8 @@ const S8 = (props) => {
             </div>
 
             {/* S-290  Archivo*/}
-            {state.l_280 === '1' && <React.Fragment>
-                <div className='col-12 col-md-6'>
+            <div className='col-12 col-md-6'>
+                {state.l_280 === '1' && <React.Fragment>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -126,9 +126,9 @@ const S8 = (props) => {
                         onChange={setInfo}
                         placeholder='Ingrese archivo L-280...'
                     />
-                </div>
 
-            </React.Fragment>}
+                </React.Fragment>}
+            </div>
 
             {/* S-290 */}
             <div className='col-12 col-md-6'>
@@ -142,8 +142,8 @@ const S8 = (props) => {
             </div>
 
             {/* S-290 Archivo*/}
-            {state.s_290 === '1' && <React.Fragment>
-                <div className='col-12 col-md-6'>
+            <div className='col-12 col-md-6'>
+                {state.s_290 === '1' && <React.Fragment>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -154,9 +154,9 @@ const S8 = (props) => {
                         onChange={setInfo}
                         placeholder='Ingrese archivo S-290...'
                     />
-                </div>
 
-            </React.Fragment>}
+                </React.Fragment>}
+            </div>
 
             {/* Certificación internacional de incendios forestales */}
             <div className='col-12 col-md-6'>
@@ -170,8 +170,8 @@ const S8 = (props) => {
             </div>
 
             {/* Certificación internacional de incendios forestales - Archivo*/}
-            {state.cert_intern_incendios === '1' && <React.Fragment>
-                <div className='col-12 col-md-6'>
+            <div className='col-12 col-md-6'>
+                {state.cert_intern_incendios === '1' && <React.Fragment>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -182,10 +182,10 @@ const S8 = (props) => {
                         onChange={setInfo}
                         placeholder='Ingrese archivo...'
                     />
-                </div>
-            </React.Fragment>}
+                </React.Fragment>}
+            </div>
             {/* Certificación internacional en atención de emergencias medicas */}
-            <div className='col-12 col-md-12'>
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">¿Cuenta con certificación internacional en atención de emergencias medicas?</label>
                 <SelectSiNo
                     className="form-control myInput"
@@ -196,8 +196,8 @@ const S8 = (props) => {
             </div>
 
             {/* Certificación internacional en atención de emergencias medicas - Archivo*/}
-            {state.cert_intern_ate_emerg_med === '1' && <React.Fragment>
-                <div className='col-12 col-md-6'>
+            <div className='col-12 col-md-6'>
+                {state.cert_intern_ate_emerg_med === '1' && <React.Fragment>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
@@ -208,15 +208,14 @@ const S8 = (props) => {
                         onChange={setInfo}
                         placeholder='Ingrese archivo...'
                     />
-                </div>
-            </React.Fragment>
-            }
+                </React.Fragment>}
+            </div>
 
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>

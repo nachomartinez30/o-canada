@@ -68,7 +68,7 @@ const Login = (props) => {
 
             if (respuesta.status === 200) {
                 /* setContext */
-                
+
                 setArchivos({
                     ...archivos,
                     fotografia_fl: [url_poto]
@@ -88,11 +88,14 @@ const Login = (props) => {
                 })
             }
         } catch (error) {
-            if (error.response.status === 404) {
-                AlertError('Error', error.response.data.msg)
-            } else {
-                AlertError('Error', error)
+            AlertError('Error', error)
+            debugger
+            if (typeof error.response !== 'undefined') {
+                if (error.response.status === 404) {
+                    AlertError('Error', error.response.data.msg)
+                }
             }
+
         }
     }
 
