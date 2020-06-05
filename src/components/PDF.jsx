@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
+//import React from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import candidatoContext from "../context/candidato/candidatoContext";
-//import logo_incedios from '../assets/logo_incendios.svg'
-//import logo_banner from '../assets/banner_top.png'
-//import logo_semarnat from '../assets/logo_semarnat.svg'
-//import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
+import logo_banner from '../assets/banner_top.png'
+
 // Create styles cambio menor
 const styles = StyleSheet.create({
     page: {
@@ -150,14 +149,14 @@ const PDF = (props) => {
                     <View style={styles.sectionImgTop} debug={false}>
                         <Image
                             style={styles.imageTop}
-                            src={'../assets/banner_top.jpg'}
-                            //src={logo_banner}
+                            //src={'../assets/banner_top.png'}
+                            src={logo_banner}
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>
                         <Text style={styles.header}>
                             Constancia de registro
-                    </Text>
+                        </Text>
                     </View>
                     <View style={styles.sectionImg} debug={false}>
                         <Image

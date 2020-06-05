@@ -2,10 +2,6 @@ import React, { useState, useContext } from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 import candidatoContext from "../context/candidato/candidatoContext";
-//import logo_incedios from '../assets/logo_incendios.svg'
-import logo_conafor from '../assets/logo_cnf.jpg'
-//import logo_semarnat from '../assets/logo_semarnat.svg'
-//import serpiente_amarilla from '../assets/serpiente_amarilla.svg'
 // Create styles
 const styles = StyleSheet.create({
     page: {
