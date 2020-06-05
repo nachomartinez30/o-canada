@@ -19,14 +19,12 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
--> manejo de pseudoseciones
-    cargar imagen que haya cargado el usuario
+
 
 S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
 -> nivel avanzado intermedio basico
 -> adjuntar el archivo
 
-->eliminar recibo final Aptitud fisica ESTADO MUNICIPIO
 
  */
 
@@ -35,11 +33,10 @@ const Captura = () => {
     const candidatos = useContext(candidatoContext);
 
     const [infoBrigadista, setInfoBrigadista] = useState(candidatos.candidatos.infoBrigadista)
-
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        login: { status: 'faltante', visible: false },
+        login: { status: 'faltante', visible: !false },
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
@@ -71,7 +68,7 @@ const Captura = () => {
 
 
     const [rechazo, setRechazo] = useState({
-        rechazo: !false,
+        rechazo: false,
         motivo_rechazo: null
     })
 
@@ -267,7 +264,7 @@ const Captura = () => {
             });
 
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
-            
+
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -741,10 +738,9 @@ const Captura = () => {
         if (posicion_candidato === 'jefe_de_brigada' || posicion_candidato === 'tecnico') {
             /* si es jefe de brigada o tecnico, debe tener las variables de idioma */
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt ||
-                !l_280_file_fl || !s_290_file_fl || !cert_intern_incendios ||
+                (l_280 === '1' && !l_280_file_fl) || (s_290 === '1' && !s_290_file_fl) || !cert_intern_incendios ||
                 !cert_intern_ate_emerg_med || !examen_toeic_toefl_archivo_fl
             ) {
-
                 msgFaltanCampos()
                 return
             }
@@ -755,10 +751,10 @@ const Captura = () => {
         } else {
             // SI tiene s1, debe cargar los archivos, o responder algo
             if (
-                (l_280 === '1' && !l_280_file_fl) || l_280 === '' ||
-                (s_290 === '1' && !s_290_file_fl) || s_290 === '' ||
-                (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
-                (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
+                !(l_280 === '1' && !l_280_file_fl) || l_280 === '' ||
+                !(s_290 === '1' && !s_290_file_fl) || s_290 === '' ||
+                !(cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) || cert_intern_incendios === '' ||
+                !(cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) || cert_intern_ate_emerg_med === ''
             ) {
                 msgFaltanCampos()
                 return
@@ -810,7 +806,10 @@ const Captura = () => {
 
         const url = `${API_REQUEST}candidato_update`;
         try {
-
+            setSecciones({
+                ...secciones,
+                s8: seccionCompleta
+            })
             if (examen_toeic_toefl_archivo_fl) {
                 const archivo_examen_toeic_toefl_archivo_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_examen_toeic_toefl_archivo_fl, {
                     headers: {
@@ -870,7 +869,19 @@ const Captura = () => {
                 }
             }
 
-            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones })
+            const respuesta = await axios.post(url, {
+                data: infoBrigadista, secuencia: {
+                    login: seccionCompleta,
+                    s1: seccionCompleta,
+                    s2: seccionCompleta,
+                    s3: seccionCompleta,
+                    s4: seccionCompleta,
+                    s5: seccionCompleta,
+                    s6: seccionCompleta,
+                    s7: seccionCompleta,
+                    s8: seccionCompleta,
+                }
+            })
 
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -895,10 +906,7 @@ const Captura = () => {
                     /* Agrega al context general */
 
 
-                    setSecciones({
-                        ...secciones,
-                        s8: seccionCompleta
-                    })
+
                     Swal.fire(
                         'Buen trabajo',
                         'Se le notificará sobre su proceso de seleccion',

@@ -276,7 +276,7 @@ const S1 = (props) => {
 
             {/* Dependencia */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">Dependencia</label>
+                <label className="control-label pt-2">Dependencia (No usar acronimos)</label>
                 <input
                     className={`form-control ${(state.dependencia) ? null : 'myInput'}`}
                     name='dependencia'
@@ -289,13 +289,20 @@ const S1 = (props) => {
             {/* Tipo de dependencia */}
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Tipo de dependencia</label>
-                <input
+                <select
                     className={`form-control ${(state.tipo_dependencia) ? null : 'myInput'}`}
                     name='tipo_dependencia'
                     value={state.tipo_dependencia}
                     onChange={setInfo}
                     placeholder='Ingrese Tipo de dependencia...'
-                />
+                >
+                    <option value=''>---Seleccione---</option>
+                    <option value='federal'>Federal</option>
+                    <option value='estatal'>Estatal</option>
+                    <option value='municipal'>Municipal</option>
+                    <option value='sector_social'>Sector Social</option>
+                    <option value='privada'>Privada</option>
+                </select>
             </div>
 
             {/* Fecha de ingreso a la dependencia */}

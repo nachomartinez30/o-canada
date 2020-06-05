@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import imagen_persona from '../assets/user.svg'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -96,6 +95,14 @@ const reprobadoColor = { color: '#a83232' }
 const ConstanciaRegistro = (props) => {
     const { state, photo, sections, puesto } = props
 
+    let idioma = ((state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico')
+        && state.toeic_toefl)
+        ?
+        'Aprobado' :
+        'No Aplica'
+
+
+
     return (
         <PDFViewer PDFViewer
             width={window.innerWidth}
@@ -125,8 +132,7 @@ const ConstanciaRegistro = (props) => {
                         <Text style={styles.DatosInfo}>{'Puesto: ' + puesto}</Text>
                         <Text style={styles.DatosInfo}>{moment(state.fecha_nacimiento).format('DD-MMM-YYYY')}</Text>
                         <Text style={styles.DatosInfo}>{state.dependencia.toLocaleUpperCase()}</Text>
-                        <Text style={styles.DatosInfo}>{'Estado'}</Text>
-                        <Text style={styles.DatosInfo}>{'Municipio'}</Text>
+
                     </View>
                     <View style={styles.sectionTitle, styles.sectionTitlePosition2} debug={false}>
                         <Text style={styles.header}>
@@ -175,15 +181,10 @@ const ConstanciaRegistro = (props) => {
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_en_incendios) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_en_incendios) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.buena_conducta) ? aprobadoColor : reprobadoColor]}>{(sections.buena_conducta) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (
-                            ((state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') && state.toeic_toefl)
-                        )
-                            ? aprobadoColor : null]}>
-                            {(state.posicion_candidato === 'jefe_de_brigada' || state.posicion_candidato === 'tecnico') ? 'Aprobado' : 'No Aplica'}
-                        </Text>
+                        <Text style={[styles.RequisitosInfo]}>{idioma}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
-                        <Text style={[styles.RequisitosInfo,]}>{'Si / No'}</Text>
+                        <Text style={[styles.RequisitosInfo, (state.opera_autonoma_gps) ? aprobadoColor : reprobadoColor]}>{(state.opera_autonoma_gps) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        <Text style={[styles.RequisitosInfo, (state.opera_autonoma_mark3) ? aprobadoColor : reprobadoColor]}>{(state.opera_autonoma_mark3) ? 'Aprobado' : 'No Aprobado'}</Text>
 
                     </View>
                 </Page>

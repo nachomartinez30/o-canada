@@ -30,7 +30,7 @@ const S8 = (props) => {
                 <select
                     className={`form-control myInput`}
                     name='posicion_candidato'
-                    defaultValue={state.posicion_candidato}
+                    value={state.posicion_candidato}
                     onChange={setInfo}
                     placeholder='Posición a la que es candidato...'
                 >
@@ -49,7 +49,7 @@ const S8 = (props) => {
                         <select
                             className="form-control myInput"
                             name='nivel_ingles'
-                            defaultValue={state.nivel_ingles}
+                            value={state.nivel_ingles}
                             onChange={setInfo}
                         >
                             <option value='' >---Seleccione---</option>
@@ -79,7 +79,7 @@ const S8 = (props) => {
                         <select
                             className="form-control myInput"
                             name='toeic_toefl'
-                            defaultValue={state.toeic_toefl}
+                            value={state.toeic_toefl}
                             onChange={setInfo}
                         >
                             <option value='' >---Seleccione---</option>
