@@ -4,18 +4,25 @@ import SelectSiNo from '../singles/SelectSiNo'
 
 const S6 = (props) => {
     /* TODO: agregar a esta seccion la pregunta de primero auxilios */
-    const { state, setState, checkData } = props
+    const { state, setState, checkData, setStateFiles, files } = props
 
     const setInfo = (input) => {
         /* setea al state las variables */
-        setState({
-            ...state,
-            [input.target.name]: input.target.value
-        })
+        if (input.target.name === 'doc_acred_primeros_auxilios') {
+            setStateFiles({
+                ...files,
+                [input.target.name + '_fl']: input.target.files
+            })
+        } else {
+            setState({
+                ...state,
+                [input.target.name]: input.target.value
+            })
+        }
     }
 
     const revisionCompetencias = () => {
-    
+
         if (state.opera_autonoma_gps === '0' || state.opera_autonoma_mark3 === '0') {
             setState({
                 ...state,

@@ -587,11 +587,20 @@ const Captura = () => {
         const { doc_acred_primeros_auxilios_fl } = archivos
 
         if (!opera_autonoma_gps || !opera_autonoma_mark3 || !opera_autonoma_motosierra ||
-            (conocimientos_primeros_auxilios === '1' && !niv_primeros_auxilios && !doc_acred_primeros_auxilios_fl)) {
-            debugger
+            (conocimientos_primeros_auxilios === '1' && (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl))
+        ) {
             msgFaltanCampos()
             return
         }
+
+        const formData_doc_acred_primeros_auxilios_fl = new FormData();
+
+        if (doc_acred_primeros_auxilios_fl) {
+            formData_doc_acred_primeros_auxilios_fl.append("file", archivos.doc_acred_primeros_auxilios_fl[0]);
+            formData_doc_acred_primeros_auxilios_fl.append("curp", infoBrigadista.curp);
+            formData_doc_acred_primeros_auxilios_fl.append("name", "doc_acred_primeros_auxilios");
+        }
+
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({
             ...candidatos.candidatos,
@@ -600,9 +609,20 @@ const Captura = () => {
         /* actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
-
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
+            if (doc_acred_primeros_auxilios_fl) {
+                const archivo_doc_acred_primeros_auxilios_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_doc_acred_primeros_auxilios_fl, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (archivo_doc_acred_primeros_auxilios_fl.status !== 200) {
+                    AlertError('no se pudo cargar archivo', 'examen_toeic_toefl_ar')
+                }
+
+            }
             if (respuesta.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
