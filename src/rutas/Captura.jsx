@@ -767,7 +767,7 @@ const Captura = () => {
             /* si es jefe de brigada o tecnico, debe tener las variables de idioma */
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt ||
                 (l_280 === '1' && !l_280_file_fl) ||
-                (s_290 === '1' && !s_290_file) ||
+                (s_290 === '1' && !s_290_file_fl) ||
                 (cert_intern_incendios === '1' && !cert_intern_incendios_file_fl) ||
                 (cert_intern_ate_emerg_med === '1' && !cert_intern_ate_emerg_med_file_fl) ||
                 !examen_toeic_toefl_archivo_fl

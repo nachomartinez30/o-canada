@@ -153,7 +153,7 @@ const S4 = (props) => {
             >
                 <Modal.Header>
                     <Modal.Title>
-                        SCI/SMI 1005
+                        SCI/SMI 100-200
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

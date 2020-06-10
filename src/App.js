@@ -31,7 +31,6 @@ function App() {
         </Router>
       </CandidatoState>
     </div>
-
   );
 }
 

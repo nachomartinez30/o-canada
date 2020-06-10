@@ -344,23 +344,6 @@ const S3 = (props) => {
                 </select>
             </div>
 
-            {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
-            <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?</label>
-                <select
-                    className="form-control myInput"
-                    name='presion_arterial_sistolica_diastolica'
-                    defaultValue={state.presion_arterial_sistolica_diastolica}
-                    onChange={setInfo}
-                    onBlur={revisarFormulario}
-                    placeholder='¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value={1}>Si</option>
-                    <option value={0}>No</option>
-                </select>
-            </div>
-
             {/* ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco? */}
             <div className='col-12'>
                 <label className="control-label pt-2">¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho (angina), arritmias (latido irregular) o ataque cardíaco?</label>

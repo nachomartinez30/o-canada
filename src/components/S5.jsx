@@ -180,7 +180,7 @@ const S5 = (props) => {
 
             {/* S-190 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">S-190</label>
+                <label className="control-label pt-2">S-190 o CPCIF</label>
                 <input
                     className="form-control myInput"
                     name='s_190'
@@ -195,7 +195,7 @@ const S5 = (props) => {
 
             {/* S-130 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">S-130</label>
+                <label className="control-label pt-2">S-130 o CPCIF</label>
                 <input
                     className="form-control myInput"
                     name='s_130'
