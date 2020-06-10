@@ -19,13 +19,13 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO:
+    incluir aviso NUEVO de privacidad
+    agregar centro regional de pertenencia
 
+    agregar numero identificador unico 
 
-S7-> añadir pregunta ¿Cuenta con conocimientos de primero auxilios?
--> nivel avanzado intermedio basico
--> adjuntar el archivo
-
-
+    -> incluir aplicativo para centro regionales a 6 personas
+        status valido, no valido
  */
 
 const Captura = () => {
