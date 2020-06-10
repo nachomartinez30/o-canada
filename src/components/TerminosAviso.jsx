@@ -1,4 +1,5 @@
 import React from 'react'
+import AvisoPrivacidad from './AvisoPrivacidad'
 
 const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setShowTerminosCondiciones }) => {
 
@@ -19,8 +20,8 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
             <br />
             <br />
             <p className='display-5'>
-                Manifiesto que los datos proporcionados son veraces para corroborar mi identidad como usuario así como 
-                para mantener mi seguridad e integridad, y proporcionar información adicional que se requiera, de igual 
+                Manifiesto que los datos proporcionados son veraces para corroborar mi identidad como usuario así como
+                para mantener mi seguridad e integridad, y proporcionar información adicional que se requiera, de igual
                 forma voluntariamente llevo a cabo mi registro.
             </p>
 
@@ -35,6 +36,10 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
             <p>La Comisión Nacional Forestal, recaba los datos personales que usted registra de acuerdo al <a href='https://www.conafor.gob.mx/transparencia/avisoPrivacidad.html'>Aviso de Privacidad Integral</a> que en este acto se le da a conocer.
             </p>
 
+            <br />
+            <br />
+            <br />
+            <AvisoPrivacidad />
 
             <div className="custom-control custom-checkbox mb-3 pt-5" style={{ textAlign: 'right' }}>
                 <input
