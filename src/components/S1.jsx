@@ -187,9 +187,26 @@ const S1 = (props) => {
                 />
             </div>
 
+            <div className='col-12 col-md-6'>
+                <label className="control-label pt-2">Region</label>
+                <select
+                    className={`form-control ${(state.region) ? null : 'myInput'}`}
+                    name='region'
+                    value={state.region}
+                    onChange={setInfo}
+                    placeholder='Ingrese Region...'
+                >
+                    <option value=''>---Seleccione---</option>
+                    <option value={1}>Región 1</option>
+                    <option value={2}>Región 2</option>
+                    <option value={3}>Región 3</option>
+                    <option value={4}>Región 4</option>
+                    <option value={5}>Región 5</option>
+                    <option value={6}>Región 6</option>
+                </select>
+            </div>
             {/* Estado */}
             <div className='col-12 col-md-6'>
-
                 {/* TODO: select Cat-estado */}
                 <label className="control-label pt-2">Estado</label>
                 <SelectEstados
