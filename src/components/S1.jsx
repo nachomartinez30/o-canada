@@ -104,7 +104,7 @@ const S1 = (props) => {
                 />
             </div>
             <div className='col-12 col-md-6 imagen'>
-                {preview && <img src={preview} alt="Girl in a jacket" width={200} height={200} />}
+                {preview && <img src={preview} alt="Fotografía" width={200} height={200} />}
             </div>
             {/* Apellido Paterno */}
             <div className='col-6'>
