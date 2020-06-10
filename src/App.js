@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       <CandidatoState>
-        <Router>
+        <Router basename='o-canada'>
           <Header />
           <hr className='gradiente' />
           <Switch>
