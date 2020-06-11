@@ -18,15 +18,7 @@ import Login from '../components/Login';
 import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
-/* TODO:
-    incluir aviso NUEVO de privacidad
-    agregar centro regional de pertenencia
-
-    agregar numero identificador unico 
-
-    -> incluir aplicativo para centro regionales a 6 personas
-        status valido, no valido
- */
+/* TODO: */
 
 const Captura = () => {
 
@@ -105,10 +97,11 @@ const Captura = () => {
             funciones_dependencia,
             nombre_beneficiario,
             telefono_beneficiario,
-            correo_beneficiario } = infoBrigadista
+            correo_beneficiario, region } = infoBrigadista
         /* que no falte ningun dato */
         if (
             !anios_experiencia ||
+            !region ||
             !apellido_paterno ||
             !apellido_materno ||
             !nombres ||
