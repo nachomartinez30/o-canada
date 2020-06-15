@@ -65,28 +65,28 @@
 }
 
 /*--Trabajo en equipo CSS--*/
-.wi-100{
+.wi-100 {
   width: 100%;
 }
-.wi-90{
+.wi-90 {
   width: 90%;
 }
-.wi-80{
+.wi-80 {
   width: 80%;
 }
-.wi-70{
+.wi-70 {
   width: 70%;
 }
-.wi-60{
+.wi-60 {
   width: 60%;
 }
-.wi-50{
+.wi-50 {
   width: 50%;
 }
-.top-logo{
+.top-logo {
   max-height: 100px;
 }
-.btn-margin{
+.btn-margin {
   margin-bottom: 1em;
 }
 .body_wrap {
@@ -188,6 +188,29 @@
   font-weight: 600;
   text-decoration: none;
 }
-/* CLASE LOGIN */
+@media (min-width: 768px) {
+  .contenedor-app {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  aside {
+      background-color: var(--blanco);
+      flex: 0 0 300px;
+  }
+  .seccion-principal {
+      flex: 1;
+  }
+
+}
+
+
+/* BARRA LATERAL */
+aside  {
+  padding: 3rem;
+}
+
+
+/* LOGIN REGIONALES */
 
 /*--Trabajo en equipo CSS--*/
