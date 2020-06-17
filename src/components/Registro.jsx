@@ -71,7 +71,7 @@ const Registro = (props) => {
                             onChange={setInfo}
                             type="password"
                             class="form-control"
-                            placeholder="repitua su contraseña *"
+                            placeholder="Repita la contraseña *"
                             value={state.comp_pass_reg}
                         />
                     </div>
