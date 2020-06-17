@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import sessionContext from "../context/session/sessionContext";
 
 import LoginUsers from '../singles/LoginUsers';
@@ -12,12 +12,14 @@ const Regionales = () => {
 
     // const [user, setUser] = useState(sessContext.session.user)
     const [user, setUser] = useState(true)
+    
 
     const [toSend, setToSend] = useState({
         email: '',
         pass: ''
     })
 
+ 
     const checkUser = async (event) => {
         event.preventDefault();
         const url = `${API_REQUEST}login_user`;
@@ -36,6 +38,8 @@ const Regionales = () => {
             AlertError('Error', error);
         }
     }
+
+
 
     return (
         <div>

@@ -1,18 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import sessionContext from "../context/session/sessionContext";
 import SideBar from './SideBar';
 import RevisionDocumentacion from './RevisionDocumentacion';
+import axios from 'axios';
+import AlertError from '../singles/AlertError';
 
 
-const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+
 
 
 const Dashboard = () => {
     const sessContext = useContext(sessionContext)
     const [toggled, setToggled] = useState(true)
+    
+
+
     const handleToggle = () => {
         setToggled(!toggled)
     }
+
 
     return (
 
