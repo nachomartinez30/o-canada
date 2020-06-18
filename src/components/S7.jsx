@@ -31,7 +31,7 @@ const S7 = (props) => {
 
         const dif_antecedentes = diferenciaFechasDias(antecedentes_fecha)
 
-        if (dif_antecedentes > 31*2) {
+        if (dif_antecedentes > 31 * 2) {
             setState({
                 ...state,
                 rechazo: true,
@@ -92,21 +92,33 @@ const S7 = (props) => {
 
             {/* Cuenta con EPP completo */}
             <div className='col-12 col-md-12'>
-                <label className='control-label pt-2'>Cuenta con EPP completo
-                    <ul>
-                        <li>Casco con barbiquejo</li>
-                        <li>Protector de nuca</li>
-                        <li>Googles</li>
-                        <li>Protector de oídos</li>
-                        <li>Camisola mínimo de algodón</li>
-                        <li>Pantalón mínimo de algodón</li>
-                        <li>Guantes</li>
-                        <li>Botas</li>
-                        <li>Cinturón negro</li>
-                        <li>Chamarra</li>
-                        <li>Impermeable</li>
-                    </ul>
+                <label className='control-label pt-2'>¿Cuenta con el siguiente equipo de despliegue completo?:
                 </label>
+                <ul>
+                    <li><b>Casco</b> (Casco especializado para el combate de incendios forestales que cumpla la norma internacional NFPA 1977 color amarillo con barbiquejo)</li>
+                    <li><b>Protector de nuca</b> (De fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
+                    <li><b>Googles</b> (Material resistente con micas transparentes y sistema de sujeción al casco)</li>
+                    <li><b>2 Camisolas</b> (Color amarilla de fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
+                    <li><b>2 Pantalones</b> (Tipo cargo color verde de fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
+                    <li><b>2 pares de Guantes</b> (De piel)</li>
+                    <li><b>2 pares de Botas</b> (Cosidas de piel, caña de mínimo 23 cm de altura, suela ignifuga y antiderrapante)</li>
+                    <li><b>Cinturón</b> (Color negro, de piel o material resistente al fuego)</li>
+                    <li><b>Sudadera</b> (Color negro con capucha)</li>
+                    <li><b>Chamarra</b> (Color verde, Térmica)</li>
+                    <li><b>Impermeable</b> (Tipo poncho color amarilla)</li>
+                    <li><b>Botiquín individual</b> (Como mínimo deberá contener lo siguiente: Antisépticos (Alcohol y/o isodine) se sugiere la presentación de toallitas, 4 cubre bocas, gel antibacterial (mínimo 100 m)l, repelente para mosquitos, 2 gasas de 10X10, 1 venda elástica de 10 cm, 1 cinta adhesiva, 1 par de guantes de látex, Pastillas para (dolor, vómito, diarrea))</li>
+                    <li><b>Recipientes para agua</b> (De plástico o metal con los cuales se pueda transportar mínimo 4 litros de agua)</li>
+                    <li><b>Brújula</b> (Lensática, cartográfica o polivalente)</li>
+                    <li><b>Silbato</b> (De emergencia sin esfera interior)</li>
+                    <li><b>Linterna</b> (Manos libres, ligera, confortable, resistente al agua.)</li>
+                    <li><b>Libreta de campo</b> (Sin especificaciones mínimas)</li>
+                    <li><b>Navaja</b> (Sin especificaciones mínimas)</li>
+                    <li><b>Mochila de línea</b> (Especializada para actividades de manejo del fuego, resistente, ergonómica, capacidad mínima de 20 litros, espacio para portar bolsa de hidratación, preferentemente con las siguientes certificaciones: Certificado UL® y NFPA 1977-2016, , 500D Y 1000D CORDURA®, o características superiores)</li>
+                    <li><b>Mochila de viaje Duffel Bag</b> (Resistente, Impermeable, Capacidad de hasta 130 litros, Tirantes para hombros, Correa para hombro y sin ruedas)</li>
+                    <li><b>Casa de campaña</b> (Capacidad de 1-2 personas, Impermeabilidad de mínimo 200 mm agua/h/m², Mínimo 3 estaciones)</li>
+                    <li><b>Sleeping bag</b> (Bolsa de dormir con temperatura confort-1°C, Ligero, Resistente)</li>
+                    <li><b>Sleeping pad</b> (Tapete para dormir aislante, ligero y resistente)</li>
+                </ul>
                 <SelectSiNo
                     className='form-control myInput'
                     name='tiene_epp_completo'
@@ -116,83 +128,11 @@ const S7 = (props) => {
                 />
             </div>
 
-            {/* Cuenta con Mochila de línea */}
-            <div className='col-12 col-md-12'>
-                <label className='control-label pt-2'>Cuenta con Mochila de línea con los siguientes artículos:
-                    <ul>
-                        <li>Botiquín individual</li>
-                        <li>Recipientes para agua</li>
-                        <li>Linterna</li>
-                        <li>Brújula</li>
-                        <li>Encendedor</li>
-                        <li>Alimento</li>
-                        <li>Silbato</li>
-                        <li>Libreta de campo</li>
-                        <li>Navaja</li>
-                    </ul>
-                </label>
-                <SelectSiNo
-                    className='form-control myInput'
-                    name='tiene_mochila_linea'
-                    onBlur={revisarValidaciones}
-                    defaultValue={state.tiene_mochila_linea}
-                    onChange={setInfo}
-                />
-            </div>
-
-            {/* Cuenta con Mochila de viaje Duffel Bag */}
-            <div className='col-12 col-md-6'>
-                <label className='control-label pt-2'>Cuenta con Mochila de viaje Duffel Bag</label>
-                <SelectSiNo
-                    className='form-control myInput'
-                    name='tiene_duffel_bag'
-                    onBlur={revisarValidaciones}
-                    defaultValue={state.tiene_duffel_bag}
-                    onChange={setInfo}
-                />
-            </div>
-
-            {/* Cuenta con casa de campaña */}
-            <div className='col-12 col-md-6'>
-                <label className='control-label pt-2'>Cuenta con casa de campaña</label>
-                <SelectSiNo
-                    className='form-control myInput'
-                    name='tiene_casa_campania'
-                    onBlur={revisarValidaciones}
-                    defaultValue={state.tiene_casa_campania}
-                    onChange={setInfo}
-                />
-            </div>
-
-            {/* Cuenta con sleeping bag */}
-            <div className='col-12 col-md-6'>
-                <label className='control-label pt-2'>Cuenta con sleeping bag</label>
-                <SelectSiNo
-                    className='form-control myInput'
-                    name='tiene_sleeping_bag'
-                    onBlur={revisarValidaciones}
-                    defaultValue={state.tiene_sleeping_bag}
-                    onChange={setInfo}
-                />
-            </div>
-
-            {/* Cuenta con sleeping pad */}
-            <div className='col-12 col-md-6'>
-                <label className='control-label pt-2'>Cuenta con sleeping pad</label>
-                <SelectSiNo
-                    className='form-control myInput'
-                    name='tiene_sleeping_pad'
-                    onBlur={revisarValidaciones}
-                    defaultValue={state.tiene_sleeping_pad}
-                    onChange={setInfo}
-                />
-            </div>
-
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>
             </div>
         </div>

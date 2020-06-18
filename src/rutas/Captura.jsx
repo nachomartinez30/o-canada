@@ -29,8 +29,8 @@ const Captura = () => {
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        login: { status: 'faltante', visible: !false },
-        s1: { status: 'faltante', visible: false },
+        login: { status: 'faltante', visible: false },
+        s1: { status: 'faltante', visible: !false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
@@ -662,22 +662,12 @@ const Captura = () => {
 
         const {
             antecedentes_fecha,
-            tiene_epp_completo,
-            tiene_mochila_linea,
-            tiene_duffel_bag,
-            tiene_casa_campania,
-            tiene_sleeping_bag,
-            tiene_sleeping_pad } = infoBrigadista
+            tiene_epp_completo } = infoBrigadista
         const { carta_antecedentes_fl } = archivos
         if (
             !antecedentes_fecha ||
             !carta_antecedentes_fl ||
-            !tiene_epp_completo ||
-            !tiene_mochila_linea ||
-            !tiene_duffel_bag ||
-            !tiene_casa_campania ||
-            !tiene_sleeping_bag ||
-            !tiene_sleeping_pad
+            !tiene_epp_completo
         ) {
 
             msgFaltanCampos()
