@@ -13,12 +13,15 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/Login';
+import rfcValido from '../helpers/rfcValido'
+
+
 /* CONTEXT */
 import candidatoContext from "./../context/candidato/candidatoContext";
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
-/* TODO: */
+
 
 const Captura = () => {
 
@@ -126,6 +129,15 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+        /* VALIDACION RFC */
+        const rfcToCheck = rfcValido(rfc);
+        debugger
+        if (rfcToCheck === rfc) {
+            AlertError('Error', 'El RFC esta mal estructurado')
+            return
+        }
+        debugger
+
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({
             ...candidatos.candidatos,
@@ -139,6 +151,14 @@ const Captura = () => {
             formData.append("curp", infoBrigadista.curp);
             formData.append("name", "fotografia");
 
+<<<<<<< Updated upstream
+=======
+            const formDataCurp = new FormData();
+            formDataCurp.append("file", archivos.curp_archivo_fl[0]);
+            formDataCurp.append("curp", infoBrigadista.curp);
+            formDataCurp.append("name", "curp_archivo");
+
+>>>>>>> Stashed changes
             const archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

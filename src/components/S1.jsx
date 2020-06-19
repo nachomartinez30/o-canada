@@ -197,12 +197,12 @@ const S1 = (props) => {
                     placeholder='Ingrese Region...'
                 >
                     <option value=''>---Seleccione---</option>
-                    <option value={1}>Región 1</option>
-                    <option value={2}>Región 2</option>
-                    <option value={3}>Región 3</option>
-                    <option value={4}>Región 4</option>
-                    <option value={5}>Región 5</option>
-                    <option value={6}>Región 6</option>
+                    <option value={1}>Noroeste</option>
+                    <option value={2}>Norte</option>
+                    <option value={3}>Noreste</option>
+                    <option value={4}>Occidente</option>
+                    <option value={5}>Centro</option>
+                    <option value={6}>Sureste</option>
                 </select>
             </div>
             {/* Estado */}
@@ -309,7 +309,7 @@ const S1 = (props) => {
                 <select
                     className={`form-control ${(state.tipo_dependencia) ? null : 'myInput'}`}
                     name='tipo_dependencia'
-                    value={state.tipo_dependencia}
+                    defaultValue={state.tipo_dependencia}
                     onChange={setInfo}
                     placeholder='Ingrese Tipo de dependencia...'
                 >
@@ -366,7 +366,7 @@ const S1 = (props) => {
                 <select
                     className={`form-control ${(state.funciones_dependencia) ? null : 'myInput'}`}
                     name='funciones_dependencia'
-                    value={state.funciones_dependencia}
+                    defaultValue={state.funciones_dependencia}
                     onChange={setInfo}
                     placeholder='Ingrese su puetso en la dependencia...'
                 >
