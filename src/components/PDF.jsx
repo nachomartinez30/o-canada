@@ -80,13 +80,13 @@ const styles = StyleSheet.create({
         width: '75%',
         position: 'absolute',
         left: '20mm',
-        bottom: '59mm',
+        bottom: '65.5mm',
         paddingBottom: '2mm',
     },
     sectionResultados: {
         width: '20%',
         position: 'absolute',
-        bottom: '59mm',
+        bottom: '65.5mm',
         right: '8mm',
         paddingBottom: '2mm',
         textAlign: 'center',
@@ -303,7 +303,7 @@ const PDF = (props) => {
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_sci) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_sci) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_en_incendios) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_en_incendios) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.buena_conducta) ? aprobadoColor : reprobadoColor]}>{(sections.buena_conducta) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        {/*<Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>*/}
                         <Text style={[styles.RequisitosInfo]}>{idioma}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (state.opera_autonoma_gps) ? aprobadoColor : reprobadoColor]}>{(state.opera_autonoma_gps) ? 'Aprobado' : 'No Aprobado'}</Text>
