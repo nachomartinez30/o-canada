@@ -29,9 +29,9 @@ const Captura = () => {
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        login: { status: 'faltante', visible: !false },
+        login: { status: 'faltante', visible: false },
         s1: { status: 'faltante', visible: false },
-        s2: { status: 'faltante', visible: false },
+        s2: { status: 'faltante', visible: !false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
@@ -121,7 +121,9 @@ const Captura = () => {
             !funciones_dependencia ||
             !nombre_beneficiario ||
             !telefono_beneficiario ||
-            !correo_beneficiario || !archivos.fotografia_fl
+            !correo_beneficiario
+            || !archivos.fotografia_fl
+            || !archivos.curp_archivo_fl
         ) {
             msgFaltanCampos()
             return
@@ -139,14 +141,24 @@ const Captura = () => {
             formData.append("curp", infoBrigadista.curp);
             formData.append("name", "fotografia");
 
+            const formDataCurp = new FormData();
+            formData.append("file", archivos.curp_archivo_fl[0]);
+            formData.append("curp", infoBrigadista.curp);
+            formData.append("name", "curp_archivo");
+
             const archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const archivo_curp = await axios.post(`${API_REQUEST}carga_archivo`, formDataCurp, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
-            if (respuesta.status === 200 && archivo.status === 200) {
+            if (respuesta.status === 200 && archivo.status === 200 && archivo_curp.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -189,7 +201,7 @@ const Captura = () => {
         /*  mostrar siguiente seccion*/
     }
     const checkDataS2 = async () => {
-
+        const regex = /[A-Z]{1}[0-9]{8}/;
         const {
             pasaporte_numero,
             pasaporte_fecha_cad,
@@ -211,6 +223,14 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+
+
+
+        if (!regex.test(pasaporte_numero)) {
+            AlertError('Error', 'El numero pasaporte no cuenta con la estructura correcta.')
+            return
+        }
+
 
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({

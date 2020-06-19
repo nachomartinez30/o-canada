@@ -34,7 +34,7 @@ const S1 = (props) => {
         if (input.target.value < 0) {
             input.target.value = Math.abs(input.target.value)
         }
-        if (input.target.name === 'fotografia') {
+        if (input.target.name === 'fotografia' || input.target.name === 'curp_archivo') {
             setPreview(URL.createObjectURL(input.target.files[0]))
             setStateFiles({
                 ...files,
@@ -44,7 +44,8 @@ const S1 = (props) => {
         } else {
             setState({
                 ...state,
-                [input.target.name]: (input.target.name==='') ? input.target.value : input.target.value.toUppercase()
+                [input.target.name]: (input.target.name === 'correo_electronico' || input.target.name === 'correo_beneficiario')
+                    ? input.target.value : input.target.value.toUpperCase()
             })
         }
     }
@@ -142,7 +143,7 @@ const S1 = (props) => {
             </div>
 
             {/* CURP */}
-            <div className='col-12 col-md-8'
+            <div className='col-12 col-md-6'
                 onBlur={fillInfoCurp}
             >
                 <label className="control-label pt-2">CURP</label>
@@ -157,9 +158,31 @@ const S1 = (props) => {
                     placeholder='Ingrese CURP...'
                 />
             </div>
-
-            {/* Fecha de Nacimiento */}
+            {/* CURP File */}
             <div className='col-12 col-md-4'>
+                <label className="control-label pt-2">Documento CURP</label>
+                <input
+                    className={`form-control ${(state.curp_archivo) ? null : 'myInput'}`}
+                    name='curp_archivo'
+                    type='file'
+                    accept="application/pdf"
+                    onChange={setInfo}
+                    placeholder='Ingrese Fecha de Nacimiento...'
+                />
+            </div>
+
+            <div className='col-12 col-md-2 pt-4' style={{ alignItems: 'center', display: 'flex' }}>
+                <a
+                    className="btn btn-danger py-2 px-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.gob.mx/curp/"
+                >
+                    Consultar CURP
+                    </a>
+            </div>
+            {/* Fecha de Nacimiento */}
+            <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fecha de Nacimiento</label>
                 <input
                     disabled
@@ -172,7 +195,6 @@ const S1 = (props) => {
                     placeholder='Ingrese Fecha de Nacimiento...'
                 />
             </div>
-
             {/* RFC */}
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">RFC</label>

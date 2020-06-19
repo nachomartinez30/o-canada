@@ -21,7 +21,7 @@ const S2 = (props) => {
         } else {
             setState({
                 ...state,
-                [input.target.name]: input.target.value
+                [input.target.name]: input.target.value.toUpperCase()
             })
         }
     }
@@ -73,8 +73,10 @@ const S2 = (props) => {
                 }
             }
         }
-        
+
     }
+
+   
 
     return (
         <div className='row body_wrap'>
@@ -239,9 +241,11 @@ const S2 = (props) => {
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
+                    // disable={(checkPassaport) ? true : false}
+                    disable
                     className='btn btn-primary'
-                     onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
-                    // onClick={revisarFormulario}
+                    onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
+                // onClick={revisarFormulario}
                 >Continuar</button>
             </div>
 
