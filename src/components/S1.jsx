@@ -44,7 +44,7 @@ const S1 = (props) => {
         } else {
             setState({
                 ...state,
-                [input.target.name]: input.target.value
+                [input.target.name]: (input.target.name==='') ? input.target.value : input.target.value.toUppercase()
             })
         }
     }
