@@ -1,6 +1,7 @@
 import React from 'react'
 import AlertaSiguiente from '../singles/AlertaSiguiente'
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
+import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
 
 const S2 = (props) => {
 
@@ -28,7 +29,7 @@ const S2 = (props) => {
 
 
     const revisarFormulario = () => {
-        const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha } = state
+        const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha, licencia_fecha_cad } = state
 
 
         /* VALIDACIONES:
@@ -39,6 +40,7 @@ const S2 = (props) => {
         const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha)
         const dif_pasaporte = diferenciaFechasMeses(pasaporte_fecha_cad)
         const dif_eta_visa = diferenciaFechasMeses(eta_visa_fecha_cad)
+        const dif_licencia = diferenciaFechasDias(licencia_fecha_cad)
 
         // Carta es menor a 2 meses
         if (dif_antecedentes > 2) {
@@ -64,19 +66,27 @@ const S2 = (props) => {
                         motivo_rechazo: 'eta/visa vence en menos de 8 meses'
                     })
                 } else {
-                    /* Si todo Bien */
-                    setState({
-                        ...state,
-                        rechazo: false,
-                        motivo_rechazo: null
-                    })
+                    if (dif_licencia > -31) {
+                        setState({
+                            ...state,
+                            rechazo: true,
+                            motivo_rechazo: 'licencia vence en menos de 1 mes'
+                        })
+                    } else {
+                        /* Si todo Bien */
+                        setState({
+                            ...state,
+                            rechazo: false,
+                            motivo_rechazo: null
+                        })
+                    }
                 }
             }
         }
 
     }
 
-   
+
 
     return (
         <div className='row body_wrap'>
