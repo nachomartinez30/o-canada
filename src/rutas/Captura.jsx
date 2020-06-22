@@ -22,7 +22,6 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 
-
 const Captura = () => {
 
     const candidatos = useContext(candidatoContext);
@@ -151,14 +150,11 @@ const Captura = () => {
             formData.append("curp", infoBrigadista.curp);
             formData.append("name", "fotografia");
 
-<<<<<<< Updated upstream
-=======
             const formDataCurp = new FormData();
             formDataCurp.append("file", archivos.curp_archivo_fl[0]);
             formDataCurp.append("curp", infoBrigadista.curp);
             formDataCurp.append("name", "curp_archivo");
 
->>>>>>> Stashed changes
             const archivo = await axios.post(`${API_REQUEST}carga_archivo`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
