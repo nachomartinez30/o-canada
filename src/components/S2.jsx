@@ -3,6 +3,7 @@ import AlertaSiguiente from '../singles/AlertaSiguiente'
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
 import SelectSiNo from '../singles/SelectSiNo'
+import ToMayus from '../helpers/ToMayus'
 
 const S2 = (props) => {
 
@@ -105,9 +106,9 @@ const S2 = (props) => {
                     className="form-control myInput"
                     name='pasaporte_numero'
                     value={state.pasaporte_numero}
-                    type=''
                     onChange={setInfo}
-                    placeholder='No. de Pasaporte'
+                    onChangeCapture={ToMayus}
+                    placeholder='No. de Pasaporte...'
                 />
             </div>
 
@@ -131,7 +132,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_archivo'
-                    // value={state.eta_visa_archivo}
+                    
                     type='file'
                     accept="application/pdf"
                     onChange={setInfo}
@@ -162,7 +163,7 @@ const S2 = (props) => {
                     className="form-control myInput"
                     name='eta_visa_num'
                     value={state.eta_visa_num}
-                    type=''
+                    onChangeCapture={ToMayus}
                     onChange={setInfo}
                     placeholder='Ingrese ETA/Visa No...'
                 />

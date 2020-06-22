@@ -168,7 +168,7 @@ const S3 = (props) => {
                     name='grupo_sanguineo'
                     value={state.grupo_sanguineo}
                     maxLength='6'
-                    onKeyDownCapture={ToMayus}
+                    onChangeCapture={ToMayus}
                     onChange={setInfo}
                     onBlur={revisarFormulario}
                     placeholder='Ingrese Grupo Sanguíneo...'
@@ -256,6 +256,7 @@ const S3 = (props) => {
                 <input
                     className="form-control myInput"
                     name='que_enfermedad'
+                    onChangeCapture={ToMayus}
                     value={state.que_enfermedad}
                     onChange={setInfo}
                     onBlur={revisarFormulario}
@@ -288,6 +289,7 @@ const S3 = (props) => {
                     name='que_medicamentos'
                     value={state.que_medicamentos}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     onBlur={revisarFormulario}
                     placeholder='¿Qué medicamentos requiere de manera permanente?'
                 />

@@ -44,8 +44,7 @@ const S1 = (props) => {
         } else {
             setState({
                 ...state,
-                [input.target.name]: (input.target.name === 'correo_electronico' || input.target.name === 'correo_beneficiario')
-                    ? input.target.value : input.target.value.toUpperCase()
+                [input.target.name]: input.target.value
             })
         }
     }
@@ -115,6 +114,7 @@ const S1 = (props) => {
                     name='apellido_paterno'
                     value={state.apellido_paterno}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese Apellido Paterno...'
                 />
             </div>
@@ -127,6 +127,7 @@ const S1 = (props) => {
                     name='apellido_materno'
                     value={state.apellido_materno}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese Apellido Materno...'
                 />
             </div>
@@ -138,6 +139,7 @@ const S1 = (props) => {
                     name='nombres'
                     value={state.nombres}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese Nombre(s)...'
                 />
             </div>
@@ -321,6 +323,7 @@ const S1 = (props) => {
                     name='dependencia'
                     value={state.dependencia}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese Dependencia...'
                 />
             </div>
@@ -379,6 +382,7 @@ const S1 = (props) => {
                     name='puesto_en_dependencia'
                     value={state.puesto_en_dependencia}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese su puetso en la dependencia...'
                 />
             </div>
@@ -408,6 +412,7 @@ const S1 = (props) => {
                     name='nombre_beneficiario'
                     value={state.nombre_beneficiario}
                     onChange={setInfo}
+                    onChangeCapture={ToMayus}
                     placeholder='Ingrese nombre de Beneficiario...'
                 />
             </div>
