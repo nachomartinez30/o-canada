@@ -219,12 +219,12 @@ const S1 = (props) => {
                     placeholder='Ingrese Region...'
                 >
                     <option value=''>---Seleccione---</option>
-                    <option value={1}>Región 1</option>
-                    <option value={2}>Región 2</option>
-                    <option value={3}>Región 3</option>
-                    <option value={4}>Región 4</option>
-                    <option value={5}>Región 5</option>
-                    <option value={6}>Región 6</option>
+                    <option value={1}>Noroeste</option>
+                    <option value={2}>Norte</option>
+                    <option value={3}>Noreste</option>
+                    <option value={4}>Occidente</option>
+                    <option value={5}>Centro</option>
+                    <option value={6}>Sureste</option>
                 </select>
             </div>
             {/* Estado */}
