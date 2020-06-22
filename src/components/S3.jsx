@@ -47,7 +47,7 @@ const S3 = (props) => {
             pulso_mayor_100, problemas_afeccion_osea, experiencia_personal_consejos, medico_personal_recomendo
         } = state
         /* IMC mayor a 30 */
-        if (imc > 30) {
+        if (imc >= 30) {
             setState({
                 ...state,
                 rechazo: true,
