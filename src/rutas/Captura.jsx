@@ -209,7 +209,7 @@ const Captura = () => {
             eta_visa_num,
             eta_visa_fecha_exp,
             eta_visa_fecha_cad,
-            tipo_licencia,
+            tipo_licencia, tiene_licencia,
             licencia_fecha_cad } = infoBrigadista
         const { pasaporte_archivo_fl, eta_visa_archivo_fl, licencia_manejo_fl } = archivos
         /* revision de campos vacíos */
@@ -217,9 +217,15 @@ const Captura = () => {
             !pasaporte_numero || !pasaporte_fecha_cad ||
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
             !eta_visa_fecha_cad || !tipo_licencia || !licencia_fecha_cad ||
-            !pasaporte_archivo_fl || !eta_visa_archivo_fl ||
-            !licencia_manejo_fl
+            !pasaporte_archivo_fl || !eta_visa_archivo_fl
         ) {
+
+            msgFaltanCampos()
+            return
+        }
+
+        if (tiene_licencia === '1' && (!tipo_licencia || !licencia_fecha_cad || !licencia_manejo_fl)) {
+            /* LIMPIEZA DE DATOS */
             msgFaltanCampos()
             return
         }

@@ -264,7 +264,7 @@ const PDF = (props) => {
                     </View>
                     <View style={styles.sectionRequisitosNum} debug={false}>
                         <Text style={styles.RequisitosInfo}>1.</Text>
-                        <Text style={styles.RequisitosInfo}>2.</Text>
+                        {/* <Text style={styles.RequisitosInfo}>2.</Text> */}
                         <Text style={styles.RequisitosInfo}>3.</Text>
                         <Text style={styles.RequisitosInfo}>4.1</Text>
                         <Text style={styles.RequisitosInfo}>4.2</Text>
@@ -281,7 +281,7 @@ const PDF = (props) => {
                     <View style={styles.sectionRequisitos} debug={false}>
                         <Text style={styles.RequisitosInfo}>Pasaporte Mexicano</Text>
                         <Text style={styles.RequisitosInfo}>Documento para viajar a Canadá</Text>
-                        <Text style={styles.RequisitosInfo}>Licencia de manejo</Text>
+                        {/* <Text style={styles.RequisitosInfo}>Licencia de manejo</Text> */}
                         <Text style={styles.RequisitosInfo}>Índice de Masa Corporal</Text>
                         <Text style={styles.RequisitosInfo}>Estado de salud</Text>
                         <Text style={styles.RequisitosInfo}>Conocimiento y experiencia SCI</Text>
@@ -297,7 +297,7 @@ const PDF = (props) => {
                     <View style={styles.sectionResultados} debug={false}>
                         <Text style={[styles.RequisitosInfo, (sections.pasaporte_vigente) ? aprobadoColor : reprobadoColor]}>{(sections.pasaporte_vigente) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.documento_para_viajar_a_canad) ? aprobadoColor : reprobadoColor]}>{(sections.documento_para_viajar_a_canad) ? 'Aprobado' : 'No Aprobado'}</Text>
-                        <Text style={[styles.RequisitosInfo, (sections.licencia_de_manejo) ? aprobadoColor : reprobadoColor]}>{(sections.licencia_de_manejo) ? 'Aprobado' : 'No Aprobado'}</Text>
+                        {/* <Text style={[styles.RequisitosInfo, (sections.licencia_de_manejo) ? aprobadoColor : reprobadoColor]}>{(sections.licencia_de_manejo) ? 'Aprobado' : 'No Aprobado'}</Text> */}
                         <Text style={[styles.RequisitosInfo, (sections.indice_de_masa_corporal) ? aprobadoColor : reprobadoColor]}>{(sections.indice_de_masa_corporal) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.salud) ? aprobadoColor : reprobadoColor]}>{(sections.salud) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_sci) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_sci) ? 'Aprobado' : 'No Aprobado'}</Text>

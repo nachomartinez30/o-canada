@@ -2,6 +2,7 @@ import React from 'react'
 import AlertaSiguiente from '../singles/AlertaSiguiente'
 import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
 import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
+import SelectSiNo from '../singles/SelectSiNo'
 
 const S2 = (props) => {
 
@@ -29,7 +30,7 @@ const S2 = (props) => {
 
 
     const revisarFormulario = () => {
-        const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha, licencia_fecha_cad } = state
+        const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha } = state
 
 
         /* VALIDACIONES:
@@ -40,7 +41,7 @@ const S2 = (props) => {
         const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha)
         const dif_pasaporte = diferenciaFechasMeses(pasaporte_fecha_cad)
         const dif_eta_visa = diferenciaFechasMeses(eta_visa_fecha_cad)
-        const dif_licencia = diferenciaFechasDias(licencia_fecha_cad)
+        // const dif_licencia = diferenciaFechasDias(licencia_fecha_cad)
 
         // Carta es menor a 2 meses
         if (dif_antecedentes > 2) {
@@ -66,20 +67,12 @@ const S2 = (props) => {
                         motivo_rechazo: 'eta/visa vence en menos de 8 meses'
                     })
                 } else {
-                    if (dif_licencia > -31) {
-                        setState({
-                            ...state,
-                            rechazo: true,
-                            motivo_rechazo: 'licencia vence en menos de 1 mes'
-                        })
-                    } else {
-                        /* Si todo Bien */
-                        setState({
-                            ...state,
-                            rechazo: false,
-                            motivo_rechazo: null
-                        })
-                    }
+                    /* Si todo Bien */
+                    setState({
+                        ...state,
+                        rechazo: false,
+                        motivo_rechazo: null
+                    })
                 }
             }
         }
@@ -202,52 +195,64 @@ const S2 = (props) => {
                     placeholder='Ingrese ETA/Visa F. caducidad...'
                 />
             </div>
-
-            {/* Licencia de manejo */}
-            <div className='col-12 col-md-4'>
-                <label className="control-label pt-2">Licencia de manejo</label>
-                <input
+            {/* TIENE LICENCIA DE MANEJO */}
+            <div className='col-12 col-md-12'>
+                <label>¿Cuenta con licencia de manejo?</label>
+                <SelectSiNo
                     className="form-control myInput"
-                    name='licencia_manejo'
-                    // value={state.licencia_manejo}
-                    type='file'
-                    accept="application/pdf"
+                    name='tiene_licencia'
+                    defaultValue={state.tiene_licencia}
                     onChange={setInfo}
-                    placeholder='Ingrese Licencia de manejo...'
                 />
             </div>
 
-            {/* Tipo de licencia de manejo */}
-            <div className='col-12 col-md-4'>
-                <label className="control-label pt-2">Tipo de licencia de manejo</label>
-                <select
-                    className="form-control myInput"
-                    name='tipo_licencia'
-                    defaultValue={state.tipo_licencia}
-                    onChange={setInfo}
-                    placeholder='Tipo de licencia de manejo'
-                >
-                    <option value='' >---Seleccione---</option>
-                    <option value='Nacional'>Nacional</option>
-                    <option value='Nacional Traducida'>Nacional traducida</option>
-                    <option value='Internacional'>Internacional</option>
-                </select>
-            </div>
+            {state.tiene_licencia==='1' && <React.Fragment>
+                {/* Licencia de manejo */}
+                <div className='col-12 col-md-4'>
+                    <label className="control-label pt-2">Licencia de manejo</label>
+                    <input
+                        className="form-control myInput"
+                        name='licencia_manejo'
+                        // value={state.licencia_manejo}
+                        type='file'
+                        accept="application/pdf"
+                        onChange={setInfo}
+                        placeholder='Ingrese Licencia de manejo...'
+                    />
+                </div>
 
-            {/* Fecha caducidad licencia */}
-            <div className='col-12 col-md-4'>
-                <label className="control-label pt-2">Fecha de caducidad de la licencia</label>
-                <input
-                    className="form-control myInput"
-                    name='licencia_fecha_cad'
-                    value={state.licencia_fecha_cad}
-                    type='date'
-                    onBlur={revisarFormulario}
-                    onChange={setInfo}
-                    placeholder='Fecha de caducidad de la licencia'
-                />
-            </div>
+                {/* Tipo de licencia de manejo */}
+                <div className='col-12 col-md-4'>
+                    <label className="control-label pt-2">Tipo de licencia de manejo</label>
+                    <select
+                        className="form-control myInput"
+                        name='tipo_licencia'
+                        defaultValue={state.tipo_licencia}
+                        onChange={setInfo}
+                        placeholder='Tipo de licencia de manejo'
+                    >
+                        <option value='' >---Seleccione---</option>
+                        <option value='Nacional'>Nacional</option>
+                        <option value='Nacional Traducida'>Nacional traducida</option>
+                        <option value='Internacional'>Internacional</option>
+                    </select>
+                </div>
 
+                {/* Fecha caducidad licencia */}
+                <div className='col-12 col-md-4'>
+                    <label className="control-label pt-2">Fecha de caducidad de la licencia</label>
+                    <input
+                        className="form-control myInput"
+                        name='licencia_fecha_cad'
+                        value={state.licencia_fecha_cad}
+                        type='date'
+                        onBlur={revisarFormulario}
+                        onChange={setInfo}
+                        placeholder='Fecha de caducidad de la licencia'
+                    />
+                </div>
+            </React.Fragment>
+            }
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
