@@ -231,7 +231,7 @@ const PDF = (props) => {
                         <Image
                             style={styles.imageTop}
                             src={logo_conafor}
-                        //src={'../assets/logo_cnf.png'}
+                        
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>
