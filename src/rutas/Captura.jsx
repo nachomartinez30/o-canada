@@ -29,8 +29,8 @@ const Captura = () => {
     const [archivos, setArchivos] = useState({})
 
     const [secciones, setSecciones] = useState({
-        login: { status: 'faltante', visible: false },
-        s1: { status: 'faltante', visible: !false },
+        login: { status: 'faltante', visible: !false },
+        s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
         s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
