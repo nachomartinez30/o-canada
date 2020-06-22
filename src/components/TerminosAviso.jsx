@@ -33,7 +33,7 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
                 Por otra parte, acepto y reconozco que deberé actuar siempre conforme a los  valores en el manejo del fuego: integridad, deber y respeto, lo cual incluye, buscar oportunidades de mejora, ser competente en mi trabajo, tener y desarrollar habilidades de líder, tomar decisiones adecuadas, construir al equipo y aplicar medidas de disciplina por igual.
             </p>
 
-            <p>La Comisión Nacional Forestal, recaba los datos personales que usted registra de acuerdo al <a href='https://www.conafor.gob.mx/transparencia/avisoPrivacidad.html'>Aviso de Privacidad Integral</a> que en este acto se le da a conocer.
+            <p>La Comisión Nacional Forestal, recaba los datos personales que usted registra de acuerdo al <b>Aviso de Privacidad Integral</b> que en este acto se le da a conocer.
             </p>
 
             <br />
