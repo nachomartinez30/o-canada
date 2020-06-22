@@ -23,6 +23,9 @@ const S1 = (props) => {
     const [preview, setPreview] = useState('')
     const [enter, setEnter] = useState(false)
 
+    const [rfcCorrecto, setRfcCorrecto] = useState(false)
+
+
     useEffect(() => {
         fillInfoCurp()
         setEnter(true)
@@ -87,6 +90,7 @@ const S1 = (props) => {
             AlertError('Error', error)
         }
     }
+
 
 
     return (
@@ -207,6 +211,8 @@ const S1 = (props) => {
                     rfc={state.rfc}
                     onKeyPressCapture={ToMayus}
                     onChange={setInfo}
+                    correct={rfcCorrecto}
+                    setCorrect={setRfcCorrecto}
                     placeholder='Ingrese RFC...'
                 />
             </div>
@@ -459,7 +465,7 @@ const S1 = (props) => {
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
-                    disabled={(correoValido && correBenefValido) ? false : true}
+                    disabled={(correoValido && correBenefValido && rfcCorrecto) ? false : true}
                     className='btn btn-primary'
                     onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>

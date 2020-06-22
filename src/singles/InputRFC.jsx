@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import rfcValido from '../helpers/rfcValido'
 
 const InputRFC = (props) => {
@@ -10,11 +10,15 @@ const InputRFC = (props) => {
         defaultValue,
         placeholder,
         className,
-        onChange
+        onChange,
+        correct,
+        setCorrect
     } = props
 
     const [valido, setValido] = useState('')
     const [claseValido, setClaseValido] = useState('')
+
+
 
 
 
@@ -23,6 +27,7 @@ const InputRFC = (props) => {
             if (rfc.length > 1) {
                 const check = (rfcValido(rfc) === rfc) ? true : false;
                 setClaseValido((check) ? '' : 'noValido')
+                setCorrect(check)
                 setValido(check);
             } else {
                 setClaseValido('')
