@@ -5,6 +5,8 @@ import axios from 'axios'
 import AlertError from '../singles/AlertError'
 import DataTable from 'react-data-table-component'
 import PDFViewer from 'pdf-viewer-reactjs'
+import AlertaSiguiente from "../singles/AlertaSiguiente";
+import AlertExito from "../singles/AlertExito";
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
@@ -15,7 +17,10 @@ const RevisionDocumentacion = () => {
     const [datosTabla, setDatosTabla] = useState([])
     const [showPDF, setShowPDF] = useState(false)
     const [reload, setReload] = useState(true)
+    const [selectedRows, setSelectedRows] = useState([]);
     const [linkDocumento, setLinkDocumento] = useState('carta_antecedentes')
+
+    const [toggleCleared, setToggleCleared] = React.useState(false);
 
 
     const getCandidatos = async () => {
@@ -53,7 +58,7 @@ const RevisionDocumentacion = () => {
 
     const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
-    const SampleExpandedComponent = ({ data }) => (
+    const BotonesPDFs = ({ data }) => (
         <div className='py-5'>
             <Nav justify variant="pills" defaultActiveKey="">
                 <Nav.Item>
@@ -171,7 +176,14 @@ const RevisionDocumentacion = () => {
             selector: 'anios_experiencia',
             wrap: true,
             sortable: true
-        }
+        },
+        {
+            name: 'Accion',
+            cell: () => <button>Acción</button>,
+            ignoreRowClick: true,
+            allowOverflow: true,
+            button: true,
+        },
     ]
 
     const findWord = (input) => {
@@ -209,6 +221,28 @@ const RevisionDocumentacion = () => {
         // }
         // }
     }
+
+    const manejadorCambiosColumnas = state => {
+        setSelectedRows(state.selectedRows);
+    };
+
+    const eliminarRegistros = () => {
+        /* TODO: eliminar registros */
+        AlertExito('Registros eliminados');
+    }
+
+
+    const contextActions = React.useMemo(() => {
+        const handleDelete = () => {
+            AlertaSiguiente('se eliminaran los registros seleccionados', eliminarRegistros)
+        };
+        return <>
+            <button className='btn btn-success' key="acreditar" onClick={handleDelete}>Acreditar</button>
+            <button className='btn btn-danger' key="desacreditar" onClick={handleDelete}>Desacreditar</button>
+        </>
+    }, [datosTabla, selectedRows, toggleCleared]);
+
+
     return (
         <div>
             <DataTable
@@ -217,9 +251,10 @@ const RevisionDocumentacion = () => {
                 data={datosTabla}
                 defaultSortField="Candidatos"
                 expandableRows
-                expandableRowsComponent={<SampleExpandedComponent />}
+                expandOnRowClicked
+                expandableRowsComponent={<BotonesPDFs />}
                 pagination
-                paginationComponentOptions
+                paginationComponentOptions={paginationOptions}
                 persistTableHead
                 progressPending={loading}
                 subHeader
@@ -233,8 +268,12 @@ const RevisionDocumentacion = () => {
                         </div>
                     )
                 }
+                contextActions={contextActions}
                 subHeaderAlign={'left'}
                 direction={directionValue}
+                selectableRows
+                selectableRowsHighlight
+                onSelectedRowsChange={manejadorCambiosColumnas}
             />
         </div>
     );
