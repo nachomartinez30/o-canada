@@ -11,6 +11,8 @@ const InputCURP = (props) => {
         placeholder,
         className,
         disabled,
+        setCorrect,
+        correct,
         onChange
     } = props
 
@@ -20,6 +22,7 @@ const InputCURP = (props) => {
             if (curp.length > 1) {
                 const check = (curpValida(curp)) ? true : false;
                 setClaseValido((check) ? '' : 'noValido')
+                setCorrect(check)
                 setValido(check);
             } else {
                 setClaseValido('')

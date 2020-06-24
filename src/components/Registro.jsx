@@ -8,6 +8,7 @@ const Registro = (props) => {
 
     const { enable, onClick, showTerminosCondiciones, state, setState } = props
     const [continuar, setContinuar] = useState(false)
+    const [curpValida, setCurpValida] = useState(false)
 
     const setInfo = (input) => {
         setState({
@@ -48,6 +49,7 @@ const Registro = (props) => {
                         onKeyPressCapture={ToMayus}
                         onBlur={curpValida}
                         placeholder='Ingrese CURP *'
+                        setCorrect={setCurpValida}
                     />
 
                 </div>
@@ -78,7 +80,7 @@ const Registro = (props) => {
                 </React.Fragment>
                 }
 
-                {continuar && <div className="form-group">
+                {(continuar && curpValida) && <div className="form-group">
                     <input
                         type="button"
                         className="btnSubmit"

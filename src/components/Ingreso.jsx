@@ -6,6 +6,8 @@ import curpValida from '../helpers/curpValida';
 const Ingreso = (props) => {
     const { enable, onClick, state, setState, checkLogin } = props
 
+    const [curpValida, setCurpValida] = useState(false)
+
     const setInfo = (input) => {
         setState({
             ...state,
@@ -30,6 +32,7 @@ const Ingreso = (props) => {
                         onKeyPressCapture={ToMayus}
                         onBlur={curpValida}
                         placeholder='Ingrese CURP *'
+                        setCorrect={setCurpValida}
                     />
                 </div>
                 <div class="form-group">
@@ -43,7 +46,7 @@ const Ingreso = (props) => {
                         value={state.pass}
                     />
                 </div>
-                {(state.curp_ing && state.pass) && <div class="form-group">
+                {(state.curp_ing && curpValida && state.pass) && <div class="form-group">
                     <input
                         disabled={enable}
                         type='button'
