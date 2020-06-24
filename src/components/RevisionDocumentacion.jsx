@@ -13,6 +13,8 @@ const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 
 const RevisionDocumentacion = () => {
+/* TODO: Acreditar revision de candidatos, terminar Searchbar */
+
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
     const [showPDF, setShowPDF] = useState(false)
@@ -22,7 +24,7 @@ const RevisionDocumentacion = () => {
 
     const [toggleCleared, setToggleCleared] = React.useState(false);
 
-
+    /* Edicion de la tabla */
     const getCandidatos = async () => {
         const url = `${API_REQUEST}revision_region`;
         try {
@@ -38,11 +40,8 @@ const RevisionDocumentacion = () => {
         }
     }
 
-
-
     useEffect(() => {
         getCandidatos();
-        /* TODO: terminar buscador en tabla */
         setReload(false)
     }, [reload])
 
@@ -51,8 +50,6 @@ const RevisionDocumentacion = () => {
         setShowPDF(true)
     }
 
-
-    /* Edicion de la tabla */
     const [loading, setLoading] = React.useState(false);
     const [directionValue, setDirectionValue] = React.useState('auto');
 
@@ -143,7 +140,7 @@ const RevisionDocumentacion = () => {
         },
         {
             name: 'Estado',
-            selector: 'estado',
+            selector: 'nom_ent',
             wrap: true,
             sortable: true
         },
@@ -172,62 +169,24 @@ const RevisionDocumentacion = () => {
             sortable: true
         },
         {
-            name: 'anios_experiencia',
+            name: 'Años de experiencia',
             selector: 'anios_experiencia',
             wrap: true,
             sortable: true
         },
         {
-            name: 'Accion',
-            cell: () => <button>Acción</button>,
+            name: 'Estatus',
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
         },
     ]
 
-    const findWord = (input) => {
-        /* se previene los nulos */
-        // const searchWord = (input.target.value) ? input.target.value : '';
-        // if (searchWord) {
-        //     let resBusqueda = lodash.find([...candidatos], (arreglo) => {
-        //         const { curp, nombres, apellido_paterno, apellido_materno,
-        //             estado, numero_telefonico_notificaciones, correo_electronico,
-        //             posicion_candidato, sexo, anios_experiencia, imc, altura, peso, municipio,
-        //             region
-        //         } = arreglo
-        //         return (
-        //             curp.toLowerCase().includes(searchWord) ||
-        //             nombres.toLowerCase().includes(searchWord) ||
-        //             apellido_paterno.toLowerCase().includes(searchWord) ||
-        //             apellido_materno.toLowerCase().includes(searchWord) ||
-        //             estado.toLowerCase().includes(searchWord) ||
-        //             numero_telefonico_notificaciones.toLowerCase().includes(searchWord) ||
-        //             correo_electronico.toLowerCase().includes(searchWord) ||
-        //             posicion_candidato.toLowerCase().includes(searchWord) ||
-        //             sexo.toLowerCase().includes(searchWord) ||
-        //             anios_experiencia.toLowerCase().includes(searchWord) ||
-        //             imc.toLowerCase().includes(searchWord) ||
-        //             altura.toLowerCase().includes(searchWord) ||
-        //             peso.toLowerCase().includes(searchWord) ||
-        //             municipio.toLowerCase().includes(searchWord) ||
-        //             region.toLowerCase().includes(searchWord)
-        //         )
-
-        //     })
-        // if (resBusqueda) {
-        //     setDatosTabla(resBusqueda)
-        //     setReload(true)
-        // }
-        // }
-    }
-
     const manejadorCambiosColumnas = state => {
         setSelectedRows(state.selectedRows);
     };
 
     const eliminarRegistros = () => {
-        /* TODO: eliminar registros */
         AlertExito('Registros eliminados');
     }
 
@@ -263,7 +222,7 @@ const RevisionDocumentacion = () => {
                         <div>
                             <input className='form-control px-5'
                                 placeholder='Buscar...'
-                                onChange={findWord}
+                            // onChange={findWord}
                             />
                         </div>
                     )

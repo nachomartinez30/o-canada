@@ -101,11 +101,6 @@ const Login = (props) => {
 
     const changeSection = (to) => {
         setIngreso(to)
-        /* TODO: si es registro, crea un insert e ingresa
-                si no, consulta y agrega al context
-        */
-
-        /* SI to=true => Registro*/
         if (to) {
             setState({
                 ...state,
