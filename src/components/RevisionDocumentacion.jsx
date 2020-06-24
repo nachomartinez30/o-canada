@@ -13,7 +13,7 @@ const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 
 const RevisionDocumentacion = () => {
-/* TODO: Acreditar revision de candidatos, terminar Searchbar */
+    /* TODO: Acreditar revision de candidatos, terminar Searchbar */
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
@@ -176,6 +176,20 @@ const RevisionDocumentacion = () => {
         },
         {
             name: 'Estatus',
+            selector: 'aprobado_regionles',
+            conditionalCellStyles: [
+                {
+                    when: row => row.aprobado_regionles === 'aprobado',
+                    style: {
+                        backgroundColor: '#0F921E',
+                        // fontSize: '20px',
+                        color: '#FFFF',
+                        '&:hover': {
+                            cursor: 'pointer',
+                        },
+                    },
+                }
+            ],
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
@@ -186,18 +200,28 @@ const RevisionDocumentacion = () => {
         setSelectedRows(state.selectedRows);
     };
 
-    const eliminarRegistros = () => {
-        AlertExito('Registros eliminados');
+    const aprobarRegistros = () => {
+        /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
+        
+        AlertExito('Registros Aprobados');
+    }
+    const desaprobarRegistros = () => {
+        /* ENVIO DE AXIOS PARA DESAPROBACION POR CADA CURP */
+        AlertExito('Registros Desaprobados');
     }
 
 
     const contextActions = React.useMemo(() => {
-        const handleDelete = () => {
-            AlertaSiguiente('se eliminaran los registros seleccionados', eliminarRegistros)
+        const handleAprobar = () => {
+            AlertaSiguiente('Se aprobarán los registros seleccionados', aprobarRegistros)
         };
+
+        const handleDesaprobar = () => {
+            AlertaSiguiente('Se desaprobarán los registros seleccionados', desaprobarRegistros)
+        }
         return <>
-            <button className='btn btn-success' key="acreditar" onClick={handleDelete}>Acreditar</button>
-            <button className='btn btn-danger' key="desacreditar" onClick={handleDelete}>Desacreditar</button>
+            <button className='btn btn-success' key="acreditar" onClick={handleAprobar}>Aprobar</button>
+            <button className='btn btn-danger' key="desacreditar" onClick={handleDesaprobar}>Desaprobar</button>
         </>
     }, [datosTabla, selectedRows, toggleCleared]);
 
