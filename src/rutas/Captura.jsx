@@ -216,8 +216,7 @@ const Captura = () => {
         if (
             !pasaporte_numero || !pasaporte_fecha_cad ||
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
-            !eta_visa_fecha_cad || !tipo_licencia || !licencia_fecha_cad ||
-            !pasaporte_archivo_fl || !eta_visa_archivo_fl
+            !eta_visa_fecha_cad || !pasaporte_archivo_fl || !eta_visa_archivo_fl
         ) {
             debugger
             msgFaltanCampos()
@@ -255,11 +254,15 @@ const Captura = () => {
         formData_eta_visa_archivo.append("file", archivos.eta_visa_archivo_fl[0]);
         formData_eta_visa_archivo.append("curp", infoBrigadista.curp);
         formData_eta_visa_archivo.append("name", infoBrigadista.documento_viajar_canada);
-        /* LICENCIA_MANEJO */
+
         const formData_licencia_manejo = new FormData();
-        formData_licencia_manejo.append("file", archivos.licencia_manejo_fl[0]);
-        formData_licencia_manejo.append("curp", infoBrigadista.curp);
-        formData_licencia_manejo.append("name", "licencia_manejo");
+
+        if (tiene_licencia === '1') {
+            /* LICENCIA_MANEJO */
+            formData_licencia_manejo.append("file", archivos.licencia_manejo_fl[0]);
+            formData_licencia_manejo.append("curp", infoBrigadista.curp);
+            formData_licencia_manejo.append("name", "licencia_manejo");
+        }
 
 
 
@@ -278,19 +281,23 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            const archivo_licencia_manejo = await axios.post(`${API_REQUEST}carga_archivo`, formData_licencia_manejo, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+            if (tiene_licencia === '1') {
+                const archivo_licencia_manejo = await axios.post(`${API_REQUEST}carga_archivo`, formData_licencia_manejo, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                if (archivo_licencia_manejo.status !== 200) {
+                    AlertError('Error', 'no se pudo cargar el archivo de licencia');
                 }
-            });
+            }
 
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
-                archivo_eta_visa_archivo.status === 200 &&
-                archivo_licencia_manejo.status === 200
+                archivo_eta_visa_archivo.status === 200
             ) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
