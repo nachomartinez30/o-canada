@@ -45,9 +45,12 @@ const RevisionDocumentacion = () => {
         setReload(false)
     }, [reload])
 
-    const mostrarDocumento = (documento) => {
-        setLinkDocumento(documento)
-        setShowPDF(true)
+    const mostrarDocumento = (documento, data) => {
+        const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
+        debugger
+        window.open(url, '_blank');
+        // setLinkDocumento(documento)
+        // setShowPDF(true)
     }
 
     const [loading, setLoading] = React.useState(false);
@@ -59,46 +62,46 @@ const RevisionDocumentacion = () => {
         <div className='py-5'>
             <Nav justify variant="pills" defaultActiveKey="">
                 <Nav.Item>
-                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes')}>carta_antecedentes</Nav.Link>
+                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes', data)}>carta_antecedentes</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico')}>cert_medico</Nav.Link>
+                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico', data)}>cert_medico</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico')}>cert_toxicologico</Nav.Link>
+                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico', data)}>cert_toxicologico</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA')}>eTA</Nav.Link>
+                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA', data)}>eTA</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="fotografia" onClick={() => mostrarDocumento('fotografia')}>fotografia</Nav.Link>
+                    <Nav.Link eventKey="fotografia" onClick={() => mostrarDocumento('fotografia', data)}>fotografia</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo')}>licencia_manejo</Nav.Link>
+                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo', data)}>licencia_manejo</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file')}>l_280_file</Nav.Link>
+                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file', data)}>l_280_file</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo')}>pasaporte_archivo</Nav.Link>
+                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo', data)}>pasaporte_archivo</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100')}>sci_smi_100</Nav.Link>
+                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100', data)}>sci_smi_100</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200')}>sci_smi_200</Nav.Link>
+                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200', data)}>sci_smi_200</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130')}>s_130</Nav.Link>
+                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130', data)}>s_130</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190')}>s_190</Nav.Link>
+                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190', data)}>s_190</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file')}>s_290_file</Nav.Link>
+                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file', data)}>s_290_file</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl')}>toefl</Nav.Link>
+                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>toefl</Nav.Link>
                 </Nav.Item>
             </Nav>
             {showPDF &&
