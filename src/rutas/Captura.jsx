@@ -219,13 +219,14 @@ const Captura = () => {
             !eta_visa_fecha_cad || !tipo_licencia || !licencia_fecha_cad ||
             !pasaporte_archivo_fl || !eta_visa_archivo_fl
         ) {
-
+            debugger
             msgFaltanCampos()
             return
         }
 
         if (tiene_licencia === '1' && (!tipo_licencia || !licencia_fecha_cad || !licencia_manejo_fl)) {
             /* LIMPIEZA DE DATOS */
+            debugger
             msgFaltanCampos()
             return
         }

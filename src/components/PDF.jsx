@@ -231,7 +231,7 @@ const PDF = (props) => {
                         <Image
                             style={styles.imageTop}
                             src={logo_conafor}
-                        
+
                         />
                     </View>
                     <View style={styles.sectionTitle} debug={false}>
@@ -265,7 +265,7 @@ const PDF = (props) => {
                     <View style={styles.sectionRequisitosNum} debug={false}>
                         <Text style={styles.RequisitosInfo}>1.</Text>
                         {/* <Text style={styles.RequisitosInfo}>2.</Text> */}
-                        <Text style={styles.RequisitosInfo}>3.</Text>
+                        <Text style={styles.RequisitosInfo}>2.</Text>
                         <Text style={styles.RequisitosInfo}>4.1</Text>
                         <Text style={styles.RequisitosInfo}>4.2</Text>
                         <Text style={styles.RequisitosInfo}>5.1</Text>
@@ -304,7 +304,7 @@ const PDF = (props) => {
                         <Text style={[styles.RequisitosInfo, (sections.conocimiento_y_experiencia_en_incendios) ? aprobadoColor : reprobadoColor]}>{(sections.conocimiento_y_experiencia_en_incendios) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.buena_conducta) ? aprobadoColor : reprobadoColor]}>{(sections.buena_conducta) ? 'Aprobado' : 'No Aprobado'}</Text>
                         {/*<Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>*/}
-                        <Text style={[styles.RequisitosInfo]}>{idioma}</Text>
+                        <Text style={[styles.RequisitosInfo, (idioma === 'Aprobado') ? aprobadoColor : null]}>{idioma}</Text>
                         <Text style={[styles.RequisitosInfo, (sections.liderazgo) ? aprobadoColor : reprobadoColor]}>{(sections.liderazgo) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (state.opera_autonoma_gps) ? aprobadoColor : reprobadoColor]}>{(state.opera_autonoma_gps) ? 'Aprobado' : 'No Aprobado'}</Text>
                         <Text style={[styles.RequisitosInfo, (state.opera_autonoma_mark3) ? aprobadoColor : reprobadoColor]}>{(state.opera_autonoma_mark3) ? 'Aprobado' : 'No Aprobado'}</Text>
