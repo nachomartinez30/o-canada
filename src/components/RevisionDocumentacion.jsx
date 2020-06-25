@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import lodash from 'lodash'
 import { ButtonGroup, Button, Nav } from 'react-bootstrap'
 import axios from 'axios'
@@ -22,7 +22,7 @@ const RevisionDocumentacion = () => {
     const [selectedRows, setSelectedRows] = useState([]);
     const [linkDocumento, setLinkDocumento] = useState('carta_antecedentes')
 
-    const [toggleCleared, setToggleCleared] = React.useState(false);
+    const [toggleCleared, setToggleCleared] = useState(false);
 
     /* Edicion de la tabla */
     const getCandidatos = async () => {
@@ -181,7 +181,18 @@ const RevisionDocumentacion = () => {
                 {
                     when: row => row.aprobado_regionles === 'aprobado',
                     style: {
-                        backgroundColor: '#0F921E',
+                        backgroundColor: '#237819',
+                        // fontSize: '20px',
+                        color: '#FFFF',
+                        '&:hover': {
+                            cursor: 'pointer',
+                        },
+                    },
+                },
+                {
+                    when: row => row.aprobado_regionles === 'desaprobado',
+                    style: {
+                        backgroundColor: '#A01F3F',
                         // fontSize: '20px',
                         color: '#FFFF',
                         '&:hover': {
@@ -200,18 +211,43 @@ const RevisionDocumentacion = () => {
         setSelectedRows(state.selectedRows);
     };
 
-    const aprobarRegistros = () => {
-        /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
-        
-        AlertExito('Registros Aprobados');
+    const aprobarRegistros = async () => {
+        const url = `${API_REQUEST}aprobar_cand_regionales`
+        try {
+            /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
+            const aprobacionCandidatos = await axios.post(url, { data: selectedRows })
+
+            if (aprobacionCandidatos.status === 200) {
+                setSelectedRows([])
+                setToggleCleared(!toggleCleared);
+                setReload(true)
+                AlertExito('Registros Aprobados');
+            }
+        } catch (error) {
+            AlertError('Error', error);
+        }
     }
-    const desaprobarRegistros = () => {
+    const desaprobarRegistros = async () => {
         /* ENVIO DE AXIOS PARA DESAPROBACION POR CADA CURP */
+        const url = `${API_REQUEST}desaprobar_cand_regionales`
+        try {
+            /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
+            const aprobacionCandidatos = await axios.post(url, { data: selectedRows })
+
+            if (aprobacionCandidatos.status === 200) {
+                setSelectedRows([])
+                setToggleCleared(!toggleCleared);
+                setReload(true)
+                AlertExito('Registros desaprobados');
+            }
+        } catch (error) {
+            AlertError('Error', error);
+        }
         AlertExito('Registros Desaprobados');
     }
 
 
-    const contextActions = React.useMemo(() => {
+    const contextActions = useMemo(() => {
         const handleAprobar = () => {
             AlertaSiguiente('Se aprobarán los registros seleccionados', aprobarRegistros)
         };
@@ -220,8 +256,8 @@ const RevisionDocumentacion = () => {
             AlertaSiguiente('Se desaprobarán los registros seleccionados', desaprobarRegistros)
         }
         return <>
-            <button className='btn btn-success' key="acreditar" onClick={handleAprobar}>Aprobar</button>
-            <button className='btn btn-danger' key="desacreditar" onClick={handleDesaprobar}>Desaprobar</button>
+            <button className='btn btn-success' key="aprobar" onClick={handleAprobar}>Aprobar</button>
+            <button className='btn btn-danger' key="desaprobar" onClick={handleDesaprobar}>Desaprobar</button>
         </>
     }, [datosTabla, selectedRows, toggleCleared]);
 
@@ -256,6 +292,7 @@ const RevisionDocumentacion = () => {
                 direction={directionValue}
                 selectableRows
                 selectableRowsHighlight
+                clearSelectedRows={toggleCleared}
                 onSelectedRowsChange={manejadorCambiosColumnas}
             />
         </div>

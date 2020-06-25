@@ -4,8 +4,7 @@ import ToMayus from '../helpers/ToMayus';
 import curpValida from '../helpers/curpValida';
 
 const Registro = (props) => {
-    /* TODO: revisar si CURP es correcta habiltar boton registrame */
-
+    
     const { enable, onClick, showTerminosCondiciones, state, setState } = props
     const [continuar, setContinuar] = useState(false)
 
