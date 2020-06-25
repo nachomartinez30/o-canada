@@ -18,7 +18,9 @@ import Login from '../components/Login';
 import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
-/* TODO: */
+/* TODO: 
+    modificar fuente CURP incorrecta
+*/
 
 const Captura = () => {
 
