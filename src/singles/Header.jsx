@@ -82,7 +82,7 @@ const Header = () => {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setMostrarMesaAyuda(false)}>
+                        <Button variant="danger" onClick={() => setMostrarMesaAyuda(false)}>
                             Cerrar
                         </Button>
                     </Modal.Footer>
