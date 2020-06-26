@@ -50,8 +50,8 @@ const Header = () => {
                     />
                 </div>
             </nav>
-            <div>
-                <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)}>
+            <div className="text-right">
+                <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)} className="ayudaStyle">
                     Ayuda <BsFillQuestionSquareFill />
                 </Button>
 
@@ -82,7 +82,7 @@ const Header = () => {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="danger" onClick={() => setMostrarMesaAyuda(false)}>
+                        <Button className="newDanger" variant="danger" onClick={() => setMostrarMesaAyuda(false)}>
                             Cerrar
                         </Button>
                     </Modal.Footer>

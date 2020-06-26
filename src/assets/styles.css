@@ -114,6 +114,9 @@
 .center-text {
   text-align: center;
 }
+.right-text {
+  text-align: center;
+}
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 80%;
@@ -187,6 +190,24 @@
   color: #a01f3f;
   font-weight: 600;
   text-decoration: none;
+}
+.ayudaStyle{
+  margin-right: .5em;
+  margin-bottom: .5em;
+  background-color: #a01f3f;
+  border-color: #a01f3f;
+}
+.ayudaStyle:hover, .ayudaStyle:active, .ayudaStyle:focus{
+  background-color: #741e33!important;
+  border-color: #741e33!important;
+}
+.newDanger{
+  background-color: #a01f3f;
+  border-color: #a01f3f;
+}
+.newDanger:hover, .newDanger:active, .newDanger:focus{
+  background-color: #741e33!important;
+  border-color: #741e33!important;
 }
 /* CLASE LOGIN */
 
