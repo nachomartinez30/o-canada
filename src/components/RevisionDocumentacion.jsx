@@ -4,7 +4,7 @@ import { ButtonGroup, Button, Nav } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../singles/AlertError'
 import DataTable from 'react-data-table-component'
-import PDFViewer from 'pdf-viewer-reactjs'
+// import PDFViewer from 'pdf-viewer-reactjs'
 import AlertaSiguiente from "../singles/AlertaSiguiente";
 import AlertExito from "../singles/AlertExito";
 
@@ -104,14 +104,14 @@ const RevisionDocumentacion = () => {
                     <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>toefl</Nav.Link>
                 </Nav.Item>
             </Nav>
-            {showPDF &&
+            {/* {showPDF &&
                 <PDFViewer
                     navbarOnTop
                     document={{
                         url: `${URL_documentos}/${data.curp}/${linkDocumento}.pdf`,
                     }}
                 />
-            }
+            } */}
         </div>
     );
 
