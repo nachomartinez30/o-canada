@@ -4,14 +4,14 @@ import sessionContext from "../context/session/sessionContext";
 import LoginUsers from '../singles/LoginUsers';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
-import Dashboard from '../components/Dashboard';
+import Dashboard from '../components/administracion/Dashboard';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 const Regionales = () => {
     const sessContext = useContext(sessionContext)
 
-    // const [user, setUser] = useState(sessContext.session.user)
-    const [user, setUser] = useState(true)
+    const [user, setUser] = useState(sessContext.session.user)
+    // const [user, setUser] = useState(false)
     
 
     const [toSend, setToSend] = useState({
