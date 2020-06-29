@@ -162,6 +162,7 @@ const S1 = (props) => {
                     onKeyPressCapture={ToMayus}
                     onBlur={curpValida}
                     placeholder='Ingrese CURP...'
+                    
                 />
             </div>
             {/* CURP File */}

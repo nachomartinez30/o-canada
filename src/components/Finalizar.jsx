@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PDF from './PDF'
+import moduleName from 'module'
+import { GrDocumentPdf } from 'react-icons/gr';
+import { IconContext } from "react-icons";
 import candidatoContext from "./../context/candidato/candidatoContext";
 
 
@@ -321,11 +324,14 @@ const Finalizar = (props) => {
                 }
                 <div className='py-3' style={{ textAlign: 'right' }}>
                     <button
-                        className='btn btn-success  py-3'
+                        className='btn btn-success'
                         onClick={mostrarPDF}
                     >
                         Obtener Constancia
                     </button>
+                    {/* <IconContext.Provider value={{ color: "blue", size: '2em' }}>
+                        <GrDocumentPdf />
+                    </IconContext.Provider> */}
                 </div>
             </div>
             {
