@@ -47,7 +47,7 @@ const RevisionDocumentacion = () => {
 
     const mostrarDocumento = (documento, data) => {
         const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
-        debugger
+        
         window.open(url, '_blank');
         // setLinkDocumento(documento)
         // setShowPDF(true)

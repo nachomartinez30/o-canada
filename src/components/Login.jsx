@@ -89,7 +89,7 @@ const Login = (props) => {
             }
         } catch (error) {
             AlertError('Error', error)
-            debugger
+            
             if (typeof error.response !== 'undefined') {
                 if (error.response.status === 404) {
                     AlertError('Error', error.response.data.msg)
