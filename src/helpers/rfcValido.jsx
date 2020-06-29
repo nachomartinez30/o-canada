@@ -34,7 +34,7 @@ const rfcValido = (rfc, aceptarGenerico = true) => {
     else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
         return false;
 
-    debugger
+    
     return rfcSinDigito + digitoVerificador;
 }
 
