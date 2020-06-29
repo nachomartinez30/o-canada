@@ -24,6 +24,7 @@ const S1 = (props) => {
     const [enter, setEnter] = useState(false)
 
     const [rfcCorrecto, setRfcCorrecto] = useState(false)
+    const [curpCorrecto, setCurpCorrecto] = useState(false)
 
 
     useEffect(() => {
@@ -162,7 +163,8 @@ const S1 = (props) => {
                     onKeyPressCapture={ToMayus}
                     onBlur={curpValida}
                     placeholder='Ingrese CURP...'
-                    
+                    setCorrect={setCurpCorrecto}
+                    disabled
                 />
             </div>
             {/* CURP File */}

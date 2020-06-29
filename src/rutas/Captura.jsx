@@ -135,7 +135,7 @@ const Captura = () => {
 
         /* VALIDACION RFC */
         const rfcToCheck = rfcValido(rfc);
-        if (rfcToCheck === rfc) {
+        if (rfcToCheck !== rfc) {
             AlertError('Error', 'El RFC esta mal estructurado')
             return
         }
@@ -230,14 +230,14 @@ const Captura = () => {
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
             !eta_visa_fecha_cad || !pasaporte_archivo_fl || !eta_visa_archivo_fl
         ) {
-            debugger
+            
             msgFaltanCampos()
             return
         }
 
         if (tiene_licencia === '1' && (!tipo_licencia || !licencia_fecha_cad || !licencia_manejo_fl)) {
             /* LIMPIEZA DE DATOS */
-            debugger
+            
             msgFaltanCampos()
             return
         }
