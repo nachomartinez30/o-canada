@@ -57,14 +57,14 @@ const TerminosAviso = ({ aceptarTerminos, setAceptarTerminos, sendTerminos, setS
                 <div style={{ textAlign: 'right' }}>
                     <button
                         onClick={sendTerminos}
-                        className='btn btn-info py-3 px-3'
+                    className='btn btn-info py-3 px-3 btnSizeFree'
                     >
                         Continuar
                 </button>
                 </div>
             }
             <button
-                className='btn btn-danger py-3 px-3'
+                className='btn btn-danger py-3 px-3 btnSizeFree'
                 onClick={regresar}
             >Regresar</button>
         </div>

@@ -217,6 +217,9 @@
 .colorInst .close{
   color: #fff;
 }
+.btnSizeFree{
+  height: auto!important;
+}
 /* CLASE LOGIN */
 
 /*--Trabajo en equipo CSS--*/

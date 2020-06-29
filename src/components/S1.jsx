@@ -179,7 +179,7 @@ const S1 = (props) => {
 
             <div className='col-12 col-md-2 pt-4' style={{ alignItems: 'center', display: 'flex' }}>
                 <a
-                    className="btn btn-danger py-2 px-4"
+                    className="btn btn-danger py-2 px-4 btnSizeFree"
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://www.gob.mx/curp/"
