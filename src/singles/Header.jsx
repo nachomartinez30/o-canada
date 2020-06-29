@@ -52,12 +52,12 @@ const Header = () => {
             </nav>
             <div className="text-right">
                 <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)} className="ayudaStyle">
-                    Ayuda <BsFillQuestionSquareFill />
+                    ¿Necesitas ayuda? <BsFillQuestionSquareFill />
                 </Button>
 
                 {/* DATOS MESA DE AYUDA */}
                 <Modal show={mostrarMesaAyuda} onHide={() => setMostrarMesaAyuda(false)}>
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton className="colorInst">
                         <Modal.Title>Asistencia</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -71,6 +71,7 @@ const Header = () => {
                                 <b>(33)3777-7000</b> extensión <b>4505</b>.
                         </p>
                         </div>
+                        <hr/>
                         <div className='px-5'>
                             <p>
                                 <IconContext.Provider value={{ size: "2em" }}>

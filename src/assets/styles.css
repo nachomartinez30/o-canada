@@ -209,6 +209,13 @@
   background-color: #741e33!important;
   border-color: #741e33!important;
 }
+.colorInst{
+  background-color: #a01f3f;
+  color: #fff;
+}
+.colorInst .close{
+  color: #fff;
+}
 /* CLASE LOGIN */
 
 /*--Trabajo en equipo CSS--*/
