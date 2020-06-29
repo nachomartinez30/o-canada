@@ -4,16 +4,26 @@ import SideBar from '../SideBar';
 import RevisionDocumentacion from '../regionales/RevisionDocumentacion';
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';
+import Revision from '../../rutas/Revision';
 
 
 
 
 
-const Dashboard = () => {
+
+const Dashboard = ({ userPorfile}) => {
     const sessContext = useContext(sessionContext)
-    const [toggled, setToggled] = useState(true)
+    const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     
 
+    const [showSection, setShowSection] = useState({
+        'regionales': false,
+        'estatales': false,
+        'mesa_ayuda': false,
+        'manifiesto': false,
+    })
+   
+    const [toggled, setToggled] = useState(true)
 
     const handleToggle = () => {
         setToggled(!toggled)
@@ -21,10 +31,14 @@ const Dashboard = () => {
 
 
     return (
-
         <div class={`d-flex ${(toggled) ? null : 'toggled'}`} id="wrapper">
             {/* SIDEBAR */}
-            <SideBar title={'Regionales'} />
+            <SideBar
+                showSection={showSection}
+                setShowSection={setShowSection}
+                title={'Secciones'}
+                porfileSections={userPorfile}
+            />
             {/* CONTENIDO DASHBOARD*/}
             <div id="page-content-wrapper">
                 <label className="switch">
@@ -32,7 +46,11 @@ const Dashboard = () => {
                     <div className="slider"></div>
                 </label>
                 <div className="container-fluid">
-                    <RevisionDocumentacion />
+                    {showSection.regionales && <RevisionDocumentacion />}
+                    {/* {showSection.estatales && } */}
+                    {showSection.mesa_ayuda && <Revision />}
+                    {/* {showSection.manifiesto && } */}
+
                 </div>
             </div>
         </div>

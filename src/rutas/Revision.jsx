@@ -10,6 +10,7 @@ import S7 from '../components/S7';
 import S8 from '../components/S8';
 import Finalizar from '../components/Finalizar';
 import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 const API_REQUEST = ''
 
@@ -767,7 +768,13 @@ const Revision = () => {
 
     return (
         <div className='container'>
-            {secciones.s1.visible &&
+            {secciones.s1.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S1</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>Candidato menor de edad</li>
+                    </ul>
+                </Alert>
                 <S1
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -775,9 +782,19 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
 
-            {secciones.s2.visible &&
+            {secciones.s2.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S2</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>Carta de antecedentes mayor a 2 meses</li>
+                        <li>Pasaporte vence en menos de 8 meses</li>
+                        <li>Eta/visa vence en menos de 8 meses</li>
+                    </ul>
+
+                </Alert>
                 <S2
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -785,9 +802,20 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {/* S2 y 3 estan cambiados en hoja de requerimientos */}
-            {secciones.s3.visible &&
+
+            {secciones.s3.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S3</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>IMC mayo 30</li>
+                        <li>Certificado toxicológico excede los 15 dias</li>
+                        <li>Certificado médico excede 1 mes</li>
+                        <li>Problemas de salud (cualquier variable si)</li>
+                    </ul>
+
+                </Alert>
                 <S3
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -795,8 +823,16 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {secciones.s4.visible &&
+            {secciones.s4.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S4</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>No aprobo examen smi_100</li>
+                    </ul>
+
+                </Alert>
                 <S4
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -804,8 +840,16 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {secciones.s5.visible &&
+            {secciones.s5.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S5</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>No aprobo examen si_190</li>
+                    </ul>
+
+                </Alert>
                 <S5
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -813,8 +857,17 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {secciones.s6.visible &&
+            {secciones.s6.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S6</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>No domina GPS</li>
+                        <li>No domina Motobomba Mark 3</li>
+                    </ul>
+
+                </Alert>
                 <S6
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -822,8 +875,17 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {secciones.s7.visible &&
+            {secciones.s7.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S7</h1><b>Validaciones:</b>
+                    <ul>
+                        <li>Carta de antecedentes mayor a 2 meses</li>
+                        <li>No cuenta con equipo completo</li>
+                    </ul>
+
+                </Alert>
                 <S7
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -831,8 +893,16 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
-            {secciones.s8.visible &&
+            {secciones.s8.visible && <React.Fragment>
+                <Alert variant='warning'>
+                    <h1>S8</h1><b>OBSERVACIONES:</b>
+                    <ul>
+                        <li><b>Tecnico y jefe de brigada SOLO presenta variables de idioma (TEFL/TOEIC)</b></li>
+                    </ul>
+
+                </Alert>
                 <S8
                     state={infoBrigadista}
                     setState={setInfoBrigadista}
@@ -840,6 +910,7 @@ const Revision = () => {
                     files={archivos}
                     setStateFiles={setArchivos}
                 />
+            </React.Fragment>
             }
             {/* {rechazo.rechazo && <Finalizar />} */}
             {rechazo.rechazo && <Finalizar state={infoBrigadista} />}
