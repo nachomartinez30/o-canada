@@ -19,7 +19,8 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO: 
-    modificar fuente CURP incorrecta
+    -> modificar fuente CURP incorrecta
+    -> creacion plantilla mesa de ayuda
 */
 
 const Captura = () => {
