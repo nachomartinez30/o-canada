@@ -42,6 +42,7 @@ const Login = (props) => {
                     }
                 })
                 /* mostrar secciones */
+
                 setSecciones({
                     ...secciones,
                     login: { status: 'completo', visible: false },
@@ -67,6 +68,7 @@ const Login = (props) => {
 
             if (respuesta.status === 200) {
                 /* setContext */
+
                 setArchivos({
                     ...archivos,
                     fotografia_fl: [url_poto]
@@ -87,6 +89,7 @@ const Login = (props) => {
             }
         } catch (error) {
             AlertError('Error', error)
+            debugger
             if (typeof error.response !== 'undefined') {
                 if (error.response.status === 404) {
                     AlertError('Error', error.response.data.msg)
@@ -98,11 +101,6 @@ const Login = (props) => {
 
     const changeSection = (to) => {
         setIngreso(to)
-        /* TODO: si es registro, crea un insert e ingresa
-                si no, consulta y agrega al context
-        */
-
-        /* SI to=true => Registro*/
         if (to) {
             setState({
                 ...state,

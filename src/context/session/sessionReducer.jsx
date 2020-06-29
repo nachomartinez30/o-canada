@@ -1,12 +1,12 @@
-import { AGREGAR_REGISTRO } from '../../types'
+import { NEW_SESSION } from '../../types'
 
 export default (estado, accion) => {
     /* toma un state y decide que accion le corresponde */
     switch (accion.tipo) {
-        case AGREGAR_REGISTRO:
+        case NEW_SESSION:
             return {
                 ...estado,
-                candidato: accion.payload
+                session: accion.payload
             }
         default:
             return estado;

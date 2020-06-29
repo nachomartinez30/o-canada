@@ -1,1 +1,2 @@
 export const AGREGAR_REGISTRO = 'AGREGAR_REGISTRO';
+export const NEW_SESSION = 'NEW_SESSION';

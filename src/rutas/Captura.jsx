@@ -13,6 +13,7 @@ import Finalizar from '../components/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/Login';
+import rfcValido from '../helpers/rfcValido'
 /* CONTEXT */
 
 import candidatoContext from "./../context/candidato/candidatoContext";
@@ -131,6 +132,14 @@ const Captura = () => {
             msgFaltanCampos()
             return
         }
+
+        /* VALIDACION RFC */
+        const rfcToCheck = rfcValido(rfc);
+        if (rfcToCheck === rfc) {
+            AlertError('Error', 'El RFC esta mal estructurado')
+            return
+        }
+
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({
             ...candidatos.candidatos,

@@ -1,4 +1,5 @@
 const rfcValido = (rfc, aceptarGenerico = true) => {
+    
     const re = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
     var validado = rfc.match(re);
 
@@ -32,6 +33,8 @@ const rfcValido = (rfc, aceptarGenerico = true) => {
         return false;
     else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
         return false;
+
+    debugger
     return rfcSinDigito + digitoVerificador;
 }
 

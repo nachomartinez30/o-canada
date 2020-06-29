@@ -3,7 +3,6 @@ import AlertaSiguiente from '../singles/AlertaSiguiente'
 import SelectSiNo from '../singles/SelectSiNo'
 
 const S6 = (props) => {
-    /* TODO: agregar a esta seccion la pregunta de primero auxilios */
     const { state, setState, checkData, setStateFiles, files } = props
 
     const setInfo = (input) => {
