@@ -60,7 +60,7 @@ const Finalizar = (props) => {
                 break;
 
             case 'eta/visa vence en menos de 8 meses':
-                setMensaje("No es posible continuar ya que no cumple con la vigencia de 8 meses de eTA/VISA.")
+                setMensaje("No es posible continuar ya que no cumple con la vigencia de 8 meses de eTA/VISA")
                 setSecciones({
                     pasaporte_vigente: true,
                     documento_para_viajar_a_canad: false,
@@ -140,7 +140,7 @@ const Finalizar = (props) => {
                 break;
 
             case 'problemas de salud':
-                setMensaje("No es posible continuar con el proceso debido a que por el resultado de su autoevaluación.        No cumple con los requisitos mínimos para realizar la prueba de la mochila nivel arduo.")
+                setMensaje("No es posible continuar con el proceso debido a que por el resultado de su autoevaluación. No cumple con los requisitos mínimos para realizar la prueba de la mochila nivel arduo")
                 setSecciones({
                     pasaporte_vigente: true,
                     documento_para_viajar_a_canad: true,
@@ -180,7 +180,7 @@ const Finalizar = (props) => {
                 break;
 
             case 'no aprobo examen si_190':
-                setMensaje("No es posible continuar con el proceso debido a que no aprobó con el 70% minimo del examen de conocimientos del S-190, S-130.")
+                setMensaje("No es posible continuar con el proceso debido a que no aprobó con el 70% minimo del examen de conocimientos del S-190, S-130")
                 setSecciones({
                     pasaporte_vigente: true,
                     documento_para_viajar_a_canad: true,
@@ -275,7 +275,6 @@ const Finalizar = (props) => {
                 setPuesto('Combatiente');
                 break;
 
-
             case 'jefe_de_cuadrilla':
                 setPuesto('Jefe de cuadrilla');
                 break;
@@ -311,7 +310,8 @@ const Finalizar = (props) => {
             <div className='container pb-4'>
                 {(mensaje !== 'finalizó')
                     ?
-                    <h1>{mensaje}</h1> :
+                    <h1>{mensaje}</h1> 
+                    :
                     <div style={{ textAlign: 'center' }}>
                         <h1>Finalizó su proceso de registro</h1>
                         <h3>¡¡¡ Prepárese para atender la convocatoria para realizar las pruebas físicas y de habilidades!!!</h3>
@@ -340,6 +340,7 @@ const Finalizar = (props) => {
                     puesto={puesto}
                     photo={photo}
                     state={state}
+                    mensaje={mensaje}
                 />
             }
         </>

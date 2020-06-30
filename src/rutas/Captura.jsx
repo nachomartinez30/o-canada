@@ -213,7 +213,7 @@ const Captura = () => {
         /*  mostrar siguiente seccion*/
     }
     const checkDataS2 = async () => {
-        const regex = /[A-Z]{1}[0-9]{8}/;
+        const regex = /[A-Z]{1}[0-9]{8}$/;
         const {
             pasaporte_numero,
             pasaporte_fecha_cad,
