@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import curpValida from '../helpers/curpValida';
-import { Alert } from 'react-bootstrap';
 
 const InputCURP = (props) => {
 
