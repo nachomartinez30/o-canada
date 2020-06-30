@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import curpValida from '../helpers/curpValida';
+import { Alert } from 'react-bootstrap';
 
 const InputCURP = (props) => {
 
@@ -50,11 +51,12 @@ const InputCURP = (props) => {
                 type='text'
                 disabled={disabled}
             />
-            {valido === false &&
-                <div className="col-sm-4">
+            {(valido === false) &&
+                <div className="col-12" style={{ backgroundColor: '#FFF3CD' }}>
                     <small className="text-danger">
                         La CURP no es valida.
-                </small>
+                    </small>
+
                 </div>
             }
         </React.Fragment>
