@@ -179,10 +179,10 @@ const RevisionDocumentacion = () => {
         },
         {
             name: 'Estatus',
-            selector: 'aprobado_regionles',
+            selector: 'aprobado_regionales',
             conditionalCellStyles: [
                 {
-                    when: row => row.aprobado_regionles === 'aprobado',
+                    when: row => row.aprobado_regionales === 'aprobado',
                     style: {
                         backgroundColor: '#237819',
                         // fontSize: '20px',
@@ -193,7 +193,7 @@ const RevisionDocumentacion = () => {
                     },
                 },
                 {
-                    when: row => row.aprobado_regionles === 'desaprobado',
+                    when: row => row.aprobado_regionales === 'desaprobado',
                     style: {
                         backgroundColor: '#A01F3F',
                         // fontSize: '20px',

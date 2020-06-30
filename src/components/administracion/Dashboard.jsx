@@ -4,7 +4,8 @@ import SideBar from '../SideBar';
 import RevisionDocumentacion from '../regionales/RevisionDocumentacion';
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';
-import Revision from '../../rutas/Revision';
+
+import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
 
 
 
@@ -48,7 +49,7 @@ const Dashboard = ({ userPorfile}) => {
                 <div className="container-fluid">
                     {showSection.regionales && <RevisionDocumentacion />}
                     {/* {showSection.estatales && } */}
-                    {showSection.mesa_ayuda && <Revision />}
+                    {showSection.mesa_ayuda && <MesaAyuda />}
                     {/* {showSection.manifiesto && } */}
 
                 </div>

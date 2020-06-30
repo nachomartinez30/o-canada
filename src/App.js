@@ -7,17 +7,15 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/styles.css'
 import Header from './singles/Header';
 import Captura from './rutas/Captura';
-import Revision from './rutas/Revision';
 import Administracion from './rutas/Administracion';
 
 /* CONTEXT */
 import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
+import PDF from './components/PDF';
 
 
-
-
-function App() {
+const App = () => {
   return (
     <div>
       <CandidatoState>
@@ -29,8 +27,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Captura} />
               <Route exact path="/dashboard" component={Administracion} />
-              {/* <Route exact path="/revision" component={Revision} /> */}
-              {/* <Route exact path="/pdf" component={PDF} /> */}
+              <Route exact path="/pdf" component={PDF} />
             </Switch>
             {/* <Footer> */}
           </Router>
