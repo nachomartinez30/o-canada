@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     RequisitosColor: {
         color: '#256708',
     },
-    pageNumber: {
+    descText: {
         position: 'absolute',
         fontSize: 12,
         bottom: 30,
@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
         right: 0,
         textAlign: 'center',
         color: 'grey',
+        paddingLeft: '1cm',
+        paddingRight: '1cm',
     },
 });
 
@@ -319,10 +321,10 @@ const PDF = (props) => {
 
                     {/* NOTAS pie de pagina */}
                     {state.rechazo &&
-                        <Text style={styles.pageNumber}
-                            render={() => (`**El motivo de descalificación: ${mensaje}, por lo cual los elementos posteriores no fueron evaluados`)}
-                            fixed
-                        />
+                        <Text style={styles.descText}
+                            render={() => (`**Motivo de descalificación: ${mensaje}, por lo cual los elementos posteriores no fueron evaluados.`)}
+                            fixed>
+                        </Text>
                     }
                 </Page>
             </Document>
