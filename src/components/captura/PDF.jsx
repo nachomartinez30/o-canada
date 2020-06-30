@@ -257,8 +257,8 @@ const PDF = (props) => {
                         <Text style={styles.DatosInfo}>{state.apellido_materno.toLocaleUpperCase()}</Text>
                         <Text style={styles.DatosInfo}>{state.nombres.toLocaleUpperCase()}</Text>
                         <Text style={styles.DatosInfo}>{'CURP: ' + state.curp}</Text>
-                        <Text style={styles.DatosInfo}>{(state.peso) ? 'PESO: ' + state.peso + ' kg' : 'PESO'}</Text>
-                        <Text style={styles.DatosInfo}>{(state.altura) ? 'ALTURA: ' + state.altura + ' cm' : 'ALTURA'}</Text>
+                        <Text style={styles.DatosInfo}>{(state.peso) ? 'PESO: ' + state.peso + ' kg' : 'PESO: No presentado'}</Text>
+                        <Text style={styles.DatosInfo}>{(state.altura) ? 'ALTURA: ' + state.altura + ' cm' : 'ALTURA: No presentado'}</Text>
                         <Text style={styles.DatosInfo}>{'Puesto: ' + puesto}</Text>
                         <Text style={styles.DatosInfo}>{moment(state.fecha_nacimiento).format('DD-MMM-YYYY')}</Text>
                         <Text style={styles.DatosInfo}>{state.dependencia.toLocaleUpperCase()}</Text>
