@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     descText: {
         position: 'absolute',
         fontSize: 12,
-        bottom: 30,
+        bottom: '5.5cm',
         left: 0,
         right: 0,
         textAlign: 'center',
