@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import sessionContext from "../../context/session/sessionContext";
-import SideBar from '../SideBar';
+import SideBar from './SideBar';
 import RevisionDocumentacion from '../regionales/RevisionDocumentacion';
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';

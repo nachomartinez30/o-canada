@@ -12,7 +12,7 @@ import Administracion from './rutas/Administracion';
 /* CONTEXT */
 import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
-import PDF from './components/PDF';
+import PDF from './components/captura/PDF';
 
 
 const App = () => {

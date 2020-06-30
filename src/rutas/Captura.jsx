@@ -1,18 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react'
 import imagen_persona from '../assets/user.svg'
 import Swal from 'sweetalert2'
-import S1 from '../components/S1';
-import S3 from '../components/S3';
-import S2 from '../components/S2';
-import S4 from '../components/S4';
-import S5 from '../components/S5';
-import S6 from '../components/S6';
-import S7 from '../components/S7';
-import S8 from '../components/S8';
-import Finalizar from '../components/Finalizar';
+import S1 from '../components/captura/S1';
+import S3 from '../components/captura/S3';
+import S2 from '../components/captura/S2';
+import S4 from '../components/captura/S4';
+import S5 from '../components/captura/S5';
+import S6 from '../components/captura/S6';
+import S7 from '../components/captura/S7';
+import S8 from '../components/captura/S8';
+import Finalizar from '../components/captura/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
-import Login from '../components/Login';
+import Login from '../components/captura/Login';
 import rfcValido from '../helpers/rfcValido'
 /* CONTEXT */
 

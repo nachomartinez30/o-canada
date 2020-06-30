@@ -1,7 +1,7 @@
 import React from 'react'
-import SelectSiNo from '../singles/SelectSiNo'
-import AlertaSiguiente from '../singles/AlertaSiguiente'
-import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
+import SelectSiNo from '../../singles/SelectSiNo'
+import AlertaSiguiente from '../../singles/AlertaSiguiente'
+import diferenciaFechasDias from '../../helpers/diferenciaFechaDias'
 
 const S7 = (props) => {
     const { state, setState, checkData, setStateFiles, files } = props

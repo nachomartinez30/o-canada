@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
-import Registro from './Registro';
+import Registro from '../captura/Registro';
 import Ingreso from './Ingreso';
 import TerminosAviso from './TerminosAviso';
 /* CONTEXT */
-import candidatoContext from "./../context/candidato/candidatoContext";
+import candidatoContext from "../../context/candidato/candidatoContext";
 import axios from 'axios';
-import AlertError from '../singles/AlertError';
-import AlertaSiguiente from '../singles/AlertaSiguiente';
+import AlertError from '../../singles/AlertError';
+import AlertaSiguiente from '../../singles/AlertaSiguiente';
 import { ResponsiveEmbed } from 'react-bootstrap';
 
 const Login = (props) => {
@@ -89,7 +89,7 @@ const Login = (props) => {
             }
         } catch (error) {
             AlertError('Error', error)
-            
+
             if (typeof error.response !== 'undefined') {
                 if (error.response.status === 404) {
                     AlertError('Error', error.response.data.msg)

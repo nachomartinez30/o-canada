@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
-import S1 from '../S1';
-import S3 from '../S3';
-import S2 from '../S2';
-import S4 from '../S4';
-import S5 from '../S5';
-import S6 from '../S6';
-import S7 from '../S7';
-import S8 from '../S8';
-import Finalizar from '../Finalizar';
+import S1 from '../captura/S1';
+import S3 from '../captura/S3';
+import S2 from '../captura/S2';
+import S4 from '../captura/S4';
+import S5 from '../captura/S5';
+import S6 from '../captura/S6';
+import S7 from '../captura/S7';
+import S8 from '../captura/S8';
+import Finalizar from '../captura/Finalizar';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
 

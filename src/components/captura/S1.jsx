@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import ToMayus from "../helpers/ToMayus";
-import curpValida from "../helpers/curpValida";
-import InputCURP from "../singles/InputCURP";
-import InputRFC from "../singles/InputRFC";
+import ToMayus from "../../helpers/ToMayus";
+import curpValida from "../../helpers/curpValida";
+import InputCURP from "../../singles/InputCURP";
+import InputRFC from "../../singles/InputRFC";
 import moment from "moment";
-import extractInfoCurp from '../helpers/extractInfoCurp';
-import diferenciaFechasAnios from '../helpers/diferenciaFechasAnios';
-import SelectEstados from '../singles/SelectEstados';
+import extractInfoCurp from '../../helpers/extractInfoCurp';
+import diferenciaFechasAnios from '../../helpers/diferenciaFechasAnios';
+import SelectEstados from '../../singles/SelectEstados';
 import axios from 'axios'
-import AlertError from '../singles/AlertError';
-import AlertaSiguiente from '../singles/AlertaSiguiente'
-import emailValid from '../helpers/emailValid';
-import InputNumber from '../singles/InputNumber';
+import AlertError from '../../singles/AlertError';
+import AlertaSiguiente from '../../singles/AlertaSiguiente'
+import emailValid from '../../helpers/emailValid';
+import InputNumber from '../../singles/InputNumber';
 
 
 const S1 = (props) => {

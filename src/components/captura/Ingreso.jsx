@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import InputCURP from '../singles/InputCURP';
-import ToMayus from '../helpers/ToMayus';
-import curpValida from '../helpers/curpValida';
+import InputCURP from '../../singles/InputCURP';
+import ToMayus from '../../helpers/ToMayus';
+import curpValida from '../../helpers/curpValida';
 
 const Ingreso = (props) => {
     const { enable, onClick, state, setState, checkLogin } = props

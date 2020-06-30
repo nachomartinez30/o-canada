@@ -1,9 +1,8 @@
 import React from 'react'
-import ToMayus from '../helpers/ToMayus'
-import SelectSexo from '../singles/SelectSexo'
-import AlertaSiguiente from '../singles/AlertaSiguiente'
-
-import diferenciaFechaDias from '../helpers/diferenciaFechaDias'
+import ToMayus from '../../helpers/ToMayus'
+import SelectSexo from '../../singles/SelectSexo'
+import AlertaSiguiente from '../../singles/AlertaSiguiente'
+import diferenciaFechaDias from '../../helpers/diferenciaFechaDias'
 
 const S3 = (props) => {
     const { state, setState, checkData, files, setStateFiles } = props

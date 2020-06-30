@@ -1,9 +1,9 @@
 import React from 'react'
-import AlertaSiguiente from '../singles/AlertaSiguiente'
-import diferenciaFechasMeses from '../helpers/diferenciaFechasMeses'
-import diferenciaFechasDias from '../helpers/diferenciaFechaDias'
-import SelectSiNo from '../singles/SelectSiNo'
-import ToMayus from '../helpers/ToMayus'
+import AlertaSiguiente from '../../singles/AlertaSiguiente'
+import diferenciaFechasMeses from '../../helpers/diferenciaFechasMeses'
+import diferenciaFechasDias from '../../helpers/diferenciaFechaDias'
+import SelectSiNo from '../../singles/SelectSiNo'
+import ToMayus from '../../helpers/ToMayus'
 
 const S2 = (props) => {
 
@@ -132,7 +132,7 @@ const S2 = (props) => {
                 <input
                     className="form-control myInput"
                     name='eta_visa_archivo'
-                    
+
                     type='file'
                     accept="application/pdf"
                     onChange={setInfo}
@@ -207,7 +207,7 @@ const S2 = (props) => {
                 />
             </div>
 
-            {state.tiene_licencia==='1' && <React.Fragment>
+            {state.tiene_licencia === '1' && <React.Fragment>
                 {/* Licencia de manejo */}
                 <div className='col-12 col-md-4'>
                     <label className="control-label pt-2">Licencia de manejo</label>

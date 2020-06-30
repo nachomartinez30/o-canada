@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import moment from 'moment'
 import { PDFViewer, Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
-import logo_conafor from '../assets/logo_cnf_2.png'
+import logo_conafor from '../../assets/logo_cnf_2.png'
 //import logo_conafor from '../assets/prueba.jpg'
 // Create styles cambio menor
 const styles = StyleSheet.create({
