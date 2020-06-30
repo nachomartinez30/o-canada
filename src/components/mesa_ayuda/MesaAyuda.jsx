@@ -789,7 +789,6 @@ const MesaAyuda = () => {
                 <Alert variant='warning'>
                     <h1>S2</h1><b>Validaciones:</b>
                     <ul>
-                        <li>Carta de antecedentes mayor a 2 meses</li>
                         <li>Pasaporte vence en menos de 8 meses</li>
                         <li>Eta/visa vence en menos de 8 meses</li>
                     </ul>
@@ -814,7 +813,6 @@ const MesaAyuda = () => {
                         <li>Certificado médico excede 1 mes</li>
                         <li>Problemas de salud (cualquier variable si)</li>
                     </ul>
-
                 </Alert>
                 <S3
                     state={infoBrigadista}

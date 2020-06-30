@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import curpValida from '../helpers/curpValida';
 
 const InputCURP = (props) => {
@@ -31,6 +31,12 @@ const InputCURP = (props) => {
         }
     }
 
+    useEffect(() => {
+        if (defaultValue === '') {
+            setValido('')
+        }
+    }, [defaultValue])
+
     const [valido, setValido] = useState('')
     const [claseValido, setClaseValido] = useState('')
 
@@ -50,11 +56,12 @@ const InputCURP = (props) => {
                 type='text'
                 disabled={disabled}
             />
-            {valido === false &&
-                <div className="col-sm-4">
+            {(valido === false) &&
+                <div className="col-12" style={{ backgroundColor: '#FFF3CD' }}>
                     <small className="text-danger">
                         La CURP no es valida.
-                </small>
+                    </small>
+
                 </div>
             }
         </React.Fragment>

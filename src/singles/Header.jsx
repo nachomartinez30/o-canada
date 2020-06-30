@@ -7,6 +7,7 @@ import { BsFillQuestionSquareFill } from "react-icons/bs";
 import { FcAssistant, FcVoicePresentation } from "react-icons/fc";
 import { Button, Modal } from 'react-bootstrap'
 import { IconContext } from 'react-icons/lib'
+import DatosAyuda from './DatosAyuda'
 
 const Header = () => {
     const [mostrarMesaAyuda, setMostrarMesaAyuda] = useState(false)
@@ -56,38 +57,10 @@ const Header = () => {
                 </Button>
 
                 {/* DATOS MESA DE AYUDA */}
-                <Modal show={mostrarMesaAyuda} onHide={() => setMostrarMesaAyuda(false)}>
-                    <Modal.Header closeButton className="colorInst">
-                        <Modal.Title>Asistencia</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className='px-5'>
-                            <p>
-                                <IconContext.Provider value={{ size: "2em" }}>
-                                    <FcAssistant />
-                                </IconContext.Provider>
-                                 Si tiene alguna <b>falla</b> respecto al <b>sistema</b>, puede comunicarse
-                                directamente a la Mesa de Ayuda marcando al teléfono
-                                <b>(33)3777-7000</b> extensión <b>4505</b>.
-                        </p>
-                        </div>
-                        <hr/>
-                        <div className='px-5'>
-                            <p>
-                                <IconContext.Provider value={{ size: "2em" }}>
-                                    <FcVoicePresentation />
-                                </IconContext.Provider>
-                                 Si tiene alguna duda respecto a <b>como capturar un campo</b> comuniquese directamente:
-                            </p>
-                        </div>
-
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button className="newDanger" variant="danger" onClick={() => setMostrarMesaAyuda(false)}>
-                            Cerrar
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                <DatosAyuda
+                    show={mostrarMesaAyuda}
+                    setShow={setMostrarMesaAyuda}
+                />
             </div>
         </>
     );

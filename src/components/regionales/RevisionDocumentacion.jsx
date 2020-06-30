@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import lodash from 'lodash'
-import { ButtonGroup, Button, Nav } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
-// import PDFViewer from 'pdf-viewer-reactjs'
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertExito from "../../singles/AlertExito";
 
@@ -20,7 +19,7 @@ const RevisionDocumentacion = () => {
     const [showPDF, setShowPDF] = useState(false)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
-    const [linkDocumento, setLinkDocumento] = useState('carta_antecedentes')
+
 
     const [toggleCleared, setToggleCleared] = useState(false);
 
@@ -47,14 +46,14 @@ const RevisionDocumentacion = () => {
 
     const mostrarDocumento = (documento, data) => {
         const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
-        
+
         window.open(url, '_blank');
         // setLinkDocumento(documento)
         // setShowPDF(true)
     }
 
-    const [loading, setLoading] = React.useState(false);
-    const [directionValue, setDirectionValue] = React.useState('auto');
+    const [loading, setLoading] = useState(false);
+    const [directionValue, setDirectionValue] = useState('auto');
 
     const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
