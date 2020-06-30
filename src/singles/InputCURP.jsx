@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import curpValida from '../helpers/curpValida';
 import { Alert } from 'react-bootstrap';
 
@@ -31,6 +31,12 @@ const InputCURP = (props) => {
             }
         }
     }
+
+    useEffect(() => {
+        if (defaultValue === '') {
+            setValido('')
+        }
+    }, [defaultValue])
 
     const [valido, setValido] = useState('')
     const [claseValido, setClaseValido] = useState('')
