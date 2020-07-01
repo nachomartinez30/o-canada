@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     },
     descText: {
         position: 'absolute',
+        fontWeight: 'bold',
         fontSize: 12,
         bottom: '5.5cm',
         left: 0,
@@ -320,11 +321,13 @@ const PDF = (props) => {
                     </View>
 
                     {/* NOTAS pie de pagina */}
-                    {state.rechazo &&
+                    {state.rechazo && <React.Fragment>
                         <Text style={styles.descText}
                             render={() => (`**Motivo de descalificación: ${mensaje}, por lo cual los elementos posteriores no fueron evaluados.`)}
-                            fixed>
+                            fixed
+                        >
                         </Text>
+                    </React.Fragment>
                     }
                 </Page>
             </Document>

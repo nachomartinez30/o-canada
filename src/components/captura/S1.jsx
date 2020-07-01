@@ -18,17 +18,20 @@ const S1 = (props) => {
 
     const { state, setState, checkData, files, setStateFiles } = props
     const [municipios, setMunicipios] = useState([])
-    const [correoValido, setCorreoValido] = useState()
-    const [correBenefValido, setCorreBenefValido] = useState()
     const [preview, setPreview] = useState('')
     const [enter, setEnter] = useState(false)
+    const [puedeContinuar, setPuedeContinuar] = useState(false)
 
-    const [rfcCorrecto, setRfcCorrecto] = useState(false)
+    /* validaciones */
+    const [correoValido, setCorreoValido] = useState()
+    const [correBenefValido, setCorreBenefValido] = useState()
     const [curpCorrecto, setCurpCorrecto] = useState(false)
+    const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
 
     useEffect(() => {
         fillInfoCurp()
+        setPuedeContinuar((correoValido && correBenefValido && rfcCorrecto) ? false : true);
         setEnter(true)
     }, [enter])
 
@@ -468,7 +471,7 @@ const S1 = (props) => {
             {/* BTN Continuar */}
             <div className='col-12 pt-5 btn-margin'>
                 <button
-                    disabled={(correoValido && correBenefValido && rfcCorrecto) ? false : true}
+                    // disabled={(correoValido && correBenefValido && rfcCorrecto) ? false : true}
                     className='btn btn-primary'
                     onClick={() => AlertaSiguiente("Si continúa, no será posible volver a esta seccion", checkData)}
                 >Continuar</button>

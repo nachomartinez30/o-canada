@@ -45,6 +45,7 @@ const InputRFC = (props) => {
                 placeholder={placeholder}
                 onKeyPressCapture={onKeyPressCapture}
                 onChange={onChange}
+                onChangeCapture={checkStructure}
                 onBlur={checkStructure}
                 name={name}
             />

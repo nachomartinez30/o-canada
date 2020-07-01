@@ -17,11 +17,12 @@ import rfcValido from '../helpers/rfcValido'
 /* CONTEXT */
 
 import candidatoContext from "./../context/candidato/candidatoContext";
+import emailValid from '../helpers/emailValid';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO: 
-    -> modificar fuente CURP incorrecta
-    -> creacion plantilla mesa de ayuda
+    -> mandar datos "beforeunload" en examenes
+    -> Mopdificar PDF salida mensaje rechazo negritas
 */
 
 const Captura = () => {
@@ -140,6 +141,15 @@ const Captura = () => {
             return
         }
 
+        /* validacion de los correos */
+        debugger
+        if (!emailValid(correo_electronico) || !emailValid(correo_beneficiario)) {
+            debugger
+            AlertError("Los correos estan mal estructurados");
+            return
+        }
+        debugger
+
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({
             ...candidatos.candidatos,
@@ -230,14 +240,14 @@ const Captura = () => {
             !documento_viajar_canada || !eta_visa_num || !eta_visa_fecha_exp ||
             !eta_visa_fecha_cad || !pasaporte_archivo_fl || !eta_visa_archivo_fl
         ) {
-            
+
             msgFaltanCampos()
             return
         }
 
         if (tiene_licencia === '1' && (!tipo_licencia || !licencia_fecha_cad || !licencia_manejo_fl)) {
             /* LIMPIEZA DE DATOS */
-            
+
             msgFaltanCampos()
             return
         }
