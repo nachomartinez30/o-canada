@@ -46,6 +46,7 @@ const S4 = (props) => {
 
     useEffect(() => {
         // exit early when we reach 0
+        window.onbeforeunload = () => terminarExamen
         if (!timeLeft) {
             terminarExamen();
         }
@@ -92,7 +93,7 @@ const S4 = (props) => {
         } catch (error) {
             AlertError('Error', error)
         }
-        console.log('envio de resultados');
+        // console.log('envio de resultados');
     }
     const handleClose = () => {
         Swal.fire({
@@ -176,8 +177,6 @@ const S4 = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
             {/* SCI/SMI 100 */}
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">SCI/SMI 100</label>
