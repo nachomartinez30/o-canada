@@ -422,7 +422,7 @@ const S3 = (props) => {
                     defaultValue={state.experiencia_personal_consejos}
                     onChange={setInfo}
                     onBlur={revisarFormulario}
-                    placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?'
+                    placeholder='¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría realizar la prueba de la mochila nivel arduo?'
                 >
                     <option value='' >---Seleccione---</option>
                     <option value={1}>Si</option>
