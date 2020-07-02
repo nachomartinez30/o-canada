@@ -431,7 +431,7 @@ const S1 = (props) => {
 
             {/* Telefono Beneficiario */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">Telefono del Beneficiario</label>
+                <label className="control-label pt-2">Teléfono del Beneficiario</label>
                 <InputNumber
                     className={`form-control ${(state.telefono_beneficiario) ? null : 'myInput'}`}
                     name='telefono_beneficiario'
@@ -440,7 +440,7 @@ const S1 = (props) => {
                     type='number'
                     value={state.telefono_beneficiario}
                     onChange={setInfo}
-                    placeholder='Ingrese Telefono del Beneficiario...'
+                    placeholder='Ingrese Teléfono del Beneficiario...'
                 />
             </div>
 
