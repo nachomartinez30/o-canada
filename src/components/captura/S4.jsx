@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import SelectSiNo from '../../singles/SelectSiNo'
 import ExSCI100 from './ExSCI100';
 import AlertaSiguiente from '../../singles/AlertaSiguiente'
@@ -7,15 +7,23 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';
 import moment from 'moment'
+/* CONTEXT */
+import candidatoContext from "../../context/candidato/candidatoContext";
 
 const S4 = (props) => {
+    const candidatos = useContext(candidatoContext);
+    const { curp } = candidatos.candidatos.infoBrigadista
+    /* TODO: -> revision de CURP en state SETEXAM RESP
+             -> beforeunload
+    */
+
     const { state, setState, checkData, files, setStateFiles } = props
 
     const [showExam, setShowExam] = useState(false)
 
     const [preguntas_smi_100, setPreguntas_smi_100] = useState(false)
     const [examResp, setExamResp] = useState({
-        curp: state.curp,
+        curp: curp,
         "1_asegurar_comunicacion": "x",
         "2_implementando_actividades": "x",
         "3_actividades_principales": "x",
@@ -44,7 +52,20 @@ const S4 = (props) => {
     // initialize timeLeft with the seconds prop
     const [timeLeft, setTimeLeft] = useState(1500000000000);
 
+    const refreshPage = async (e) => {
+        e.preventDefault()
+        // Cancel the event as stated by the standard.
+        await terminarExamen()
+        await checkData()
+        // console.log('terminando');
+        e.preventDefault();
+        // Chrome requires returnValue to be set.
+        e.returnValue = '';
+
+    }
+
     useEffect(() => {
+      
         // exit early when we reach 0
         if (!timeLeft) {
             terminarExamen();
@@ -63,12 +84,14 @@ const S4 = (props) => {
 
     const handleShow = () => {
         setTimeLeft(600)
+        window.onbeforeunload = refreshPage
         setShowExam(true)
     }
 
     const terminarExamen = async () => {
         try {
             const respuesta = await axios.post(process.env.REACT_APP_BACKEN_URL + 'smi100_exam', examResp);
+            // console.log('TERMINANDO EXAMEN');
 
             if (respuesta.status === 200) {
                 if (respuesta.data.calificacion === 'reprobado') {
@@ -92,7 +115,7 @@ const S4 = (props) => {
         } catch (error) {
             AlertError('Error', error)
         }
-        console.log('envio de resultados');
+        // console.log('envio de resultados');
     }
     const handleClose = () => {
         Swal.fire({

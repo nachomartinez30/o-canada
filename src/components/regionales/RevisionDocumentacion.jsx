@@ -10,6 +10,7 @@ import AlertExito from "../../singles/AlertExito";
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
+// const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
     /* TODO: Acreditar revision de candidatos, terminar Searchbar */

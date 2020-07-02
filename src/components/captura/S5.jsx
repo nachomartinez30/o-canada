@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ExS190 from './ExS190';
 import AlertaSiguiente from '../../singles/AlertaSiguiente'
 import { Modal, Button } from 'react-bootstrap';
@@ -6,13 +6,18 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';
 import moment from 'moment'
+/* CONTEXT */
+import candidatoContext from "../../context/candidato/candidatoContext";
 
 const S5 = (props) => {
+    const candidatos = useContext(candidatoContext);
+    const { curp } = candidatos.candidatos.infoBrigadista
+
     const { state, setState, checkData, setStateFiles, files } = props
     const [showExam, setShowExam] = useState(false)
 
     const [examResp, setExamResp] = useState({
-        curp: state.curp,
+        curp: curp,
         "1_partes_incendio": "x",
         "2_triangulo_fuego": "x",
         "3_comportamiento_fuego": "x",
@@ -63,7 +68,7 @@ const S5 = (props) => {
         } catch (error) {
             AlertError('Error', error)
         }
-        console.log('envio de resultados');
+        // console.log('envio de resultados');
     }
     const handleClose = () => {
         Swal.fire({
@@ -82,6 +87,7 @@ const S5 = (props) => {
     };
     const handleShow = () => {
         setTimeLeft(600)
+        window.onbeforeunload = refreshPage
         setShowExam(true)
     }
 
@@ -105,7 +111,22 @@ const S5 = (props) => {
     // initialize timeLeft with the seconds prop
     const [timeLeft, setTimeLeft] = useState(1500000000000);
 
+    const refreshPage = async (e) => {
+        e.preventDefault()
+        // Cancel the event as stated by the standard.
+        await terminarExamen()
+        await checkData()
+        // console.log('terminando');
+        e.preventDefault();
+        // Chrome requires returnValue to be set.
+        e.returnValue = '';
+
+    }
+
     useEffect(() => {
+        if (handleShow) {
+            
+        }
         // exit early when we reach 0
         if (!timeLeft) {
             terminarExamen();
@@ -127,6 +148,7 @@ const S5 = (props) => {
         Swal.fire({
             title: 'Esta por iniciar una prueba',
             text: "Asegurese de tener una conexion estable de internet.\n" +
+                "EL EXAMEN NO PODRA VOLVERSE A PRESENTAR SI SE SALE O REFRESCA LA PAGINA.\n" +
                 "Cuenta con 10 minutos para responderla.",
             icon: 'warning',
             showCancelButton: true,
