@@ -110,6 +110,7 @@ const S6 = (props) => {
                     <input
                         className="form-control myInput"
                         type='file'
+                        accept="application/pdf"
                         name='doc_acred_primeros_auxilios'
                         onChange={setInfo}
                     />
