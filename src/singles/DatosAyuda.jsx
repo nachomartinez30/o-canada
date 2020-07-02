@@ -6,9 +6,8 @@ import { FcAssistant, FcVoicePresentation } from 'react-icons/fc';
 const DatosAyuda = ({ setShow, show }) => {
 
     const contactosIncendios = [
-        { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: '01(622) 218 33 42', celular: '045(662) 299 75 66', extension: '7100', correo: 'rcontreras@conafor.gob.mx' },
-        { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: '01(622) 218 33 42', celular: '045(662) 299 75 66', extension: '7100', correo: 'rcontreras@conafor.gob.mx' },
-        { region: 'Norte', nombre: 'Oscar René Domínguez Moreno', telefono: '01(618) 8279833', celular: '045(618) 176 26 91', extension: '6850', correo: 'odominguez@conafor.gob.mx' },
+        { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: ' 01(662) 260 49 77   ||   01 (662) 262 09 18 ', celular: '045(662) 299 75 66', extension: '7100', correo: 'rcontreras@conafor.gob.mx' },
+        { region: 'Norte', nombre: 'Oscar René Domínguez Moreno', telefono: '01(618) 827 98 33', celular: '045(618) 176 26 91', extension: '6850', correo: 'odominguez@conafor.gob.mx' },
         { region: 'Noreste', nombre: 'Jorge Alberto Serna Zamarron', telefono: '01(844) 488 35 00   ||   01(844) 488 16 68', celular: '045(444) 140 88 88', extension: '6900', correo: 'jorge.serna@conafor.gob.mx' },
         { region: 'Occidente', nombre: 'Martín Delgadillo Rosas', telefono: '01(341) 413 64 01   ||   01(341) 413 64 78', celular: '045(311) 107 71 16', extension: '6800', correo: 'mdelgadillo@conafor.gob.mx' },
         { region: 'Centro', nombre: 'Ismael Solórzano Ibarra', telefono: '01(222) 291 43 77   ||   01(222) 291 46 66', celular: '045(222) 564 66 26', extension: '6950', correo: 'isolorzano@conafor.gob.mx' },
