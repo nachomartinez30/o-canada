@@ -98,14 +98,14 @@ const S7 = (props) => {
                     <li><b>Casco</b> (Casco especializado para el combate de incendios forestales que cumpla la norma internacional NFPA 1977 color amarillo con barbiquejo)</li>
                     <li><b>Protector de nuca</b> (De fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
                     <li><b>Googles</b> (Material resistente con micas transparentes y sistema de sujeción al casco)</li>
-                    <li><b>2 Camisolas</b> (Color amarilla de fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
+                    <li><b>2 Camisolas</b> (Color amarillo de fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
                     <li><b>2 Pantalones</b> (Tipo cargo color verde de fibras ignifugas preferentemente Aramida o Nomex®‎)</li>
                     <li><b>2 pares de Guantes</b> (De piel)</li>
                     <li><b>2 pares de Botas</b> (Cosidas de piel, caña de mínimo 23 cm de altura, suela ignifuga y antiderrapante)</li>
                     <li><b>Cinturón</b> (Color negro, de piel o material resistente al fuego)</li>
                     <li><b>Sudadera</b> (Color negro con capucha)</li>
                     <li><b>Chamarra</b> (Color verde, Térmica)</li>
-                    <li><b>Impermeable</b> (Tipo poncho color amarilla)</li>
+                    <li><b>Impermeable</b> (Tipo poncho color amarillo)</li>
                     <li><b>Botiquín individual</b> (Como mínimo deberá contener lo siguiente: Antisépticos (Alcohol y/o isodine) se sugiere la presentación de toallitas, 4 cubre bocas, gel antibacterial (mínimo 100 m)l, repelente para mosquitos, 2 gasas de 10X10, 1 venda elástica de 10 cm, 1 cinta adhesiva, 1 par de guantes de látex, Pastillas para (dolor, vómito, diarrea))</li>
                     <li><b>Recipientes para agua</b> (De plástico o metal con los cuales se pueda transportar mínimo 4 litros de agua)</li>
                     <li><b>Brújula</b> (Lensática, cartográfica o polivalente)</li>
