@@ -21,8 +21,7 @@ import emailValid from '../helpers/emailValid';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 /* TODO: 
-    -> mandar datos "beforeunload" en examenes
-    -> Mopdificar PDF salida mensaje rechazo negritas
+    
 */
 
 const Captura = () => {
@@ -224,6 +223,7 @@ const Captura = () => {
     }
     const checkDataS2 = async () => {
         const regex = /[A-Z]{1}[0-9]{8}$/;
+        const regex_visa_eta = /[A-Z]{1}[0-9]{9}$/;
         const {
             pasaporte_numero,
             pasaporte_fecha_cad,
@@ -256,6 +256,10 @@ const Captura = () => {
 
         if (!regex.test(pasaporte_numero)) {
             AlertError('Error', 'El numero pasaporte no cuenta con la estructura correcta.')
+            return
+        }
+        if (!regex_visa_eta.test(eta_visa_num)) {
+            AlertError('Error', 'El numero VISA/eTA no cuenta con la estructura correcta.')
             return
         }
 
