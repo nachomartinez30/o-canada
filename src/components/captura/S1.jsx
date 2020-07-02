@@ -395,7 +395,7 @@ const S1 = (props) => {
                     value={state.puesto_en_dependencia}
                     onChange={setInfo}
                     onChangeCapture={ToMayus}
-                    placeholder='Ingrese su puetso en la dependencia...'
+                    placeholder='Ingrese su puesto en la dependencia...'
                 />
             </div>
             {/* Funciones en dependencia */}
@@ -406,7 +406,7 @@ const S1 = (props) => {
                     name='funciones_dependencia'
                     value={state.funciones_dependencia}
                     onChange={setInfo}
-                    placeholder='Ingrese su puetso en la dependencia...'
+                    placeholder='Ingrese su puesto en la dependencia...'
                 >
                     <option value=''>---Seleccione---</option>
                     <option value='operaciones'>Operaciones</option>
