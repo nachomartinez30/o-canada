@@ -80,7 +80,7 @@ const Finalizar = (props) => {
                 break;
 
             case 'imc mayo 30':
-                setMensaje("No es posible continuar con el proceso debido a que su IMC es superior a 30")
+                setMensaje("No es posible continuar con el proceso debido a que su IMC es superior a 29.9")
                 setSecciones({
                     pasaporte_vigente: true,
                     documento_para_viajar_a_canad: true,

@@ -8,6 +8,10 @@ const S3 = (props) => {
     const { state, setState, checkData, files, setStateFiles } = props
 
     const setInfo = (input) => {
+        if (input.target.name === 'altura') {
+            /* TRANSFORMACION A ENTERO */
+            input.target.value = parseInt(input.target.value)
+        }
         if (input.target.value < 0) {
             input.target.value = Math.abs(input.target.value)
         }
@@ -98,6 +102,7 @@ const S3 = (props) => {
     }
 
 
+
     return (
         <div className='row body_wrap'>
 
@@ -121,7 +126,8 @@ const S3 = (props) => {
                     name='altura'
                     value={state.altura}
                     type='number'
-                    min={0}
+                    step='0'
+                    min={1}
                     onBlur={calculoIMC}
                     // onInput={(input) => Math.abs(input.target.value)}
                     onChange={setInfo}
