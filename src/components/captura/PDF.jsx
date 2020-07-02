@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         fontWeight: 'bold',
         fontSize: 12,
-        bottom: '5.5cm',
+        bottom: '4cm',
         left: 0,
         right: 0,
         textAlign: 'center',
@@ -109,6 +109,9 @@ const styles = StyleSheet.create({
         paddingLeft: '1cm',
         paddingRight: '1cm',
     },
+    headerDescText:{
+        top:'1cm'
+    }
 });
 
 const aprobadoColor = { color: '#256708' }
@@ -322,8 +325,9 @@ const PDF = (props) => {
 
                     {/* NOTAS pie de pagina */}
                     {state.rechazo && <React.Fragment>
+                        <Text style={styles.headerDescText}>MOTIVO DE RECHAZO:</Text>
                         <Text style={styles.descText}
-                            render={() => (`**Motivo de descalificación: ${mensaje}, por lo cual los elementos posteriores no fueron evaluados.`)}
+                            render={() => (`${mensaje}, por lo cual los elementos posteriores no fueron evaluados.`)}
                             fixed
                         >
                         </Text>
