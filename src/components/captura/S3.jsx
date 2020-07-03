@@ -168,16 +168,26 @@ const S3 = (props) => {
             {/* Grupo Sanguíneo */}
             <div className='col-6 col-md-4'>
                 <label className="control-label pt-2">Grupo Sanguíneo</label>
-                <input
+                <select
                     className="form-control myInput"
                     name='grupo_sanguineo'
-                    value={state.grupo_sanguineo}
+                    defaultValue={state.grupo_sanguineo}
                     maxLength='6'
                     onChangeCapture={ToMayus}
                     onChange={setInfo}
                     onBlur={revisarFormulario}
                     placeholder='Ingrese Grupo Sanguíneo...'
-                />
+                >
+                    <option value=''>---Seleccione---</option>
+                    <option value='O RH-'>O RH-</option>
+                    <option value='O RH+'>O RH+</option>
+                    <option value='A RH-'>A RH-</option>
+                    <option value='A RH+'>A RH+</option>
+                    <option value='B RH-'>B RH-</option>
+                    <option value='B RH+'>B RH+</option>
+                    <option value='AB RH-'>AB RH-</option>
+                    <option value='AB RH+'>AB RH+</option>
+                </select>
             </div>
 
             {/* Certificado toxicológico */}
