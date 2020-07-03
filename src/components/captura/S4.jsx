@@ -152,6 +152,7 @@ const S4 = (props) => {
         Swal.fire({
             title: 'Esta por iniciar una prueba',
             text: "Asegurese de tener una conexion estable de internet.\n" +
+                "EL EXAMEN NO PODRA VOLVERSE A PRESENTAR SI SE SALE O REFRESCA LA PAGINA.\n" +
                 "Cuenta con 10 minutos para responderla.",
             icon: 'warning',
             showCancelButton: true,
