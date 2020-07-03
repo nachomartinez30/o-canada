@@ -56,30 +56,44 @@ const S1 = (props) => {
         }
     }
 
-    const fillInfoCurp = () => {
-        /* Extrae la informacion de la CURP y autocompleta fechga de nacimiento y sexo  */
-        const dataExtracted = (typeof state.curp != 'undefined') ? extractInfoCurp(state.curp) : ''
-        const fecha = moment(`${dataExtracted.anio}-${dataExtracted.mes}-${dataExtracted.dia}`, "YY-MM-DD").format("YYYY-MM-DD")
-        const anios = diferenciaFechasAnios(fecha);
-
+    const checkEdad = (input) => {
+        const fecha = input.target.value
+        const fecha_moment = moment(fecha).format("YYYY-MM-DD")
+        const anios = diferenciaFechasAnios(fecha_moment);
+        /* MENOR DE EDAD */
         if (anios < 21) {
-            /* MENOR DE EDAD */
             setState({
                 ...state,
-                fecha_nacimiento: fecha,
-                sexo: (dataExtracted.sexo === 'H') ? 1 : 2,
                 rechazo: true,
                 motivo_rechazo: 'candidato menor de edad'
             })
-        } else {
-            setState({
-                ...state,
-                fecha_nacimiento: fecha,
-                sexo: (dataExtracted.sexo === 'H') ? 1 : 2,
-                rechazo: false,
-                motivo_rechazo: null
-            })
         }
+    }
+
+    const fillInfoCurp = () => {
+        /* Extrae la informacion de la CURP y autocompleta fechga de nacimiento y sexo  */
+        const dataExtracted = (typeof state.curp != 'undefined') ? extractInfoCurp(state.curp) : ''
+        // const fecha = moment(`${dataExtracted.anio}-${dataExtracted.mes}-${dataExtracted.dia}`, "YY-MM-DD").format("YYYY-MM-DD")
+        // const anios = diferenciaFechasAnios(fecha);
+
+        // if (anios < 21) {
+        //     /* MENOR DE EDAD */
+        //     setState({
+        //         ...state,
+        //         fecha_nacimiento: fecha,
+        //         sexo: (dataExtracted.sexo === 'H') ? 1 : 2,
+        //         rechazo: true,
+        //         motivo_rechazo: 'candidato menor de edad'
+        //     })
+        // } else {
+        setState({
+            ...state,
+            // fecha_nacimiento: fecha,
+            sexo: (dataExtracted.sexo === 'H') ? 1 : 2,
+            rechazo: false,
+            motivo_rechazo: null
+        })
+        // }
     }
 
     const getMunicipios = async (input) => {
@@ -99,7 +113,7 @@ const S1 = (props) => {
 
     return (
         <div className='row body_wrap'>
-            
+
             {/* FOTOGRAFIA */}
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fotografia</label>
@@ -180,6 +194,7 @@ const S1 = (props) => {
                     type='file'
                     accept="application/pdf"
                     onChange={setInfo}
+
                     placeholder='Ingrese Fecha de Nacimiento...'
                 />
             </div>
@@ -204,7 +219,7 @@ const S1 = (props) => {
                     value={state.fecha_nacimiento}
                     type='date'
                     onChange={setInfo}
-                    // onBlur={checkEdad}
+                    onBlur={checkEdad}
                     placeholder='Ingrese Fecha de Nacimiento...'
                 />
             </div>
