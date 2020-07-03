@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import InputCURP from '../../singles/InputCURP';
 import ToMayus from '../../helpers/ToMayus';
 import curpValida from '../../helpers/curpValida';
+import { Alert } from 'react-bootstrap';
 
 const Registro = (props) => {
     /* TODO: revisar si CURP es correcta habiltar boton registrame */
@@ -9,12 +10,24 @@ const Registro = (props) => {
     const { enable, onClick, showTerminosCondiciones, state, setState } = props
     const [continuar, setContinuar] = useState(false)
     const [curpValida, setCurpValida] = useState(false)
+    const [passwordInvalid, setPasswordInvalid] = useState(true)
 
     const setInfo = (input) => {
         setState({
             ...state,
             [input.target.name]: input.target.value
         })
+    }
+
+    const checkPassword = (input) => {
+        const pass = input.target.value
+        if (pass) {
+            if (pass.length < 4) {
+                setPasswordInvalid(true)
+            } else {
+                setPasswordInvalid(false)
+            }
+        }
     }
 
 
@@ -32,6 +45,9 @@ const Registro = (props) => {
         }
 
     }, [state])
+
+
+
     return (
         <div className={`col-md-6 ${(enable) ? 'login-form-1' : 'login-form-2'}`}
             onClick={onClick}
@@ -60,13 +76,15 @@ const Registro = (props) => {
                             name='pass_reg'
                             disabled={enable}
                             onChange={setInfo}
+                            onChangeCapture={checkPassword}
                             type="password"
                             class="form-control"
                             placeholder="Registre una contraseña *"
                             value={state.pass_reg}
                         />
+                        {passwordInvalid && <Alert variant='warning'>Contraseña debe tener minimo 4 caracteres</Alert>}
                     </div>
-                    <div class="form-group">
+                    {!passwordInvalid && <div class="form-group">
                         <input
                             name='comp_pass_reg'
                             disabled={enable}
@@ -76,7 +94,7 @@ const Registro = (props) => {
                             placeholder="Repita la contraseña *"
                             value={state.comp_pass_reg}
                         />
-                    </div>
+                    </div>}
                 </React.Fragment>
                 }
 

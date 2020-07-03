@@ -20,9 +20,6 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from '../helpers/emailValid';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
-/* TODO: 
-    
-*/
 
 const Captura = () => {
 
@@ -36,7 +33,7 @@ const Captura = () => {
         login: { status: 'faltante', visible: !false },
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
-        s3: { status: 'faltante', visible: !false },
+        s3: { status: 'faltante', visible: false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
