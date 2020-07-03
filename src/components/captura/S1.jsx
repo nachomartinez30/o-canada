@@ -198,7 +198,7 @@ const S1 = (props) => {
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fecha de Nacimiento</label>
                 <input
-                    disabled
+                    // disabled
                     className={`form-control ${(state.fecha_nacimiento) ? null : 'myInput'}`}
                     name='fecha_nacimiento'
                     value={state.fecha_nacimiento}
