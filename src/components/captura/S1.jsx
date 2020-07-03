@@ -99,6 +99,7 @@ const S1 = (props) => {
 
     return (
         <div className='row body_wrap'>
+            
             {/* FOTOGRAFIA */}
             <div className='col-12 col-md-6'>
                 <label className="control-label pt-2">Fotografia</label>

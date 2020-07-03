@@ -138,13 +138,13 @@ const Captura = () => {
         }
 
         /* validacion de los correos */
-        debugger
+
         if (!emailValid(correo_electronico) || !emailValid(correo_beneficiario)) {
-            debugger
+
             AlertError("Los correos estan mal estructurados");
             return
         }
-        debugger
+
 
         // SE AGREGA A CONTEXT
         candidatos.candidatos.agregarCandidato({
@@ -387,7 +387,7 @@ const Captura = () => {
         } = infoBrigadista
 
         const { cert_toxicologico_fl, cert_medico_fl } = archivos
-        debugger
+
         if (
             !sexo || !altura || !peso || !imc || !grupo_sanguineo || grupo_sanguineo === '' ||
             !cert_toxicologico_fl || !fecha_cert_toxicologico || !cert_medico_fl ||
@@ -1008,6 +1008,13 @@ const Captura = () => {
     return (
         <>
             <div className='container'>
+                {candidatos.candidatos.infoBrigadista.curp && <div style={{ textAlign: 'right' }}>
+                    <a className='btn btn-info'
+                        href='http://187.218.230.38:81/o_canada/documentos/Manual_de_usuario_SISECOIF.docx'>
+                        Manual de Usuario
+                </a>
+                </div>
+                }
                 {secciones.login.visible &&
                     <Login
                         secciones={secciones}
