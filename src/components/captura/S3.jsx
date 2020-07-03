@@ -173,7 +173,7 @@ const S3 = (props) => {
                     name='grupo_sanguineo'
                     defaultValue={state.grupo_sanguineo}
                     maxLength='6'
-                    onChangeCapture={ToMayus}
+                    // onChangeCapture={ToMayus}
                     onChange={setInfo}
                     onBlur={revisarFormulario}
                     placeholder='Ingrese Grupo Sanguíneo...'
@@ -431,7 +431,7 @@ const S3 = (props) => {
 
             {/* ¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo? */}
             <div className='col-12'>
-                <label className="control-label pt-2">¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo?</label>
+                <label className="control-label pt-2">¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría realizar la prueba de la mochila nivel arduo?</label>
                 <select
                     className="form-control myInput"
                     name='experiencia_personal_consejos'

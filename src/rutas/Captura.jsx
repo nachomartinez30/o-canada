@@ -36,7 +36,7 @@ const Captura = () => {
         login: { status: 'faltante', visible: !false },
         s1: { status: 'faltante', visible: false },
         s2: { status: 'faltante', visible: false },
-        s3: { status: 'faltante', visible: false },
+        s3: { status: 'faltante', visible: !false },
         s4: { status: 'faltante', visible: false },
         s5: { status: 'faltante', visible: false },
         s6: { status: 'faltante', visible: false },
@@ -70,7 +70,7 @@ const Captura = () => {
     })
 
     const msgFaltanCampos = () => {
-        console.log(candidatos);
+        // console.log(candidatos);
         Swal.fire({
             icon: 'error',
             title: 'Todos los campos son necesarios'
@@ -390,9 +390,9 @@ const Captura = () => {
         } = infoBrigadista
 
         const { cert_toxicologico_fl, cert_medico_fl } = archivos
-
+        debugger
         if (
-            !sexo || !altura || !peso || !imc || !grupo_sanguineo ||
+            !sexo || !altura || !peso || !imc || !grupo_sanguineo || grupo_sanguineo === '' ||
             !cert_toxicologico_fl || !fecha_cert_toxicologico || !cert_medico_fl ||
             !fecha_cert_medico || !padece_enfermedad || !requiere_medicamentos_perm ||
             !experimento_dolor_pecho || !experimento_dificultad_respirar
