@@ -13,7 +13,7 @@ import Finalizar from '../components/captura/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
 import Login from '../components/captura/Login';
-import rfcValido from '../helpers/rfcValido'
+// import rfcValido from '../helpers/rfcValido'
 /* CONTEXT */
 
 import candidatoContext from "./../context/candidato/candidatoContext";
@@ -131,11 +131,11 @@ const Captura = () => {
         }
 
         /* VALIDACION RFC */
-        const rfcToCheck = rfcValido(rfc);
-        if (rfcToCheck !== rfc) {
-            AlertError('Error', 'El RFC esta mal estructurado')
-            return
-        }
+        // const rfcToCheck = rfcValido(rfc);
+        // if (rfcToCheck !== rfc) {
+        //     AlertError('Error', 'El RFC esta mal estructurado')
+        //     return
+        // }
 
         /* validacion de los correos */
 
