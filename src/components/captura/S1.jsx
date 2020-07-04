@@ -26,12 +26,12 @@ const S1 = (props) => {
     const [correoValido, setCorreoValido] = useState()
     const [correBenefValido, setCorreBenefValido] = useState()
     const [curpCorrecto, setCurpCorrecto] = useState(false)
-    const [rfcCorrecto, setRfcCorrecto] = useState(false)
+    // const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
 
     useEffect(() => {
         fillInfoCurp()
-        setPuedeContinuar((correoValido && correBenefValido && rfcCorrecto) ? false : true);
+        setPuedeContinuar((correoValido && correBenefValido /* && rfcCorrecto */) ? false : true);
         setEnter(true)
     }, [enter])
 
@@ -233,8 +233,8 @@ const S1 = (props) => {
                     rfc={state.rfc}
                     onKeyPressCapture={ToMayus}
                     onChange={setInfo}
-                    correct={rfcCorrecto}
-                    setCorrect={setRfcCorrecto}
+                    // correct={rfcCorrecto}
+                    // setCorrect={setRfcCorrecto}
                     placeholder='Ingrese RFC...'
                 />
             </div>
