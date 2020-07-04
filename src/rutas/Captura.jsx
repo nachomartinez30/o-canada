@@ -507,7 +507,12 @@ const Captura = () => {
             });
 
 
-            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
+            const respuesta = await axios.post(url, {
+                data: infoBrigadista, secuencia: {
+                    ...secciones,
+                    s4: seccionCompleta,
+                    s5: seccionSiguiente,
+                } });
 
             if (respuesta.status === 200 && archivo_sci_smi_100.status === 200 && archivo_sci_smi_200.status === 200) {
                 if (infoBrigadista.rechazo) {
