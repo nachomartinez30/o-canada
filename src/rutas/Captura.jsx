@@ -571,7 +571,12 @@ const Captura = () => {
         const url = `${API_REQUEST}candidato_update`;
 
         try {
-            const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
+            const respuesta = await axios.post(url, {
+                data: infoBrigadista, secuencia: {
+                    ...secciones,
+                    s5: seccionCompleta,
+                    s6: seccionSiguiente,
+                } });
             const archivo_s_190 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_190_fl, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -606,8 +611,6 @@ const Captura = () => {
                     })
                 } else {
                     /* Agrega al context general */
-
-
                     setSecciones({
                         ...secciones,
                         s5: seccionCompleta,
