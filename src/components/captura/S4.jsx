@@ -53,12 +53,10 @@ const S4 = (props) => {
     const [timeLeft, setTimeLeft] = useState(1500000000000);
 
     const refreshPage = async (e) => {
-        e.preventDefault()
+
         // Cancel the event as stated by the standard.
-        await terminarExamen()
-        await checkData()
-        // console.log('terminando');
         e.preventDefault();
+        terminarExamen()
         // Chrome requires returnValue to be set.
         e.returnValue = '';
 

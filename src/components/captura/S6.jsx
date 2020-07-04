@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AlertaSiguiente from '../../singles/AlertaSiguiente'
 import SelectSiNo from '../../singles/SelectSiNo'
 
@@ -19,6 +19,10 @@ const S6 = (props) => {
             })
         }
     }
+
+    useEffect(() => {
+        window.onbeforeunload = false
+    }, [''])
 
     const revisionCompetencias = () => {
 
