@@ -6,6 +6,10 @@ import Axios from 'axios';
 import AlertError from '../singles/AlertError';
 
 const Administracion = () => {
+    /* TODO: 
+            pasar a context la session del usuario
+    */
+
     const sessContext = useContext(sessionContext)
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     // const [user, setUser] = useState(sessContext.session.user)
@@ -14,7 +18,7 @@ const Administracion = () => {
     const [userPorfile, setUserPorfile] = useState({
         regionales: true,
         estatales: !true,
-        mesa_ayuda: true,
+        mesa_ayuda: !true,
         manifiesto: !true,
     })
 
@@ -31,10 +35,11 @@ const Administracion = () => {
             const resp = await Axios.post(url, toSend);
             if (resp.status === 200) {
                 /* ingresar en el context y en el state la respuesta */
+
                 setUser(resp.data)
                 sessContext.session.loginUser({
                     ...sessContext.session,
-                    user: resp.data
+                    user: resp.data.user
                 })
             }
         } catch (error) {
@@ -44,7 +49,7 @@ const Administracion = () => {
 
     return (
         <React.Fragment>
-            {(!user) ?
+            {(user) ?
                 <Dashboard
                     userPorfile={userPorfile}
                 />
