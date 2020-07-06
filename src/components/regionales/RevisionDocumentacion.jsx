@@ -28,11 +28,7 @@ const RevisionDocumentacion = () => {
     const getCandidatos = async () => {
         const url = `${API_REQUEST}revision_region`;
         try {
-<<<<<<< Updated upstream
-            const respuesta = await axios.post(url, { region: 99 })
-=======
             const respuesta = await axios.post(url, { region: '99' })
->>>>>>> Stashed changes
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)

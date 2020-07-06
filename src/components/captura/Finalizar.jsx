@@ -54,8 +54,8 @@ const Finalizar = (props) => {
                     capacidad_para_comunicarse_en_ingles: false,
                     liderazgo: false,
                     aptitud_fisica: false,
-                    gps: false,
-                    motobomba_mark_iii: false
+                    gps: state.opera_autonoma_gps,
+                    motobomba_mark_iii: state.opera_autonoma_mark3
                 })
                 break;
 
@@ -221,6 +221,22 @@ const Finalizar = (props) => {
 
             case 'falta de habilidad o competencia':
                 setMensaje("No es posible continuar con el proceso debido a que la operación autónoma del GPS y Bomba Mark 3, es una condicionante requerida")
+                setSecciones({
+                    pasaporte_vigente: true,
+                    documento_para_viajar_a_canad: true,
+                    licencia_de_manejo: true,
+                    indice_de_masa_corporal: true,
+                    salud: true,
+                    conocimiento_y_experiencia_sci: true,
+                    conocimiento_y_experiencia_en_incendios: true,
+                    buena_conducta: true,
+                    disponibilidad_en_condiciones_ambientales_adversas: true,
+                    capacidad_para_comunicarse_en_ingles: true,
+                    liderazgo: false,
+                    aptitud_fisica: false,
+                    gps: false,
+                    motobomba_mark_iii: false
+                })
                 break;
 
             case 'no cuenta con equipo completo':
