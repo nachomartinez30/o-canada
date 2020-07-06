@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react'
 import lodash from 'lodash'
-import { Nav } from 'react-bootstrap'
+import { Nav, Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
@@ -15,7 +15,10 @@ const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 
 const RevisionDocumentacion = () => {
     const sessContext = useContext(sessionContext)
-    /* TODO: Acreditar revision de candidatos, terminar Searchbar */
+    /* TODO: 
+        terminar actualizacion de observacion 
+        terminar Searchbar 
+    */
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
@@ -23,6 +26,8 @@ const RevisionDocumentacion = () => {
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
 
+    const [showModal, setShowModal] = useState(false)
+    const [infoObservacionModal, setInfoObservacionModal] = useState({})
 
     const [toggleCleared, setToggleCleared] = useState(false);
 
@@ -50,9 +55,69 @@ const RevisionDocumentacion = () => {
 
     const mostrarDocumento = (documento, data) => {
         const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
-        const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
+        const url = `${URL_documentos}/${data.curp}/${documento}`;
         window.open(url, '_blank');
     }
+
+    const getNombreArchivo = (item) => {
+        const indiceExtension = item.indexOf('.');
+        const archivo = item.substring(0, indiceExtension)
+
+        switch (archivo) {
+            case 'carta_antecedentes':
+                return 'Carta de antecentes penales';
+
+            case 'cert_intern_ate_emerg_med_file':
+                return 'Cert. Inter Emergencias'
+
+            case 'cert_medico':
+                return 'Cert. Médico'
+
+            case 'cert_toxicologico':
+                return 'Cert. Toxicologico'
+
+            case 'curp_archivo':
+                return 'CURP'
+
+            case 'doc_acred_primeros_auxilios':
+                return 'Acred. P. Auxilios'
+
+            case 'ETA':
+                return 'VISA/eTA'
+
+            case 'fotografia':
+                return 'Fotografía'
+
+            case 'licencia_manejo':
+                return 'Licencia de manejo'
+
+            case 'l_280_file':
+                return 'Cert. L-280'
+
+            case 'pasaporte_archivo':
+                return 'Pasaporte'
+
+            case 'sci_smi_100':
+                return 'SCI 100'
+
+            case 'sci_smi_200':
+                return 'SCI 200'
+
+            case 'toefl':
+                return 'TOEFL/TOEIC'
+            case 's_130':
+                return 'Cert. S-130'
+            case 's_190':
+                return 'Cert. S-190'
+            case 'cert_intern_incendios_file':
+                return 'Cert. Intern. Incendios'
+
+            default:
+                return 'check= ' + item
+
+        }
+    }
+
 
     const [loading, setLoading] = useState(false);
     const [directionValue, setDirectionValue] = useState('auto');
@@ -60,18 +125,18 @@ const RevisionDocumentacion = () => {
     const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
     const BotonesPDFs = ({ data }) => {
-        debugger
         return (
             <div className='py-5'>
                 <Nav justify variant="pills" defaultActiveKey="">
                     {data.files.map((item) => <Nav.Item>
-                        <a className='btn btn-primary'
-                            href={`${URL_documentos}/${data.curp}/${item}`}
-                            target='_blank'
-                            rel="noopener noreferrer">
-                            {item}
-                        </a>
-                    </Nav.Item>)}
+                        <Nav.Link
+                            eventKey={item}
+                            onClick={() => mostrarDocumento(item, data)}
+                        >
+                            {getNombreArchivo(item)}
+                        </Nav.Link>
+                    </Nav.Item>)
+                    }
                 </Nav>
 
             </div>
@@ -88,20 +153,9 @@ const RevisionDocumentacion = () => {
         },
         {
             name: 'Nombres',
-            selector: 'nombres',
+            selector: 'nombre',
             wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Ap. paterno',
-            selector: 'apellido_paterno',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Ap. materno',
-            selector: 'apellido_materno',
-            wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -131,6 +185,7 @@ const RevisionDocumentacion = () => {
         {
             name: 'sexo',
             selector: 'sexo',
+            maxWidth: '5px',
             wrap: true,
             sortable: true
         },
@@ -138,6 +193,7 @@ const RevisionDocumentacion = () => {
             name: 'Años de experiencia',
             selector: 'anios_experiencia',
             wrap: true,
+            maxWidth: '5px',
             sortable: true
         },
         {
@@ -170,8 +226,20 @@ const RevisionDocumentacion = () => {
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
-        },
+        }, {
+
+            name: 'Agregar Observacion',
+            wrap: true,
+            button: true,
+            minWidth: '180px',
+            cell: (row) => <Button onClick={() => agregarObservacion(row)}>Observacion</Button>,
+        }
     ]
+
+    const agregarObservacion = (row) => {
+        setInfoObservacionModal(row)
+        handleShowModal(true)
+    }
 
     const manejadorCambiosColumnas = state => {
         setSelectedRows(state.selectedRows);
@@ -212,7 +280,6 @@ const RevisionDocumentacion = () => {
         AlertExito('Registros Desaprobados');
     }
 
-
     const contextActions = useMemo(() => {
         const handleAprobar = () => {
             AlertaSiguiente('Se aprobarán los registros seleccionados', aprobarRegistros)
@@ -227,9 +294,41 @@ const RevisionDocumentacion = () => {
         </>
     }, [datosTabla, selectedRows, toggleCleared]);
 
+    const handleCloseModal = () => setShowModal(false);
+    const handleShowModal = () => setShowModal(true);
+
 
     return (
         <div>
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Agregar observacion a la curp <b>{infoObservacionModal.curp}</b></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Control
+                        name='observacion_regional'
+                        onChange={(input) => {
+                            setInfoObservacionModal({
+                                curp: infoObservacionModal.curp,
+                                observacion_regional: input.target.value
+                            })
+                        }}
+                        value={infoObservacionModal.observacion_regional}
+                        as="textarea"
+                        rows="3"
+
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleCloseModal}>
+                        Agregar
+                    </Button>
+                    <Button variant="danger" onClick={handleCloseModal}>
+                        Cerrar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* TABLA */}
             <DataTable
                 title="Candidatos"
                 columns={columns}
