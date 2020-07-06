@@ -313,6 +313,7 @@ const Finalizar = (props) => {
     }
 
     const mostrarPDF = () => {
+        window.open('https://forms.gle/NJEvVV8gefLFYADj8', '_blank');
         setShowPDF(true)
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useContext } from 'react'
 import lodash from 'lodash'
 import { Nav } from 'react-bootstrap'
 import axios from 'axios'
@@ -6,13 +6,15 @@ import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertExito from "../../singles/AlertExito";
+import sessionContext from "../../context/session/sessionContext";
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
+// const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
+    const sessContext = useContext(sessionContext)
     /* TODO: Acreditar revision de candidatos, terminar Searchbar */
 
     const [candidatos, setCandidatos] = useState([])
@@ -26,9 +28,11 @@ const RevisionDocumentacion = () => {
 
     /* Edicion de la tabla */
     const getCandidatos = async () => {
+        const session = sessContext
+        debugger
         const url = `${API_REQUEST}revision_region`;
         try {
-            const respuesta = await axios.post(url, { region: '99' })
+            const respuesta = await axios.post(url, { region: '' })
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)
@@ -46,11 +50,9 @@ const RevisionDocumentacion = () => {
     }, [reload])
 
     const mostrarDocumento = (documento, data) => {
+        const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
         const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
-
         window.open(url, '_blank');
-        // setLinkDocumento(documento)
-        // setShowPDF(true)
     }
 
     const [loading, setLoading] = useState(false);
@@ -62,47 +64,47 @@ const RevisionDocumentacion = () => {
         <div className='py-5'>
             <Nav justify variant="pills" defaultActiveKey="">
                 <Nav.Item>
-                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes', data)}>carta_antecedentes</Nav.Link>
+                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes', data)}>Carta de antecedentes penales</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico', data)}>cert_medico</Nav.Link>
+                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico', data)}>Certificado médico</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico', data)}>cert_toxicologico</Nav.Link>
+                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico', data)}>Certificado toxicológico</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA', data)}>eTA</Nav.Link>
+                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA', data)}>eTA o VISA</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                {/* <Nav.Item>
                     <Nav.Link eventKey="fotografia" onClick={() => mostrarDocumento('fotografia', data)}>fotografia</Nav.Link>
+                </Nav.Item> */}
+                <Nav.Item>
+                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo', data)}>Licencia de manejo</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo', data)}>licencia_manejo</Nav.Link>
+                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file', data)}>Constancia L-280</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file', data)}>l_280_file</Nav.Link>
+                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo', data)}>Pasaporte</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo', data)}>pasaporte_archivo</Nav.Link>
+                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100', data)}>Constancia SMI 100</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100', data)}>sci_smi_100</Nav.Link>
+                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200', data)}>Constancia SMI 200</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200', data)}>sci_smi_200</Nav.Link>
+                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130', data)}>Constancia S-130</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130', data)}>s_130</Nav.Link>
+                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190', data)}>Constancia S-190</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190', data)}>s_190</Nav.Link>
+                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file', data)}>Constancia S-290</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file', data)}>s_290_file</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>toefl</Nav.Link>
-                </Nav.Item>
+                {(data.posicion_candidato === 'jefe_de_brigada' || data.posicion_candidato === 'tecnico') && <Nav.Item>
+                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>TOEFL / TOEIC</Nav.Link>
+                </Nav.Item>}
             </Nav>
             {/* {showPDF &&
                 <PDFViewer
