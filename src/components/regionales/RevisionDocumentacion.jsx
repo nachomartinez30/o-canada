@@ -10,7 +10,7 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-// const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
+const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
@@ -59,62 +59,24 @@ const RevisionDocumentacion = () => {
 
     const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
-    const BotonesPDFs = ({ data }) => (
-        <div className='py-5'>
-            <Nav justify variant="pills" defaultActiveKey="">
-                <Nav.Item>
-                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes', data)}>Carta de antecedentes penales</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico', data)}>Certificado médico</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico', data)}>Certificado toxicológico</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA', data)}>eTA o VISA</Nav.Link>
-                </Nav.Item>
-                {/* <Nav.Item>
-                    <Nav.Link eventKey="fotografia" onClick={() => mostrarDocumento('fotografia', data)}>fotografia</Nav.Link>
-                </Nav.Item> */}
-                <Nav.Item>
-                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo', data)}>Licencia de manejo</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file', data)}>Constancia L-280</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo', data)}>Pasaporte</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100', data)}>Constancia SMI 100</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200', data)}>Constancia SMI 200</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130', data)}>Constancia S-130</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190', data)}>Constancia S-190</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file', data)}>Constancia S-290</Nav.Link>
-                </Nav.Item>
-                {(data.posicion_candidato === 'jefe_de_brigada' || data.posicion_candidato === 'tecnico') && <Nav.Item>
-                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>TOEFL / TOEIC</Nav.Link>
-                </Nav.Item>}
-            </Nav>
-            {/* {showPDF &&
-                <PDFViewer
-                    navbarOnTop
-                    document={{
-                        url: `${URL_documentos}/${data.curp}/${linkDocumento}.pdf`,
-                    }}
-                />
-            } */}
-        </div>
-    );
+    const BotonesPDFs = ({ data }) => {
+        debugger
+        return (
+            <div className='py-5'>
+                <Nav justify variant="pills" defaultActiveKey="">
+                    {data.files.map((item) => <Nav.Item>
+                        <a className='btn btn-primary'
+                            href={`${URL_documentos}/${data.curp}/${item}`}
+                            target='_blank'
+                            rel="noopener noreferrer">
+                            {item}
+                        </a>
+                    </Nav.Item>)}
+                </Nav>
+
+            </div>
+        )
+    };
 
     const columns = [
         {
