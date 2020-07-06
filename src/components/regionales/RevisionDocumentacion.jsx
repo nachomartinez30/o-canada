@@ -19,7 +19,7 @@ const RevisionDocumentacion = () => {
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
-    const [showPDF, setShowPDF] = useState(false)
+    // const [showPDF, setShowPDF] = useState(false)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
 
@@ -28,11 +28,10 @@ const RevisionDocumentacion = () => {
 
     /* Edicion de la tabla */
     const getCandidatos = async () => {
-        const session = sessContext
-        debugger
+        const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
         try {
-            const respuesta = await axios.post(url, { region: '' })
+            const respuesta = await axios.post(url, user)
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)
