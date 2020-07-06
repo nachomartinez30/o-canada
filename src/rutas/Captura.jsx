@@ -1018,7 +1018,7 @@ const Captura = () => {
             <div className='container'>
                 {candidatos.candidatos.infoBrigadista.curp && <div style={{ textAlign: 'right' }}>
                     <a className='btn btn-info'
-                        href='http://187.218.230.38:81/o_canada/documentos/Manual_de_usuario_SISECOIF.docx'>
+                        href='http://187.218.230.38:81/o_canada/documentos/Manual_de_usuario_SISECOIF.pdf'>
                         Manual de Usuario
                 </a>
                 </div>
