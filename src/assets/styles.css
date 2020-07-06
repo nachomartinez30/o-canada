@@ -197,6 +197,12 @@
   background-color: #a01f3f;
   border-color: #a01f3f;
 }
+.registroStyle{
+  margin-right: .5em;
+  margin-bottom: .5em;
+  background-color: #1f5fa0;
+  border-color: #1f5fa0;
+}
 .ayudaStyle:hover, .ayudaStyle:active, .ayudaStyle:focus{
   background-color: #741e33!important;
   border-color: #741e33!important;
