@@ -153,7 +153,6 @@ const Captura = () => {
         })
         const url = `${API_REQUEST}candidato_update`;
         try {
-
             const formData = new FormData();
             formData.append("file", archivos.fotografia_fl[0]);
             formData.append("curp", infoBrigadista.curp);
@@ -205,6 +204,8 @@ const Captura = () => {
                         s2: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -214,7 +215,7 @@ const Captura = () => {
                 })
                 return
             }
-            console.error('error', error);
+            AlertError('Error', error);
         }
         /*  mostrar siguiente seccion*/
     }
@@ -462,6 +463,8 @@ const Captura = () => {
                         s4: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -512,7 +515,8 @@ const Captura = () => {
                     ...secciones,
                     s4: seccionCompleta,
                     s5: seccionSiguiente,
-                } });
+                }
+            });
 
             if (respuesta.status === 200 && archivo_sci_smi_100.status === 200 && archivo_sci_smi_200.status === 200) {
                 if (infoBrigadista.rechazo) {
@@ -543,6 +547,8 @@ const Captura = () => {
                         s5: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -581,7 +587,8 @@ const Captura = () => {
                     ...secciones,
                     s5: seccionCompleta,
                     s6: seccionSiguiente,
-                } });
+                }
+            });
             const archivo_s_190 = await axios.post(`${API_REQUEST}carga_archivo`, formData_s_190_fl, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -622,6 +629,8 @@ const Captura = () => {
                         s6: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -710,6 +719,8 @@ const Captura = () => {
                         s7: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -787,6 +798,8 @@ const Captura = () => {
                         s8: seccionSiguiente,
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
         } catch (error) {
             if (error.response.status === 400) {
@@ -998,6 +1011,8 @@ const Captura = () => {
                         motivo_rechazo: null
                     })
                 }
+            } else {
+                AlertError('Error', respuesta.data)
             }
 
         } catch (error) {

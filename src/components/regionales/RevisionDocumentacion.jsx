@@ -22,7 +22,8 @@ const RevisionDocumentacion = () => {
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
-    // const [showPDF, setShowPDF] = useState(false)
+    // const [searchWord, setSearchWord] = useState('')
+    // const [paginasPor, setPaginasPor] = useState(10)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
     const [showModal, setShowModal] = useState(false)
@@ -35,6 +36,21 @@ const RevisionDocumentacion = () => {
 
 
     /* Edicion de la tabla */
+    const buscarRegistro = async (input) => {
+        const { user } = sessContext.login
+        const searchWord = input.target.value
+        const url = `${API_REQUEST}revision_region?busqueda=${searchWord}`;
+
+        if (user) {
+            try {
+                const resp = await axios.get(url);
+
+
+            } catch (error) {
+                AlertError('Error', error)
+            }
+        }
+    }
     const getCandidatos = async () => {
         const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
@@ -121,8 +137,6 @@ const RevisionDocumentacion = () => {
         }
     }
 
-
-
     const BotonesPDFs = ({ data }) => {
         return (
             <div className='py-5'>
@@ -152,7 +166,7 @@ const RevisionDocumentacion = () => {
         },
         {
             name: 'Nombres',
-            selector: 'nombre',
+            selector: 'nombres',
             wrap: true,
             minWidth: '200px',
             sortable: true
@@ -236,11 +250,26 @@ const RevisionDocumentacion = () => {
     ]
 
     const sendObservacion = async () => {
-        const url = `${API_REQUEST}/update_user`
+        const url = `${API_REQUEST}/candidato_update`
+
+        const secciones = {
+            login: { status: 'completa', visible: false },
+            s1: { status: 'completa', visible: false },
+            s2: { status: 'completa', visible: false },
+            s3: { status: 'completa', visible: false },
+            s4: { status: 'completa', visible: false },
+            s5: { status: 'completa', visible: false },
+            s6: { status: 'completa', visible: false },
+            s7: { status: 'completa', visible: false },
+            s8: { status: 'completa', visible: false },
+        }
         /* TOMAR STATE */
         try {
-            const resp = await axios.post(url, infoObservacionModal)
-            
+            const resp = await axios.post(url, { data: infoObservacionModal, secuencia: secciones })
+            if (resp.status === 200) {
+                AlertExito('Éxito', 'El registro fue actualizado')
+                setReload(true);
+            }
         } catch (error) {
 
         }
@@ -292,6 +321,20 @@ const RevisionDocumentacion = () => {
         AlertExito('Registros Desaprobados');
     }
 
+    const conditionalRowStyles = [
+        {
+            when: row => row.observacion_regional,
+            style: {
+                backgroundColor: '#b78d86',
+                // backgroundColor: '#D69200',
+                color: 'white',
+                '&:hover': {
+                    cursor: 'pointer',
+                },
+            },
+        }
+    ];
+
     const contextActions = useMemo(() => {
         const handleAprobar = () => {
             AlertaSiguiente('Se aprobarán los registros seleccionados', aprobarRegistros)
@@ -309,6 +352,25 @@ const RevisionDocumentacion = () => {
     const handleCloseModal = () => setShowModal(false);
     const handleShowModal = () => setShowModal(true);
 
+    /* SERVER-SIDE RENDER */
+    // const handlePerRowsChange = async (newPerPage, page) => {
+    //     setLoading(true);
+    //     debugger
+    //     // const response = await axios.get(
+    //     //     `https://reqres.in/api/users?page=${page}&per_page=${newPerPage}&delay=1`,
+    //     // );
+
+    //     // setDatosTabla(response.data.data);
+    //     // setPaginasPor(newPerPage);
+    //     // setLoading(false);
+    // };
+
+
+    // const handlePageChange = page => {
+    //     // getCandidatos(page);
+    //     console.log(page);
+
+    // };
 
     return (
         <div>
@@ -349,7 +411,6 @@ const RevisionDocumentacion = () => {
                 expandableRows
                 expandOnRowClicked
                 expandableRowsComponent={<BotonesPDFs />}
-                pagination
                 paginationComponentOptions={paginationOptions}
                 persistTableHead
                 progressPending={loading}
@@ -359,7 +420,7 @@ const RevisionDocumentacion = () => {
                         <div>
                             <input className='form-control px-5'
                                 placeholder='Buscar...'
-                            // onChange={findWord}
+                                onChange={buscarRegistro}
                             />
                         </div>
                     )
@@ -372,6 +433,11 @@ const RevisionDocumentacion = () => {
                 selectableRowsHighlight
                 clearSelectedRows={toggleCleared}
                 onSelectedRowsChange={manejadorCambiosColumnas}
+                conditionalRowStyles={conditionalRowStyles}
+                pagination
+            // paginationServer
+            // onChangeRowsPerPage={handlePerRowsChange}
+            // onChangePage={handlePageChange}
             />
         </div>
     );
