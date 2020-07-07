@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react'
-import lodash from 'lodash'
+// import lodash from 'lodash'
 import { Nav, Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
@@ -10,7 +10,7 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
+// const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
@@ -25,11 +25,14 @@ const RevisionDocumentacion = () => {
     // const [showPDF, setShowPDF] = useState(false)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
-
     const [showModal, setShowModal] = useState(false)
     const [infoObservacionModal, setInfoObservacionModal] = useState({})
-
     const [toggleCleared, setToggleCleared] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [directionValue, setDirectionValue] = useState('auto');
+
+    const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
+
 
     /* Edicion de la tabla */
     const getCandidatos = async () => {
@@ -119,10 +122,6 @@ const RevisionDocumentacion = () => {
     }
 
 
-    const [loading, setLoading] = useState(false);
-    const [directionValue, setDirectionValue] = useState('auto');
-
-    const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
     const BotonesPDFs = ({ data }) => {
         return (
@@ -236,6 +235,19 @@ const RevisionDocumentacion = () => {
         }
     ]
 
+    const sendObservacion = async () => {
+        const url = `${API_REQUEST}/update_user`
+        /* TOMAR STATE */
+        try {
+            const resp = await axios.post(url, infoObservacionModal)
+            
+        } catch (error) {
+
+        }
+        /* ENVIARLO VIA AXIOS */
+        /* HACER RELOAD */
+    }
+
     const agregarObservacion = (row) => {
         setInfoObservacionModal(row)
         handleShowModal(true)
@@ -320,7 +332,7 @@ const RevisionDocumentacion = () => {
                     />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleCloseModal}>
+                    <Button variant="primary" onClick={sendObservacion}>
                         Agregar
                     </Button>
                     <Button variant="danger" onClick={handleCloseModal}>
