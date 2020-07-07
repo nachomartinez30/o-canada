@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react'
-// import lodash from 'lodash'
+
 import { Nav, Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component'
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertExito from "../../singles/AlertExito";
 import sessionContext from "../../context/session/sessionContext";
+
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
@@ -39,16 +40,29 @@ const RevisionDocumentacion = () => {
     const buscarRegistro = async (input) => {
         const { user } = sessContext.login
         const searchWord = input.target.value
-        const url = `${API_REQUEST}revision_region?busqueda=${searchWord}`;
+        const url = `${API_REQUEST}busqueda_revision_region`;
 
-        if (user) {
-            try {
-                const resp = await axios.get(url);
-
-
-            } catch (error) {
-                AlertError('Error', error)
+        if (searchWord !== '') {
+            if (user) {
+                try {
+                    const resp = await axios.post(url, {
+                        busqueda: searchWord,
+                        email: user.email,
+                        token: user.token,
+                        region: user.region
+                    });
+                    if (resp.status === 200) {
+                        setCandidatos(resp.data);
+                        setDatosTabla(resp.data)
+                    } else {
+                        AlertError('Error', resp.data);
+                    }
+                } catch (error) {
+                    AlertError('Error', error)
+                }
             }
+        } else {
+            getCandidatos();
         }
     }
     const getCandidatos = async () => {
