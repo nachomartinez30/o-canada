@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react'
-import lodash from 'lodash'
-import { Nav } from 'react-bootstrap'
+
+import { Nav, Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
@@ -9,30 +9,67 @@ import AlertExito from "../../singles/AlertExito";
 import sessionContext from "../../context/session/sessionContext";
 
 
+
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
     const sessContext = useContext(sessionContext)
-    /* TODO: Acreditar revision de candidatos, terminar Searchbar */
+    /* TODO: 
+        terminar actualizacion de observacion 
+        terminar Searchbar 
+    */
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
-    const [showPDF, setShowPDF] = useState(false)
+    // const [searchWord, setSearchWord] = useState('')
+    // const [paginasPor, setPaginasPor] = useState(10)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
-
-
+    const [showModal, setShowModal] = useState(false)
+    const [infoObservacionModal, setInfoObservacionModal] = useState({})
     const [toggleCleared, setToggleCleared] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [directionValue, setDirectionValue] = useState('auto');
+
+    const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
+
 
     /* Edicion de la tabla */
+    const buscarRegistro = async (input) => {
+        const { user } = sessContext.login
+        const searchWord = input.target.value
+        const url = `${API_REQUEST}busqueda_revision_region`;
+
+        if (searchWord !== '') {
+            if (user) {
+                try {
+                    const resp = await axios.post(url, {
+                        busqueda: searchWord,
+                        email: user.email,
+                        token: user.token,
+                        region: user.region
+                    });
+                    if (resp.status === 200) {
+                        setCandidatos(resp.data);
+                        setDatosTabla(resp.data)
+                    } else {
+                        AlertError('Error', resp.data);
+                    }
+                } catch (error) {
+                    AlertError('Error', error)
+                }
+            }
+        } else {
+            getCandidatos();
+        }
+    }
     const getCandidatos = async () => {
-        const session = sessContext
-        debugger
+        const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
         try {
-            const respuesta = await axios.post(url, { region: '' })
+            const respuesta = await axios.post(url, user)
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)
@@ -51,71 +88,87 @@ const RevisionDocumentacion = () => {
 
     const mostrarDocumento = (documento, data) => {
         const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
-        const url = `${URL_documentos}/${data.curp}/${documento}.pdf`;
+        const url = `${URL_documentos}/${data.curp}/${documento}`;
         window.open(url, '_blank');
     }
 
-    const [loading, setLoading] = useState(false);
-    const [directionValue, setDirectionValue] = useState('auto');
+    const getNombreArchivo = (item) => {
+        const indiceExtension = item.indexOf('.');
+        const archivo = item.substring(0, indiceExtension)
 
-    const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
+        switch (archivo) {
+            case 'carta_antecedentes':
+                return 'Carta de antecentes penales';
 
-    const BotonesPDFs = ({ data }) => (
-        <div className='py-5'>
-            <Nav justify variant="pills" defaultActiveKey="">
-                <Nav.Item>
-                    <Nav.Link eventKey="carta_antecedentes" onClick={() => mostrarDocumento('carta_antecedentes', data)}>Carta de antecedentes penales</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="cert_medico" onClick={() => mostrarDocumento('cert_medico', data)}>Certificado médico</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="cert_toxicologico" onClick={() => mostrarDocumento('cert_toxicologico', data)}>Certificado toxicológico</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="eTA" onClick={() => mostrarDocumento('eTA', data)}>eTA o VISA</Nav.Link>
-                </Nav.Item>
-                {/* <Nav.Item>
-                    <Nav.Link eventKey="fotografia" onClick={() => mostrarDocumento('fotografia', data)}>fotografia</Nav.Link>
-                </Nav.Item> */}
-                <Nav.Item>
-                    <Nav.Link eventKey="licencia_manejo" onClick={() => mostrarDocumento('licencia_manejo', data)}>Licencia de manejo</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="l_280_file" onClick={() => mostrarDocumento('l_280_file', data)}>Constancia L-280</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="pasaporte_archivo" onClick={() => mostrarDocumento('pasaporte_archivo', data)}>Pasaporte</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_100" onClick={() => mostrarDocumento('sci_smi_100', data)}>Constancia SMI 100</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="sci_smi_200" onClick={() => mostrarDocumento('sci_smi_200', data)}>Constancia SMI 200</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_130" onClick={() => mostrarDocumento('s_130', data)}>Constancia S-130</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_190" onClick={() => mostrarDocumento('s_190', data)}>Constancia S-190</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="s_290_file" onClick={() => mostrarDocumento('s_290_file', data)}>Constancia S-290</Nav.Link>
-                </Nav.Item>
-                {(data.posicion_candidato === 'jefe_de_brigada' || data.posicion_candidato === 'tecnico') && <Nav.Item>
-                    <Nav.Link eventKey="toefl" onClick={() => mostrarDocumento('toefl', data)}>TOEFL / TOEIC</Nav.Link>
-                </Nav.Item>}
-            </Nav>
-            {/* {showPDF &&
-                <PDFViewer
-                    navbarOnTop
-                    document={{
-                        url: `${URL_documentos}/${data.curp}/${linkDocumento}.pdf`,
-                    }}
-                />
-            } */}
-        </div>
-    );
+            case 'cert_intern_ate_emerg_med_file':
+                return 'Cert. Inter Emergencias'
+
+            case 'cert_medico':
+                return 'Cert. Médico'
+
+            case 'cert_toxicologico':
+                return 'Cert. Toxicologico'
+
+            case 'curp_archivo':
+                return 'CURP'
+
+            case 'doc_acred_primeros_auxilios':
+                return 'Acred. P. Auxilios'
+
+            case 'ETA':
+                return 'VISA/eTA'
+
+            case 'fotografia':
+                return 'Fotografía'
+
+            case 'licencia_manejo':
+                return 'Licencia de manejo'
+
+            case 'l_280_file':
+                return 'Cert. L-280'
+
+            case 'pasaporte_archivo':
+                return 'Pasaporte'
+
+            case 'sci_smi_100':
+                return 'SCI 100'
+
+            case 'sci_smi_200':
+                return 'SCI 200'
+
+            case 'toefl':
+                return 'TOEFL/TOEIC'
+            case 's_130':
+                return 'Cert. S-130'
+            case 's_190':
+                return 'Cert. S-190'
+            case 'cert_intern_incendios_file':
+                return 'Cert. Intern. Incendios'
+
+            default:
+                return 'check= ' + item
+
+        }
+    }
+
+    const BotonesPDFs = ({ data }) => {
+        return (
+            <div className='py-5'>
+                <Nav justify variant="pills" defaultActiveKey="">
+                    {data.files.map((item) => <Nav.Item>
+                        <Nav.Link
+                            eventKey={item}
+                            onClick={() => mostrarDocumento(item, data)}
+                        >
+                            {getNombreArchivo(item)}
+                        </Nav.Link>
+                    </Nav.Item>)
+                    }
+                </Nav>
+
+            </div>
+        )
+    };
 
     const columns = [
         {
@@ -129,18 +182,7 @@ const RevisionDocumentacion = () => {
             name: 'Nombres',
             selector: 'nombres',
             wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Ap. paterno',
-            selector: 'apellido_paterno',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Ap. materno',
-            selector: 'apellido_materno',
-            wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -170,6 +212,7 @@ const RevisionDocumentacion = () => {
         {
             name: 'sexo',
             selector: 'sexo',
+            maxWidth: '5px',
             wrap: true,
             sortable: true
         },
@@ -177,6 +220,7 @@ const RevisionDocumentacion = () => {
             name: 'Años de experiencia',
             selector: 'anios_experiencia',
             wrap: true,
+            maxWidth: '5px',
             sortable: true
         },
         {
@@ -209,8 +253,48 @@ const RevisionDocumentacion = () => {
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
-        },
+        }, {
+
+            name: 'Agregar Observacion',
+            wrap: true,
+            button: true,
+            minWidth: '180px',
+            cell: (row) => <Button onClick={() => agregarObservacion(row)}>Observacion</Button>,
+        }
     ]
+
+    const sendObservacion = async () => {
+        const url = `${API_REQUEST}/candidato_update`
+
+        const secciones = {
+            login: { status: 'completa', visible: false },
+            s1: { status: 'completa', visible: false },
+            s2: { status: 'completa', visible: false },
+            s3: { status: 'completa', visible: false },
+            s4: { status: 'completa', visible: false },
+            s5: { status: 'completa', visible: false },
+            s6: { status: 'completa', visible: false },
+            s7: { status: 'completa', visible: false },
+            s8: { status: 'completa', visible: false },
+        }
+        /* TOMAR STATE */
+        try {
+            const resp = await axios.post(url, { data: infoObservacionModal, secuencia: secciones })
+            if (resp.status === 200) {
+                AlertExito('Éxito', 'El registro fue actualizado')
+                setReload(true);
+            }
+        } catch (error) {
+
+        }
+        /* ENVIARLO VIA AXIOS */
+        /* HACER RELOAD */
+    }
+
+    const agregarObservacion = (row) => {
+        setInfoObservacionModal(row)
+        handleShowModal(true)
+    }
 
     const manejadorCambiosColumnas = state => {
         setSelectedRows(state.selectedRows);
@@ -251,6 +335,19 @@ const RevisionDocumentacion = () => {
         AlertExito('Registros Desaprobados');
     }
 
+    const conditionalRowStyles = [
+        {
+            when: row => row.observacion_regional,
+            style: {
+                backgroundColor: '#b78d86',
+                // backgroundColor: '#D69200',
+                color: 'white',
+                '&:hover': {
+                    cursor: 'pointer',
+                },
+            },
+        }
+    ];
 
     const contextActions = useMemo(() => {
         const handleAprobar = () => {
@@ -266,9 +363,60 @@ const RevisionDocumentacion = () => {
         </>
     }, [datosTabla, selectedRows, toggleCleared]);
 
+    const handleCloseModal = () => setShowModal(false);
+    const handleShowModal = () => setShowModal(true);
+
+    /* SERVER-SIDE RENDER */
+    // const handlePerRowsChange = async (newPerPage, page) => {
+    //     setLoading(true);
+    //     debugger
+    //     // const response = await axios.get(
+    //     //     `https://reqres.in/api/users?page=${page}&per_page=${newPerPage}&delay=1`,
+    //     // );
+
+    //     // setDatosTabla(response.data.data);
+    //     // setPaginasPor(newPerPage);
+    //     // setLoading(false);
+    // };
+
+
+    // const handlePageChange = page => {
+    //     // getCandidatos(page);
+    //     console.log(page);
+
+    // };
 
     return (
         <div>
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Agregar observacion a la curp <b>{infoObservacionModal.curp}</b></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Control
+                        name='observacion_regional'
+                        onChange={(input) => {
+                            setInfoObservacionModal({
+                                curp: infoObservacionModal.curp,
+                                observacion_regional: input.target.value
+                            })
+                        }}
+                        value={infoObservacionModal.observacion_regional}
+                        as="textarea"
+                        rows="3"
+
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={sendObservacion}>
+                        Agregar
+                    </Button>
+                    <Button variant="danger" onClick={handleCloseModal}>
+                        Cerrar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* TABLA */}
             <DataTable
                 title="Candidatos"
                 columns={columns}
@@ -277,7 +425,6 @@ const RevisionDocumentacion = () => {
                 expandableRows
                 expandOnRowClicked
                 expandableRowsComponent={<BotonesPDFs />}
-                pagination
                 paginationComponentOptions={paginationOptions}
                 persistTableHead
                 progressPending={loading}
@@ -287,7 +434,7 @@ const RevisionDocumentacion = () => {
                         <div>
                             <input className='form-control px-5'
                                 placeholder='Buscar...'
-                            // onChange={findWord}
+                                onChange={buscarRegistro}
                             />
                         </div>
                     )
@@ -300,6 +447,11 @@ const RevisionDocumentacion = () => {
                 selectableRowsHighlight
                 clearSelectedRows={toggleCleared}
                 onSelectedRowsChange={manejadorCambiosColumnas}
+                conditionalRowStyles={conditionalRowStyles}
+                pagination
+            // paginationServer
+            // onChangeRowsPerPage={handlePerRowsChange}
+            // onChangePage={handlePageChange}
             />
         </div>
     );

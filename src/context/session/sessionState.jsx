@@ -32,8 +32,8 @@ const SessionState = (props) => {
             // dota al provider de el state y los metodos para agregar a este los campos necesarios
             value={
                 {
-                    session: {
-                        ...state.user,
+                    login: {
+                        ...state.session,
                         loginUser
                     }
                 }

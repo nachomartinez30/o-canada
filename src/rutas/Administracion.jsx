@@ -9,8 +9,9 @@ const Administracion = () => {
     /* TODO: 
             pasar a context la session del usuario
     */
-
     const sessContext = useContext(sessionContext)
+
+
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     // const [user, setUser] = useState(sessContext.session.user)
     const [user, setUser] = useState(!true)
@@ -35,12 +36,14 @@ const Administracion = () => {
             const resp = await Axios.post(url, toSend);
             if (resp.status === 200) {
                 /* ingresar en el context y en el state la respuesta */
-
+                const respuesta = resp.data.user
+                
                 setUser(resp.data)
-                sessContext.session.loginUser({
-                    ...sessContext.session,
+                sessContext.login.loginUser({
+                    ...sessContext.login,
                     user: resp.data.user
                 })
+                
             }
         } catch (error) {
             AlertError('Error', error);
