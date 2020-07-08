@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react'
 
-import { Nav, Modal, Button, Form } from 'react-bootstrap'
+import { Nav, Modal, Button, Form, Col, InputGroup, FormControl } from 'react-bootstrap'
 import axios from 'axios'
 import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
@@ -10,7 +10,8 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 
-const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+// const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
@@ -23,7 +24,7 @@ const RevisionDocumentacion = () => {
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
-    // const [searchWord, setSearchWord] = useState('')
+    const [searchWord, setSearchWord] = useState('')
     // const [paginasPor, setPaginasPor] = useState(10)
     const [reload, setReload] = useState(true)
     const [selectedRows, setSelectedRows] = useState([]);
@@ -37,11 +38,11 @@ const RevisionDocumentacion = () => {
 
 
     /* Edicion de la tabla */
-    const buscarRegistro = async (input) => {
+    const buscarRegistro = async () => {
         const { user } = sessContext.login
-        const searchWord = input.target.value
+        // const searchWord = input.target.value
         const url = `${API_REQUEST}busqueda_revision_region`;
-
+        setLoading(true)
         if (searchWord !== '') {
             if (user) {
                 try {
@@ -54,6 +55,7 @@ const RevisionDocumentacion = () => {
                     if (resp.status === 200) {
                         setCandidatos(resp.data);
                         setDatosTabla(resp.data)
+                        setLoading(false)
                     } else {
                         AlertError('Error', resp.data);
                     }
@@ -68,11 +70,13 @@ const RevisionDocumentacion = () => {
     const getCandidatos = async () => {
         const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
+        setLoading(true)
         try {
             const respuesta = await axios.post(url, user)
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)
+                setLoading(false)
             } else {
                 AlertError('Error', respuesta.data);
             }
@@ -155,7 +159,7 @@ const RevisionDocumentacion = () => {
         return (
             <div className='py-5'>
                 <Nav justify variant="pills" defaultActiveKey="">
-                    {data.files.map((item) => <Nav.Item>
+                    {(data.files) ? data.files.map((item) => <Nav.Item>
                         <Nav.Link
                             eventKey={item}
                             onClick={() => mostrarDocumento(item, data)}
@@ -163,6 +167,7 @@ const RevisionDocumentacion = () => {
                             {getNombreArchivo(item)}
                         </Nav.Link>
                     </Nav.Item>)
+                        : null
                     }
                 </Nav>
 
@@ -417,6 +422,12 @@ const RevisionDocumentacion = () => {
                 </Modal.Footer>
             </Modal>
             {/* TABLA */}
+            <button className='btn btn-outline-info' onClick={() => {
+                setSearchWord('')
+                setReload(true)
+            }}>
+                Recargar
+            </button>
             <DataTable
                 title="Candidatos"
                 columns={columns}
@@ -431,12 +442,33 @@ const RevisionDocumentacion = () => {
                 subHeader
                 subHeaderComponent={
                     (
-                        <div>
-                            <input className='form-control px-5'
-                                placeholder='Buscar...'
-                                onChange={buscarRegistro}
-                            />
-                        </div>
+                        // <div>
+                        //     <input className='form-control px-5'
+                        //         placeholder='Buscar...'
+                        //         onChange={buscarRegistro}
+                        //     />
+                        //     <button>Buscar</button>
+                        // </div>
+                        <Form>
+                            <Form.Row className="align-items-center">
+                                <Col xs="auto">
+                                    <Form.Control
+                                        onChange={(input) => setSearchWord(input.target.value)}
+                                        className="mb-2"
+                                        value={searchWord}
+                                        id="inlineFormInput"
+                                        placeholder="Buscar..."
+                                    />
+                                </Col>
+                                <Col xs="auto">
+                                    <Button className="mb-2"
+                                        onClick={buscarRegistro}
+                                    >
+                                        Buscar
+                                    </Button>
+                                </Col>
+                            </Form.Row>
+                        </Form>
                     )
                 }
                 contextActions={contextActions}

@@ -20,7 +20,7 @@ const Dashboard = ({ userPorfile}) => {
     const [showSection, setShowSection] = useState({
         'regionales': false,
         'estatales': false,
-        'mesa_ayuda': !false,
+        'mesa_ayuda': false,
         'manifiesto': false,
     })
    
