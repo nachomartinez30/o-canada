@@ -33,9 +33,38 @@ const RevisionDocumentacion = () => {
     const [toggleCleared, setToggleCleared] = useState(false);
     const [loading, setLoading] = useState(false);
     const [directionValue, setDirectionValue] = useState('auto');
+    const [nombreRegion, setNombreRegion] = useState('')
 
     const paginationOptions = { rowsPerPageText: 'Filas por página', rangeSeparatorText: 'de', selectAllRowsItem: true, selectAllRowsItemText: 'Todos' };
 
+    const getRegionName = () => {
+        const { user } = sessContext.login
+        switch (user.region) {
+            case '1':
+                setNombreRegion('Noroeste');
+                break;
+            case '2':
+                setNombreRegion('Norte');
+                break;
+            case '3':
+                setNombreRegion('Noreste');
+                break;
+            case '4':
+                setNombreRegion('Occidente');
+                break;
+            case '5':
+                setNombreRegion('Centro');
+                break;
+            case '6':
+                setNombreRegion('Sureste');
+                break;
+            case '99':
+                setNombreRegion(' OF.Centrales');
+                break;
+            default: setNombreRegion('null');
+                break
+        }
+    }
 
     /* Edicion de la tabla */
     const buscarRegistro = async () => {
@@ -87,6 +116,7 @@ const RevisionDocumentacion = () => {
 
     useEffect(() => {
         getCandidatos();
+        getRegionName()
         setReload(false)
     }, [reload])
 
@@ -421,6 +451,7 @@ const RevisionDocumentacion = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <div style={{ alignContent: 'right' }}><h3>Region: {nombreRegion}</h3></div>
             {/* TABLA */}
             <button className='btn btn-outline-info' onClick={() => {
                 setSearchWord('')
