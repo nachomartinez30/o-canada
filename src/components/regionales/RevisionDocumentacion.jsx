@@ -121,8 +121,9 @@ const RevisionDocumentacion = () => {
     }, [reload])
 
     const mostrarDocumento = (documento, data) => {
-        const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
-        const url = `${URL_documentos}/${data.curp}/${documento}`;
+        // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
+        // const url = `${URL_documentos}/${data.curp}/${documento}`;
+        const url = `http://187.218.230.38:81/o_canada/archivos/${data.curp}/${documento}`;
         window.open(url, '_blank');
     }
 
