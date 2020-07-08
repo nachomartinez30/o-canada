@@ -6,24 +6,25 @@ import axios from 'axios';
 import AlertError from '../../singles/AlertError';
 
 import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
+import EvaluacionesFisicas from '../estatales/EvaluacionesFisicas';
 
 
 
 
 
 
-const Dashboard = ({ userPorfile}) => {
+const Dashboard = ({ userPorfile }) => {
     const sessContext = useContext(sessionContext)
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-    
+
 
     const [showSection, setShowSection] = useState({
         'regionales': false,
-        'estatales': false,
+        'estatales': !false,
         'mesa_ayuda': false,
         'manifiesto': false,
     })
-   
+
     const [toggled, setToggled] = useState(true)
 
     const handleToggle = () => {
@@ -48,7 +49,7 @@ const Dashboard = ({ userPorfile}) => {
                 </label>
                 <div className="container-fluid">
                     {showSection.regionales && <RevisionDocumentacion />}
-                    {/* {showSection.estatales && } */}
+                    {showSection.estatales && <EvaluacionesFisicas />}
                     {showSection.mesa_ayuda && <MesaAyuda />}
                     {/* {showSection.manifiesto && } */}
 

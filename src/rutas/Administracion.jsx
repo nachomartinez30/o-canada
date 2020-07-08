@@ -18,7 +18,7 @@ const Administracion = () => {
 
     const [userPorfile, setUserPorfile] = useState({
         regionales: true,
-        estatales: !true,
+        estatales: true,
         mesa_ayuda: !true,
         manifiesto: !true,
     })
@@ -52,7 +52,7 @@ const Administracion = () => {
 
     return (
         <React.Fragment>
-            {(user) ?
+            {(!user) ?
                 <Dashboard
                     userPorfile={userPorfile}
                 />
