@@ -432,7 +432,7 @@ const RevisionDocumentacion = () => {
                 title="Candidatos"
                 columns={columns}
                 data={datosTabla}
-                defaultSortField="Candidatos"
+                defaultSortField="curp"
                 expandableRows
                 expandOnRowClicked
                 expandableRowsComponent={<BotonesPDFs />}
@@ -442,33 +442,24 @@ const RevisionDocumentacion = () => {
                 subHeader
                 subHeaderComponent={
                     (
-                        // <div>
-                        //     <input className='form-control px-5'
-                        //         placeholder='Buscar...'
-                        //         onChange={buscarRegistro}
-                        //     />
-                        //     <button>Buscar</button>
-                        // </div>
-                        <Form>
-                            <Form.Row className="align-items-center">
-                                <Col xs="auto">
-                                    <Form.Control
-                                        onChange={(input) => setSearchWord(input.target.value)}
-                                        className="mb-2"
-                                        value={searchWord}
-                                        id="inlineFormInput"
-                                        placeholder="Buscar..."
-                                    />
-                                </Col>
-                                <Col xs="auto">
-                                    <Button className="mb-2"
-                                        onClick={buscarRegistro}
-                                    >
-                                        Buscar
+                        <Form.Row className="align-items-center">
+                            <Col xs="auto">
+                                <Form.Control
+                                    onChange={(input) => setSearchWord(input.target.value)}
+                                    className="mb-2"
+                                    value={searchWord}
+                                    id="inlineFormInput"
+                                    placeholder="Buscar..."
+                                />
+                            </Col>
+                            <Col xs="auto">
+                                <Button className="mb-2"
+                                    onClick={buscarRegistro}
+                                >
+                                    Buscar
                                     </Button>
-                                </Col>
-                            </Form.Row>
-                        </Form>
+                            </Col>
+                        </Form.Row>
                     )
                 }
                 contextActions={contextActions}
