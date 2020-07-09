@@ -17,10 +17,7 @@ const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
 
 const RevisionDocumentacion = () => {
     const sessContext = useContext(sessionContext)
-    /* TODO: 
-        terminar actualizacion de observacion 
-        terminar Searchbar 
-    */
+    /* TODO:    */
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
@@ -215,51 +212,6 @@ const RevisionDocumentacion = () => {
             sortable: true
         },
         {
-            name: 'Nombres',
-            selector: 'nombres',
-            wrap: true,
-            minWidth: '200px',
-            sortable: true
-        },
-        {
-            name: 'Estado',
-            selector: 'nom_ent',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Tel.',
-            selector: 'numero_telefonico_notificaciones',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Email',
-            selector: 'correo_electronico',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Posición',
-            selector: 'posicion_candidato',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'sexo',
-            selector: 'sexo',
-            maxWidth: '5px',
-            wrap: true,
-            sortable: true
-        },
-        {
-            name: 'Años de experiencia',
-            selector: 'anios_experiencia',
-            wrap: true,
-            maxWidth: '5px',
-            sortable: true
-        },
-        {
             name: 'Estatus',
             selector: 'aprobado_regionales',
             conditionalCellStyles: [
@@ -289,7 +241,231 @@ const RevisionDocumentacion = () => {
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
-        }, {
+        },
+        {
+            name: 'Nombres',
+            selector: 'nombres',
+            wrap: true,
+            minWidth: '200px',
+            sortable: true
+        },
+        {
+            name: 'Estado',
+            selector: 'nom_ent',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha Nacimiento',
+            selector: 'fecha_nacimiento',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Grpo. sanguíneo',
+            selector: 'grupo_sanguineo',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'RFC',
+            selector: 'rfc',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Cart.Ant.Pnls.',
+            selector: 'antecedentes_fecha',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Num. Pasaporte',
+            selector: 'pasaporte_numero',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha cad.Pasaporte',
+            selector: 'pasaporte_fecha_cad',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Doc. Para viajar ',
+            selector: 'documento_viajar_canada',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Num. ETA-VISA',
+            selector: 'eta_visa_num',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha expd.ETA-VISA fecha_exp',
+            selector: 'eta_visa_fecha_exp',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha Cad. ETA-VISA',
+            selector: 'eta_visa_fecha_cad',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'lic. Fecha Cad.',
+            selector: 'licencia_fecha_cad',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha cert.Tox.',
+            selector: 'fecha_cert_toxicologico',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha cert.Médico',
+            selector: 'fecha_cert_medico',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Teléfono',
+            selector: 'numero_telefonico_notificaciones',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Email',
+            selector: 'correo_electronico',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Posición',
+            selector: 'posicion_candidato',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Dependencia',
+            selector: 'dependencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Tipo Depend.',
+            selector: 'tipo_dependencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Benef.',
+            selector: 'nombre_beneficiario',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Tel. Benef.',
+            selector: 'telefono_beneficiario',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Correo Benef.',
+            selector: 'correo_beneficiario',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Tip.Licencia',
+            selector: 'tipo_licencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Niv. Inglés',
+            selector: 'nivel_ingles',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Calif.TOEFL.',
+            selector: 'examen_toeic_toefl_punt',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Opera gps',
+            selector: 'opera_autonoma_gps',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Opera mark3',
+            selector: 'opera_autonoma_mark3',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Opera motosierra',
+            selector: 'opera_autonoma_motosierra',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Equipo Completo',
+            selector: 'tiene_epp_completo',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fecha ing. Dependencia',
+            selector: 'fecha_ingreso_dependencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Sexo',
+            selector: 'sexo',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Puesto dependencia',
+            selector: 'puesto_en_dependencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Fun. Dependencia',
+            selector: 'funciones_dependencia',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Nvl.Prim.Aux.',
+            selector: 'niv_primeros_auxilios',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Con.Prim.Aux.',
+            selector: 'conocimientos_primeros_auxilios',
+            wrap: true,
+            sortable: true
+        },
+        {
+            name: 'Región',
+            selector: 'region',
+            wrap: true,
+            sortable: true
+        },
+        {
 
             name: 'Agregar Observacion',
             wrap: true,
@@ -298,6 +474,8 @@ const RevisionDocumentacion = () => {
             cell: (row) => <Button onClick={() => agregarObservacion(row)}>Observacion</Button>,
         }
     ]
+
+
 
     const sendObservacion = async () => {
         const url = `${API_REQUEST}/candidato_update`
