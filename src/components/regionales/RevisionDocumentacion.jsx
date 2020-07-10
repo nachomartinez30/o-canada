@@ -206,13 +206,6 @@ const RevisionDocumentacion = () => {
 
     const columns = [
         {
-            name: 'CURP',
-            selector: 'curp',
-            wrap: false,
-            minWidth: '200px',
-            sortable: true
-        },
-        {
             name: 'Estatus',
             selector: 'aprobado_regionales',
             conditionalCellStyles: [
@@ -242,6 +235,22 @@ const RevisionDocumentacion = () => {
             ignoreRowClick: true,
             allowOverflow: true,
             button: true,
+            sortable: true
+        },
+        {
+
+            name: 'Agregar Observacion',
+            wrap: true,
+            button: true,
+            minWidth: '180px',
+            cell: (row) => <Button onClick={() => agregarObservacion(row)}>Observacion</Button>,
+        },
+        {
+            name: 'CURP',
+            selector: 'curp',
+            wrap: false,
+            minWidth: '200px',
+            sortable: true
         },
         {
             name: 'Nombres',
@@ -465,14 +474,6 @@ const RevisionDocumentacion = () => {
             selector: 'region',
             wrap: true,
             sortable: true
-        },
-        {
-
-            name: 'Agregar Observacion',
-            wrap: true,
-            button: true,
-            minWidth: '180px',
-            cell: (row) => <Button onClick={() => agregarObservacion(row)}>Observacion</Button>,
         }
     ]
 
@@ -675,12 +676,8 @@ const RevisionDocumentacion = () => {
                 paginationComponentOptions={paginationOptions}
                 persistTableHead
                 progressPending={loading}
-                subHeader
-                // subHeaderComponent={
-                //     (
-
-                //     )
-                // }
+                fixedHeader
+                // fixedHeaderScrollHeight="500px"
                 contextActions={contextActions}
                 contextMessage={{ singular: 'registro', plural: 'registros', message: 'seleccionados' }}
                 subHeaderAlign={'left'}
@@ -691,6 +688,7 @@ const RevisionDocumentacion = () => {
                 onSelectedRowsChange={manejadorCambiosColumnas}
                 conditionalRowStyles={conditionalRowStyles}
                 pagination
+                dense
             // paginationServer
             // onChangeRowsPerPage={handlePerRowsChange}
             // onChangePage={handlePageChange}
