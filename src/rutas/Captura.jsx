@@ -12,12 +12,16 @@ import S8 from '../components/captura/S8';
 import Finalizar from '../components/captura/Finalizar';
 import axios from 'axios';
 import AlertError from '../singles/AlertError';
+import AlertCargando from '../singles/AlertCargando';
+import AlertExito from '../singles/AlertExito';
 import Login from '../components/captura/Login';
 // import rfcValido from '../helpers/rfcValido'
+
 /* CONTEXT */
 
 import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from '../helpers/emailValid';
+import { Alert } from 'react-bootstrap';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 
@@ -174,8 +178,10 @@ const Captura = () => {
                 }
             });
 
+            AlertCargando('Enviando los datos, espere por favor');
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo.status === 200 && archivo_curp.status === 200) {
+                AlertExito('Cargado exitosamente')
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
@@ -197,7 +203,6 @@ const Captura = () => {
                 } else {
                     /*  axios actualizacion de INFOCandidato */
                     /* Agrega al context general */
-
                     setSecciones({
                         ...secciones,
                         s1: seccionCompleta,
@@ -316,8 +321,10 @@ const Captura = () => {
                 }
             }
 
+            AlertCargando('Enviando los datos, espere por favor');
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
+            AlertExito('Cargado exitosamente')
             if (
                 respuesta.status === 200 &&
                 archivo_pasaporte_archivo.status === 200 &&
@@ -432,8 +439,10 @@ const Captura = () => {
                 }
             });
 
+            AlertCargando('Enviando los datos, espere por favor');
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
+            AlertExito('Cargado exitosamente')
             if (respuesta.status === 200 && archivo_cert_toxicologico.status === 200 && archivo_cert_medico.status === 200) {
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
@@ -676,8 +685,10 @@ const Captura = () => {
         /* actualizacion de informacion por AXIOS */
         const url = `${API_REQUEST}candidato_update`;
         try {
+            AlertCargando('Enviando los datos, espere por favor');
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
 
+            AlertExito('Cargado exitosamente')
             if (doc_acred_primeros_auxilios_fl) {
                 const archivo_doc_acred_primeros_auxilios_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_doc_acred_primeros_auxilios_fl, {
                     headers: {
@@ -768,8 +779,10 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            AlertCargando('Enviando los datos, espere por favor');
             const respuesta = await axios.post(url, { data: infoBrigadista, secuencia: secciones });
             if (respuesta.status === 200 && archivo_carta_antecedentes.status === 200) {
+                AlertExito('Cargado exitosamente')
                 if (infoBrigadista.rechazo) {
                     // se ocultan las secciones
                     setSecciones({
