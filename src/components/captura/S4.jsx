@@ -13,9 +13,6 @@ import candidatoContext from "../../context/candidato/candidatoContext";
 const S4 = (props) => {
     const candidatos = useContext(candidatoContext);
     const { curp } = candidatos.candidatos.infoBrigadista
-    /* TODO: -> revision de CURP en state SETEXAM RESP
-             -> beforeunload
-    */
 
     const { state, setState, checkData, files, setStateFiles } = props
 

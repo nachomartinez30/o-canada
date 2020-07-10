@@ -6,6 +6,8 @@ import calculoTiempoMax from '../../helpers/calculoTiempoMax';
 import { InputGroup, FormControl } from 'react-bootstrap';
 
 const EvaluacionesFisicas = () => {
+    /* TODO: terminar S10 */
+
     const [evaluaciones, setEvaluaciones] = useState({})
 
     const setInfo = (input) => {
@@ -168,6 +170,7 @@ const EvaluacionesFisicas = () => {
                     placeholder='Ingrese Altura sobre el nivel del mar...'
                 />
             </div>
+            {/* PRUEBA */}
             <div className='col-12 col-md-5'>
                 <label className="control-label pt-2">Prueba:</label>
                 <InputNumber

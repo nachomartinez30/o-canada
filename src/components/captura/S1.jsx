@@ -259,7 +259,7 @@ const S1 = (props) => {
             </div>
             {/* Estado */}
             <div className='col-12 col-md-6'>
-                {/* TODO: select Cat-estado */}
+
                 <label className="control-label pt-2">Estado</label>
                 <SelectEstados
                     className={`form-control ${(state.estado) ? null : 'myInput'}`}
@@ -272,7 +272,7 @@ const S1 = (props) => {
             </div>
             {/* Municipio */}
             <div className='col-12 col-md-6'>
-                {/* TODO: select Cat-estado */}
+
                 <label className="control-label pt-2">Municipio</label>
                 <select
                     disabled={(municipios.length <= 0) ? true : false}
