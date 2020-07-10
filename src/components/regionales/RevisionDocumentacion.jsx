@@ -250,6 +250,7 @@ const RevisionDocumentacion = () => {
             selector: 'curp',
             wrap: false,
             minWidth: '200px',
+            // minHeight: '200px',
             sortable: true
         },
         {
@@ -281,6 +282,7 @@ const RevisionDocumentacion = () => {
             name: 'RFC',
             selector: 'rfc',
             wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -353,6 +355,7 @@ const RevisionDocumentacion = () => {
             name: 'Email',
             selector: 'correo_electronico',
             wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -364,6 +367,7 @@ const RevisionDocumentacion = () => {
         {
             name: 'Dependencia',
             selector: 'dependencia',
+            minWidth: '200px',
             wrap: true,
             sortable: true
         },
@@ -377,6 +381,7 @@ const RevisionDocumentacion = () => {
             name: 'Benef.',
             selector: 'nombre_beneficiario',
             wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -389,6 +394,7 @@ const RevisionDocumentacion = () => {
             name: 'Correo Benef.',
             selector: 'correo_beneficiario',
             wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -449,6 +455,7 @@ const RevisionDocumentacion = () => {
             name: 'Puesto dependencia',
             selector: 'puesto_en_dependencia',
             wrap: true,
+            minWidth: '200px',
             sortable: true
         },
         {
@@ -476,8 +483,6 @@ const RevisionDocumentacion = () => {
             sortable: true
         }
     ]
-
-
 
     const sendObservacion = async () => {
         const url = `${API_REQUEST}/candidato_update`
@@ -688,7 +693,6 @@ const RevisionDocumentacion = () => {
                 onSelectedRowsChange={manejadorCambiosColumnas}
                 conditionalRowStyles={conditionalRowStyles}
                 pagination
-                dense
             // paginationServer
             // onChangeRowsPerPage={handlePerRowsChange}
             // onChangePage={handlePageChange}
