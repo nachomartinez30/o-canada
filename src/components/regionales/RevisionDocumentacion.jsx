@@ -6,6 +6,7 @@ import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertExito from "../../singles/AlertExito";
+import { AiOutlineReload } from 'react-icons/ai';
 import sessionContext from "../../context/session/sessionContext";
 
 
@@ -631,13 +632,38 @@ const RevisionDocumentacion = () => {
                 </Modal.Footer>
             </Modal>
             <div style={{ alignContent: 'right' }}><h3>Region: {nombreRegion}</h3></div>
+            {/* BOTONERA */}
+            <InputGroup className="mb-2 pt-4">
+                <Form.Row className="align-items-center">
+                    <Col xs="auto">
+                        <Form.Control
+                            onChange={(input) => setSearchWord(input.target.value)}
+                            className="mb-2 px-5"
+                            value={searchWord}
+                            placeholder="Buscar..."
+                        />
+                    </Col>
+                    <Col xs="auto">
+                        <Button className="mb-2"
+                            onClick={buscarRegistro}
+                        >
+                            Buscar
+                        </Button>
+                    </Col>
+                    <Col xs="auto">
+                        <Button className='mb-2' variant='info' onClick={() => {
+                            setSearchWord('')
+                            setReload(true)
+                        }}>
+                            <AiOutlineReload />
+                        </Button>
+                    </Col>
+                </Form.Row>
+
+            </InputGroup>
+
             {/* TABLA */}
-            <button className='btn btn-outline-info' onClick={() => {
-                setSearchWord('')
-                setReload(true)
-            }}>
-                Recargar
-            </button>
+
             <DataTable
                 title="Candidatos"
                 columns={columns}
@@ -650,28 +676,11 @@ const RevisionDocumentacion = () => {
                 persistTableHead
                 progressPending={loading}
                 subHeader
-                subHeaderComponent={
-                    (
-                        <Form.Row className="align-items-center">
-                            <Col xs="auto">
-                                <Form.Control
-                                    onChange={(input) => setSearchWord(input.target.value)}
-                                    className="mb-2"
-                                    value={searchWord}
-                                    id="inlineFormInput"
-                                    placeholder="Buscar..."
-                                />
-                            </Col>
-                            <Col xs="auto">
-                                <Button className="mb-2"
-                                    onClick={buscarRegistro}
-                                >
-                                    Buscar
-                                    </Button>
-                            </Col>
-                        </Form.Row>
-                    )
-                }
+                // subHeaderComponent={
+                //     (
+
+                //     )
+                // }
                 contextActions={contextActions}
                 contextMessage={{ singular: 'registro', plural: 'registros', message: 'seleccionados' }}
                 subHeaderAlign={'left'}
