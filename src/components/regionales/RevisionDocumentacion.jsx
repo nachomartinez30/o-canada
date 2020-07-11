@@ -6,6 +6,7 @@ import AlertError from '../../singles/AlertError'
 import DataTable from 'react-data-table-component'
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertExito from "../../singles/AlertExito";
+import AlertCargando from "../../singles/AlertCargando";
 import { AiOutlineReload } from 'react-icons/ai';
 import sessionContext from "../../context/session/sessionContext";
 
@@ -73,6 +74,7 @@ const RevisionDocumentacion = () => {
         const { user } = sessContext.login
         // const searchWord = input.target.value
         const url = `${API_REQUEST}busqueda_revision_region`;
+        AlertCargando('Buscando registros')
         setLoading(true)
         if (searchWord !== '') {
             if (user) {
@@ -85,7 +87,8 @@ const RevisionDocumentacion = () => {
                     });
                     if (resp.status === 200) {
                         setCandidatos(resp.data);
-                        setDatosTabla(resp.data)
+                        setDatosTabla(resp.data);
+                        AlertExito('Se han cargado los registros')
                         setLoading(false)
                     } else {
                         AlertError('Error', resp.data);
@@ -101,12 +104,14 @@ const RevisionDocumentacion = () => {
     const getCandidatos = async () => {
         const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
+        AlertCargando('Buscando registros')
         setLoading(true)
         try {
             const respuesta = await axios.post(url, user)
             if (respuesta.status === 200) {
                 setCandidatos(respuesta.data);
                 setDatosTabla(respuesta.data)
+                AlertExito('Se han cargado los registros')
                 setLoading(false)
             } else {
                 AlertError('Error', respuesta.data);
