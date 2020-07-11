@@ -11,14 +11,18 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 
-// const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
+const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+// const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
 const RevisionDocumentacion = () => {
     const sessContext = useContext(sessionContext)
-    /* TODO:    */
+    /* TODO:  
+    -> cambiar a liga de produccion
+    -> revision de srvicio activo
+    -> cambio a base de datos produccion
+    */
 
     const [candidatos, setCandidatos] = useState([])
     const [datosTabla, setDatosTabla] = useState([])
