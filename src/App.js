@@ -13,6 +13,10 @@ import Administracion from './rutas/Administracion';
 import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
 import PDF from './components/captura/PDF';
+import Cierre from './components/cierre/Cierre';
+
+/* variable para cierre de convocatoria */
+const cierre = true;
 
 
 const App = () => {
@@ -22,10 +26,14 @@ const App = () => {
         <SessionState>
           {/* <Router basename='o-canada'> */}
           <Router>
-            <Header />
+            <Header cierre={cierre} />
             <hr className='gradiente' />
             <Switch>
-              <Route exact path="/" component={Captura} />
+              {(cierre) ?
+                <Route exact path="/" component={Cierre} />
+                :
+                <Route exact path="/" component={Captura} />
+              }
               <Route exact path="/dashboard" component={Administracion} />
               <Route exact path="/pdf" component={PDF} />
             </Switch>

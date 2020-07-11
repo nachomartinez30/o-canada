@@ -9,7 +9,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { IconContext } from 'react-icons/lib'
 import DatosAyuda from './DatosAyuda'
 
-const Header = () => {
+const Header = ({ cierre }) => {
     const [mostrarMesaAyuda, setMostrarMesaAyuda] = useState(false)
     return (
         <>
@@ -51,23 +51,27 @@ const Header = () => {
                     />
                 </div>
             </nav>
-            <div className="text-right">
-                <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)} className="ayudaStyle">
-                    ¿Necesitas ayuda? <BsFillQuestionSquareFill />
-                </Button>
-                <a href='http://187.218.230.38:81/o_canada/documentos/manual_registro_ingreso_usuarios_SISECOIF.pdf'
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary registroStyle">
-                    ¿Como me resgistro?
+            {/* variable para cierre de proyecto */}
+            {(cierre) ? null
+                :
+                <div className="text-right">
+                    <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)} className="ayudaStyle">
+                        ¿Necesitas ayuda? <BsFillQuestionSquareFill />
+                    </Button>
+                    <a href='http://187.218.230.38:81/o_canada/documentos/manual_registro_ingreso_usuarios_SISECOIF.pdf'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary registroStyle">
+                        ¿Como me resgistro?
                 </a>
 
-                {/* DATOS MESA DE AYUDA */}
-                <DatosAyuda
-                    show={mostrarMesaAyuda}
-                    setShow={setMostrarMesaAyuda}
-                />
-            </div>
+                    {/* DATOS MESA DE AYUDA */}
+                    <DatosAyuda
+                        show={mostrarMesaAyuda}
+                        setShow={setMostrarMesaAyuda}
+                    />
+                </div>
+            }
         </>
     );
 }
