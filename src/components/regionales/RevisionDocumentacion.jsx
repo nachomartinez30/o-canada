@@ -74,7 +74,7 @@ const RevisionDocumentacion = () => {
         const { user } = sessContext.login
         // const searchWord = input.target.value
         const url = `${API_REQUEST}busqueda_revision_region`;
-        AlertCargando('Buscando registros')
+        AlertCargando('Buscando similitudes...')
         setLoading(true)
         if (searchWord !== '') {
             if (user) {
@@ -88,7 +88,7 @@ const RevisionDocumentacion = () => {
                     if (resp.status === 200) {
                         setCandidatos(resp.data);
                         setDatosTabla(resp.data);
-                        AlertExito('Se han cargado los registros')
+                        AlertExito('Se han cargado los registros existentes')
                         setLoading(false)
                     } else {
                         AlertError('Error', resp.data);
@@ -104,7 +104,7 @@ const RevisionDocumentacion = () => {
     const getCandidatos = async () => {
         const { user } = sessContext.login
         const url = `${API_REQUEST}revision_region`;
-        AlertCargando('Buscando registros')
+        AlertCargando('Solicitando registros...')
         setLoading(true)
         try {
             const respuesta = await axios.post(url, user)
