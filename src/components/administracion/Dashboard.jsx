@@ -6,7 +6,7 @@ import axios from 'axios';
 import AlertError from '../../singles/AlertError';
 
 import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
-import EvaluacionesFisicas from '../estatales/EvaluacionesFisicas';
+import S9 from '../estatales/S9';
 
 
 
@@ -49,7 +49,7 @@ const Dashboard = ({ userPorfile }) => {
                 </label>
                 <div className="container-fluid">
                     {showSection.regionales && <RevisionDocumentacion />}
-                    {showSection.estatales && <EvaluacionesFisicas />}
+                    {showSection.estatales && <S9 />}
                     {showSection.mesa_ayuda && <MesaAyuda />}
                     {/* {showSection.manifiesto && } */}
 

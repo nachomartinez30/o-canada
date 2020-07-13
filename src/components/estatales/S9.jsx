@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import InputNumber from '../../singles/InputNumber'
 import calculoIMC from "../../helpers/calculoIMC";
 import ToMayus from '../../helpers/ToMayus';
-import calculoTiempoMax from '../../helpers/calculoTiempoMax';
-import { InputGroup, FormControl } from 'react-bootstrap';
+import moment from 'moment'
+import { InputGroup } from 'react-bootstrap';
 
-const EvaluacionesFisicas = () => {
+const S9 = () => {
     /* TODO: terminar S10 */
 
     const [evaluaciones, setEvaluaciones] = useState({})
@@ -15,6 +15,7 @@ const EvaluacionesFisicas = () => {
             ...evaluaciones,
             [input.target.name]: input.target.value
         })
+
     }
 
     const handleIMC = () => {
@@ -28,15 +29,117 @@ const EvaluacionesFisicas = () => {
         }
     }
 
+    const calculoTiempoMax = (asnm) => {
+        /* asnm => Altura sobre el nivel del mar */
+        if (asnm) {
+            if (asnm < 1200) {
+                console.log({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 45,
+                    tiempo_req_mas_seg: '00'
+                });
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 45,
+                    tiempo_req_mas_seg: '00'
+                });
+            }
+
+            if (asnm > 1200 && asnm <= 1500) {
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 45,
+                    tiempo_req_mas_seg: 30
+                });
+            }
+
+            if (asnm > 1500 && asnm <= 1800) {
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 45,
+                    tiempo_req_mas_seg: 45
+                });
+            }
+
+            if (asnm > 1800 && asnm <= 2100) {
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 46,
+                    tiempo_req_mas_seg: '00'
+                });
+            }
+
+            if (asnm > 2100 && asnm <= 2400) {
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 46,
+                    tiempo_req_mas_seg: 15
+                });
+            }
+
+            if (asnm > 2400) {
+                setEvaluaciones({
+                    ...evaluaciones,
+                    tiempo_req_max_min: 46,
+                    tiempo_req_mas_seg: 30
+                });
+            }
+        } else {
+            setEvaluaciones({
+                ...evaluaciones,
+                tiempo_req_max_min: '',
+                tiempo_req_mas_seg: ''
+            })
+        }
+    }
+
     const handleASNM = () => {
         const { altura_sobre_niv_mar } = evaluaciones
-        const tiempo_max = calculoTiempoMax(altura_sobre_niv_mar)
-        setEvaluaciones({
-            ...evaluaciones,
-            tiempo_max_correccion_altitud: tiempo_max
-        })
-
+        calculoTiempoMax(altura_sobre_niv_mar)
     }
+
+    const calcResultados = () => {
+        const { minutos_prueba_trabajo_arduo, segundos_prueba_trabajo_arduo } = evaluaciones
+
+        if (minutos_prueba_trabajo_arduo && segundos_prueba_trabajo_arduo) {
+            setEvaluaciones({
+                ...evaluaciones,
+                puntuacion_estimada: puntajePrueba(minutos_prueba_trabajo_arduo, segundos_prueba_trabajo_arduo),
+                prueba: calificacionPrueba(minutos_prueba_trabajo_arduo, segundos_prueba_trabajo_arduo)
+            })
+        } else {
+            setEvaluaciones({
+                ...evaluaciones,
+                puntuacion_estimada: '',
+                prueba: ''
+            })
+        }
+    }
+
+    const puntajePrueba = (minutos, segundos) => {
+        const tiempo = moment(`${minutos}:${segundos}`, 'mm:ss')
+        const primerCaso = moment(`35:00`, 'mm:ss')
+        const segundoCaso = moment(`40:00`, 'mm:ss')
+        const tercerCaso = moment(`46:30`, 'mm:ss')
+
+
+        if (tiempo <= primerCaso) { return '10' }
+        if (tiempo > primerCaso || tiempo <= segundoCaso) { return '9.5' }
+        if (tiempo > segundoCaso || tiempo <= tercerCaso) { return '9' }
+    }
+    const calificacionPrueba = (minutos, segundos) => {
+        const { tiempo_req_max_min, tiempo_req_mas_seg } = evaluaciones
+
+        const tiempo = moment(`${minutos}:${segundos}`, 'mm:ss')
+        // const primerCaso = moment(`35:00`, 'mm:ss')
+        // const segundoCaso = moment(`40:00`, 'mm:ss')
+        // const tercerCaso = moment(`46:30`, 'mm:ss')
+
+        const tiempoMaxRequerido = moment(`${tiempo_req_max_min}:${tiempo_req_mas_seg}`, 'mm:ss')
+
+        return (tiempo <= tiempoMaxRequerido) ? 'SUPERADA' : 'NO SUPERADA'
+    }
+
 
     return (
         <div className='row body_wrap'>
@@ -126,7 +229,7 @@ const EvaluacionesFisicas = () => {
                     className={`form-control ${(evaluaciones.tiempo_max_correccion_altitud) ? null : 'myInput'}`}
                     name='tiempo_max_correccion_altitud'
                     type='text'
-                    value={evaluaciones.tiempo_max_correccion_altitud}
+                    value={(evaluaciones.tiempo_req_max_min && evaluaciones.tiempo_req_mas_seg) ? `${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''` : null}
                     placeholder='Ingrese Altura sobre el nivel del mar...'
                 />
             </div>
@@ -141,6 +244,7 @@ const EvaluacionesFisicas = () => {
                         min={0}
                         name='minutos_prueba_trabajo_arduo'
                         onChange={setInfo}
+                        onBlur={calcResultados}
                     />
                     <InputGroup.Prepend>
                         <InputGroup.Text>'</InputGroup.Text>
@@ -152,6 +256,7 @@ const EvaluacionesFisicas = () => {
                         min={0}
                         name='segundos_prueba_trabajo_arduo'
                         onChange={setInfo}
+                        onBlur={calcResultados}
                     />
                     <InputGroup.Prepend>
                         <InputGroup.Text>''</InputGroup.Text>
@@ -165,20 +270,32 @@ const EvaluacionesFisicas = () => {
                     disabled
                     className={`form-control ${(evaluaciones.puntuacion_estimada) ? null : 'myInput'}`}
                     name='puntuacion_estimada'
-                    onChange={setInfo}
-
-                    placeholder='Ingrese Altura sobre el nivel del mar...'
+                    value={evaluaciones.puntuacion_estimada}
+                    // onChange={setInfo}
+                    placeholder='Ingrese Minuos y Segundos de la prueba...'
                 />
             </div>
             {/* PRUEBA */}
             <div className='col-12 col-md-5'>
                 <label className="control-label pt-2">Prueba:</label>
-                <InputNumber
+                <input
                     disabled
                     className={`form-control ${(evaluaciones.prueba) ? null : 'myInput'}`}
                     name='prueba'
+                    // onChange={setInfo}
+                    value={evaluaciones.prueba}
+                    placeholder='Resultados de la prueba...'
+                />
+            </div>
+            {/* FORMATO APTITUD FISICA */}
+            <div className='col-12 col-md-12'>
+                <label className="control-label pt-2">Formato de aptitud física:</label>
+                <input
+                    type='file'
+                    accept="application/pdf"
+                    className={`form-control ${(evaluaciones.formato) ? null : 'myInput'}`}
+                    name='formato'
                     onChange={setInfo}
-
                     placeholder='Resultados de la prueba...'
                 />
             </div>
@@ -186,4 +303,4 @@ const EvaluacionesFisicas = () => {
     );
 }
 
-export default EvaluacionesFisicas;
+export default S9;
