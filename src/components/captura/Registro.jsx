@@ -5,8 +5,6 @@ import curpValida from '../../helpers/curpValida';
 import { Alert } from 'react-bootstrap';
 
 const Registro = (props) => {
-    /* TODO: revisar si CURP es correcta habiltar boton registrame */
-
     const { enable, onClick, showTerminosCondiciones, state, setState } = props
     const [continuar, setContinuar] = useState(false)
     const [curpValida, setCurpValida] = useState(false)

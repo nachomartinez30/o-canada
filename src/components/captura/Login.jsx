@@ -7,7 +7,6 @@ import candidatoContext from "../../context/candidato/candidatoContext";
 import axios from 'axios';
 import AlertError from '../../singles/AlertError';
 import AlertaSiguiente from '../../singles/AlertaSiguiente';
-import { ResponsiveEmbed } from 'react-bootstrap';
 
 const Login = (props) => {
 

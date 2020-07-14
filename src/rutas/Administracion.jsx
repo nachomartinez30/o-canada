@@ -6,9 +6,6 @@ import Axios from 'axios';
 import AlertError from '../singles/AlertError';
 
 const Administracion = () => {
-    /* TODO: 
-            pasar a context la session del usuario
-    */
     const sessContext = useContext(sessionContext)
 
 
@@ -19,7 +16,7 @@ const Administracion = () => {
 
     const [userPorfile, setUserPorfile] = useState({
         regionales: true,
-        estatales: !true,
+        estatales: true,
         mesa_ayuda: !true,
         manifiesto: !true,
     })

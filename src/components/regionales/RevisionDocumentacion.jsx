@@ -702,9 +702,6 @@ const RevisionDocumentacion = () => {
                 onSelectedRowsChange={manejadorCambiosColumnas}
                 conditionalRowStyles={conditionalRowStyles}
                 pagination
-            // paginationServer
-            // onChangeRowsPerPage={handlePerRowsChange}
-            // onChangePage={handlePageChange}
             />
         </div>
     );

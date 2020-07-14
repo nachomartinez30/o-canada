@@ -12,6 +12,7 @@ import Administracion from './rutas/Administracion';
 /* CONTEXT */
 import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
+import PruebasFisiscasState from './context/pruebas_fisicas/pruebasFisiscasState'
 import PDF from './components/captura/PDF';
 import Cierre from './components/cierre/Cierre';
 
@@ -19,26 +20,30 @@ import Cierre from './components/cierre/Cierre';
 const cierre = true;
 
 
+
 const App = () => {
   return (
     <div>
       <CandidatoState>
         <SessionState>
-          {/* <Router basename='o-canada'> */}
-          <Router>
-            <Header cierre={cierre} />
-            <hr className='gradiente' />
-            <Switch>
-              {(cierre) ?
-                <Route exact path="/" component={Cierre} />
-                :
-                <Route exact path="/" component={Captura} />
-              }
-              <Route exact path="/dashboard" component={Administracion} />
-              <Route exact path="/pdf" component={PDF} />
-            </Switch>
-            {/* <Footer> */}
-          </Router>
+          <PruebasFisiscasState>
+            {/* <Router basename='o-canada'> */}
+            <Router>
+              <Header cierre={cierre} />
+              <hr className='gradiente' />
+              <Switch>
+                {(cierre) ?
+                  <Route exact path="/" component={Cierre} />
+                  :
+                  <Route exact path="/" component={Captura} />
+                }
+                <Route exact path="/dashboard" component={Administracion} />
+                <Route exact path="/pdf" component={PDF} />
+              </Switch>
+              {/* <Footer> */}
+            </Router>
+
+          </PruebasFisiscasState>
         </SessionState>
       </CandidatoState>
     </div>
