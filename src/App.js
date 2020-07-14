@@ -12,7 +12,9 @@ import Administracion from './rutas/Administracion';
 /* CONTEXT */
 import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
+import PruebasFisiscasState from './context/pruebas_fisicas/pruebasFisiscasState'
 import PDF from './components/captura/PDF';
+
 
 
 const App = () => {
@@ -20,17 +22,20 @@ const App = () => {
     <div>
       <CandidatoState>
         <SessionState>
-          {/* <Router basename='o-canada'> */}
-          <Router>
-            <Header />
-            <hr className='gradiente' />
-            <Switch>
-              <Route exact path="/" component={Captura} />
-              <Route exact path="/dashboard" component={Administracion} />
-              <Route exact path="/pdf" component={PDF} />
-            </Switch>
-            {/* <Footer> */}
-          </Router>
+          <PruebasFisiscasState>
+            {/* <Router basename='o-canada'> */}
+            <Router>
+              <Header />
+              <hr className='gradiente' />
+              <Switch>
+                <Route exact path="/" component={Captura} />
+
+                <Route exact path="/dashboard" component={Administracion} />
+                <Route exact path="/pdf" component={PDF} />
+              </Switch>
+              {/* <Footer> */}
+            </Router>
+          </PruebasFisiscasState>
         </SessionState>
       </CandidatoState>
     </div>

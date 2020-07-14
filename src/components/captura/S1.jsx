@@ -42,7 +42,7 @@ const S1 = (props) => {
             input.target.value = Math.abs(input.target.value)
         }
         if (input.target.name === 'fotografia' || input.target.name === 'curp_archivo') {
-            setPreview(URL.createObjectURL(input.target.files[0]))
+            if (input.target.name === 'fotografia') setPreview(URL.createObjectURL(input.target.files[0]))
             setStateFiles({
                 ...files,
                 [input.target.name + '_fl']: input.target.files,

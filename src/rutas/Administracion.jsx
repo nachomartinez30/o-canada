@@ -49,7 +49,7 @@ const Administracion = () => {
 
     return (
         <React.Fragment>
-            {(!user) ?
+            {(user) ?
                 <Dashboard
                     userPorfile={userPorfile}
                 />
