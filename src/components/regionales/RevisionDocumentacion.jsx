@@ -83,7 +83,7 @@ const RevisionDocumentacion = () => {
                         busqueda: searchWord,
                         email: user.email,
                         token: user.token,
-                        region: user.region
+                        user_type: user.user_type
                     });
                     if (resp.status === 200) {
                         setCandidatos(resp.data);
@@ -674,7 +674,6 @@ const RevisionDocumentacion = () => {
                         </Button>
                     </Col>
                 </Form.Row>
-
             </InputGroup>
 
             {/* TABLA */}

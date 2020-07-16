@@ -1,21 +1,22 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Col, Form, Modal } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup } from 'react-bootstrap';
 import DataTable from 'react-data-table-component'
 import AlertError from '../../singles/AlertError';
 import sessionContext from "../../context/session/sessionContext";
-import pruebasFisicasContext from "../../context/pruebas_fisicas/pruebasFisicasContext";
+// import pruebasFisicasContext from "../../context/pruebas_fisicas/pruebasFisicasContext";
 import AlertExito from '../../singles/AlertExito';
 import AlertCargando from '../../singles/AlertCargando';
 import S9_S10 from './S9_S10'
 import S9_S10View from './S9_S10View'
+import { AiOutlineReload } from 'react-icons/ai';
 import InfomacionCandidato from './InfomacionCandidato';
 
 
 const TablaEstatales = () => {
 
     const sessContext = useContext(sessionContext)
-    const pruebasContext = useContext(pruebasFisicasContext)
+    // const pruebasContext = useContext(pruebasFisicasContext)
 
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
@@ -30,6 +31,37 @@ const TablaEstatales = () => {
         TODO: consultar segun el estado del usuario que registra 
             -> columna formato condicional motivo de rechazo rojo
     */
+
+    const buscarRegistro = async () => {
+        const { user } = sessContext.login
+        // const searchWord = input.target.value
+        const url = `${API_REQUEST}busqueda_revision_estatal`;
+        AlertCargando('Buscando similitudes...')
+        setLoading(true)
+        if (searchWord !== '') {
+            if (user) {
+                try {
+                    const resp = await axios.post(url, {
+                        busqueda: searchWord,
+                        email: user.email,
+                        token: user.token,
+                        user_type: user.user_type
+                    });
+                    if (resp.status === 200) {
+                        setDatosTabla(resp.data);
+                        AlertExito('Se han cargado los registros existentes')
+                        setLoading(false)
+                    } else {
+                        AlertError('Error', resp.data);
+                    }
+                } catch (error) {
+                    AlertError('Error', error)
+                }
+            }
+        } else {
+            getCandidatos();
+        }
+    }
 
     const getCandidatos = async () => {
         const { user } = sessContext.login
@@ -195,13 +227,39 @@ const TablaEstatales = () => {
                 :
                 <>
                     <div style={{ alignContent: 'right' }}><h3>Estado: {''}</h3></div>
-
-                    <button className='btn btn-outline-info' onClick={() => {
+                    <InputGroup className="mb-2 pt-4">
+                        <Form.Row className="align-items-center">
+                            <Col xs="auto">
+                                <Form.Control
+                                    onChange={(input) => setSearchWord(input.target.value)}
+                                    className="mb-2 px-5"
+                                    value={searchWord}
+                                    placeholder="Buscar..."
+                                />
+                            </Col>
+                            <Col xs="auto">
+                                <Button className="mb-2"
+                                    onClick={buscarRegistro}
+                                >
+                                    Buscar
+                        </Button>
+                            </Col>
+                            <Col xs="auto">
+                                <Button className='mb-2' variant='info' onClick={() => {
+                                    setSearchWord('')
+                                    setReload(true)
+                                }}>
+                                    <AiOutlineReload />
+                                </Button>
+                            </Col>
+                        </Form.Row>
+                    </InputGroup>
+                    {/* <button className='btn btn-outline-info' onClick={() => {
                         setSearchWord('')
                         setReload(true)
                     }}>
                         Recargar
-                    </button>
+                    </button> */}
                     <DataTable
                         title="Candidatos para pruebas físicas"
                         columns={columns}

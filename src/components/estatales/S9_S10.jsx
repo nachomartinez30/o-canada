@@ -24,6 +24,7 @@ const S9_S10 = (props) => {
         formato: null,
         formato_epp: null,
         formato_eval_habilidad_uso_mark_III: null,
+        formato_eval_habilidad_uso_gps: null,
         constancia_curso_s_211: null
     })
 
@@ -137,7 +138,15 @@ const S9_S10 = (props) => {
         // const { presento_equipo } = evaluaciones
         if (presento_equipo === '1') {
             setSectionGPSMark(true)
+            setEvaluaciones({
+                ...evaluaciones,
+                rechazo: null
+            })
         } else {
+            setEvaluaciones({
+                ...evaluaciones,
+                rechazo: 'no presento equipo completo'
+            })
             setSectionGPSMark(false)
         }
     }
@@ -166,6 +175,8 @@ const S9_S10 = (props) => {
                     rechazo: 'imc verificado mayor a 29.99'
                 })
                 setSectionPruebaFisica(false)
+                setSectionEPP(false)
+                setSectionGPSMark(false)
             }
         }
     }
@@ -180,6 +191,7 @@ const S9_S10 = (props) => {
             /* SI NO ES RECHAZADO SE ABRE SECCION DE EQUIPO DE PROTECCION */
             if (rechazo) {
                 setSectionEPP(false)
+                setSectionGPSMark(false)
             } else {
                 setSectionEPP(true)
             }
@@ -232,7 +244,10 @@ const S9_S10 = (props) => {
             presento_constancia_s_211, presento_equipo
         } = evaluaciones
 
-        const { formato, formato_eval_habilidad_uso_gps, formato_eval_habilidad_uso_mark_III, formato_epp } = archivos
+        const {
+            formato, formato_eval_habilidad_uso_gps, formato_eval_habilidad_uso_mark_III,
+            formato_epp, constancia_curso_s_211
+        } = archivos
 
         if (!formato) {
             AlertError("Omisión de campo", 'El archivo FORMATO debe ser completado')
@@ -281,33 +296,38 @@ const S9_S10 = (props) => {
         }
         if (sectionGPSMark) {
             if (!nombre_evaluador_prueba_gps) {
-                AlertError('ERROR', 'El campo NOMBRE_EVALUADOR_PRUEBA_GPS debe ser completado ')
+                AlertError('ERROR', 'El campo NOMBRE EVALUADOR PRUEBA GPS debe ser completado ')
                 return
             }
             if (!resultado_eval_presencial_gps) {
-                AlertError('ERROR', 'El campo RESULTADO_EVAL_PRESENCIAL_GPS debe ser completado ')
+                AlertError('ERROR', 'El campo RESULTADO EVAL PRESENCIAL GPS debe ser completado ')
                 return
             }
             if (!formato_eval_habilidad_uso_gps) {
-                AlertError('ERROR', 'El campo FORMATO_EVAL_HABILIDAD_USO_GPS debe ser completado ')
+                AlertError('ERROR', 'El campo FORMATO EVAL HABILIDAD USO GPS debe ser completado ')
                 return
             }
             if (!nombre_evaluador_prueba_mark_III) {
-                AlertError('ERROR', 'El campo NOMBRE_EVALUADOR_PRUEBA_MARK_III debe ser completado ')
+                AlertError('ERROR', 'El campo NOMBRE EVALUADOR PRUEBA MARK III debe ser completado ')
                 return
             }
             if (!resultado_eval_presencial_mark_III) {
-                AlertError('ERROR', 'El campo RESULTADO_EVAL_PRESENCIAL_MARK_III debe ser completado ')
+                AlertError('ERROR', 'El campo RESULTADO EVAL PRESENCIAL MARK III debe ser completado ')
                 return
             }
             if (!formato_eval_habilidad_uso_mark_III) {
-                AlertError('ERROR', 'El campo FORMATO_EVAL_HABILIDAD_USO_MARK_III debe ser completado ')
+                AlertError('ERROR', 'El formato HABILIDAD USO MARK III debe ser completado ')
                 return
             }
             if (!presento_constancia_s_211) {
-                AlertError('ERROR', 'El campo PRESENTO_CONSTANCIA_S_211 debe ser completado ')
+                AlertError('ERROR', 'El campo PRESENTO CONSTANCIA_S_211 debe ser completado ')
                 return
             }
+            if (presento_constancia_s_211 && !constancia_curso_s_211) {
+                AlertError('ERROR', 'El archivo CONSTANCIA S-211 debe ser completado ')
+                return
+            }
+
         }
 
         sendData()
@@ -315,12 +335,74 @@ const S9_S10 = (props) => {
 
     const sendData = async () => {
         const url = `${API_REQUEST}pruebas_fisicas`
+        /* ARCHIVOS ADJUNTOS */
+        const formData_formato = new FormData();
+        const formData_formato_epp = new FormData();
+        const formData_formato_eval_habilidad_uso_mark_III = new FormData();
+        const formato_eval_habilidad_uso_gps = new FormData();
+        const formData_constancia_curso_s_211 = new FormData();
+
+        /* CABEZERA ARCHIVOS */
+        const header = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        formData_formato.append("file", archivos.formato[0]);
+        formData_formato.append("curp", evaluaciones.curp);
+        formData_formato.append("name", "formato");
+        const archivo_formato = await Axios.post(`${API_REQUEST}carga_archivo`, formData_formato, header);
+
+
+        if (sectionEPP) {
+            formData_formato_epp.append("file", archivos.formato_epp[0]);
+            formData_formato_epp.append("curp", evaluaciones.curp);
+            formData_formato_epp.append("name", "formato_epp");
+            const archivo_formato_epp = await Axios.post(`${API_REQUEST}carga_archivo`, formData_formato_epp, header);
+            if (archivo_formato_epp.status === 200) {
+                AlertExito('Se cargo archivo_formato_epp con exito!')
+            } else {
+                AlertError('Error al cargar archivo_formato_epp')
+            }
+        }
+
+        if (sectionGPSMark) {
+            formData_formato_eval_habilidad_uso_mark_III.append("file", archivos.formato_eval_habilidad_uso_mark_III[0]);
+            formData_formato_eval_habilidad_uso_mark_III.append("curp", evaluaciones.curp);
+            formData_formato_eval_habilidad_uso_mark_III.append("name", "formato_eval_habilidad_uso_mark_III");
+            const archivo_formato_eval_habilidad_uso_mark_III = await Axios.post(`${API_REQUEST}carga_archivo`, formData_formato_eval_habilidad_uso_mark_III, header);
+
+            formato_eval_habilidad_uso_gps.append("file", archivos.formato_eval_habilidad_uso_gps[0]);
+            formato_eval_habilidad_uso_gps.append("curp", evaluaciones.curp);
+            formato_eval_habilidad_uso_gps.append("name", "formato_eval_habilidad_uso_gps");
+            const archivo_formato_eval_habilidad_uso_gps = await Axios.post(`${API_REQUEST}carga_archivo`, formato_eval_habilidad_uso_gps, header);
+
+            if (archivo_formato_eval_habilidad_uso_mark_III.status === 200 && archivo_formato_eval_habilidad_uso_gps.status === 200) {
+                AlertExito('Se cargo archivos GPS y MARK con exito!')
+            } else {
+                AlertError('Error al cargar archivos GPS y MARK')
+            }
+        }
+
+        if (evaluaciones.presento_constancia_s_211) {
+            formData_constancia_curso_s_211.append("file", archivos.constancia_curso_s_211[0]);
+            formData_constancia_curso_s_211.append("curp", evaluaciones.curp);
+            formData_constancia_curso_s_211.append("name", "constancia_curso_s_211");
+            const archivo_constancia_curso_s_211 = await Axios.post(`${API_REQUEST}carga_archivo`, formData_constancia_curso_s_211, header);
+            if (archivo_constancia_curso_s_211.status === 200) {
+                AlertExito('Se cargo archivo S-211 con exito!')
+            } else {
+                AlertError('Error al cargar archivo S-211')
+            }
+        }
+
         try {
             /* ENVIO DE ARCHIVOS */
 
             /* ENVIO DE INFORMACION */
             const resp = await Axios.post(url, evaluaciones);
-            if (resp.status === 200) {
+            if (resp.status === 200 && archivo_formato.status === 200) {
                 AlertExito('¡Registro Ingresado!')
                 /* REGRESAR A LA TABLA */
                 props.setVolver(false)
@@ -530,20 +612,13 @@ const S9_S10 = (props) => {
                     </div>
                     <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">¿El candidato presentó el equipo de protección completo?</label>
-                        {(!props.enabled) ? <input
-                            disabled
+                        <SelectSiNo
                             className={`form-control ${(evaluaciones.presento_equipo) ? null : 'myInput'}`}
-                            value={(evaluaciones.presento_equipo === '1') ? 'SI' : 'NO'}
+                            name='presento_equipo'
+                            defaultValue={evaluaciones.presento_equipo}
+                            onChange={setInfo}
+                            onBlur={handleEPP}
                         />
-                            :
-                            <SelectSiNo
-                                className={`form-control ${(evaluaciones.presento_equipo) ? null : 'myInput'}`}
-                                name='presento_equipo'
-                                defaultValue={evaluaciones.presento_equipo}
-                                onChange={setInfo}
-                                onChangeCapture={handleEPP}
-                            />
-                        }
                     </div>
                 </React.Fragment>}
                 {/* SECCION GPS-MARK*/}
@@ -561,15 +636,16 @@ const S9_S10 = (props) => {
                             value={evaluaciones.nombre_evaluador_prueba_gps}
                             name='nombre_evaluador_prueba_gps'
                             onChange={setInfo}
+                            onChangeCapture={ToMayus}
                             placeholder='Ingrese Nombre del evaluador prueba GPS...'
                         />
                     </div>
                     {/* Resultado de la evaluación presencial de GPS */}
                     <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Resultado de la evaluación presencial de GPS</label>
-                        <input
+                        <InputNumber
                             className={`form-control ${(evaluaciones.resultado_eval_presencial_gps) ? null : 'myInput'}`}
-                            type="text"
+                            limitLength={2}
                             value={evaluaciones.resultado_eval_presencial_gps}
                             name='resultado_eval_presencial_gps'
                             onChange={setInfo}
@@ -594,6 +670,7 @@ const S9_S10 = (props) => {
                         <input
                             className={`form-control ${(evaluaciones.nombre_evaluador_prueba_mark_III) ? null : 'myInput'}`}
                             type="text"
+                            onChangeCapture={ToMayus}
                             value={evaluaciones.nombre_evaluador_prueba_mark_III}
                             name='nombre_evaluador_prueba_mark_III'
                             onChange={setInfo}
@@ -603,9 +680,9 @@ const S9_S10 = (props) => {
                     {/* Resultado de la evaluación presencial de Mark III */}
                     <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Resultado de la evaluación presencial de Mark III</label>
-                        <input
+                        <InputNumber
                             className={`form-control ${(evaluaciones.resultado_eval_presencial_mark_III) ? null : 'myInput'}`}
-                            type="text"
+                            limitLength={2}
                             value={evaluaciones.resultado_eval_presencial_mark_III}
                             name='resultado_eval_presencial_mark_III'
                             onChange={setInfo}
