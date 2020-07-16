@@ -15,7 +15,7 @@ const Administracion = () => {
     const [user, setUser] = useState(!true)
 
     const [userPorfile, setUserPorfile] = useState({
-        regionales: true,
+        regionales: !true,
         estatales: true,
         mesa_ayuda: !true,
         manifiesto: !true,
