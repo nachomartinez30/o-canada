@@ -10,7 +10,7 @@ import SelectSiNo from '../../singles/SelectSiNo';
 import Axios from 'axios';
 import AlertExito from '../../singles/AlertExito';
 
-const S9_S10 = (props) => {
+const S9_S10View = (props) => {
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     /* TODO:
         -> si IMC mayor a 29.9 restriccion de campos siguientes y S10, excepto formato apt. fisica
@@ -28,9 +28,9 @@ const S9_S10 = (props) => {
     })
 
     /* SECCIONES */
-    const [sectionGPSMark, setSectionGPSMark] = useState((props.enable) ? true : false)
-    const [sectionEPP, setSectionEPP] = useState((props.enable) ? true : false)
-    const [sectionPruebaFisica, setSectionPruebaFisica] = useState((props.enable) ? true : false)
+    const [sectionGPSMark, setSectionGPSMark] = useState(true)
+    const [sectionEPP, setSectionEPP] = useState(true)
+    const [sectionPruebaFisica, setSectionPruebaFisica] = useState(true)
 
     const [evaluaciones, setEvaluaciones] = useState({
         curp: props.infoCandidato.curp,
@@ -351,21 +351,23 @@ const S9_S10 = (props) => {
                     <h2>Evaluaciones</h2>
                 </div>
                 {/* FORMATO APTITUD FISICA */}
-                <div className='col-12 col-md-12'>
+                {/* <div className='col-12 col-md-12'>
                     <label className="control-label pt-2">Formato de aptitud física:</label>
                     <input
                         type='file'
                         accept="application/pdf"
                         className={`form-control ${(archivos.formato) ? null : 'myInput'}`}
+                        disabled
                         name='formato'
                         onChange={setInfo}
                     />
-                </div>
+                </div> */}
                 {/* NOMBRE DEL EVALUADOR */}
                 <div className='col-12 col-md-12'>
                     <label className="control-label pt-2">Nombre del evaluador</label>
                     <input
                         className={`form-control ${(evaluaciones.nombre_evaluador) ? null : 'myInput'}`}
+                        disabled
                         name='nombre_evaluador'
                         value={evaluaciones.nombre_evaluador}
                         type='text'
@@ -380,6 +382,7 @@ const S9_S10 = (props) => {
                     <label className="control-label pt-2">Peso comprobado</label>
                     <InputNumber
                         className={`form-control ${(evaluaciones.peso_verificado) ? null : 'myInput'}`}
+                        disabled
                         name='peso_verificado'
                         limitLength={5}
                         min={0}
@@ -397,6 +400,7 @@ const S9_S10 = (props) => {
                     <label className="control-label pt-2">Altura comprobado (cm.)</label>
                     <InputNumber
                         className={`form-control ${(evaluaciones.altura_verificada) ? null : 'myInput'}`}
+                        disabled
                         name='altura_verificada'
                         limitLength={3}
                         min={0}
@@ -430,6 +434,7 @@ const S9_S10 = (props) => {
                         <label className="control-label pt-2">Altura sobre el nivel del mar del lugar donde se realizó la prueba.</label>
                         <InputNumber
                             className={`form-control ${(evaluaciones.altura_sobre_niv_mar) ? null : 'myInput'}`}
+                            disabled
                             name='altura_sobre_niv_mar'
                             limitLength={4}
                             min={0}
@@ -460,6 +465,7 @@ const S9_S10 = (props) => {
                         <InputGroup className="mb-2">
                             <InputNumber
                                 className={`form-control ${(evaluaciones.minutos_prueba_trabajo_arduo) ? null : 'myInput'}`}
+                                disabled
                                 placeholder="Minutos..."
                                 limitLength={2}
                                 min={0}
@@ -473,6 +479,7 @@ const S9_S10 = (props) => {
                             </InputGroup.Prepend>
                             <InputNumber
                                 className={`form-control ${(evaluaciones.segundos_prueba_trabajo_arduo) ? null : 'myInput'}`}
+                                disabled
                                 placeholder="Segundos..."
                                 limitLength={2}
                                 min={0}
@@ -517,17 +524,18 @@ const S9_S10 = (props) => {
                     <div className='col-12 col-md-12 center-text pt-5'>
                         <h2>Equipo de protección</h2>
                     </div>
-                    <div className='col-12 col-md-12'>
+                    {/* <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Formato de equipo de protección completo</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_epp) ? null : 'myInput'}`}
+                            disabled
                             name='formato_epp'
                             type='file'
                             accept="application/pdf"
                             onChange={setInfo}
                             onBlur={handleASNM}
                         />
-                    </div>
+                    </div> */}
                     <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">¿El candidato presentó el equipo de protección completo?</label>
                         {(!props.enabled) ? <input
@@ -538,6 +546,7 @@ const S9_S10 = (props) => {
                             :
                             <SelectSiNo
                                 className={`form-control ${(evaluaciones.presento_equipo) ? null : 'myInput'}`}
+                                disabled
                                 name='presento_equipo'
                                 defaultValue={evaluaciones.presento_equipo}
                                 onChange={setInfo}
@@ -557,6 +566,7 @@ const S9_S10 = (props) => {
                         <label className="control-label pt-2">Nombre del evaluador prueba GPS</label>
                         <input
                             className={`form-control ${(evaluaciones.nombre_evaluador_prueba_gps) ? null : 'myInput'}`}
+                            disabled
                             type="text"
                             value={evaluaciones.nombre_evaluador_prueba_gps}
                             name='nombre_evaluador_prueba_gps'
@@ -569,6 +579,7 @@ const S9_S10 = (props) => {
                         <label className="control-label pt-2">Resultado de la evaluación presencial de GPS</label>
                         <input
                             className={`form-control ${(evaluaciones.resultado_eval_presencial_gps) ? null : 'myInput'}`}
+                            disabled
                             type="text"
                             value={evaluaciones.resultado_eval_presencial_gps}
                             name='resultado_eval_presencial_gps'
@@ -577,22 +588,24 @@ const S9_S10 = (props) => {
                         />
                     </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
-                    <div className='col-12 col-md-6'>
+                    {/* <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de GPS</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_gps) ? null : 'myInput'}`}
+                            disabled
                             type="file"
                             name='formato_eval_habilidad_uso_gps'
                             onChange={setInfo}
                             placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de GPS...'
                             accept="application/pdf"
                         />
-                    </div>
+                    </div> */}
                     {/* Nombre del evaluador prueba Mark III */}
                     <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Nombre del evaluador prueba Mark III</label>
                         <input
                             className={`form-control ${(evaluaciones.nombre_evaluador_prueba_mark_III) ? null : 'myInput'}`}
+                            disabled
                             type="text"
                             value={evaluaciones.nombre_evaluador_prueba_mark_III}
                             name='nombre_evaluador_prueba_mark_III'
@@ -605,6 +618,7 @@ const S9_S10 = (props) => {
                         <label className="control-label pt-2">Resultado de la evaluación presencial de Mark III</label>
                         <input
                             className={`form-control ${(evaluaciones.resultado_eval_presencial_mark_III) ? null : 'myInput'}`}
+                            disabled
                             type="text"
                             value={evaluaciones.resultado_eval_presencial_mark_III}
                             name='resultado_eval_presencial_mark_III'
@@ -613,10 +627,11 @@ const S9_S10 = (props) => {
                         />
                     </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
-                    <div className='col-12 col-md-6'>
+                    {/* <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de Mark III</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_mark_III) ? null : 'myInput'}`}
+                            disabled
                             type="file"
                             name='formato_eval_habilidad_uso_mark_III'
                             onChange={setInfo}
@@ -624,12 +639,13 @@ const S9_S10 = (props) => {
                             placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de Mark III...'
                             accept="application/pdf"
                         />
-                    </div>
+                    </div> */}
                     {/* ¿El evaluado presento constancia del curso S-211 */}
                     <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">¿El evaluado presento constancia del curso S-211?</label>
                         <SelectSiNo
                             className={`form-control ${(evaluaciones.presento_constancia_s_211) ? null : 'myInput'}`}
+                            disabled
                             type="text"
                             name='presento_constancia_s_211'
                             onChange={setInfo}
@@ -637,28 +653,25 @@ const S9_S10 = (props) => {
                         />
                     </div>
                     {/* Constancia curso S-211 */}
-                    {(evaluaciones.presento_constancia_s_211 === '1') && <div className='col-12 col-md-6'>
+                    {/* {(evaluaciones.presento_constancia_s_211 === '1') && <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Constancia curso S-211</label>
                         <input
                             className={`form-control ${(evaluaciones.constancia_curso_s_211) ? null : 'myInput'}`}
+                            disabled
                             type="file"
                             name='constancia_curso_s_211'
                             onChange={setInfo}
                             placeholder='Ingrese Constancia curso S-211...'
                             accept="application/pdf"
                         />
-                    </div>}
+                    </div>} */}
                 </React.Fragment>}
                 <div className='text-center py-3 col-md-12'>
-                    <button className='btn btn-primary px-4'
-                        onClick={revisarInformacion}
-                    >
-                        Registrar
-                </button>
+
                 </div>
             </div>
         </>
     );
 }
 
-export default S9_S10;
+export default S9_S10View;

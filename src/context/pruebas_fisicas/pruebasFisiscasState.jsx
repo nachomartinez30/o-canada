@@ -32,7 +32,7 @@ const PruebasFisicasState = (props) => {
             // dota al provider de el state y los metodos para agregar a este los campos necesarios
             value={
                 {
-                    candidatos: {
+                    cand: {
                         ...state.candidato,
                         agregarPruebas
                     }

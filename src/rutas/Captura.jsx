@@ -21,7 +21,6 @@ import Login from '../components/captura/Login';
 
 import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from '../helpers/emailValid';
-import { Alert } from 'react-bootstrap';
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
 

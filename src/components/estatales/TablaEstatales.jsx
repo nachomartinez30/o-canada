@@ -4,25 +4,31 @@ import { Button, Col, Form, Modal } from 'react-bootstrap';
 import DataTable from 'react-data-table-component'
 import AlertError from '../../singles/AlertError';
 import sessionContext from "../../context/session/sessionContext";
+import pruebasFisicasContext from "../../context/pruebas_fisicas/pruebasFisicasContext";
 import AlertExito from '../../singles/AlertExito';
 import AlertCargando from '../../singles/AlertCargando';
 import S9_S10 from './S9_S10'
+import S9_S10View from './S9_S10View'
 import InfomacionCandidato from './InfomacionCandidato';
 
 
 const TablaEstatales = () => {
 
     const sessContext = useContext(sessionContext)
+    const pruebasContext = useContext(pruebasFisicasContext)
+
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
 
     const [reload, setReload] = useState(false)
     const [showPruebas, setShowPruebas] = useState(false)
     const [candidatoSelected, setCandidatoSelected] = useState({})
+    const [modoVista, setModoVista] = useState(false)
     const [datosTabla, setDatosTabla] = useState([])
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
     /* 
         TODO: consultar segun el estado del usuario que registra 
+            -> columna formato condicional motivo de rechazo rojo
     */
 
     const getCandidatos = async () => {
@@ -47,25 +53,43 @@ const TablaEstatales = () => {
 
     const mostrarPlantillaPruebas = (data) => {
         setCandidatoSelected(data)
+        setModoVista(false)
         setShowPruebas(true)
     }
 
+    const moodVista = (data) => {
+        setCandidatoSelected(data)
+        setModoVista(true)
+        setShowPruebas(true)
+    }
+
+    const handleRegresar = () => {
+        setShowPruebas(false)
+        setReload(true)
+    }
 
     useEffect(() => {
         getCandidatos()
-
-    }, [reload])
+        setModoVista(false)
+        setReload(false)
+    }, [reload === true])
 
 
     /* CONFIGURACIONES TABLA */
+
+    const getAcciones = (row) => (row.status) ?
+        <Button variant='info' onClick={() => moodVista(row)}>Ver</Button>
+        :
+        <Button variant='success' onClick={() => mostrarPlantillaPruebas(row)}>Agregar Pruebas</Button>
+
+
     const columns = [
         {
-
             name: 'Acciones',
             wrap: true,
             button: true,
             minWidth: '180px',
-            cell: (row) => <Button variant='info' onClick={() => mostrarPlantillaPruebas(row)}>Agregar Pruebas</Button>,
+            cell: (row) => getAcciones(row),
         },
         {
             name: 'CURP',
@@ -103,36 +127,49 @@ const TablaEstatales = () => {
             sortable: true
         },
         {
-            name: 'Result. Prueba',
-            selector: 'prueba',
+            name: 'Rechazo',
+            selector: 'rechazo',
             wrap: false,
             minWidth: '200px',
-            sortable: true
-        },
-        {
-            name: 'Puntuación',
-            selector: 'puntuacion_estimada',
-            wrap: false,
-            minWidth: '200px',
-            sortable: true
-        },
-        {
-            name: 'Result. GPS',
-            selector: 'resultado_eval_presencial_gps',
-            wrap: false,
-            minWidth: '200px',
-            sortable: true
-        },
-        {
-            name: 'Result. MarkIII',
-            selector: 'resultado_eval_presencial_mark_III',
-            wrap: false,
-            minWidth: '200px',
-            sortable: true
-        },
+            sortable: true,
 
+        },
+        // {
+        //     name: 'Puntuación',
+        //     selector: 'puntuacion_estimada',
+        //     wrap: false,
+        //     minWidth: '200px',
+        //     sortable: true
+        // },
+        // {
+        //     name: 'Result. GPS',
+        //     selector: 'resultado_eval_presencial_gps',
+        //     wrap: false,
+        //     minWidth: '200px',
+        //     sortable: true
+        // },
+        // {
+        //     name: 'Result. MarkIII',
+        //     selector: 'resultado_eval_presencial_mark_III',
+        //     wrap: false,
+        //     minWidth: '200px',
+        //     sortable: true
+        // },
     ]
 
+    const conditionalRowStyles = [
+        {
+            when: row => (row.rechazo),
+            style: {
+                backgroundColor: '#A01F3F',
+                // backgroundColor: '#D69200',
+                color: 'white',
+                '&:hover': {
+                    cursor: 'pointer',
+                },
+            },
+        }
+    ];
 
     return (
         <div>
@@ -144,7 +181,16 @@ const TablaEstatales = () => {
                     <InfomacionCandidato
                         state={candidatoSelected}
                     />
-                    <S9_S10  />
+                    {(modoVista) ?
+                        <S9_S10View
+                            setVolver={handleRegresar}
+                            infoCandidato={candidatoSelected}
+                        /> :
+                        <S9_S10
+                            setVolver={handleRegresar}
+                            infoCandidato={candidatoSelected}
+                        />
+                    }
                 </React.Fragment>
                 :
                 <>
@@ -202,7 +248,7 @@ const TablaEstatales = () => {
                         // selectableRowsHighlight
                         // clearSelectedRows={toggleCleared}
                         // onSelectedRowsChange={manejadorCambiosColumnas}
-                        // conditionalRowStyles={conditionalRowStyles}
+                        conditionalRowStyles={conditionalRowStyles}
                         pagination
                     />
                 </>

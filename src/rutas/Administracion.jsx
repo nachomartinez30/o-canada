@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Dashboard from '../components/administracion/Dashboard';
 import LoginUsers from '../singles/LoginUsers';
 import sessionContext from "../context/session/sessionContext";
@@ -7,7 +7,7 @@ import AlertError from '../singles/AlertError';
 
 const Administracion = () => {
     const sessContext = useContext(sessionContext)
-
+    const [reload, setReload] = useState(true)
 
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     // const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
@@ -34,19 +34,22 @@ const Administracion = () => {
             const resp = await Axios.post(url, toSend);
             if (resp.status === 200) {
                 /* ingresar en el context y en el state la respuesta */
-                const respuesta = resp.data.user
-                
                 setUser(resp.data)
                 sessContext.login.loginUser({
                     ...sessContext.login,
+                    // user: resp.data.user
                     user: resp.data.user
                 })
-                
+
             }
         } catch (error) {
             AlertError('Error', error);
         }
     }
+
+    useEffect(() => {
+        setReload(false)
+    }, [reload])
 
     return (
         <React.Fragment>
