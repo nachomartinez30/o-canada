@@ -34,7 +34,8 @@ const TablaEstatales = () => {
     */
 
 
-    const getEstado = (cv_edo) => {
+    const getEstado = (cv_edo = '00') => {
+        cv_edo = sessContext.login.user.user_type
         switch (cv_edo) {
             case '01': return 'Aguascalientes';
             case '02': return 'Baja california';
@@ -51,7 +52,7 @@ const TablaEstatales = () => {
             case '13': return 'Hidalgo';
             case '14': return 'Jalisco';
             case '15': return 'México';
-            case '16': return 'Michoacán de ocampo';
+            case '16': return 'Michoacán';
             case '17': return 'Morelos';
             case '18': return 'Nayarit';
             case '19': return 'Nuevo león';
@@ -65,7 +66,7 @@ const TablaEstatales = () => {
             case '27': return 'Tabasco';
             case '28': return 'Tamaulipas';
             case '29': return 'Tlaxcala';
-            case '30': return 'Veracruz de ignacio de la llave';
+            case '30': return 'Veracruz';
             case '31': return 'Yucatán';
             case '32': return 'Zacatecas';
             default: return 'Of.Centrales';
@@ -266,7 +267,7 @@ const TablaEstatales = () => {
                 </React.Fragment>
                 :
                 <>
-                    <div style={{ alignContent: 'right' }}><h3>Estado: {getEstado('14')}</h3></div>
+                    <div style={{ alignContent: 'right' }}><h3>Estado: {getEstado()}</h3></div>
                     <InputGroup className="mb-2 pt-4">
                         <Form.Row className="align-items-center">
                             <Col xs="auto">

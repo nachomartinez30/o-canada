@@ -242,7 +242,7 @@ const S9_S10 = (props) => {
             minutos_prueba_trabajo_arduo, segundos_prueba_trabajo_arduo,
             nombre_evaluador_prueba_gps, resultado_eval_presencial_gps,
             nombre_evaluador_prueba_mark_III, resultado_eval_presencial_mark_III,
-            presento_constancia_s_211, presento_equipo
+            presento_constancia_s_211, presento_equipo, porcentaje_gps, porcentaje_mark_III
         } = evaluaciones
 
         const {
@@ -312,6 +312,14 @@ const S9_S10 = (props) => {
                 AlertError('ERROR', 'El campo NOMBRE EVALUADOR PRUEBA MARK III debe ser completado ')
                 return
             }
+            if (!porcentaje_gps) {
+                AlertError('ERROR', 'El campo % EVAL PRESENCIAL GPS debe ser completado ')
+                return
+            }
+            if (!porcentaje_mark_III) {
+                AlertError('ERROR', 'El campo % EVAL PRESENCIAL MARK III debe ser completado ')
+                return
+            }
             if (!resultado_eval_presencial_mark_III) {
                 AlertError('ERROR', 'El campo RESULTADO EVAL PRESENCIAL MARK III debe ser completado ')
                 return
@@ -324,7 +332,7 @@ const S9_S10 = (props) => {
                 AlertError('ERROR', 'El campo PRESENTO CONSTANCIA_S_211 debe ser completado ')
                 return
             }
-            if (presento_constancia_s_211 && !constancia_curso_s_211) {
+            if (presento_constancia_s_211 === '1' && !constancia_curso_s_211) {
                 AlertError('ERROR', 'El archivo CONSTANCIA S-211 debe ser completado ')
                 return
             }
@@ -332,6 +340,38 @@ const S9_S10 = (props) => {
         }
 
         sendData()
+    }
+
+    const revisionGPS = () => {
+        if (evaluaciones.resultado_eval_presencial_gps > 8 || evaluaciones.resultado_eval_presencial_gps < 0) {
+            setEvaluaciones({
+                ...evaluaciones,
+                porcentaje_gps: null
+            })
+            AlertError('El puntaje maximo es de 8 y minimo 0')
+        } else {
+            const resultado = (evaluaciones.resultado_eval_presencial_gps * 100) / 8
+            setEvaluaciones({
+                ...evaluaciones,
+                porcentaje_gps: resultado.toString().slice(0, 5)
+            })
+        }
+    }
+
+    const revisionMarkIII = () => {
+        if (evaluaciones.resultado_eval_presencial_mark_III > 11 || evaluaciones.resultado_eval_presencial_mark_III < 0) {
+            setEvaluaciones({
+                ...evaluaciones,
+                porcentaje_mark_III: null
+            })
+            AlertError('El puntaje maximo es de 11 y minimo 0')
+        } else {
+            const resultado = (evaluaciones.resultado_eval_presencial_mark_III * 100) / 11
+            setEvaluaciones({
+                ...evaluaciones,
+                porcentaje_mark_III: resultado.toString().slice(0, 5)
+            })
+        }
     }
 
     const sendData = async () => {
@@ -386,7 +426,7 @@ const S9_S10 = (props) => {
             }
         }
 
-        if (evaluaciones.presento_constancia_s_211) {
+        if (evaluaciones.presento_constancia_s_211 === '1') {
             formData_constancia_curso_s_211.append("file", archivos.constancia_curso_s_211[0]);
             formData_constancia_curso_s_211.append("curp", evaluaciones.curp);
             formData_constancia_curso_s_211.append("name", "constancia_curso_s_211");
@@ -412,7 +452,7 @@ const S9_S10 = (props) => {
             }
 
         } catch (error) {
-
+            AlertError('ERROR', error)
         }
     }
 
@@ -641,20 +681,8 @@ const S9_S10 = (props) => {
                             placeholder='Ingrese Nombre del evaluador prueba GPS...'
                         />
                     </div>
-                    {/* Resultado de la evaluación presencial de GPS */}
-                    <div className='col-12 col-md-6'>
-                        <label className="control-label pt-2">Resultado de la evaluación presencial de GPS</label>
-                        <InputNumber
-                            className={`form-control ${(evaluaciones.resultado_eval_presencial_gps) ? null : 'myInput'}`}
-                            limitLength={2}
-                            value={evaluaciones.resultado_eval_presencial_gps}
-                            name='resultado_eval_presencial_gps'
-                            onChange={setInfo}
-                            placeholder='Ingrese Resultado de la evaluación presencial de GPS...'
-                        />
-                    </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de GPS</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_gps) ? null : 'myInput'}`}
@@ -663,6 +691,31 @@ const S9_S10 = (props) => {
                             onChange={setInfo}
                             placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de GPS...'
                             accept="application/pdf"
+                        />
+                    </div>
+                    {/* Resultado de la evaluación presencial de GPS */}
+                    <div className='col-12 col-md-6'>
+                        <label className="control-label pt-2">Resultado de la evaluación presencial de GPS</label>
+                        <InputNumber
+                            className={`form-control ${(evaluaciones.resultado_eval_presencial_gps) ? null : 'myInput'}`}
+                            limitLength={1}
+                            value={evaluaciones.resultado_eval_presencial_gps}
+                            name='resultado_eval_presencial_gps'
+                            onChange={setInfo}
+                            onBlur={revisionGPS}
+                            placeholder='Ingrese Resultado de la evaluación presencial de GPS...'
+                        />
+                    </div>
+                    {/* porcentaje GPS*/}
+                    <div className='col-12 col-md-6'>
+                        <label className="control-label pt-2">% la evaluación presencial de GPS</label>
+                        <input
+                            disabled
+                            className={`form-control ${(evaluaciones.porcentaje_gps) ? null : 'myInput'}`}
+                            value={evaluaciones.porcentaje_gps}
+                            name='porcentaje_gps'
+                            // onChange={setInfo}
+                            placeholder='calculo porcentaje de la evaluación presencial de GPS...'
                         />
                     </div>
                     {/* Nombre del evaluador prueba Mark III */}
@@ -678,20 +731,8 @@ const S9_S10 = (props) => {
                             placeholder='Ingrese Nombre del evaluador prueba Mark III...'
                         />
                     </div>
-                    {/* Resultado de la evaluación presencial de Mark III */}
-                    <div className='col-12 col-md-6'>
-                        <label className="control-label pt-2">Resultado de la evaluación presencial de Mark III</label>
-                        <InputNumber
-                            className={`form-control ${(evaluaciones.resultado_eval_presencial_mark_III) ? null : 'myInput'}`}
-                            limitLength={2}
-                            value={evaluaciones.resultado_eval_presencial_mark_III}
-                            name='resultado_eval_presencial_mark_III'
-                            onChange={setInfo}
-                            placeholder='Ingrese Resultado de la evaluación presencial de Mark III...'
-                        />
-                    </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de Mark III</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_mark_III) ? null : 'myInput'}`}
@@ -701,6 +742,31 @@ const S9_S10 = (props) => {
                             value={evaluaciones.formato_eval_habilidad_uso_mark_III}
                             placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de Mark III...'
                             accept="application/pdf"
+                        />
+                    </div>
+                    {/* Resultado de la evaluación presencial de Mark III */}
+                    <div className='col-12 col-md-6'>
+                        <label className="control-label pt-2">Resultado de la evaluación presencial de Mark III</label>
+                        <InputNumber
+                            className={`form-control ${(evaluaciones.resultado_eval_presencial_mark_III) ? null : 'myInput'}`}
+                            limitLength={2}
+                            value={evaluaciones.resultado_eval_presencial_mark_III}
+                            name='resultado_eval_presencial_mark_III'
+                            onChange={setInfo}
+                            onBlur={revisionMarkIII}
+                            placeholder='Ingrese Resultado de la evaluación presencial de Mark III...'
+                        />
+                    </div>
+                    {/* porcentaje GPS*/}
+                    <div className='col-12 col-md-6'>
+                        <label className="control-label pt-2">% la evaluación presencial de Mark III</label>
+                        <input
+                            disabled
+                            className={`form-control ${(evaluaciones.porcentaje_mark_III) ? null : 'myInput'}`}
+                            value={evaluaciones.porcentaje_mark_III}
+                            name='porcentaje_mark_III'
+                            // onChange={setInfo}
+                            placeholder='calculo porcentaje de la evaluación presencial de mark_III...'
                         />
                     </div>
                     {/* ¿El evaluado presento constancia del curso S-211 */}

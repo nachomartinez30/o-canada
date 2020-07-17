@@ -61,11 +61,9 @@ const RevisionDocumentacion = () => {
             case '6':
                 setNombreRegion('Sureste');
                 break;
-            case '99':
-                setNombreRegion(' OF.Centrales');
+            default:
+                setNombreRegion('OF.Centrales');
                 break;
-            default: setNombreRegion('null');
-                break
         }
     }
 
