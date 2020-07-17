@@ -292,7 +292,7 @@ const S1 = (props) => {
                 <label className="control-label pt-2">Número telefónico para notificaciones</label>
                 <input
                     className={`form-control ${(state.numero_telefonico_notificaciones) ? null : 'myInput'}`}
-                    name='numero_telefonico_notificaciones'
+                    name='numero_telefonicos_notificaciones'
                     value={state.numero_telefonico_notificaciones}
                     maxLength="10"
                     onChange={setInfo}

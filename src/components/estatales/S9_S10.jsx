@@ -68,6 +68,10 @@ const S9_S10 = (props) => {
                 [input.target.name]: input.target.files
             })
         } else {
+            if (input.target.name === 'altura_verificada') {
+                input.target.value = Math.floor(input.target.value)
+            }
+
             setEvaluaciones({
                 ...evaluaciones,
                 [input.target.name]: input.target.value
