@@ -32,26 +32,7 @@ const S9_S10View = (props) => {
     const [sectionEPP, setSectionEPP] = useState(true)
     const [sectionPruebaFisica, setSectionPruebaFisica] = useState(true)
 
-    const [evaluaciones, setEvaluaciones] = useState({
-        curp: props.infoCandidato.curp,
-        nombre_evaluador: (props.infoCandidato.nombre_evaluador) ? props.infoCandidato.nombre_evaluador : null,
-        peso_verificado: (props.infoCandidato.peso_verificado) ? props.infoCandidato.peso_verificado : null,
-        altura_verificada: (props.infoCandidato.altura_verificada) ? props.infoCandidato.altura_verificada : null,
-        imc_verificado: (props.infoCandidato.imc_verificado) ? props.infoCandidato.imc_verificado : null,
-        altura_sobre_niv_mar: (props.infoCandidato.altura_sobre_niv_mar) ? props.infoCandidato.altura_sobre_niv_mar : null,
-        tiempo_max_correccion_altitud: (props.infoCandidato.tiempo_max_correccion_altitud) ? props.infoCandidato.tiempo_max_correccion_altitud : null,
-        minutos_prueba_trabajo_arduo: (props.infoCandidato.minutos_prueba_trabajo_arduo) ? props.infoCandidato.minutos_prueba_trabajo_arduo : null,
-        segundos_prueba_trabajo_arduo: (props.infoCandidato.segundos_prueba_trabajo_arduo) ? props.infoCandidato.segundos_prueba_trabajo_arduo : null,
-        puntuacion_estimada: (props.infoCandidato.puntuacion_estimada) ? props.infoCandidato.puntuacion_estimada : null,
-        prueba: (props.infoCandidato.prueba) ? props.infoCandidato.prueba : null,
-        nombre_evaluador_prueba_gps: (props.infoCandidato.nombre_evaluador_prueba_gps) ? props.infoCandidato.nombre_evaluador_prueba_gps : null,
-        resultado_eval_presencial_gps: (props.infoCandidato.resultado_eval_presencial_gps) ? props.infoCandidato.resultado_eval_presencial_gps : null,
-        nombre_evaluador_prueba_mark_III: (props.infoCandidato.nombre_evaluador_prueba_mark_III) ? props.infoCandidato.nombre_evaluador_prueba_mark_III : null,
-        resultado_eval_presencial_mark_III: (props.infoCandidato.resultado_eval_presencial_mark_III) ? props.infoCandidato.resultado_eval_presencial_mark_III : null,
-        presento_constancia_s_211: (props.infoCandidato.presento_constancia_s_211) ? props.infoCandidato.presento_constancia_s_211 : null,
-        presento_equipo: (props.infoCandidato.presento_equipo) ? props.infoCandidato.presento_equipo : null,
-        rechazo: (props.infoCandidato.rechazo) ? props.infoCandidato.rechazo : null
-    })
+    const [evaluaciones, setEvaluaciones] = useState(props.infoCandidato)
 
     const setInfo = (input) => {
         if (
@@ -451,11 +432,10 @@ const S9_S10View = (props) => {
                         <label className="control-label pt-2">Tiempo máximo requerido con corrección por altitud.</label>
                         <input
                             disabled
-                            className={`form-control ${(evaluaciones.tiempo_max_correccion_altitud) ? null : 'myInput'}`}
-
-                            name='tiempo_max_correccion_altitud'
+                            className={`form-control ${(evaluaciones.tiempo_req_mas_seg) ? null : 'myInput'}`}
+                            name='tiempo_req_mas_seg'
                             type='text'
-                            value={(evaluaciones.tiempo_req_max_min && evaluaciones.tiempo_req_mas_seg) ? `${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''` : null}
+                            value={`${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''`}
                             placeholder='Ingrese Altura sobre el nivel del mar...'
                         />
                     </div>
@@ -522,7 +502,7 @@ const S9_S10View = (props) => {
                 {/* SECCION EQUIPO DE PROTECCION */}
                 {sectionEPP && <React.Fragment>
                     <div className='col-12 col-md-12 center-text pt-5'>
-                        <h2>Equipo de protección</h2>
+                        <h2>Equipo de despliegue</h2>
                     </div>
                     {/* <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Formato de equipo de protección completo</label>

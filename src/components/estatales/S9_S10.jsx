@@ -450,7 +450,6 @@ const S9_S10 = (props) => {
             } else {
                 AlertError('Error', resp.data)
             }
-
         } catch (error) {
             AlertError('ERROR', error)
         }
@@ -570,7 +569,6 @@ const S9_S10 = (props) => {
                         <input
                             disabled
                             className={`form-control ${(evaluaciones.tiempo_max_correccion_altitud) ? null : 'myInput'}`}
-
                             name='tiempo_max_correccion_altitud'
                             type='text'
                             value={(evaluaciones.tiempo_req_max_min && evaluaciones.tiempo_req_mas_seg) ? `${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''` : null}
@@ -638,7 +636,7 @@ const S9_S10 = (props) => {
                 {/* SECCION EQUIPO DE PROTECCION */}
                 {sectionEPP && <React.Fragment>
                     <div className='col-12 col-md-12 center-text pt-5'>
-                        <h2>Equipo de protección</h2>
+                        <h2>Equipo de despliegue</h2>
                     </div>
                     <div className='col-12 col-md-12'>
                         <label className="control-label pt-2">Formato de equipo de protección completo</label>
