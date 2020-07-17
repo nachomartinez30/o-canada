@@ -33,6 +33,45 @@ const TablaEstatales = () => {
             -> columna formato condicional motivo de rechazo rojo
     */
 
+
+    const getEstado = (cv_edo) => {
+        switch (cv_edo) {
+            case '01': return 'Aguascalientes';
+            case '02': return 'Baja california';
+            case '03': return 'Baja california sur';
+            case '04': return 'Campeche';
+            case '05': return 'Coahuila de zaragoza';
+            case '06': return 'Colima';
+            case '07': return 'Chiapas';
+            case '08': return 'Chihuahua';
+            case '09': return 'Ciudad de méxico';
+            case '10': return 'Durango';
+            case '11': return 'Guanajuato';
+            case '12': return 'Guerrero';
+            case '13': return 'Hidalgo';
+            case '14': return 'Jalisco';
+            case '15': return 'México';
+            case '16': return 'Michoacán de ocampo';
+            case '17': return 'Morelos';
+            case '18': return 'Nayarit';
+            case '19': return 'Nuevo león';
+            case '20': return 'Oaxaca';
+            case '21': return 'Puebla';
+            case '22': return 'Querétaro';
+            case '23': return 'Quintana roo';
+            case '24': return 'San luis potosí';
+            case '25': return 'Sinaloa';
+            case '26': return 'Sonora';
+            case '27': return 'Tabasco';
+            case '28': return 'Tamaulipas';
+            case '29': return 'Tlaxcala';
+            case '30': return 'Veracruz de ignacio de la llave';
+            case '31': return 'Yucatán';
+            case '32': return 'Zacatecas';
+            default: return 'Of.Centrales';
+        }
+    }
+
     const buscarRegistro = async () => {
         const { user } = sessContext.login
         // const searchWord = input.target.value
@@ -227,7 +266,7 @@ const TablaEstatales = () => {
                 </React.Fragment>
                 :
                 <>
-                    <div style={{ alignContent: 'right' }}><h3>Estado: {''}</h3></div>
+                    <div style={{ alignContent: 'right' }}><h3>Estado: {getEstado('14')}</h3></div>
                     <InputGroup className="mb-2 pt-4">
                         <Form.Row className="align-items-center">
                             <Col xs="auto">

@@ -16,7 +16,7 @@ const Administracion = () => {
 
     const [userPorfile, setUserPorfile] = useState({
         regionales: !true,
-        estatales: true,
+        estatales: !true,
         mesa_ayuda: !true,
         manifiesto: !true,
     })
@@ -40,7 +40,7 @@ const Administracion = () => {
                     // user: resp.data.user
                     user: resp.data.user
                 })
-
+                setUserPorfile(resp.data.user.porfile)
             }
         } catch (error) {
             AlertError('Error', error);
