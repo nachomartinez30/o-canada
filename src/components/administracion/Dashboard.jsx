@@ -13,7 +13,6 @@ import TablaEstatales from '../estatales/TablaEstatales';
 
 
 
-
 const Dashboard = ({ userPorfile }) => {
     const sessContext = useContext(sessionContext)
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
