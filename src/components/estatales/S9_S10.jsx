@@ -221,10 +221,13 @@ const S9_S10 = (props) => {
         const segundoCaso = moment(`40:00`, 'mm:ss')
         const tercerCaso = moment(`46:30`, 'mm:ss')
 
-
-        if (tiempo <= primerCaso) { return '10' }
-        if (tiempo > primerCaso || tiempo <= segundoCaso) { return '9.5' }
-        if (tiempo > segundoCaso || tiempo <= tercerCaso) { return '9' }
+        if (calificacionPrueba(minutos, segundos) === 'SUPERADA') {
+            if (tiempo <= primerCaso) { return '100' }
+            if (tiempo > primerCaso && tiempo <= segundoCaso) { return '95' }
+            if (tiempo > segundoCaso && tiempo <= tercerCaso) { return '90' }
+        } else {
+            return '0'
+        }
     }
 
     const calificacionPrueba = (minutos, segundos) => {

@@ -155,6 +155,14 @@ const TablaEstatales = () => {
         :
         <Button variant='success' onClick={() => mostrarPlantillaPruebas(row)}>Agregar Pruebas</Button>
 
+    const getEstatus = (row) => {
+        /* SI NO TIENE STATUS NI RECHAZO; ESTA PENDIENTE */
+        if (!row.status && !row.rechazo) { return null }
+        /* SI TIENE STATUS Y NO TIENE RECHAZO, ESTA COMPLETO */
+        if (row.status && !row.rechazo) { return 'completo' }
+        /* SI TIENE RECHAZO RETORNA RECHAZO */
+        if (row.rechazo) { return row.rechazo }
+    }
 
     const columns = [
         {
@@ -200,12 +208,12 @@ const TablaEstatales = () => {
             sortable: true
         },
         {
-            name: 'Rechazo',
+            name: 'Estatus',
             selector: 'rechazo',
             wrap: false,
             minWidth: '200px',
             sortable: true,
-
+            cell: (row) => getEstatus(row),
         },
         // {
         //     name: 'Puntuación',
