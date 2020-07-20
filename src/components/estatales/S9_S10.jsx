@@ -11,8 +11,8 @@ import Axios from 'axios';
 import AlertExito from '../../singles/AlertExito';
 
 const S9_S10 = (props) => {
-    // const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-    const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
+    const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+    // const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
     /* TODO:
         -> si IMC mayor a 29.9 restriccion de campos siguientes y S10, excepto formato apt. fisica
         -> cuenta con equipo despliegue boolean input file archivo soporte

@@ -9,8 +9,8 @@ const Administracion = () => {
     const sessContext = useContext(sessionContext)
     const [reload, setReload] = useState(true)
 
-    // const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-    const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
+    const API_REQUEST = process.env.REACT_APP_BACKEN_URL
+    // const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
     // const [user, setUser] = useState(sessContext.session.user)
     const [user, setUser] = useState(!true)
 

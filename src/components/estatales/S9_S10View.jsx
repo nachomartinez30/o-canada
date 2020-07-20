@@ -334,7 +334,7 @@ const S9_S10View = (props) => {
                 {/* FORMATO APTITUD FISICA */}
                 <div className='col-12 col-md-12'>
                     <a className='btn btn-dark'
-                        href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato.pdf`}
+                        href={`http://187.218.230.38:81/o_canada/archivos/${evaluaciones.curp}/formato.pdf`}
                         rel="noopener noreferrer"
                         target='_blank'>
                         Formato de aptitud física
@@ -503,7 +503,7 @@ const S9_S10View = (props) => {
                     </div>
                     <div className='col-12 col-md-12'>
                         <a className='btn btn-dark'
-                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_epp.pdf`}
+                            href={`http://187.218.230.38:81/o_canada/archivos/${evaluaciones.curp}/formato_epp.pdf`}
                             rel="noopener noreferrer"
                             target='_blank'>
                             Formato de equipo de despliegue completo
@@ -551,7 +551,7 @@ const S9_S10View = (props) => {
                     {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
                     <div className='col-12 col-md-12'>
                         <a className='btn btn-dark'
-                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
+                            href={`http://187.218.230.38:81/o_canada/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
                             rel="noopener noreferrer"
                             target='_blank'>
                             Formato de evaluación habilidad y competencia en el uso de GPS
@@ -598,7 +598,7 @@ const S9_S10View = (props) => {
                     {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
                     <div className='col-12 col-md-12'>
                         <a className='btn btn-dark'
-                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
+                            href={`http://187.218.230.38:81/o_canada/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
                             rel="noopener noreferrer"
                             target='_blank'>
                             Formato de evaluación habilidad y competencia en el uso de Mark III
