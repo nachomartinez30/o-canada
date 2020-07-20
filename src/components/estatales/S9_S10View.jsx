@@ -158,7 +158,7 @@ const S9_S10View = (props) => {
             const auxPrueba = calificacionPrueba(minutos_prueba_trabajo_arduo, segundos_prueba_trabajo_arduo)
             const rechazo = (auxPrueba === 'SUPERADA') ? null : 'prueba fisica no superada'
 
-            /* SI NO ES RECHAZADO SE ABRE SECCION DE EQUIPO DE PROTECCION */
+            /* SI NO ES RECHAZADO SE ABRE SECCION DE EQUIPO DE DESPLIEGUE */
             if (rechazo) {
                 setSectionEPP(false)
             } else {
@@ -252,11 +252,11 @@ const S9_S10View = (props) => {
         }
         if (sectionEPP) {
             if (!presento_equipo) {
-                AlertError('ERROR', 'El campo PRESENTO EQUIPO DE PROTECCIÓN debe ser completado ')
+                AlertError('ERROR', 'El campo PRESENTO EQUIPO DE despliegue debe ser completado ')
                 return
             }
             if (!formato_epp) {
-                AlertError('ERROR', 'El formato de EQUIPO DE PROTECCIÓN debe ser completado ')
+                AlertError('ERROR', 'El formato de EQUIPO DE despliegue debe ser completado ')
                 return
             }
         }
@@ -332,17 +332,14 @@ const S9_S10View = (props) => {
                     <h2>Evaluaciones</h2>
                 </div>
                 {/* FORMATO APTITUD FISICA */}
-                {/* <div className='col-12 col-md-12'>
-                    <label className="control-label pt-2">Formato de aptitud física:</label>
-                    <input
-                        type='file'
-                        accept="application/pdf"
-                        className={`form-control ${(archivos.formato) ? null : 'myInput'}`}
-                        disabled
-                        name='formato'
-                        onChange={setInfo}
-                    />
-                </div> */}
+                <div className='col-12 col-md-12'>
+                    <a className='btn btn-dark'
+                        href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato.pdf`}
+                        rel="noopener noreferrer"
+                        target='_blank'>
+                        Formato de aptitud física
+                    </a>
+                </div>
                 {/* NOMBRE DEL EVALUADOR */}
                 <div className='col-12 col-md-12'>
                     <label className="control-label pt-2">Nombre del evaluador</label>
@@ -482,7 +479,7 @@ const S9_S10View = (props) => {
                             name='puntuacion_estimada'
                             value={evaluaciones.puntuacion_estimada}
                             // onChange={setInfo}
-                            placeholder='Ingrese Minuos y Segundos de la prueba...'
+                            placeholder='Ingrese Minutos y Segundos de la prueba...'
                         />
                     </div>
                     {/* PRUEBA */}
@@ -499,25 +496,21 @@ const S9_S10View = (props) => {
                     </div>
 
                 </React.Fragment>}
-                {/* SECCION EQUIPO DE PROTECCION */}
+                {/* SECCION EQUIPO DE DESPLIEGUE */}
                 {sectionEPP && <React.Fragment>
                     <div className='col-12 col-md-12 center-text pt-5'>
                         <h2>Equipo de despliegue</h2>
                     </div>
-                    {/* <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">Formato de equipo de protección completo</label>
-                        <input
-                            className={`form-control ${(evaluaciones.formato_epp) ? null : 'myInput'}`}
-                            disabled
-                            name='formato_epp'
-                            type='file'
-                            accept="application/pdf"
-                            onChange={setInfo}
-                            onBlur={handleASNM}
-                        />
-                    </div> */}
                     <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">¿El candidato presentó el equipo de protección completo?</label>
+                        <a className='btn btn-dark'
+                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_epp.pdf`}
+                            rel="noopener noreferrer"
+                            target='_blank'>
+                            Formato de equipo de despliegue completo
+                        </a>
+                    </div>
+                    <div className='col-12 col-md-12'>
+                        <label className="control-label pt-2">¿El candidato presentó el equipo de despliegue completo?</label>
                         {(!props.enabled) ? <input
                             disabled
                             className={`form-control ${(evaluaciones.presento_equipo) ? null : 'myInput'}`}
@@ -556,17 +549,14 @@ const S9_S10View = (props) => {
                         />
                     </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
-                    {/* <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de GPS</label>
-                        <input
-                            className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_gps) ? null : 'myInput'}`}
-                            type="file"
-                            name='formato_eval_habilidad_uso_gps'
-                            onChange={setInfo}
-                            placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de GPS...'
-                            accept="application/pdf"
-                        />
-                    </div> */}
+                    <div className='col-12 col-md-12'>
+                        <a className='btn btn-dark'
+                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
+                            rel="noopener noreferrer"
+                            target='_blank'>
+                            Formato de evaluación habilidad y competencia en el uso de GPS
+                        </a>
+                    </div>
                     {/* Resultado de la evaluación presencial de GPS */}
                     <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Resultado de la evaluación presencial de GPS</label>
@@ -606,18 +596,14 @@ const S9_S10View = (props) => {
                         />
                     </div>
                     {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
-                    {/* <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">Formato de evaluación habilidad y competencia en el uso de Mark III</label>
-                        <input
-                            className={`form-control ${(evaluaciones.formato_eval_habilidad_uso_mark_III) ? null : 'myInput'}`}
-                            type="file"
-                            name='formato_eval_habilidad_uso_mark_III'
-                            onChange={setInfo}
-                            value={evaluaciones.formato_eval_habilidad_uso_mark_III}
-                            placeholder='Ingrese Formato de evaluación habilidad y competencia en el uso de Mark III...'
-                            accept="application/pdf"
-                        />
-                    </div> */}
+                    <div className='col-12 col-md-12'>
+                        <a className='btn btn-dark'
+                            href={`http://187.218.230.38:81/o_canada_temp/archivos/${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
+                            rel="noopener noreferrer"
+                            target='_blank'>
+                            Formato de evaluación habilidad y competencia en el uso de Mark III
+                        </a>
+                    </div>
                     {/* Resultado de la evaluación presencial de Mark III */}
                     <div className='col-12 col-md-6'>
                         <label className="control-label pt-2">Resultado de la evaluación presencial de Mark III</label>

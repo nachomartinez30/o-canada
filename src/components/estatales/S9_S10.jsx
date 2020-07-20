@@ -294,11 +294,11 @@ const S9_S10 = (props) => {
         }
         if (sectionEPP) {
             if (!presento_equipo) {
-                AlertError('ERROR', 'El campo PRESENTO EQUIPO DE PROTECCIÓN debe ser completado ')
+                AlertError('ERROR', 'El campo PRESENTO EQUIPO DE DESPLIEGUE debe ser completado ')
                 return
             }
             if (!formato_epp) {
-                AlertError('ERROR', 'El formato de EQUIPO DE PROTECCIÓN debe ser completado ')
+                AlertError('ERROR', 'El formato de EQUIPO DE DESPLIEGUE debe ser completado ')
                 return
             }
         }
@@ -646,7 +646,7 @@ const S9_S10 = (props) => {
                         <h2>Equipo de despliegue</h2>
                     </div>
                     <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">Formato de equipo de protección completo</label>
+                        <label className="control-label pt-2">Formato de equipo de despliegue completo</label>
                         <input
                             className={`form-control ${(evaluaciones.formato_epp) ? null : 'myInput'}`}
                             name='formato_epp'
@@ -657,7 +657,7 @@ const S9_S10 = (props) => {
                         />
                     </div>
                     <div className='col-12 col-md-12'>
-                        <label className="control-label pt-2">¿El candidato presentó el equipo de protección completo?</label>
+                        <label className="control-label pt-2">¿El candidato presentó el equipo de despliegue completo?</label>
                         <SelectSiNo
                             className={`form-control ${(evaluaciones.presento_equipo) ? null : 'myInput'}`}
                             name='presento_equipo'
