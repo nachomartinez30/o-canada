@@ -623,7 +623,7 @@ const S9_S10 = (props) => {
                             name='puntuacion_estimada'
                             value={evaluaciones.puntuacion_estimada}
                             // onChange={setInfo}
-                            placeholder='Ingrese Minuos y Segundos de la prueba...'
+                            placeholder='Ingrese Minutos y Segundos de la prueba...'
                         />
                     </div>
                     {/* PRUEBA */}
