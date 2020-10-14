@@ -18,6 +18,7 @@ const Administracion = () => {
         estatales: true,
         mesa_ayuda: !true,
         manifiesto: !true,
+        brigadas: true,
     })
 
     const [toSend, setToSend] = useState({
@@ -33,14 +34,13 @@ const Administracion = () => {
             const resp = await Axios.post(url, toSend);
             if (resp.status === 200) {
                 /* ingresar en el context y en el state la respuesta */
-                const respuesta = resp.data.user
-                
+
                 setUser(resp.data)
                 sessContext.login.loginUser({
                     ...sessContext.login,
                     user: resp.data.user
                 })
-                
+
             }
         } catch (error) {
             AlertError('Error', error);
@@ -49,7 +49,7 @@ const Administracion = () => {
 
     return (
         <React.Fragment>
-            {(user) ?
+            {(!user) ?
                 <Dashboard
                     userPorfile={userPorfile}
                 />

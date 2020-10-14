@@ -29,7 +29,6 @@ const App = () => {
               <hr className='gradiente' />
               <Switch>
                 <Route exact path="/" component={Captura} />
-
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>

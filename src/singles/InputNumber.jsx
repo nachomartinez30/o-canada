@@ -8,7 +8,7 @@ const InputNumber = (props) => {
             className={className}
             name={name}
             value={value}
-            onInput={(e) => e.target.value = e.target.value.slice(0, limitLength)}
+            onInput={e => e.target.value = e.target.value.slice(0, limitLength)}
             type='number'
             onChange={onChange}
             onChangeCapture={onChangeCapture}

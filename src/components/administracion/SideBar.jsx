@@ -14,6 +14,7 @@ const SideBar = (props) => {
                     estatales: false,
                     mesa_ayuda: false,
                     manifiesto: false,
+                    brigadas: false,
                 })
                 break;
             case 'estatales':
@@ -22,6 +23,7 @@ const SideBar = (props) => {
                     estatales: true,
                     mesa_ayuda: false,
                     manifiesto: false,
+                    brigadas: false,
                 })
                 break;
             case 'mesa_ayuda':
@@ -30,6 +32,7 @@ const SideBar = (props) => {
                     estatales: false,
                     mesa_ayuda: true,
                     manifiesto: false,
+                    brigadas: false,
                 })
                 break;
             case 'manifiesto':
@@ -38,6 +41,16 @@ const SideBar = (props) => {
                     estatales: false,
                     mesa_ayuda: false,
                     manifiesto: true,
+                    brigadas: false,
+                })
+                break;
+            case 'brigadas':
+                setShowSection({
+                    regionales: false,
+                    estatales: false,
+                    mesa_ayuda: false,
+                    manifiesto: false,
+                    brigadas: true,
                 })
                 break;
             default: return;
@@ -66,6 +79,11 @@ const SideBar = (props) => {
                     onClick={handleClick}
                 >
                     Manifiesto
+                </button>}
+                {porfileSections.brigadas && <button value='brigadas' className="list-group-item list-group-item-action bg-light"
+                    onClick={handleClick}
+                >
+                    Brigadas
                 </button>}
             </div>
         </div>
