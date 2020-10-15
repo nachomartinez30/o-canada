@@ -8,7 +8,7 @@ import RevisionDocumentacion from '../regionales/RevisionDocumentacion';
 import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
 // import S9 from '../estatales/S9';
 import TablaEstatales from '../estatales/TablaEstatales';
-import Brigadas from '../brigadas/Brigadas';
+import TablaBrigadas from '../brigadas/TablaBrigadas';
 
 
 
@@ -53,7 +53,7 @@ const Dashboard = ({ userPorfile }) => {
                     {showSection.estatales && <TablaEstatales />}
                     {showSection.mesa_ayuda && <MesaAyuda />}
                     {/* {showSection.manifiesto && } */}
-                    {showSection.brigadas && <Brigadas />}
+                    {showSection.brigadas && <TablaBrigadas />}
 
                 </div>
             </div>

@@ -11,6 +11,19 @@ const SessionState = (props) => {
     const stateInicial = {
         session: {
             user: {}
+            // user: {
+            //     "email": "desarrollo1@conafor.gob.mx",
+            //     "token": "04af479c3234b9f9c69f3d1062b4fcd191f5dcdb5a70bc203732dc9108cb922a4fdaaf74",
+            //     "user_type": "99",
+            //     "porfile": {
+            //         "regionales": true,
+            //         "estatales": true,
+            //         "mesa_ayuda": true,
+            //         "administracion": true,
+            //         "brigadas": true,
+            //     }
+            // }
+
         }
     }
 

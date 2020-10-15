@@ -1,20 +1,48 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { Button } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom';
+import AlertError from '../../singles/AlertError'
+import AlertExito from '../../singles/AlertExito'
+import AlertCargando from '../../singles/AlertCargando'
 import EvaluacionDesepenio from './EvaluacionDesepenio';
-// import { Link } from 'react-router-dom';
+import axios from '../../config/axios'
+import sessionContext from "../../context/session/sessionContext";
 
-const Brigadas = () => {
+const TablaBrigadas = () => {
+    const sessContext = useContext(sessionContext)
     const [showEvaluacion, setShowEvaluacion] = useState(false)
+    const [reload, setReload] = useState(false)
     const [brigadistaSelected, setBrigadistaSelected] = useState({})
+    const [brigadistas, setBrigadistas] = useState([])
 
     const mostrarEvaluacionBrigadista = row => {
         setBrigadistaSelected(row)
         setShowEvaluacion(true)
     }
 
+    const getBrigadistas = async () => {
+        const { user } = sessContext.login
+        try {
+            AlertCargando('Buscando brigadistas....');
+            const resp = await axios.post('/brigadistas_evaluacion', user)
+            if (resp.status === 200) {
+                setBrigadistas(resp.data)
+                AlertExito('¡Cargado con exito!')
+            }
+        } catch (error) {
+            AlertError(error)
+        }
+    }
+
+
+    useEffect(() => {
+        /* carga por jefe de brigada, los brigadistas que le corresponden */
+        getBrigadistas();
+
+    }, [reload])
+
     /* CONFIGURACIONES TABLA */
+    // PARA ESTE CASO SE MODIFICÓ EL PUESTO EN LA VISTA DEL BACKEND
     const columns = [
         {
             name: 'Acciones',
@@ -22,11 +50,15 @@ const Brigadas = () => {
             button: true,
             minWidth: '180px',
             /* enviar a evaluacion del brigadista */
-            cell: (row) => <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>,
+            cell: (row) => (row.status === 'evaluado') ?
+                <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>
+                :
+                <Button className='btn btn-block btn-info' onClick={() => mostrarEvaluacionBrigadista(row)}>Ver evaluación</Button>
+            ,
         },
         {
             name: 'CURP',
-            selector: 'curp',
+            selector: 'curp_brigadista',
             wrap: false,
             minWidth: '200px',
             sortable: true
@@ -39,8 +71,22 @@ const Brigadas = () => {
             sortable: true
         },
         {
+            name: 'Puesto',
+            selector: 'posicion_candidato',
+            wrap: false,
+            minWidth: '200px',
+            sortable: true
+        },
+        {
             name: 'Estado',
             selector: 'nom_ent',
+            wrap: false,
+            minWidth: '200px',
+            sortable: true
+        },
+        {
+            name: 'Estatus',
+            selector: 'status_evaluacion',
             wrap: false,
             minWidth: '200px',
             sortable: true
@@ -56,24 +102,20 @@ const Brigadas = () => {
                         <EvaluacionDesepenio data={brigadistaSelected} backTable={() => setShowEvaluacion(false)} />
                     </Fragment>
                     :
-
                     <Fragment>
-
                         {/* Mostrar en una tabla, los brigadistas petenecientes a la cuenta entrante */}
                         <div style={{ alignContent: 'right' }}><h3>Brigada: {''}</h3></div>
 
                         <button className='btn btn-outline-info' onClick={() => {
                             // setSearchWord('')
-                            // setReload(true)
+                            setReload(true)
                         }}>
                             Recargar
                     </button>
                         <DataTable
                             title="Candidatos para pruebas físicas"
                             columns={columns}
-                            data={[
-                                { curp: 'MADO', nombres: 'Nacho', nom_ent: 'Jalisco' }
-                            ]}
+                            data={brigadistas}
                             defaultSortField="curp"
                             paginationComponentOptions={
                                 {
@@ -125,4 +167,4 @@ const Brigadas = () => {
     );
 }
 
-export default Brigadas;
+export default TablaBrigadas;
