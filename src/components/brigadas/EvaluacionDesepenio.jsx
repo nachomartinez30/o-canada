@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
+import AlertCargando from '../../singles/AlertCargando';
+import AlertError from '../../singles/AlertError';
 import AlertExito from '../../singles/AlertExito'
 import InfomacionCandidato from '../estatales/InfomacionCandidato';
 
@@ -14,7 +16,7 @@ const SelectCalificacion = ({ name, onChange, className }) => <select name={name
 
 const EvaluacionDesepenio = ({ data, backTable }) => {
 
-    const [files, setFiles] = useState()
+    const [files, setFiles] = useState({ evaluacion_desempenio_archivo_fl: null })
     const [sumatoria, setSumatoria] = useState(0)
     const [state, setState] = useState({
         aptitud_fisica: 0,
@@ -56,11 +58,48 @@ const EvaluacionDesepenio = ({ data, backTable }) => {
     const handleSubmit = e => {
         e.preventDefault();
         /* REVISAR QUE EL ARCHIVO NO ESTEN VACÍOS */
-        /* REVISAR QUE LAS CALIFICACIONES NO ESTEN VACÍAS */
-        /* REVISAR QUE TODOS LOS CAMPOS SEAN NUMERICOS */
+        const { aptitud_fisica,
+            conocimiento_incendios,
+            ap_cmdo_incidentes,
+            uso_gps,
+            uso_equipo_agua,
+            disponibilidad,
+            conducta,
+            productividad,
+            seguridad,
+            comunicacion,
+            responsabilidad,
+            eq_acampar,
+            dom_ingles,
+            liderazgo,
+            capacidad_gestion } = state
+
+        if (!files.evaluacion_desempenio_archivo_fl) { AlertError('El formato fisico debe ser adjunto'); return }
+        else if (aptitud_fisica == '0') { AlertError('falta aptitud_fisica'); return }
+        else if (conocimiento_incendios == '0') { AlertError('falta conocimiento_incendios'); return }
+        else if (ap_cmdo_incidentes == '0') { AlertError('falta ap_cmdo_incidentes'); return }
+        else if (uso_gps == '0') { AlertError('falta uso_gps'); return }
+        else if (uso_equipo_agua == '0') { AlertError('falta uso_equipo_agua'); return }
+        else if (disponibilidad == '0') { AlertError('falta disponibilidad'); return }
+        else if (conducta == '0') { AlertError('falta conducta'); return }
+        else if (productividad == '0') { AlertError('falta productividad'); return }
+        else if (seguridad == '0') { AlertError('falta seguridad'); return }
+        else if (comunicacion == '0') { AlertError('falta comunicacion'); return }
+        else if (responsabilidad == '0') { AlertError('falta responsabilidad'); return }
+        else if (eq_acampar == '0') { AlertError('falta eq_acampar'); return }
+        else if (dom_ingles == '0') { AlertError('falta dom_ingles'); return }
+        else if (data.posicion_candidato === 'jefe_de_cuadrilla' || data.posicion_candidato === 'jefe_de_brigada') {
+            if (liderazgo == '0') { AlertError('falta liderazgo'); return }
+            else if (capacidad_gestion == '0') { AlertError('falta capacidad_gestion'); return }
+        }
         /* ENVIAR VIA AXIOS LA INFORMACION */
+        try {
+            AlertCargando('Enviando evaluación...');
+            AlertExito('Se cargo correctamente');
+        } catch (error) {
+            AlertError('ERROR:', error)
+        }
         /* CAMBIAR STATUS DE ENVIADO PARA MODIFICACIÓN */
-        AlertExito('Se cargo correctamente');
     }
 
     const sumarPuntos = () => {
@@ -314,13 +353,13 @@ const EvaluacionDesepenio = ({ data, backTable }) => {
                     />
                 </div>
 
-                {(data.puesto === 'jefe_de_cuadrilla' || data.puesto === 'jefe_de_brigada') && <Fragment>
+                {(data.posicion_candidato === 'jefe_de_cuadrilla' || data.posicion_candidato === 'jefe_de_brigada') && <Fragment>
                     <div className='col-12 pt-4'>
                         <label className="control-label pt-2">
                             16.Liderazgo
                     </label>
                         <p>
-                            JEFES DE BRIGADA Y CUADRILLA Muestra decisión e iniciativa, brinda buen ejemplo einstrucciones claras a sus subordinados
+                            Muestra decisión e iniciativa, brinda buen ejemplo einstrucciones claras a sus subordinados
                     </p>
                         <SelectCalificacion
                             className='form-control'
@@ -334,7 +373,7 @@ const EvaluacionDesepenio = ({ data, backTable }) => {
                             17.Capacidad de Gestión
                     </label>
                         <p>
-                            JEFES DE BRIGADA Y CUADRILLA Resuelve situaciones urgentes y establece planes de contingencia, negocia al interior y al exterior del grupo para mejorar las condiciones del despliegue.
+                            Resuelve situaciones urgentes y establece planes de contingencia, negocia al interior y al exterior del grupo para mejorar las condiciones del despliegue.
                     </p>
                         <SelectCalificacion
                             className='form-control'
