@@ -22,7 +22,7 @@ const Dashboard = ({ userPorfile }) => {
         'estatales': false,
         'mesa_ayuda': false,
         'manifiesto': false,
-        'brigadas': !false,
+        'brigadas': false,
     })
 
     const [toggled, setToggled] = useState(true)

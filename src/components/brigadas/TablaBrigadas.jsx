@@ -9,7 +9,10 @@ import axios from '../../config/axios'
 import sessionContext from "../../context/session/sessionContext";
 
 const TablaBrigadas = () => {
+
+    
     const sessContext = useContext(sessionContext)
+
     const [showEvaluacion, setShowEvaluacion] = useState(false)
     const [reload, setReload] = useState(false)
     const [brigadistaSelected, setBrigadistaSelected] = useState({})
@@ -17,6 +20,7 @@ const TablaBrigadas = () => {
 
     const mostrarEvaluacionBrigadista = row => {
         setBrigadistaSelected(row)
+        /* si tiene variable de edicion, consultar datos */
         setShowEvaluacion(true)
     }
 
@@ -38,7 +42,6 @@ const TablaBrigadas = () => {
     useEffect(() => {
         /* carga por jefe de brigada, los brigadistas que le corresponden */
         getBrigadistas();
-
     }, [reload])
 
     /* CONFIGURACIONES TABLA */
@@ -50,10 +53,10 @@ const TablaBrigadas = () => {
             button: true,
             minWidth: '180px',
             /* enviar a evaluacion del brigadista */
-            cell: (row) => (row.status === 'evaluado') ?
-                <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>
-                :
+            cell: (row) => (row.status_evaluacion === 'evaluado') ?
                 <Button className='btn btn-block btn-info' onClick={() => mostrarEvaluacionBrigadista(row)}>Ver evaluación</Button>
+                :
+                <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>
             ,
         },
         {
@@ -99,7 +102,12 @@ const TablaBrigadas = () => {
             {
                 showEvaluacion ?
                     <Fragment>
-                        <EvaluacionDesepenio data={brigadistaSelected} backTable={() => setShowEvaluacion(false)} />
+                        <EvaluacionDesepenio
+                            data={brigadistaSelected}
+                            backTable={() => setShowEvaluacion(false)}
+                            setReload={setReload}
+                            reload={reload}
+                        />
                     </Fragment>
                     :
                     <Fragment>
@@ -108,7 +116,7 @@ const TablaBrigadas = () => {
 
                         <button className='btn btn-outline-info' onClick={() => {
                             // setSearchWord('')
-                            setReload(true)
+                            setReload(!reload)
                         }}>
                             Recargar
                     </button>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Dashboard from '../components/administracion/Dashboard';
 import LoginUsers from '../singles/LoginUsers';
 import sessionContext from "../context/session/sessionContext";
@@ -11,14 +11,14 @@ const Administracion = () => {
 
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
     // const [user, setUser] = useState(sessContext.session.user)
-    const [user, setUser] = useState(!true)
+    const [user, setUser] = useState(false)
 
     const [userPorfile, setUserPorfile] = useState({
-        regionales: true,
-        estatales: true,
-        mesa_ayuda: !true,
-        manifiesto: !true,
-        brigadas: true,
+        regionales: false,
+        estatales: false,
+        mesa_ayuda: false,
+        manifiesto: false,
+        brigadas: false,
     })
 
     const [toSend, setToSend] = useState({
@@ -34,18 +34,33 @@ const Administracion = () => {
             const resp = await Axios.post(url, toSend);
             if (resp.status === 200) {
                 /* ingresar en el context y en el state la respuesta */
-
                 setUser(resp.data)
                 sessContext.login.loginUser({
                     ...sessContext.login,
                     user: resp.data.user
                 })
-
+                setUserPorfile(resp.data.user.porfile)
+                sessionStorage.setItem('user_session', JSON.stringify(resp.data.user))
             }
         } catch (error) {
             AlertError('Error', error);
         }
     }
+
+    useEffect(() => {
+        // revisar el sessionStorage y asignar session
+        const user = JSON.parse(sessionStorage.getItem('user_session'));
+
+        if (user) {
+            // asignar perfil y datos de usuario
+            setUser(user)
+            sessContext.login.loginUser({
+                ...sessContext.login,
+                user: user
+            })
+            setUserPorfile(user.porfile)
+        }
+    }, [''])
 
     return (
         <React.Fragment>
