@@ -9,25 +9,18 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 
-/* CREACION DE COMPONENTE SELECTOR */
-const SelectCalificacion = ({ name, onChange, className, defaultValue }) => <select name={name} onChange={onChange} className={className} defaultValue={defaultValue}>
-    <option value={null}>--Seleccione---</option>
-    <option value='0'>1-No cumple</option>
-    <option value='1'>2-Cumple, pero con dificultades</option>
-    <option value='2'>3-Cumple de acuerdo a lo requerido</option>
-</select>
+
 
 
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
-    /* TODO: 
-            => texbox añadir seccion de comentarios 
-    */
 
     const sessContext = useContext(sessionContext)
     const [files, setFiles] = useState({ evaluacion_desempenio_archivo_fl: null })
     const [sumatoria, setSumatoria] = useState(0)
+    /* TODO: El evento debe ser de forma dinamica para futuros deploys */
+    const evento = 'california2020'
     const [edicion, setEdicion] = useState((data.evaluaciones[0]) ? true : false)
     const evaluacionDefault = (data.evaluaciones[0]) ? data.evaluaciones[0] : {
         fk_curp: data.curp,
@@ -51,7 +44,6 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
     const setInfo = (input) => {
         /* setea al state las variables */
-
         if (
             input.target.name === 'evaluacion_desempenio_archivo'
         ) {
@@ -83,64 +75,64 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             AlertError('El formato fisico debe ser adjunto');
             return
         }
-        else if (aptitud_fisica === '0') {
+        else if (!aptitud_fisica) {
             AlertError('falta aptitud_fisica');
             return
         }
-        else if (conocimiento_incendios === '0') {
+        else if (!conocimiento_incendios) {
             AlertError('falta conocimiento_incendios');
             return
         }
-        else if (ap_cmdo_incidentes === '0') {
+        else if (!ap_cmdo_incidentes) {
             AlertError('falta ap_cmdo_incidentes');
             return
         }
-        else if (uso_gps === '0') {
+        else if (!uso_gps) {
             AlertError('falta uso_gps');
             return
         }
-        else if (uso_equipo_agua === '0') {
+        else if (!uso_equipo_agua) {
             AlertError('falta uso_equipo_agua');
             return
         }
-        else if (disponibilidad === '0') {
+        else if (!disponibilidad) {
             AlertError('falta disponibilidad');
             return
         }
-        else if (conducta === '0') {
+        else if (!conducta) {
             AlertError('falta conducta');
             return
         }
-        else if (productividad === '0') {
+        else if (!productividad) {
             AlertError('falta productividad');
             return
         }
-        else if (seguridad === '0') {
+        else if (!seguridad) {
             AlertError('falta seguridad');
             return
         }
-        else if (comunicacion === '0') {
+        else if (!comunicacion) {
             AlertError('falta comunicacion');
             return
         }
-        else if (responsabilidad === '0') {
+        else if (!responsabilidad) {
             AlertError('falta responsabilidad');
             return
         }
-        else if (eq_acampar === '0') {
+        else if (!eq_acampar) {
             AlertError('falta eq_acampar');
             return
         }
-        else if (dom_ingles === '0') {
+        else if (!dom_ingles) {
             AlertError('falta dom_ingles');
             return
         }
         else if (data.posicion_candidato === 'jefe_de_cuadrilla' || data.posicion_candidato === 'jefe_de_brigada') {
-            if (liderazgo === '0') {
+            if (!liderazgo) {
                 AlertError('falta liderazgo');
                 return
             }
-            else if (capacidad_gestion === '0') {
+            else if (!capacidad_gestion) {
                 AlertError('falta capacidad_gestion');
                 return
             }
@@ -148,16 +140,23 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         /* ENVIAR VIA AXIOS LA INFORMACION */
         AlertCargando('Enviando evaluación...');
         try {
-            let resp;
-            if (edicion) {
-                /* envia a edicion */
-                resp = await axios.put('/edit_evaluacion', { user: user, data: { ...state, suma: sumatoria } })
-            } else {
-                /* crea un nuevo registro */
-                resp = await axios.post('/create_evaluacion', { user: user, data: { ...state, suma: sumatoria } })
-            }
 
-            if (resp.status === 200) {
+
+            /* Envio del archivo */
+            const formData = new FormData();
+            formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
+            formData.append("curp", state.fk_curp);
+            formData.append("name", `evaluacion_desempenio_${evento}`);
+
+            const archivo = await axios.post(`/carga_archivo`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            /* crea un nuevo registro */
+            const resp = await axios.post('/create_evaluacion', { user: user, data: { ...state, suma: sumatoria } })
+
+            if (resp.status === 200 && archivo.status === 200) {
                 AlertExito('Se cargo correctamente');
                 backTable()
                 setReload(!reload)
@@ -197,6 +196,18 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         sumarPuntos();
     }, [state])
 
+
+
+    /* CREACION DE COMPONENTE SELECTOR */
+    const SelectCalificacion = ({ name, onChange, className, defaultValue }) =>
+        <select name={name} onChange={onChange} className={className} defaultValue={defaultValue} disabled={(edicion) ? true : false}>
+            <option value={null}>--Seleccione---</option>
+            <option value='0'>1-No cumple</option>
+            <option value='1'>2-Cumple, pero con dificultades</option>
+            <option value='2'>3-Cumple de acuerdo a lo requerido</option>
+        </select>
+
+
     return (
         <Fragment>
             <Button onClick={backTable}>Volver</Button>
@@ -232,6 +243,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_aptitud_fisica'
+                        defaultValue={state.observacion_aptitud_fisica}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -253,6 +266,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_conocimiento_incendios'
+                        defaultValue={state.observacion_conocimiento_incendios}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -274,6 +289,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_ap_cmdo_incidentes'
+                        defaultValue={state.observacion_ap_cmdo_incidentes}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -295,6 +312,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_uso_gps'
+                        defaultValue={state.observacion_uso_gps}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -316,6 +335,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_uso_equipo_agua'
+                        defaultValue={state.observacion_uso_equipo_agua}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -337,6 +358,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_disponibilidad'
+                        defaultValue={state.observacion_disponibilidad}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -359,6 +382,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_conducta'
+                        defaultValue={state.observacion_conducta}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -380,6 +405,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_productividad'
+                        defaultValue={state.observacion_productividad}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -402,6 +429,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_seguridad'
+                        defaultValue={state.observacion_seguridad}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -423,6 +452,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_comunicacion'
+                        defaultValue={state.observacion_comunicacion}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -444,6 +475,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_responsabilidad'
+                        defaultValue={state.observacion_responsabilidad}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -475,6 +508,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_eq_proteccion_personal'
+                        defaultValue={state.observacion_eq_proteccion_personal}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -496,6 +531,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_eq_acampar'
+                        defaultValue={state.observacion_eq_acampar}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -517,6 +554,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <br />
                     <textarea className='form-control'
                         name='observacion_dom_ingles'
+                        defaultValue={state.observacion_dom_ingles}
+                        disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -538,6 +577,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                         />
                         <textarea className='form-control'
                             name='observacion_liderazgo'
+                            defaultValue={state.observacion_liderazgo}
+                            disabled={(edicion) ? true : false}
                             onChange={setInfo}
                         />
                     </div>
@@ -557,18 +598,22 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                         />
                         <textarea className='form-control'
                             name='observacion_capacidad_gestion'
+                            defaultValue={state.observacion_capacidad_gestion}
+                            disabled={(edicion) ? true : false}
                             onChange={setInfo}
                         />
                     </div>
                 </Fragment>
                 }
                 <div className='col-12 pt-4 d-flex justify-content-end'>
-                    <button className='btn btn-success '
-                        onClick={handleSubmit}
-                        disabled={sumatoria <= 0}
-                    >
-                        {(edicion) ? 'Editar' : 'Guardar'}
+
+                    {
+                        (!edicion) && <button className='btn btn-success '
+                            onClick={handleSubmit}
+                        >
+                            Guardar
                     </button>
+                    }
                 </div>
 
             </div>
