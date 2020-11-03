@@ -206,10 +206,11 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         const equipo_despliegue = (state.equipo_despliegue) ? parseInt(state.equipo_despliegue) : 0;
         const uso_markIII = (state.uso_markIII) ? parseInt(state.uso_markIII) : 0;
         const uso_motosierra = (state.uso_motosierra) ? parseInt(state.uso_motosierra) : 0;
+        const capacidad_gestion = (state.capacidad_gestion) ? parseInt(state.capacidad_gestion) : 0;
 
         const suma = aptitud_fisica + uso_gps + conducta + productividad + liderazgo +
             licencia_manejo + estado_salud + exp_incendios_forestales + sis_comando_incendios +
-            cadena_mando + idioma_ingles + equipo_despliegue + uso_markIII + uso_motosierra;
+            cadena_mando + idioma_ingles + equipo_despliegue + uso_markIII + uso_motosierra + capacidad_gestion;
 
         setSumatoria(suma)
     }
