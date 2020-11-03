@@ -224,7 +224,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
     /* CREACION DE COMPONENTE SELECTOR */
     const SelectCalificacion = ({ name, onChange, className, defaultValue }) =>
         <select name={name} onChange={onChange} className={className} defaultValue={defaultValue} disabled={(edicion) ? true : false}>
-            <option value={null}>--Seleccione---</option>
+            <option value=''>--Seleccione---</option>
             <option value='0'>0-No cumple</option>
             <option value='1'>1-Cumple, pero con dificultades</option>
             <option value='2'>2-Cumple de acuerdo a lo requerido</option>
