@@ -281,7 +281,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_licencia_manejo'
                         defaultValue={state.observacion_licencia_manejo}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -303,7 +303,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_estado_salud'
                         defaultValue={state.observacion_estado_salud}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -325,7 +325,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_exp_incendios_forestales'
                         defaultValue={state.observacion_exp_incendios_forestales}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -347,7 +347,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_productividad'
                         defaultValue={state.observacion_productividad}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -369,7 +369,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_sis_comando_incendios'
                         defaultValue={state.observacion_sis_comando_incendios}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -391,7 +391,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_cadena_mando'
                         defaultValue={state.observacion_cadena_mando}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -413,7 +413,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_conducta'
                         defaultValue={state.observacion_conducta}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -435,7 +435,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_idioma_ingles'
                         defaultValue={state.observacion_idioma_ingles}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -457,7 +457,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_aptitud_fisica'
                         defaultValue={state.observacion_aptitud_fisica}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -479,7 +479,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_liderazgo'
                         defaultValue={state.observacion_liderazgo}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -501,7 +501,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_equipo_despliegue'
                         defaultValue={state.observacion_equipo_despliegue}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -523,7 +523,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_uso_gps'
                         defaultValue={state.observacion_uso_gps}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -545,7 +545,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_uso_markIII'
                         defaultValue={state.observacion_uso_markIII}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -567,7 +567,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     <textarea className='form-control'
                         name='observacion_uso_motosierra'
                         defaultValue={state.observacion_uso_motosierra}
-                        disabled={(edicion) ? true : false}
+                        // disabled={(edicion) ? true : false}
                         onChange={setInfo}
                         placeholder='Observaciones...'
                     />
@@ -592,7 +592,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                         <textarea className='form-control'
                             name='observacion_capacidad_gestion'
                             defaultValue={state.observacion_capacidad_gestion}
-                            disabled={(edicion) ? true : false}
+                            // disabled={(edicion) ? true : false}
                             onChange={setInfo}
                             placeholder='Observaciones...'
                         />
