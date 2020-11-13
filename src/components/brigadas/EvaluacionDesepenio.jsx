@@ -1,6 +1,6 @@
 import axios from '../../config/axios';
 import React, { Fragment, useState, useEffect, useContext } from 'react'
-import { Button } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import AlertCargando from '../../singles/AlertCargando';
 import AlertError from '../../singles/AlertError';
 import AlertExito from '../../singles/AlertExito'
@@ -95,98 +95,112 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             capacidad_gestion
         } = state
 
-        if (!files.evaluacion_desempenio_archivo_fl) {
-            AlertError('El formato fisico debe ser adjunto');
-            return
-        }
-        else if (!aptitud_fisica) {
-            AlertError('falta seccion APTITUD FISICA')
-            return
-        }
-        else if (!uso_gps) {
-            AlertError('falta seccion USO GPS')
-            return
-        }
-        else if (!conducta) {
-            AlertError('falta seccion CONDUCTA')
-            return
-        }
-        else if (!productividad) {
-            AlertError('falta seccion PRODUCTIVIDAD')
-            return
-        }
-        else if (!liderazgo) {
-            AlertError('falta seccion LIDERAZGO')
-            return
-        }
-        else if (!licencia_manejo) {
-            AlertError('falta seccion LICENCIA MANEJO')
-            return
-        }
-        else if (!estado_salud) {
-            AlertError('falta seccion ESTADO SALUD')
-            return
-        }
-        else if (!exp_incendios_forestales) {
-            AlertError('falta seccion EXPERIENCIA INCENDIOS FORESTALES')
-            return
-        }
-        else if (!sis_comando_incendios) {
-            AlertError('falta seccion SISTEMA COMANDO INCENDIOS')
-            return
-        }
-        else if (!cadena_mando) {
-            AlertError('falta seccion CADENA MANDO')
-            return
-        }
-        else if (!idioma_ingles) {
-            AlertError('falta seccion IDIOMA INGLES')
-            return
-        }
-        else if (!equipo_despliegue) {
-            AlertError('falta seccion EQUIPO DESPLIEGUE')
-            return
-        }
-        else if (!uso_markIII) {
-            AlertError('falta seccion USO MARKIII')
-            return
-        }
-        else if (!uso_motosierra) {
-            AlertError('falta seccion USO MOTOSIERRA')
-            return
-        }
-        else if (data.posicion_candidato === 'jefe_de_cuadrilla' || data.posicion_candidato === 'jefe_de_brigada') {
-            if (!capacidad_gestion) {
-                AlertError('falta CAPACIDAD GESTION');
+        if (!edicion) {
+            if (!files.evaluacion_desempenio_archivo_fl) {
+                AlertError('El formato fisico debe ser adjunto');
                 return
             }
-        }
-        /* ENVIAR VIA AXIOS LA INFORMACION */
-        AlertCargando('Enviando evaluación...');
-        try {
-
-
-            /* Envio del archivo */
-            const formData = new FormData();
-            formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
-            formData.append("curp", state.fk_curp);
-            formData.append("name", `evaluacion_desempenio_${evento}`);
-
-            const archivo = await axios.post(`/carga_archivo`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            /* crea un nuevo registro */
-            const resp = await axios.post('/create_evaluacion', { user: user, data: { ...state, suma: sumatoria } })
-
-            if (resp.status === 200 && archivo.status === 200) {
-                AlertExito('Se cargo correctamente');
-                backTable()
-                setReload(!reload)
+            else if (!aptitud_fisica) {
+                AlertError('falta seccion APTITUD FISICA')
+                return
             }
-        } catch (error) {
-            AlertError('ERROR:', error)
+            else if (!uso_gps) {
+                AlertError('falta seccion USO GPS')
+                return
+            }
+            else if (!conducta) {
+                AlertError('falta seccion CONDUCTA')
+                return
+            }
+            else if (!productividad) {
+                AlertError('falta seccion PRODUCTIVIDAD')
+                return
+            }
+            else if (!liderazgo) {
+                AlertError('falta seccion LIDERAZGO')
+                return
+            }
+            else if (!licencia_manejo) {
+                AlertError('falta seccion LICENCIA MANEJO')
+                return
+            }
+            else if (!estado_salud) {
+                AlertError('falta seccion ESTADO SALUD')
+                return
+            }
+            else if (!exp_incendios_forestales) {
+                AlertError('falta seccion EXPERIENCIA INCENDIOS FORESTALES')
+                return
+            }
+            else if (!sis_comando_incendios) {
+                AlertError('falta seccion SISTEMA COMANDO INCENDIOS')
+                return
+            }
+            else if (!cadena_mando) {
+                AlertError('falta seccion CADENA MANDO')
+                return
+            }
+            else if (!idioma_ingles) {
+                AlertError('falta seccion IDIOMA INGLES')
+                return
+            }
+            else if (!equipo_despliegue) {
+                AlertError('falta seccion EQUIPO DESPLIEGUE')
+                return
+            }
+            else if (!uso_markIII) {
+                AlertError('falta seccion USO MARKIII')
+                return
+            }
+            else if (!uso_motosierra) {
+                AlertError('falta seccion USO MOTOSIERRA')
+                return
+            }
+            else if (data.posicion_candidato === 'jefe_de_cuadrilla' || data.posicion_candidato === 'jefe_de_brigada') {
+                if (!capacidad_gestion) {
+                    AlertError('falta CAPACIDAD GESTION');
+                    return
+                }
+            }
+            /* ENVIAR VIA AXIOS LA INFORMACION */
+            AlertCargando('Enviando evaluación...');
+            try {
+                /* Envio del archivo */
+                const formData = new FormData();
+                formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
+                formData.append("curp", state.fk_curp);
+                formData.append("name", `evaluacion_desempenio_${evento}`);
+
+                const archivo = await axios.post(`/carga_archivo`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                /* crea un nuevo registro */
+                const resp = await axios.post('/create_evaluacion', { user: user, data: { ...state, suma: sumatoria } })
+
+                if (resp.status === 200 && archivo.status === 200) {
+                    AlertExito('Se cargo correctamente');
+                    backTable()
+                    setReload(!reload)
+                }
+            } catch (error) {
+                AlertError('ERROR:', error)
+            }
+        } else {
+            //    mandar por PUT los datos para edicion
+            AlertCargando('Enviando evaluación...');
+            try {
+                const resp = await axios.put('/edit_evaluacion', { user: user, data: state })
+                if (resp.status === 200) {
+                    AlertExito('Se cargo correctamente');
+                    backTable()
+                    setReload(!reload)
+                }
+            } catch (error) {
+
+            }
+            return
         }
         /* CAMBIAR STATUS DE ENVIADO PARA MODIFICACIÓN */
     }
@@ -585,22 +599,30 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                     </div>
                 </Fragment>
                 }
-                <div className='col-12 pt-4 d-flex justify-content-end'>
 
-                    {
-                        (!edicion) && <button className='btn btn-success '
-                            onClick={handleSubmit}
-                        >
-                            Guardar
-                    </button>
-                    }
-                </div>
                 <div className='col-12 pt-4'>
                     <label className='form-control'>Sumatoria:</label>
                     <input className='form-control'
                         readOnly
                         value={sumatoria}
                     />
+                </div>
+                <div className='col-12 pt-4'>
+                    <label>Comentarios Generales:</label>
+                    <textarea className='form-control'
+                        name='observacion_general'
+                        defaultValue={state.observacion_general}
+                        // disabled={(edicion) ? true : false}
+                        onChange={setInfo}
+                        placeholder='Observaciones...'
+                    />
+                </div>
+                <div className='col-12 pt-4 d-flex justify-content-end'>
+                    <button className='btn btn-success '
+                        onClick={handleSubmit}
+                    >
+                        {(!edicion) ? 'Guardar' : 'Editar'}
+                    </button>
                 </div>
             </div>
             <Button onClick={backTable}>Volver</Button>
