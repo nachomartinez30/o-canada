@@ -7,7 +7,7 @@ const SelectEstados = (props) => {
         {
             "id": 1,
             "cve_ent": "01",
-            "nom_ent": "AGUASCALIENTES",
+            "nom_ent": "Aguascalientes",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Ags. "
@@ -15,7 +15,7 @@ const SelectEstados = (props) => {
         {
             "id": 2,
             "cve_ent": "02",
-            "nom_ent": "BAJA CALIFORNIA",
+            "nom_ent": "Baja California",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "B.C. "
@@ -23,7 +23,7 @@ const SelectEstados = (props) => {
         {
             "id": 3,
             "cve_ent": "03",
-            "nom_ent": "BAJA CALIFORNIA SUR",
+            "nom_ent": "Baja California Sur",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "B.C.S. "
@@ -31,7 +31,7 @@ const SelectEstados = (props) => {
         {
             "id": 4,
             "cve_ent": "04",
-            "nom_ent": "CAMPECHE",
+            "nom_ent": "Campeche",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Camp. "
@@ -39,7 +39,7 @@ const SelectEstados = (props) => {
         {
             "id": 5,
             "cve_ent": "05",
-            "nom_ent": "COAHUILA DE ZARAGOZA",
+            "nom_ent": "Coahuila de Zaragoza",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Coah. "
@@ -47,7 +47,7 @@ const SelectEstados = (props) => {
         {
             "id": 6,
             "cve_ent": "06",
-            "nom_ent": "COLIMA",
+            "nom_ent": "Colima",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Col. "
@@ -55,7 +55,7 @@ const SelectEstados = (props) => {
         {
             "id": 7,
             "cve_ent": "07",
-            "nom_ent": "CHIAPAS",
+            "nom_ent": "Chiapas",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Chis. "
@@ -63,7 +63,7 @@ const SelectEstados = (props) => {
         {
             "id": 8,
             "cve_ent": "08",
-            "nom_ent": "CHIHUAHUA",
+            "nom_ent": "Chihuahua",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Chih. "
@@ -71,7 +71,7 @@ const SelectEstados = (props) => {
         {
             "id": 9,
             "cve_ent": "09",
-            "nom_ent": "CIUDAD DE MÉXICO",
+            "nom_ent": "Ciudad de México",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "C.D.Mx. "
@@ -79,7 +79,7 @@ const SelectEstados = (props) => {
         {
             "id": 10,
             "cve_ent": "10",
-            "nom_ent": "DURANGO",
+            "nom_ent": "Durango",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Dgo. "
@@ -87,7 +87,7 @@ const SelectEstados = (props) => {
         {
             "id": 11,
             "cve_ent": "11",
-            "nom_ent": "GUANAJUATO",
+            "nom_ent": "Guanajuato",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Gto. "
@@ -95,7 +95,7 @@ const SelectEstados = (props) => {
         {
             "id": 12,
             "cve_ent": "12",
-            "nom_ent": "GUERRERO",
+            "nom_ent": "Guerrero",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Gro. "
@@ -103,7 +103,7 @@ const SelectEstados = (props) => {
         {
             "id": 13,
             "cve_ent": "13",
-            "nom_ent": "HIDALGO",
+            "nom_ent": "Hidalgo",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Hgo. "
@@ -111,7 +111,7 @@ const SelectEstados = (props) => {
         {
             "id": 14,
             "cve_ent": "14",
-            "nom_ent": "JALISCO",
+            "nom_ent": "Jalisco",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Jal. "
@@ -119,7 +119,7 @@ const SelectEstados = (props) => {
         {
             "id": 15,
             "cve_ent": "15",
-            "nom_ent": "MÉXICO",
+            "nom_ent": "México",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Edo. Méx."
@@ -127,7 +127,7 @@ const SelectEstados = (props) => {
         {
             "id": 16,
             "cve_ent": "16",
-            "nom_ent": "MICHOACÁN DE OCAMPO",
+            "nom_ent": "Michoacán de Ocampo",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Mich. "
@@ -135,7 +135,7 @@ const SelectEstados = (props) => {
         {
             "id": 17,
             "cve_ent": "17",
-            "nom_ent": "MORELOS",
+            "nom_ent": "Morelos",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Mor. "
@@ -143,7 +143,7 @@ const SelectEstados = (props) => {
         {
             "id": 18,
             "cve_ent": "18",
-            "nom_ent": "NAYARIT",
+            "nom_ent": "Nayarit",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Nay. "
@@ -151,7 +151,7 @@ const SelectEstados = (props) => {
         {
             "id": 19,
             "cve_ent": "19",
-            "nom_ent": "NUEVO LEÓN",
+            "nom_ent": "Nuevo León",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "N.L. "
@@ -159,7 +159,7 @@ const SelectEstados = (props) => {
         {
             "id": 20,
             "cve_ent": "20",
-            "nom_ent": "OAXACA",
+            "nom_ent": "Oaxaca",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Oax. "
@@ -167,7 +167,7 @@ const SelectEstados = (props) => {
         {
             "id": 21,
             "cve_ent": "21",
-            "nom_ent": "PUEBLA",
+            "nom_ent": "Puebla",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Pue. "
@@ -175,7 +175,7 @@ const SelectEstados = (props) => {
         {
             "id": 22,
             "cve_ent": "22",
-            "nom_ent": "QUERÉTARO",
+            "nom_ent": "Querétaro",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Qro. "
@@ -183,7 +183,7 @@ const SelectEstados = (props) => {
         {
             "id": 23,
             "cve_ent": "23",
-            "nom_ent": "QUINTANA ROO",
+            "nom_ent": "Quintana Roo",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Q. Roo."
@@ -191,7 +191,7 @@ const SelectEstados = (props) => {
         {
             "id": 24,
             "cve_ent": "24",
-            "nom_ent": "SAN LUIS POTOSÍ",
+            "nom_ent": "San Luis Potosí",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "S.L.P. "
@@ -199,7 +199,7 @@ const SelectEstados = (props) => {
         {
             "id": 25,
             "cve_ent": "25",
-            "nom_ent": "SINALOA",
+            "nom_ent": "Sinaloa",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Sin. "
@@ -207,7 +207,7 @@ const SelectEstados = (props) => {
         {
             "id": 26,
             "cve_ent": "26",
-            "nom_ent": "SONORA",
+            "nom_ent": "Sonora",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Son. "
@@ -215,7 +215,7 @@ const SelectEstados = (props) => {
         {
             "id": 27,
             "cve_ent": "27",
-            "nom_ent": "TABASCO",
+            "nom_ent": "Tabasco",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Tab. "
@@ -223,7 +223,7 @@ const SelectEstados = (props) => {
         {
             "id": 28,
             "cve_ent": "28",
-            "nom_ent": "TAMAULIPAS",
+            "nom_ent": "Tamaulipas",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Tamps. "
@@ -231,7 +231,7 @@ const SelectEstados = (props) => {
         {
             "id": 29,
             "cve_ent": "29",
-            "nom_ent": "TLAXCALA",
+            "nom_ent": "Tlaxcala",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Tlax. "
@@ -239,7 +239,7 @@ const SelectEstados = (props) => {
         {
             "id": 30,
             "cve_ent": "30",
-            "nom_ent": "VERACRUZ DE IGNACIO DE LA LLAVE",
+            "nom_ent": "Veracruz de Ignacio de la Llave",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Ver. "
@@ -247,7 +247,7 @@ const SelectEstados = (props) => {
         {
             "id": 31,
             "cve_ent": "31",
-            "nom_ent": "YUCATÁN",
+            "nom_ent": "Yucatán",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Yuc. "
@@ -255,7 +255,7 @@ const SelectEstados = (props) => {
         {
             "id": 32,
             "cve_ent": "32",
-            "nom_ent": "ZACATECAS",
+            "nom_ent": "Zacatecas",
             "created_at": "2017-12-18 18:56:36.000",
             "updated_at": "2017-12-18 18:56:36.000",
             "abreviacion": "Zac. "
@@ -275,4 +275,4 @@ const SelectEstados = (props) => {
     );
 }
 
-export default SelectEstados;
+    export default SelectEstados;
