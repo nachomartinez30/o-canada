@@ -11,6 +11,7 @@
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "moment": "^2.26.0",
+    "nodemon": "^2.0.7",
     "pdf-viewer-reactjs": "^2.0.6",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
